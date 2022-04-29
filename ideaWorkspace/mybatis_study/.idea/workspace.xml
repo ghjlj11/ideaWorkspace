@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/mybatis-07/src/main/java/com/ghj/dao/BlogMapper.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="26XOi1Eixu5cdkuIQ5JJggFgd33" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/更改 SQL 方言" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\mybatis_study\mybatis-07\src\main\resources" />
+      <recent name="D:\mybatis_study\mybatis-06\src\main\resources" />
+      <recent name="D:\mybatis_study\mybatis-06\src\main\java" />
+      <recent name="D:\mybatis_study\mybatis-05\src\main\java" />
+      <recent name="D:\mybatis_study\mybatis-05\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\mybatis_study\mybatis-05\src\main\resources\com\ghj\dao" />
+      <recent name="D:\mybatis_study\mybatis-02\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ghj.utils" />
+      <recent name="com.ghj.dao" />
+      <recent name="com.ghj.pojo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.TestBlog.test05">
+    <configuration name="TestBlog.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-07" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ghj.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ghj.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestBlog" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBlog.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-07" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ghj.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ghj.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestBlog" />
+      <option name="METHOD_NAME" value="test05" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMapper.test01 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-06" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ghj.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ghj.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestMapper" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMapper.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-05" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ghj.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ghj.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestMapper" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMapper.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-05" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ghj.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ghj.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestMapper" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestBlog.test05" />
+        <item itemvalue="JUnit.TestMapper.test01 (1)" />
+        <item itemvalue="JUnit.TestMapper.test02" />
+        <item itemvalue="JUnit.TestMapper.test01" />
+        <item itemvalue="JUnit.TestBlog.test02" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="" />
+      <created>1647566587957</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647566587957</updated>
+      <workItem from="1647566589470" duration="21638000" />
+      <workItem from="1647700166430" duration="2526000" />
+      <workItem from="1647734324593" duration="9352000" />
+      <workItem from="1647823601255" duration="6996000" />
+      <workItem from="1647907497858" duration="3311000" />
+      <workItem from="1647998071057" duration="14082000" />
+      <workItem from="1648081326495" duration="2901000" />
+      <workItem from="1648111285101" duration="8595000" />
+      <workItem from="1648176024667" duration="3098000" />
+      <workItem from="1648255392850" duration="15613000" />
+      <workItem from="1648343849336" duration="26971000" />
+      <workItem from="1648458542484" duration="12810000" />
+      <workItem from="1648512734347" duration="8717000" />
+      <workItem from="1648598533946" duration="3026000" />
+      <workItem from="1648724835279" duration="49000" />
+      <workItem from="1649035639188" duration="168000" />
+      <workItem from="1649226962771" duration="48000" />
+      <workItem from="1649318290899" duration="1372000" />
+      <workItem from="1649749964726" duration="4635000" />
+      <workItem from="1650029397615" duration="2378000" />
+      <workItem from="1650073503052" duration="3165000" />
+      <workItem from="1650122790794" duration="682000" />
+      <workItem from="1650198643453" duration="1142000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mybatis-03/src/test/java/com/ghj/dao/UserMapperTest.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((Configuration)((DefaultSqlSession)sqlSession).configuration).localCacheScope" custom="org.apache.ibatis.session.Configuration,org.apache.ibatis.session.defaults.DefaultSqlSession" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
