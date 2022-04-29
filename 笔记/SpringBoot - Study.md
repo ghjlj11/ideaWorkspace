@@ -1,0 +1,661 @@
+
+
+
+
+# SpringBoot - Study
+
+
+
+## 第一个springBoot程序 
+
+
+
+### 从官网下载 
+
+- ![image-20220422175121144](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220422175121144.png)
+
+
+
+- 下载后直接在idea里面打开。
+
+
+
+### 自己创建
+
+
+
+- 原理也是通过官网来下载的
+- ![image-20220422175253178](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220422175253178.png)
+
+
+
+- 这里也是通过官网来的。
+
+
+
+- 我们的程序可以在maven的生命周期里的package打包出一个jar包， 我们就可以不通过idea，直接运行这个jar包，也可以在浏览器中访问。 实现相应的功能。
+
+
+
+- 我们可以在application.properties文件里面加上**server.port=8848**代码，这样我们的tomcat的端口号就被修改成了8848。
+
+
+
+- 还可以在resourses包下加上banner.txt文件， 文件里可以自定义banner。
+
+
+
+
+
+## 原理分析
+
+
+
+### pom.xml文件
+
+- ```xml
+  <parent>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-parent</artifactId>
+          <version>3.0.0-SNAPSHOT</version>
+          <relativePath/> <!-- lookup parent from repository -->
+      </parent>
+  ```
+
+
+
+- 这里的是包含了父工程下的pom.xml文件里的依赖， 所以我们下面导入依赖的时候， 只需要加上groupID以及artifactId， 对应的版本号不用加上， 因为在父工程下， 这些已经导入好了， 就只有这个版本， 所以不需要加上。
+
+
+
+### 注解
+
+
+
+- 这里的注解说的是主函数里的@SpringBootApplication这个注解下面包括了三个重要的注解：
+
+  - @SpringBootConfiguration
+
+    - 这个注解下面又包含了@Configuration；说明了这里面就是一个配置类， 包含Spring的所有的配置。
+
+  - @EnableAutoConfiguration**（核心理解）**，下面两个注解
+
+    - @AutoConfigurationPackage。
+
+      - @Import({Registrar.class})，这个就是去找到那些需要的包，然后自动注册进去。
+
+    - @Import({AutoConfigurationImportSelector.class})，这里就是去自动导入那些需要的配置。
+
+      ​     
+
+      **核心 ： **
+
+      
+
+      - ```java
+        protected AutoConfigurationImportSelector.AutoConfigurationEntry getAutoConfigurationEntry(AnnotationMetadata annotationMetadata) {
+            if (!this.isEnabled(annotationMetadata)) {
+                return EMPTY_ENTRY;
+            } else {
+                AnnotationAttributes attributes = this.getAttributes(annotationMetadata);
+                List<String> configurations = this.getCandidateConfigurations(annotationMetadata, attributes);
+                configurations = this.removeDuplicates(configurations);
+                Set<String> exclusions = this.getExclusions(annotationMetadata, attributes);
+                this.checkExcludedClasses(configurations, exclusions);
+                configurations.removeAll(exclusions);
+                configurations = this.getConfigurationClassFilter().filter(configurations);
+                this.fireAutoConfigurationImportEvents(configurations, exclusions);
+                return new AutoConfigurationImportSelector.AutoConfigurationEntry(configurations, exclusions);
+            }
+        }
+        ```
+
+      
+
+      
+
+      **补充英语：Duplicates ：完全一样的东西;复制品;**
+
+      **Exclusions：排斥; 排除在外; **
+
+      **Candidates：候选人，申请人;                                                                                                                                                **
+
+      
+
+      
+
+      
+
+      ​		**这里就是比较重要的自自动导入配置文件的代码， 首先getCandidateConfigurations方法会获得，spring里面的所有的配置， 然后再加上自己项目里面需要的一些配置，然后通过removeDuplicates方法， 把里面一些重复导入的配置删除，通过getExclusions方法获得那些spring里面一些需要排除的配置， 然后再在configurations里面把这些都删除， 这样configurations里面就都是我们需要的并且不会重复的那些配置 。  **
+
+    
+
+    
+
+    - ```java
+      protected List<String> getCandidateConfigurations(AnnotationMetadata metadata, AnnotationAttributes attributes) {
+          List<String> configurations = new ArrayList(SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader()));
+          ImportCandidates var10000 = ImportCandidates.load(AutoConfiguration.class, this.getBeanClassLoader());
+          Objects.requireNonNull(configurations);
+          var10000.forEach(configurations::add);
+          Assert.notEmpty(configurations, "No auto configuration classes found in META-INF/spring.factories nor in META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports. If you are using a custom packaging, make sure that file is correct.");
+          return configurations;
+      }
+      ```
+
+  
+
+  
+
+  ​		**List<String> configurations = new ArrayList(SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader()));   通过这个方法去加载spring里面的所有可以自动配置的类，就是系统资源, 会把META-INF/spring.factories里的资源都放在Properties里面， 也就是下面这个方法**
+
+  
+
+  ​		**this.getSpringFactoriesLoaderFactoryClass()这个方法返回为EnableAutoConfiguration.class， 就是去找到spring里面所有标注了EnableAutoConfiguration的类**
+
+  
+
+  ​		**this.getBeanClassLoader()这个返回的是this.beanClassLoader， 就是返回一个加载器， 去加载那些自动装配的类**
+  
+  
+  
+  ​		**ImportCandidates var10000 = ImportCandidates.load(AutoConfiguration.class, this.getBeanClassLoader());这个步骤就是去加载带有注释AutoConfiguration的类**
+  
+  
+
+  
+
+  ```java
+    public static List<String> loadFactoryNames(Class<?> factoryType, @Nullable ClassLoader classLoader) {
+          ClassLoader classLoaderToUse = classLoader != null ? classLoader : SpringFactoriesLoader.class.getClassLoader();
+          String factoryTypeName = factoryType.getName();
+          return (List)getAllFactories(classLoaderToUse).getOrDefault(factoryTypeName, Collections.emptyList());
+      }
+  ```
+  
+    
+  
+  **ImportCandidates var10000 = ImportCandidates.load(AutoConfiguration.class, this.getBeanClassLoader());  这个方法就是去获取我们需要用到的 那些配置  ， 就是项目里需要的资源 。 **
+  
+  ```java
+  public static ImportCandidates load(Class<?> annotation, ClassLoader classLoader) {
+          Assert.notNull(annotation, "'annotation' must not be null");
+          ClassLoader classLoaderToUse = decideClassloader(classLoader);
+          String location = String.format("META-INF/spring/%s.imports", annotation.getName());
+          Enumeration<URL> urls = findUrlsInClasspath(classLoaderToUse, location);
+          ArrayList autoConfigurations = new ArrayList();
+  
+          while(urls.hasMoreElements()) {
+              URL url = (URL)urls.nextElement();
+              autoConfigurations.addAll(readAutoConfigurations(url));
+          }
+  
+          return new ImportCandidates(autoConfigurations);
+      }
+  ```
+  
+  
+  
+  
+
+  **removeDuplicates去重的操作**
+
+  
+
+  ```java
+  protected final <T> List<T> removeDuplicates(List<T> list) {
+      return new ArrayList(new LinkedHashSet(list));
+  }
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  - ```java
+    @ComponentScan(
+        excludeFilters = {@Filter(
+        type = FilterType.CUSTOM,
+        classes = {TypeExcludeFilter.class}
+    ), @Filter(
+        type = FilterType.CUSTOM,
+        classes = {AutoConfigurationExcludeFilter.class}
+    )}
+    )
+    ```
+
+
+
+这里的自动配置的文件都在这个包里面，也就是上面代码上的 “ No auto configuration classes found in META-INF/spring.factories nor in META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports. If you are using a custom packaging, make sure that file is correct ” .这里面的。
+
+![image-20220423173948012](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220423173948012.png)
+
+
+
+
+
+
+
+### run方法
+
+run方法是SpringApplication这个类里面的 ， 而这个类主要做的事情就是
+
+- 推断这个项目是普通项目还是Web项目。 
+- 查找并加载 所有的可用初始化器， 设置到initializer属性中。
+- 查找所有应用的程序监听器， 设置到listeners属性中。
+- 推断并设置main方法的定义类， 找到运行的主类，
+
+
+
+
+
+## yaml
+
+
+
+- 可以代替原本的properties文件。
+
+
+
+### 基本语法
+
+```yaml
+#k=v
+#就是k，v键值对
+#对空格的要求很高，就是如果下面的port前面没有空格的话， 那就是两个键值对， 就是port并不是server里面的。
+
+server:
+  port: 8848
+
+#普通键值对
+
+name: ghj
+
+#对象
+
+student:
+  name: ghj
+  age: 3
+
+people: {name: ghj,age: 5}
+#数组
+array:
+  - a1
+  - a2
+  - a3
+
+arr: [a,b,c]
+```
+
+
+
+### yaml通过set方式来给对象注入值。
+
+
+
+我们先创建一个Dog类
+
+```java
+@Component
+@Data
+public class Dog {
+    @Value("嘻嘻")
+    private String name;
+    @Value("12")
+    private int age;
+
+}
+
+```
+
+
+
+
+
+创建一个people类
+
+**需要给被配置的类加上两个注解， @Configuration代表这是一个配置类，@ConfigurationProperties(prefix = "people")代表**
+
+**这个类的配置在配置文件里的 以 “people” 开头的配置上面  。**
+
+```java
+@Component
+@Configuration
+@ConfigurationProperties(prefix = "people")
+@Data
+public class People {
+    private String name;
+    private int age;
+    private Map<String, Object> map;
+    private List<Object> list;
+    private Dog dog;
+}
+
+```
+
+
+
+然后我们通过yaml文件向people注入值
+
+
+
+```yaml
+
+
+people:
+  name: ghj
+  age: 21
+  map: {k1: v1,k2: v2}
+  list:
+    - a
+    - b
+    - c
+  dog:
+    name: 旺财
+    age: 3
+```
+
+
+
+
+
+创建测试类
+
+```java
+@SpringBootTest
+class SpringBootStudy01ApplicationTests {
+
+    @Autowired
+    private People people;
+    @Test
+    void contextLoads() {
+        System.out.println(people);
+    }
+
+}
+
+```
+
+
+
+- 上述注入的值依然可以注入；
+
+
+
+### yaml配置十分灵活
+
+
+
+```yaml
+
+people:
+  name: ghj${random.uuid}
+  age: ${random.int}
+  map: {k1: v1,k2: v2}
+  hello: xx
+  list:
+    - a
+    - b
+    - c
+  dog:
+    name: ${people.hello:ak}_旺财
+    age: 3
+```
+
+
+
+- 这里可以运用一些占位符， random随机获得，**${people.hello:ak}_旺财**就是表示拼接people的hello属性的值，和旺财， 如果hello没有那么就会取到ak。
+
+
+
+#### yaml的松散配置
+
+
+
+- 在yaml里面可以允许：
+
+```yaml
+dog:
+  dog-name: 旺财
+  age: 12
+```
+
+
+
+但是Dog类是： 
+
+```java
+private String dogName;
+    private int age;
+```
+
+
+
+- 这里的Dog类的属性名是dogName， 然而在yaml里面配置的是dog-name也是可以的， 然后要注意 ： 要把对应的setter修改好名字， 要不然 值 会 注入不成功。
+
+
+
+#### JSR303校验
+
+
+
+我们可以对我们注入的值进行校验。 
+
+
+
+- 首先在pom.xml配置
+
+```xml
+ <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+ </dependency>
+```
+
+
+
+- 然后可以给Dog的属性加上校验， 需要在类上加上**@Validated注解**。
+
+```java
+@Email(message = "格式错误")
+    private String dogName;
+    private int age;
+```
+
+
+
+message的值也可以不写入， 有对应的默认值。
+
+- 这样运行的话，就会校验报错了
+
+![image-20220424100028285](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424100028285.png)
+
+
+
+
+
+## config文件
+
+
+
+### 配置的优先级
+
+
+
+官网下说配置文件可以放在这四个地方。
+
+![image-20220424103125933](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424103125933.png)
+
+
+
+**这里的file就是项目，classpath就是 src下的 resources文件夹， 项目下的config下的配置文件优先级最高， 其次是项目直接下面的配置文件， 然后是classpath下的config里的配置文件， 最后才是classpath下直接的配置文件。**
+
+
+
+### 多环境开发
+
+
+
+```yaml
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: test
+---
+server:
+  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+server:
+  port: 8083
+spring:
+  config:
+    activate:
+      on-profile: test
+
+---
+server:
+  port: 8083
+spring:
+  config:
+    activate:
+      on-profile: main
+```
+
+
+
+
+
+- 我们在yaml配置中可以配置多套环境， 根据自己的需求来选择哪一个环境：
+
+  
+
+- ```yaml
+  spring:
+    config:
+      activate:
+        on-profile: main
+  ```
+
+
+
+这里就是给一套环境加上一个名字；
+
+
+
+- ```yaml
+  spring:
+    profiles:
+      active: test
+  ```
+
+
+
+这里就是根据名字选择哪一套环境。
+
+
+
+## 原理再探究
+
+
+
+自己定义springBoot里的配置。
+
+
+
+- 这些自动配置的类， 他们都有相同的注解
+
+  ```java
+  @Configuration(
+      proxyBeanMethods = false
+  )
+  @EnableConfigurationProperties({ServerProperties.class})
+  @ConditionalOnWebApplication(
+      type = Type.SERVLET
+  )
+  @ConditionalOnClass({CharacterEncodingFilter.class})
+  @ConditionalOnProperty(
+      prefix = "server.servlet.encoding",
+      value = {"enabled"},
+      matchIfMissing = true
+  )
+  ```
+
+
+
+就比如这个， 他会有一个@Configuration， 就是表示这个是一个配置类；@ConditionalOn就是表示判断，只有后面的条件满足，才会去加载这个配置；点进每个@EnableConfigurationProperties({ServerProperties.class})后面的.class后，我们都会看到有
+
+```java
+@ConfigurationProperties(
+    prefix = "server",
+    ignoreUnknownFields = true
+)
+```
+
+
+
+这个注解， 而这个注解就是java的类与yaml配置联系的注解， 通过这个就可以 在 yaml文件里面去配置这个类的一些值，所以**@EnableConfigurationProperties**这个注解就是表示可以自动配置的文件， 后面的ServerProperties这个类里面会有默认值， 我们也可以通过yaml文件自己来配置。
+
+![image-20220424194539589](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424194539589.png)
+
+
+
+​		**在我们的资源中会有大量的  XXXAutoConfigration类文件， 这些类里面有很多属性，而里面会有一些XXXProperties的文件， 这些文件可以通过我们的配置文件去自定义里面的属性**
+
+
+
+​		**在一开始springBoot会自动装配很多配置类， 这些里面会有默认值， 如果我们需要去修改， 只需要在配置文件里修改就可以了。**
+
+
+
+​		**在配置文件里面加上debug: true， 就可以看到哪些配置类匹配上了， 那些没有。**
+
+
+
+
+
+## 静态资源导入
+
+
+
+```java
+classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/,
+```
+
+
+
+这些路径下都可以放静态资源， 优先级就是按照这些顺序来的， /META-INF/resources/是外部导入的库配置里的。
+
+
+
+## 首页与图标
+
+
+
+- 首页需要查看**WebMvcAutoConfiguration**这个配置类， 里面有大量配置MVC里的类与方法， 其中有**welcomePageHandlerMapping()、getWelcomePage()、getIndexHtml(Resource location)**
+
+
+
+- 在**WebProperties.class文件下我们可以看到之前看到的Resources目录其实就是我们项目里的classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/这些目录**
+
+![image-20220425175813866](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220425175813866.png)
+
+
+
+
+
+- 图标的话就是在我们的Resources下也就是上面的那些路径下，放上一个favicon.ico图片文件，这个文件就是我们网站的图标。
+
+![image-20220425193815144](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220425193815144.png)
+
+
+
