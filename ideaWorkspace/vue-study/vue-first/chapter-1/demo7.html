@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    性别：
+    <input type="checkbox" name="sex" value="男" v-model:value="message.item">男
+    <input type="checkbox" name="sex" value="女" v-model:value="message.item">女
+    <input type="checkbox" name="sex" value="中" v-model:value="message.item">中
+    <h1 v-for="item in message">
+        {{item.item}}
+    </h1>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data:{
+            message: [{item: ""},{item: ""},{item: ""}]
+        }
+    });
+</script>
+</body>
+</html>

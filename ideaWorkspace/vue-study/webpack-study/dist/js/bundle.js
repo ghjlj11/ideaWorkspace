@@ -1,0 +1,1 @@
+(()=>{var r={645:(r,e)=>{e.hello1=function(){document.write("<h1>学个屁1</h1>")}}},e={};(function o(t){var n=e[t];if(void 0!==n)return n.exports;var i=e[t]={exports:{}};return r[t](i,i.exports,o),i.exports})(645).hello1()})();

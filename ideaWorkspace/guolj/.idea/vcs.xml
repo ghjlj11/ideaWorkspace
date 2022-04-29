@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/leet-code-solution" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/lj" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/lj/LeetCode/leet-code-solution" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/lj/leet-code-solution" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/lj/leet-code-solution/LeetCode/leet-code-solution" vcs="Git" />
+  </component>
+</project>

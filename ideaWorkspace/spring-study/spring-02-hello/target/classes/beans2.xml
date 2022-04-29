@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="hello" class="com.ghj.pojo.Hello">
+<!--        <constructor-arg name="name" value="nie"/>-->
+<!--        <constructor-arg name="age" value="4"/>-->
+        <property name="name" value="Spring"/>
+        <property name="age" value="5"/>
+<!--        <constructor-arg type="java.lang.String" value="sha"/>-->
+<!--        <constructor-arg index="1" value="2"/>-->
+<!--        <constructor-arg index="0" value="ghj"/>-->
+    </bean>
+    <bean id="helloT" class="com.ghj.pojo.HelloT" name="helloT2 u2,u3;u4,u8">
+        <constructor-arg name="age" value="6"/>
+        <constructor-arg name="name" value="lj"/>
+    </bean>
+    <alias name="hello" alias="hello2"/>
+</beans>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="vue" v-cloak>
+    <div>{{kk.name}}</div>
+    <div>{{kk.address.city}}</div>
+    <div>{{kk.address.country}}</div>
+    <div>{{kk.address.stress}}</div>
+    <a v-bind:href="kk.links[0].url">bilibili</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#vue",
+        data(){
+          return{
+              kk:{
+                  name: null,
+                  address: {
+                      city: null,
+                      stress: null,
+                      country: null
+                  },
+                  links: [{name: null, url: null},
+                      {name: null, url: null},
+                      {name: null, url: null}]
+              }
+          }
+        },
+        mounted(){
+            axios.get('../data.json').then(response=>(this.kk=response.data));
+        }
+    });
+</script>
+</body>
+</html>
