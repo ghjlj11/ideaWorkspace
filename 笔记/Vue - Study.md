@@ -43,7 +43,7 @@
 
 - 然后我们创建一个vm对象，与上面的一个元素相关联， 并且注入data数据， 这样上面的元素就可以获得data里的数据。并且这个元素会随着data里的数据变化而变化， 实现动态变化。
 
-  ![image-20220425214308679](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220425214308679.png)
+  ![image-20220425214308679](img\image-20220425214308679.png)
 
 
 
@@ -400,7 +400,7 @@
 
 
 
-![image-20220426194330139](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220426194330139.png)
+![image-20220426194330139](img\image-20220426194330139.png)
 
 
 
@@ -527,7 +527,7 @@
 
 - 下载好相应的文件。创建一个新的项目， 项目会很大， 然后在终端输入命令：npm run dev;就可以在指定端口访问了， 默认端口为8080，可以在config的index.js里面修改。
 
-![image-20220427121939279](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220427121939279.png)
+![image-20220427121939279](img\image-20220427121939279.png)
 
 
 
@@ -828,7 +828,7 @@ new Vue({
 
 
 
-![image-20220427202610478](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220427202610478.png)
+![image-20220427202610478](img\image-20220427202610478.png)
 
 
 
@@ -846,7 +846,7 @@ new Vue({
 
 
 
-![image-20220428102533055](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220428102533055.png)
+![image-20220428102533055](img\image-20220428102533055.png)
 
 
 
@@ -1073,7 +1073,7 @@ new Vue({
 
 - 路由嵌套就是在路由里面再写一个路由， 就是链接里面再来一个链接， 但是前提是， 链接的这个组件里面会有<router-view>这个视图展示的地方， 并且需要配上<router-link>**需要注意的是这里可能会出现问题依旧是降版本就可以解决**
 
-![image-20220428140016471](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220428140016471.png)
+![image-20220428140016471](img\image-20220428140016471.png)
 
 
 
@@ -1520,7 +1520,7 @@ onSubmit(formName) {
 
 
 
-![image-20220428170426791](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220428170426791.png)
+![image-20220428170426791](img\image-20220428170426791.png)
 
 
 
@@ -1644,7 +1644,7 @@ onSubmit(formName) {
 
 - 我们可以看看这里的this是否一样， 这里提示进入到axios里的this.kk根本没有定义，所以这并不是同一个this  ：
 
-![image-20220428225744396](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220428225744396.png)
+![image-20220428225744396](img\image-20220428225744396.png)
 
 
 

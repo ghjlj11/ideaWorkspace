@@ -84,7 +84,7 @@ public class MybatisUtils {
 
 ## 通过properties资源文件来配置一些属性
 
-<img src= "p1.png">
+<img src= "img/p1.png">
 
 
 
@@ -296,11 +296,11 @@ public interface UserMapper {
 
 ### 注意点
 
-![image-20220327213040116](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220327213040116.png)
+<img src="img/p2.png">
 
 
 
-![p3](D:\笔记\p3.png)
+!<img src="img/p3.png">
 
 
 
@@ -464,7 +464,7 @@ public interface UserMapper {
 
 算法来清除一些缓存；readOnly设置是否只是可读。
 
-![image-20220329231506362](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220329231506362.png)
+![image-20220329231506362](img\image-20220329231506362.png)
 
 
 

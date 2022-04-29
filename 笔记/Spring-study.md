@@ -21,13 +21,13 @@
 
 
 
-![img](https://img-blog.csdnimg.cn/a68f13a032224ba199b45e09322f8447.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAaXZhbjgyMDgxOQ==,size_10,color_FFFFFF,t_70,g_se,x_16)
+![img](img\watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAaXZhbjgyMDgxOQ==,size_10,color_FFFFFF,t_70,g_se,x_16.png)
 
 我们创建具有一定联系的对象
 
 
 
-![img](https://img-blog.csdnimg.cn/c9899cc96f1445cbb0e0ec785e03d77e.png)
+![img](img\c9899cc96f1445cbb0e0ec785e03d77e.png)
 
 
 
@@ -35,7 +35,7 @@
 
 
 
-![img](https://img-blog.csdnimg.cn/91b4c7ce1be947dda69f76b24be165e1.png)
+![img](img\91b4c7ce1be947dda69f76b24be165e1.png)
 
 
 
@@ -699,7 +699,7 @@ public class MyTest {
 
 - 动态代理的好处
 
-  ![image-20220405213900973](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220405213900973.png)
+  ![image-20220405213900973](img\image-20220405213900973.png)
 
 
 

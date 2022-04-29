@@ -161,7 +161,7 @@ form.jsp文件：
 
 ## SpringMVC底层原理
 
-![image-20220412184418928](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220412184418928.png)
+![image-20220412184418928](img\image-20220412184418928.png)
 
 
 
@@ -445,11 +445,11 @@ public class HelloController2 {
 
 
 
-![image-20220414151743826](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220414151743826.png)
+![image-20220414151743826](img\image-20220414151743826.png)
 
 
 
-![image-20220414151806158](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220414151806158.png)
+![image-20220414151806158](img\image-20220414151806158.png)
 
 
 
@@ -1178,7 +1178,7 @@ public class AjaxController {
 
 这样前端接受后台返回的数据，在经过一些处理就可以渲染这个页面，而不需要再去转发或者重定向。
 
-![image-20220418171949835](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220418171949835.png)
+![image-20220418171949835](img\image-20220418171949835.png)
 
 
 

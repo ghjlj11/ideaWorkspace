@@ -19,3 +19,18 @@ ANSI编码是一种对ASCII的拓展：ANSI编码用0x00~0x7f （即十进制下
 ​    这是一种**变长**的编码方式：它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度，当字符在ASCII码的范围时，就用一个字节表示，保留了ASCII字符一个字节的编码做为它的一部分，如此一来UTF-8编码也可以是为视为一种对ASCII码的拓展。值得注意的是unicode编码中一个中文字符占2个字节，而UTF-8一个中文字符占3个字节。**从unicode到uft-8并不是直接的对应，而是要过一些算法和规则来转换。**
  在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
  用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件。
+
+
+
+## git
+
+
+
+- 对于error: failed to push some refsto‘远程仓库地址’
+   1 使用如下命令
+
+> git pull --[rebase](https://so.csdn.net/so/search?q=rebase&spm=1001.2101.3001.7020) origin master
+
+2 然后再进行上传:
+
+> git push -u origin master

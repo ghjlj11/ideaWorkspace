@@ -12,7 +12,7 @@
 
 ### 从官网下载 
 
-- ![image-20220422175121144](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220422175121144.png)
+- ![image-20220422175121144](img\image-20220422175121144.png)
 
 
 
@@ -25,7 +25,7 @@
 
 
 - 原理也是通过官网来下载的
-- ![image-20220422175253178](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220422175253178.png)
+- ![image-20220422175253178](img\image-20220422175253178.png)
 
 
 
@@ -232,7 +232,7 @@
 
 这里的自动配置的文件都在这个包里面，也就是上面代码上的 “ No auto configuration classes found in META-INF/spring.factories nor in META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports. If you are using a custom packaging, make sure that file is correct ” .这里面的。
 
-![image-20220423173948012](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220423173948012.png)
+![image-20220423173948012](img\image-20220423173948012.png)
 
 
 
@@ -472,7 +472,7 @@ message的值也可以不写入， 有对应的默认值。
 
 - 这样运行的话，就会校验报错了
 
-![image-20220424100028285](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424100028285.png)
+![image-20220424100028285](img\image-20220424100028285.png)
 
 
 
@@ -488,7 +488,7 @@ message的值也可以不写入， 有对应的默认值。
 
 官网下说配置文件可以放在这四个地方。
 
-![image-20220424103125933](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424103125933.png)
+![image-20220424103125933](img\image-20220424103125933.png)
 
 
 
@@ -605,7 +605,7 @@ spring:
 
 这个注解， 而这个注解就是java的类与yaml配置联系的注解， 通过这个就可以 在 yaml文件里面去配置这个类的一些值，所以**@EnableConfigurationProperties**这个注解就是表示可以自动配置的文件， 后面的ServerProperties这个类里面会有默认值， 我们也可以通过yaml文件自己来配置。
 
-![image-20220424194539589](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220424194539589.png)
+![image-20220424194539589](img\image-20220424194539589.png)
 
 
 
@@ -647,7 +647,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 - 在**WebProperties.class文件下我们可以看到之前看到的Resources目录其实就是我们项目里的classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/这些目录**
 
-![image-20220425175813866](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220425175813866.png)
+![image-20220425175813866](img\image-20220425175813866.png)
 
 
 
@@ -655,7 +655,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 - 图标的话就是在我们的Resources下也就是上面的那些路径下，放上一个favicon.ico图片文件，这个文件就是我们网站的图标。
 
-![image-20220425193815144](C:\Users\86187\AppData\Roaming\Typora\typora-user-images\image-20220425193815144.png)
+![image-20220425193815144](img\image-20220425193815144.png)
 
 
 
