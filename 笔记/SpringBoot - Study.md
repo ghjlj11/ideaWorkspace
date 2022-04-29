@@ -609,7 +609,7 @@ spring:
 
 
 
-​		**在我们的资源中会有大量的  XXXAutoConfigration类文件， 这些类里面有很多属性，而里面会有一些XXXProperties的文件， 这些文件可以通过我们的配置文件去自定义里面的属性**
+​		**在我们的资源中会有大量的  XXXAutoConfigration类文件， 这些类里面有很多属性，而里面会有一些XXXProperties的文件， 这些文件可以通过我们的配置文件去自定义里面的属性，这里面的所有配置类都是需要有启动器starter才可以匹配到， 要不然就不可以配置这个类， 也不可以使用。**
 
 
 
@@ -659,3 +659,106 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 
 
+## Thymeleaf模板引擎
+
+
+
+- 用这个模板引擎来支持前后端数据交互， 通过这个模板引擎我们的Controller就可以跳转到templates下的html文件， 当然这是一个配置类， 可以查看这个类的属性ThymeleafProperties， 这里面有很多属性可以配置， 包括了prefix和suffix，通过这两个属性， 我们就可以配置跳转到别的路径下的html文件。
+
+
+
+- 首先我们需要导入这个配置类的启动器。
+
+```xml
+<!--        <dependency>-->
+<!--            <groupId>org.thymeleaf</groupId>-->
+<!--            <artifactId>thymeleaf-spring6</artifactId>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.thymeleaf.extras</groupId>-->
+<!--            <artifactId>thymeleaf-extras-java8time</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+```
+
+
+
+- 然后创建我们的html页面，这里注意一定要加**xmlns:th="http://www.thymeleaf.org**， 这样我们就可以使用他了， 就像vue一样， th:text就是用msg绑定div里的文本。
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div th:text="${msg}"></div>
+</body>
+</html>
+```
+
+
+
+- 我们还需要在Controller创建一个Controller， 然后加上model， 和addAttribute， 这样就可以用了。 这里不可以用#来取msg里的值， 会乱码。
+
+
+
+- th:utext , 这个不转译一些代码， 就比如上面的msg的为“<h1>你在搞什么啊!</h1>”，这个就可以直接以h1显示
+
+
+
+- th:each，如果后端传来的是一个List对象， 我们可以通过th:each来遍历， <h3 th:each="li:${list}" th:text="${li}"></h3>，同时通过 th:text来绑定这个h3的文本。我们也可以通过<h3 th:each="li:${list}">[[${li}]]</h3>遍历， 但是还是建议第一种。
+
+
+
+- controller的代码：
+
+```java
+@Controller
+public class SpringBootController {
+
+    @RequestMapping("/hello")
+    public String test1(Model model){
+        model.addAttribute("msg","<h1>你在搞什么啊!</h1>");
+        model.addAttribute("list", Arrays.asList("ghj","lj","lq"));
+        return "hello";
+    }
+}
+
+```
+
+
+
+- html的代码：
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div th:text="${msg}"></div>
+<div th:utext="${msg}"></div>
+<hr>
+<h3 th:each="li:${list}" th:text="${li}"></h3>
+<hr>
+<h3 th:each="li:${list}">[[${li}]]</h3>
+</body>
+</html>
+```
+
+
+
+- 结果
+
+
+
+![image-20220429230948644](img\springBoot01.png)

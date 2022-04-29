@@ -1,0 +1,4 @@
+#spring:
+#  thymeleaf:
+#    prefix: classpath:/static/
+#    encoding: utf-8

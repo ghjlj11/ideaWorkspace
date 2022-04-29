@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springmvc-07-ajax" />
+        <module name="springmvc-01" />
         <module name="springmvc-09-file" />
         <module name="springmvc-02-hellomvc" />
         <module name="springmvc-03-copy2" />
