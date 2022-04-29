@@ -126,7 +126,7 @@
 
       
 
-      ​		**这里就是比较重要的自自动导入配置文件的代码， 首先getCandidateConfigurations方法会获得，spring里面的所有的配置， 然后再加上自己项目里面需要的一些配置，然后通过removeDuplicates方法， 把里面一些重复导入的配置删除，通过getExclusions方法获得那些spring里面一些需要排除的配置， 然后再在configurations里面把这些都删除， 这样configurations里面就都是我们需要的并且不会重复的那些配置 。  **
+      ​		**这里就是比较重要的是自动导入配置文件的代码， 首先getCandidateConfigurations方法会获得，spring里面的所有的配置， 然后再加上自己项目里面需要的一些配置，然后通过removeDuplicates方法， 把里面一些重复导入的配置删除，通过getExclusions方法获得那些spring里面一些需要排除的配置， 然后再在configurations里面把这些都删除， 这样configurations里面就都是我们需要的并且不会重复的那些配置 。  **
 
     
 

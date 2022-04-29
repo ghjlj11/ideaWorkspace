@@ -1,4 +1,0 @@
-spring:
-  mvc:
-    dispatch-trace-request: false
-    format:
