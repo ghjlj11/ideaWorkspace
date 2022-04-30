@@ -15,17 +15,17 @@ public class MySql {
         catch(Exception e){
             System.out.println("wu");
         }
-        String uri = "jdbc:mysql://localhost:3306/malajava?useSSl=true";
+        String url = "jdbc:mysql://localhost:3306/malajava?useSSl=true";
         String user = "root";
         String password = "123456";
         try {
-            con = DriverManager.getConnection(uri, user, password);
+            con = DriverManager.getConnection(url, user, password);
         }
         catch (Exception e){
             System.out.println("未连接");
         }
         try{
-            String s = new String("select name from malajava.kecheng where id > 1 ");
+            String s = new String("select name from malajava.student where id > 1 ");
             sql = con.createStatement();
             rs = sql.executeQuery(s);
             while (rs.next()){

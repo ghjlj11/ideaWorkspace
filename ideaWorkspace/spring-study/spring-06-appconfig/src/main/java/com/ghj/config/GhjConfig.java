@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 /**
  * @author 86187
  * 使用配置类两种方式获得User实例：1.配置类加@Bean就可以 ； 2.扫描包（@ComponentScan）+ @Component；
- * 1. @Bean就相当于在Spring里面写了一个Bean；
+ * 1. @Configuration就相当于一个Beans， @Bean就相当于在Spring里面写了一个Bean， 获得这个Bean需要这个方法名， 就是getUser；
  * 2. 就相当于是05模块里的内容，在xml文件中写了scan，直接扫描包；
  */
 @Configuration
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Import;
 @ComponentScan("com.ghj.pojo")
 public class GhjConfig {
 
-    @Bean("user")
+    @Bean
     public User getUser(){
         return new User();
     }

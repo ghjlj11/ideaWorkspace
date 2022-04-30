@@ -443,7 +443,7 @@
 
   
 
-  
+  - **使用@Autowired都可以不用set方法， 他是基于反射实现的， 并不是通过set**
 
   ```java
   public class People {
@@ -514,8 +514,15 @@
 
 - base-package 后面添加要扫描的包，就是含有注解的包；
 
+- 可以通过配置 或者注解@Scope("prototype")来设置bean是单例模式还是常规的模式。
+
+
+
+​		**Component（组件）就相当于在spring容器里面注册了一个Bean， 里面的属性的值就是 @Value里的值。@Value既可以直接写在属性上， 也可以写在对应的set方法上。 使用这个Component就一定要有 <context:component-scan base-package="com.ghj"/>扫描包的配置， 或者配置类里有这个@ComponentScan("com.ghj.pojo")注解。**
+
 - ```java
   @Component
+  @Scope("prototype")
   public class User {
       //@Value("kk")
       public String name;
@@ -587,7 +594,7 @@ import org.springframework.context.annotation.Import;
 /**
  * @author 86187
  * 使用配置类两种方式获得User实例：1.配置类加@Bean就可以 ； 2.扫描包（@ComponentScan）+ @Component；
- * 1. @Bean就相当于在Spring里面写了一个Bean；
+ * 1. @Configuration就相当于一个Beans， @Bean就相当于在Spring里面写了一个Bean， 获得这个Bean需要这个方法名， 就是getUser；
  * 2. 就相当于是05模块里的内容，在xml文件中写了scan，直接扫描包；
  */
 @Configuration
@@ -601,6 +608,11 @@ public class GhjConfig {
 }
 
 ```
+
+
+
+- **@Configuration**注解就相当于 是配置文件里的 beans ， 可以在里面注册bean。
+-  **@Bean， 需要在@Configuration配置下** ， 就是相当于在beans里面注册了一个bean， 而这个bean里注入的值 ， 都在User类里面配置好了 ， 通过getUser的方式 ， 来返回给 需要用到的地方。 
 
 
 
@@ -624,6 +636,16 @@ public class MyTest {
 }
 
 ```
+
+
+
+**两种配置的方式：**
+
+​		**1、 通过@ComponentScan("com.ghj.pojo")， 和@Component， 不需要配置@Configuration， 就相当于是上一个笔记。**
+
+​		**2、通过@Configuration， 和getUser方法 再加上注解@Bean ， 就相当于 在 beans里面注册bean， 但是在 测试时候 获得这个bean， 需要的名字是方法名 ， 即getUser， 不是通过 user名字。**
+
+
 
 
 
