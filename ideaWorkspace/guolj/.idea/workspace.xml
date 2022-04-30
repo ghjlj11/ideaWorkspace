@@ -7,11 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/test-classes/MyTest.class" afterDir="false" />
+    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code110/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code110/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code115/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code115/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code76/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code76/Solution.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,20 +98,20 @@
       <recent name="D:\ideaWorkspace\guolj\src\lj\leetcode" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lj.leetcode.code110" />
       <recent name="lj.leetcode.code113" />
       <recent name="lj.leetcode.code143" />
       <recent name="lj.leetcode.code109" />
       <recent name="lj.leetcode.code124" />
-      <recent name="lj.leetcode.code437" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Main (2)">
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code76.Main" />
+  <component name="RunManager" selected="应用程序.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code115.Main" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.code76.*" />
+          <option name="PATTERN" value="lj.leetcode.code115.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,12 +119,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code406.Main" />
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code76.Main" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.code406.*" />
+          <option name="PATTERN" value="lj.leetcode.code76.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -171,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Main (1)" />
         <item itemvalue="应用程序.Main (2)" />
         <item itemvalue="应用程序.Main (5)" />
         <item itemvalue="应用程序.Main (4)" />
         <item itemvalue="应用程序.Main" />
-        <item itemvalue="应用程序.Main (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -326,7 +328,7 @@
       <workItem from="1650780072210" duration="5899000" />
       <workItem from="1651041620341" duration="4108000" />
       <workItem from="1651197822175" duration="19652000" />
-      <workItem from="1651301300347" duration="767000" />
+      <workItem from="1651301300347" duration="7035000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1645518073132</created>
