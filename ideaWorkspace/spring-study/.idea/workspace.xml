@@ -5,29 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="java方式注解">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-05-anno/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/production/java2实用教程/mysql/MySql.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/production/java2实用教程/mysql/MySql.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/production/java2实用教程/test/Test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/production/java2实用教程/test/Test1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/mysql/MySql.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/mysql/MySql.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/src/test/java/myTest/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/src/test/java/myTest/Test01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/test-classes/myTest/Test01.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/test-classes/myTest/Test01.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +66,7 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.test01 (2)">
+  <component name="RunManager" selected="JUnit.MyTest">
     <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-06-appconfig" />
       <option name="PACKAGE_NAME" value="" />
@@ -148,8 +129,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MyTest.test01 (2)" />
         <item itemvalue="JUnit.MyTest" />
+        <item itemvalue="JUnit.MyTest.test01 (2)" />
         <item itemvalue="JUnit.Test01.test01" />
         <item itemvalue="JUnit.Test01" />
         <item itemvalue="JUnit.MyTest.test01 (1)" />
@@ -181,7 +162,7 @@
       <workItem from="1650098415221" duration="3553000" />
       <workItem from="1650155380821" duration="4214000" />
       <workItem from="1650241335789" duration="2470000" />
-      <workItem from="1651288505443" duration="4860000" />
+      <workItem from="1651288505443" duration="5229000" />
     </task>
     <servers />
   </component>
