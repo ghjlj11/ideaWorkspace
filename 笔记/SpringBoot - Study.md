@@ -645,7 +645,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 
 
-- 在**WebProperties.class文件下我们可以看到之前看到的Resources目录其实就是我们项目里的classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/这些目录**
+- 在**WebProperties.class文件下我们可以看到之前看到的Resources目录其实就是我们项目里的classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/这些目录 ， 就是放置静态资源的目录。**
 
 ![image-20220425175813866](img\image-20220425175813866.png)
 

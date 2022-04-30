@@ -1405,7 +1405,7 @@ public class UserController {
 
 
 
-```jav
+```java
 @RequestMapping("/download")
     public String downloads(HttpServletResponse response , HttpServletRequest request) throws Exception{
         //要下载的图片地址
