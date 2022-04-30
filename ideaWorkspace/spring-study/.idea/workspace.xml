@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="java方式注解">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="java方式注解" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,8 +157,23 @@
       <workItem from="1650098415221" duration="3553000" />
       <workItem from="1650155380821" duration="4214000" />
       <workItem from="1650241335789" duration="2470000" />
-      <workItem from="1651288505443" duration="5229000" />
+      <workItem from="1651288505443" duration="5288000" />
     </task>
+    <task id="LOCAL-00001" summary="java方式注解">
+      <created>1651302058834</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651302058834</updated>
+    </task>
+    <task id="LOCAL-00002" summary="java方式注解">
+      <created>1651302082066</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651302082066</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

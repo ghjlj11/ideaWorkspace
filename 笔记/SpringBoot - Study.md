@@ -762,3 +762,134 @@ public class SpringBootController {
 
 
 ![image-20220429230948644](img\springBoot01.png)
+
+
+
+
+
+## SpringMVC自动装配
+
+
+
+### 扩展MVC配置
+
+
+
+- Spring Boot 提供了适用于大多数 Spring MVC 应用的自动配置（auto-configuration）。
+
+自动配置在 Spring 默认功能上添加了以下功能：
+
+- 引入 `ContentNegotiatingViewResolver` 和 `BeanNameViewResolver` bean。
+- 支持服务静态资源，包括对 WebJar 的支持（[见下文](http://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/pages/spring-boot-features.html#boot-features-spring-mvc-static-content)）。
+- 自动注册 `Converter`、`GenericConverter` 和 `Formatter` bean。
+- 支持 `HttpMessageConverter`（见[下文](http://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/pages/spring-boot-features.html#boot-features-spring-mvc-message-converters)）。
+- 自动注册 `MessageCodesResolver`（见[下文](http://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/pages/spring-boot-features.html#boot-features-spring-message-codes)）。
+- 支持静态 index.html。
+- 支持自定义 Favicon （见[下文](http://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/pages/spring-boot-features.html#boot-features-spring-mvc-favicon)）。
+- 自动使用 `ConfigurableWebBindingInitializer` bean（见[下文](http://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/pages/spring-boot-features.html#boot-features-spring-mvc-web-binding-initializer)）。
+
+
+
+- 如果您想保留 Spring Boot MVC 的功能，并且需要添加其他 [MVC 配置](https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/web.html#mvc)（interceptor、formatter 和视图控制器等），可以添加自己的 `WebMvcConfigurerAdapter` 类型的 `@Configuration` 类，但**不能**带 `@EnableWebMvc` 注解。如果您想自定义 `RequestMappingHandlerMapping`、`RequestMappingHandlerAdapter` 或者 `ExceptionHandlerExceptionResolver` 实例，可以声明一个 `WebMvcRegistrationsAdapter` 实例来提供这些组件。
+
+- 如果您想完全掌控 Spring MVC，可以添加自定义注解了 `@EnableWebMvc` 的 @Configuration 配置类。
+
+  ​																																										------------------摘自官网。
+
+
+
+​		 从官网的话我们可以知道， SpringMVC的很多功能我们可以自己来添加， 我们只需要写一个 WebMvcConfigurerAdapter配置类 ，通过全文查找， 就知道WebMvcConfigurerAdapter是一个接口， 所以我们只需要写一个类继承这个接口就可以， 并且需要加上@Configuration的注解，代表是一个配置类， 在里面定义我们自己的配置。  
+
+
+
+### 自己定义一个视图解析器
+
+
+
+- 官网说他的SpringMVC默认引入引入 `ContentNegotiatingViewResolver` 和 `BeanNameViewResolver` bean。我们就去找这两个类，他们都需要去实现ViewResolver这个接口， 通过ContentNegotiatingViewResolver， 我们发现他的核心就是去获取所有的视图解析器， 然后去获取所有的视图，再从其中获取最好的视图（最合适的）。 
+- ![boot02](D:\my-study\笔记\img\boot02.png)
+
+
+
+
+
+​		因此我们只需要实现ViewResolver接口， 就可以写我们自己的视图解析器， 因为我们外部的类是一个配置类， 带有@Configuration所以需要加上带有@Bean的方法获取bean， 我们通过内部类实现。
+
+```java
+@Configuration
+public class MyWebMvcConfig implements WebMvcConfigurer {
+
+    @Bean
+    public MyViewResolver getMyViewResolver(){
+        return new MyViewResolver();
+    }
+    public static class MyViewResolver implements ViewResolver{
+        @Override
+        public View resolveViewName(String viewName, Locale locale) throws Exception {
+            return null;
+        }
+    }
+
+}
+
+```
+
+
+
+- 下一个阶段：  我们该如何知道我们自己的视图解析器被用上了 呢， 我们在SpringMVC阶段都知道， 所有的请求都需要 通过DispatchServlet（前端控制器），这个控制器的核心方法就是 doDispatch， 我们在这里打上断点， 再Debug一下， 然后请求一下hello页面。
+
+![boot3](D:\my-study\笔记\img\boot3.png)
+
+
+
+​		**这里就可以看到了， 前面两个就是 官方说的那两个视图解析器， 而下一个就是Thymeleaf的视图解析器， 再下一个就是我们自己的视图解析器了。**
+
+
+
+
+
+## @EnableWebMvc
+
+
+
+- 上面官方特地强调说不能使用这个@EnableWebMvc， 那么是为什么呢 ？ 点卡这个注解， 我们就会发现这里面import了一个类， 就是**DelegatingWebMvcConfiguration**， 再点进去会发现这个类继承了**WebMvcConfigurationSupport**这个类。 
+
+![boot4](D:\my-study\笔记\img\boot4.png)
+
+
+
+![boot5](D:\my-study\笔记\img\boot5.png)
+
+
+
+
+
+- 然后我们再看**WebMvcAutoConfiguration**的源码，这里面有一个条件。
+
+![boot6](D:\my-study\笔记\img\boot6.png)
+
+
+
+
+
+- **@ConditionalOnMissingBean({WebMvcConfigurationSupport.class})**， 表示如果没有**WebMvcConfigurationSupport**这个类，**WebMvcAutoConfiguration**这个自动配置类才会生效， 所以如果我们加上了那个注解， 那么就表示 **WebMvcAutoConfiguration**将不会被自动装配， 那么里面所以功能我们都用不了。 
+
+
+
+
+
+## Configuration和AutoConfiguration
+
+
+
+Configuration和AutoConfiguration 
+
+- 他们都是定义Bean 的一种方式。 
+
+- 相同点：     
+  - 他们都用@Configuration 做annotation. 他们同样都可以加  @Bean、@Import、@ImportResource.     他们都可以用 @Condition 来控制加载条件. 
+
+- 不同点：
+  - 目的：      @Configuration 是给Application 的用户，直接代码进行配置的。     AutoConfiguration 是给 Springboot 插件俗称starter用的。
+  - 加载的方式:      @Configuration 加载是由@ComponentScan指定的package，如果没有指定，default  是ApplicationClass 的package 开始。     AutoConfiguration 是通过 classpath*:META-INF/spring.factories 来被发现。 通过  key org.springframework.boot.autoconfigure.EnableAutoConfiguration.  AutoConfiguration 是由 import selector 的方式加载的, 而不是 scan path. 
+  - 顺序：正常情况下, @Configuration 先加载 AutoConfiguration后加载。
