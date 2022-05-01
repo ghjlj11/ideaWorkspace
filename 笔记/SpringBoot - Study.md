@@ -688,7 +688,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 
 
-- 然后创建我们的html页面，这里注意一定要加**xmlns:th="http://www.thymeleaf.org**， 这样我们就可以使用他了， 就像vue一样， th:text就是用msg绑定div里的文本。
+- 然后创建我们的html页面，这里注意要加**xmlns:th="http://www.thymeleaf.org**， 这样我们就可以使用他了， 就像vue一样， th:text就是用msg绑定div里的文本。
 
 ```html
 <!DOCTYPE html>
@@ -893,3 +893,177 @@ Configuration和AutoConfiguration
   - 目的：      @Configuration 是给Application 的用户，直接代码进行配置的。     AutoConfiguration 是给 Springboot 插件俗称starter用的。
   - 加载的方式:      @Configuration 加载是由@ComponentScan指定的package，如果没有指定，default  是ApplicationClass 的package 开始。     AutoConfiguration 是通过 classpath*:META-INF/spring.factories 来被发现。 通过  key org.springframework.boot.autoconfigure.EnableAutoConfiguration.  AutoConfiguration 是由 import selector 的方式加载的, 而不是 scan path. 
   - 顺序：正常情况下, @Configuration 先加载 AutoConfiguration后加载。
+
+
+
+## Web项目员工管理系统
+
+
+
+### 准备工作；
+
+- 先导入对应的Web项目， 将静态资源放在templates包下；
+- 己写一个controller，请求路径为“/”， 先看看能不能跳转到首页， 然后再用thymeleaf格式， 把链接之类的都改掉， 这样就可以适配我们的thymeleaf模板。
+
+
+
+### 国际化
+
+
+
+- 首先我们自己写三个配置文件， 分别对应index.html里的默认的文字， 中文文字， 英文文字
+
+```prop
+login.password=密码
+login.remember=记住我
+login.sign=登录
+login.tip=请登录
+login.username=用户名
+```
+
+
+
+```pro
+login.password=Password
+login.remember=Remember me
+login.sign=Sign in
+login.tip=Please sign in
+login.username=Username
+```
+
+
+
+
+
+- 把index.html里的文字设置成， 从配置文件里面取值  注意这里的传参我们采用@{/index(l='zh_CH')}这种() 的格式传参。
+
+```html
+<body class="text-center">
+		<form class="form-signin" action="dashboard.html">
+			<img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+			<input type="text" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
+			<input type="password" class="form-control" th:placeholder="#{login.password}" required="">
+			<div class="checkbox mb-3">
+				<label>
+          <input type="checkbox" value="remember-me" th:text="#{login.remember}">
+        </label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.sign}">Sign in</button>
+			<p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+			<a class="btn btn-sm" th:href="@{/index(l='zh_CH')}">中文</a>
+			<a class="btn btn-sm" th:href="@{/index(l='en_US')}">English</a>
+		</form>
+
+	</body>
+```
+
+
+
+
+
+- 在我们页面中会有中英文切换的选项。 我们也可以实现它。这也是WebMvc里的配置， 所以我们去找WebMvcAutoConfiguration这个配置类， 找到 localeResolver()，这个装配了Bean的方法， 注意到名字是localeResolver， 然后点进里面， AcceptHeaderLocaleResolver。
+
+  
+
+  ![boot7](D:\my-study\笔记\img\boot7.png)
+
+
+
+
+
+- ```java
+  public Locale resolveLocale(HttpServletRequest request) {
+          Locale defaultLocale = this.getDefaultLocale();
+          if (defaultLocale != null && request.getHeader("Accept-Language") == null) {
+              return defaultLocale;
+          } else {
+              Locale requestLocale = request.getLocale();
+              List<Locale> supportedLocales = this.getSupportedLocales();
+              if (!supportedLocales.isEmpty() && !supportedLocales.contains(requestLocale)) {
+                  Locale supportedLocale = this.findSupportedLocale(request, supportedLocales);
+                  if (supportedLocale != null) {
+                      return supportedLocale;
+                  } else {
+                      return defaultLocale != null ? defaultLocale : requestLocale;
+                  }
+              } else {
+                  return requestLocale;
+              }
+          }
+      }
+  ```
+
+
+
+- 这里就是 国际化 的解析了， 我们照着这个思路类似写一个类 实现LocaleResolver。
+
+
+
+```java
+public class MyLocaleResolver implements LocaleResolver {
+    @Override
+    public Locale resolveLocale(HttpServletRequest request) {
+        String la = request.getParameter("l");
+        Locale locale = Locale.getDefault();
+        System.out.println(la);
+        if(!StringUtils.isEmpty(la)){
+            String[] s = la.split("_");
+            locale = new Locale(s[0], s[1]);
+        }
+        return locale;
+    }
+
+    @Override
+    public void setLocale(HttpServletRequest request, HttpServletResponse response, Locale locale) {
+
+    }
+}
+
+```
+
+
+
+​	**先判断参数 l 是否为空， 如果是那么就返回默认的 locale，否则 就返回我们自己创建的。 并且要在 我们自己写的 WebMvc配置类里面注册， 因为 这是属于我们自己添加的配置， 需要交给Spring里面**
+
+
+
+- ```java
+  package com.ghj.config;
+  
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.Configuration;
+  import org.springframework.web.servlet.LocaleResolver;
+  import org.springframework.web.servlet.View;
+  import org.springframework.web.servlet.ViewResolver;
+  import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+  import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+  import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+  import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+  
+  import java.util.Locale;
+  
+  /**
+   * @author 86187
+   */
+  @Configuration
+  public class MyWebMvcConfig implements WebMvcConfigurer {
+  
+      @Override
+      public void addViewControllers(ViewControllerRegistry registry) {
+          registry.addViewController("/").setViewName("index");
+          registry.addViewController("/index").setViewName("index");
+      }
+  
+      @Bean
+      public LocaleResolver localeResolver(){
+          return new MyLocaleResolver();
+      }
+  
+  }
+  
+  ```
+
+
+
+- 注意这里的方法名字要是localeResolver，这与之前的对应， 然后我们在index.html里面设置参数就好了。 
