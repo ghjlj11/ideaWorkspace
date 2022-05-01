@@ -2,15 +2,15 @@ package com.ghj.dao;
 
 import com.ghj.pojo.Department;
 import com.ghj.pojo.Employee;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author 86187
  */
+@Repository
 public class EmployeeDao {
     private static Map<Integer, Employee> employees = new HashMap<>();
     static {
@@ -37,5 +37,8 @@ public class EmployeeDao {
         else {
             System.out.println("查无此人");
         }
+    }
+    public Collection<Employee> getAll(){
+        return employees.values();
     }
 }

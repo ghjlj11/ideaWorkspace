@@ -1,13 +1,18 @@
 package com.ghj.dao;
 
 import com.ghj.pojo.Department;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author 86187
  */
+@Repository
 public class DepartmentDao {
     static Map<Integer, Department> departments = new HashMap<>();
 
@@ -34,5 +39,8 @@ public class DepartmentDao {
         else {
             System.out.println("查无此部门");
         }
+    }
+    public Collection<Department> getAll(){
+        return departments.values();
     }
 }

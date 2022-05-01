@@ -1235,7 +1235,7 @@ public class HelloInterceptor implements HandlerInterceptor {
             <mvc:mapping path="/**"/>
             <bean class="com.ghj.config.HelloInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+</mvc:interceptors>
 ```
 
 

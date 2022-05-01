@@ -1067,3 +1067,88 @@ public class MyLocaleResolver implements LocaleResolver {
 
 
 - 注意这里的方法名字要是localeResolver，这与之前的对应， 然后我们在index.html里面设置参数就好了。 
+
+
+
+### 实现登录功能与拦截器
+
+
+
+#### 登录
+
+
+
+登录功能很简单， 只需要接收前端的 用户名与密码， 在进行判断 ， 选择跳转的页面就行。
+
+
+
+#### 拦截器
+
+​		这里的拦截器跟我们之前写的是一样的 ， 只不过这个拦截器需要在自己的WebMvcConfig里面添加， 通过重写方法来添加拦截器 ，然后选择拦截的请求。
+
+
+
+- 首先我们需要在Controller里的session添加Attribute ， 这里还有注销功能， 也是和之前一样。
+
+```java
+@Controller
+public class MyController {
+    @RequestMapping("/toLogin")
+    public String test01(@RequestParam("username")String username, @RequestParam("password")String password , Model model, HttpSession session){
+        if("ghjlj".equals(username) && "123456".equals(password)){
+            session.setAttribute("Login", username);
+            return "redirect:/main";
+        }
+        else {
+            model.addAttribute("msg", "用户名或密码错误");
+        }
+        return "index";
+    }
+    @RequestMapping("/out")
+    public String test02(HttpSession session){
+        session.removeAttribute("Login");
+        return "redirect:index";
+    }
+}
+
+```
+
+
+
+- 然后再写一个拦截器 实现handlerInterceptor接口。
+
+```java
+public class LoginInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
+        Object login = session.getAttribute("Login");
+        if(login == null){
+            request.setAttribute("msg", "未登录没有权限访问");
+            request.getRequestDispatcher("/index").forward(request, response);
+            return false;
+        }
+        return true;
+    }
+}
+```
+
+
+
+ 		**这里只需要重写这个preHandle方法， 就是进入下一个之前， 然后我们做一些判断， null就重定向原来的登录页面， 并返回msg， 否则就放行**
+
+
+
+- 然后是在
+
+```java
+@Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/index",
+                "/toLogin","/css/**","/img/**","/js/**");
+    }
+```
+
+
+
+​		**这里需要先拦截所有的请求， 然后选择 一些需要放行， static下的静态资源也需要放行**
