@@ -7,13 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="国际化">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code111/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code111/TreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code189/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code189/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="111" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -328,7 +322,7 @@
       <workItem from="1651041620341" duration="4108000" />
       <workItem from="1651197822175" duration="19652000" />
       <workItem from="1651301300347" duration="7530000" />
-      <workItem from="1651390403382" duration="9717000" />
+      <workItem from="1651390403382" duration="10125000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1645518073132</created>
@@ -414,7 +408,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651321529353</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="189">
+      <created>1651405120794</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1651405120794</updated>
+    </task>
+    <task id="LOCAL-00014" summary="111">
+      <created>1651405139435</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651405139436</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +453,9 @@
     <MESSAGE value="110" />
     <MESSAGE value="115" />
     <MESSAGE value="国际化" />
-    <option name="LAST_COMMIT_MESSAGE" value="国际化" />
+    <MESSAGE value="189" />
+    <MESSAGE value="111" />
+    <option name="LAST_COMMIT_MESSAGE" value="111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
