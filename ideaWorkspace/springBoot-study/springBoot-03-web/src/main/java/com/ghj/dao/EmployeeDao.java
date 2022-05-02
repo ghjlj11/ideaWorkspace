@@ -22,6 +22,7 @@ public class EmployeeDao {
         employees.put(1006, new Employee(1006, "小芳", "12345", 0, DepartmentDao.departments.get(103)));
     }
     public void addEmployee(Employee employee){
+        employee.setDepartment(DepartmentDao.departments.get(employee.getDepartment().getId()));
         employees.put(employee.getId(), employee);
     }
     public void deleteEmployee(int id){
@@ -32,6 +33,7 @@ public class EmployeeDao {
     }
     public void updateEmployee(Employee employee){
         if(employees.containsKey(employee.getId())){
+            employee.setDepartment(DepartmentDao.departments.get(employee.getDepartment().getId()));
             employees.put(employee.getId(), employee);
         }
         else {

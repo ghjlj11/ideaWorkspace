@@ -688,7 +688,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 
 
-- 然后创建我们的html页面，这里注意要加**xmlns:th="http://www.thymeleaf.org**， 这样我们就可以使用他了， 就像vue一样， th:text就是用msg绑定div里的文本。
+- 然后创建我们的html页面，这里注意要加**xmlns:th="http://www.thymeleaf.org"**， 这样我们就可以使用他了， 就像vue一样， th:text就是用msg绑定div里的文本。
 
 ```html
 <!DOCTYPE html>
@@ -1203,4 +1203,40 @@ public class LoginInterceptor implements HandlerInterceptor {
 	</td>
 </tr>
 ```
+
+
+
+- 列表添加功能 ：增加 ， 更新， 删除。 这里我们如果前端传对象到后端 ， 我们只传 id ， 然后通过 id在后端查询， 删除等功能 ， 要注意时间显示的格式， 以及格式化， 一些前端的判断需要注意格式。
+
+
+
+- 这里我们使用restful风格来写删除功能：
+
+  - 首先写Controller
+
+  - ```java
+        @GetMapping("/delete/{id}")
+        public String delete(@PathVariable("id") Integer id){
+            employeeDao.deleteEmployee(id);
+            return "redirect:/emps";
+        }
+    ```
+
+  - 然后写html的链接
+
+  - ```html
+    <a th:href="@{/delete/{id}(id=${emp.getId()})}"><button class="btn btn-sm btn-danger">删除</button></a>
+    ```
+
+    **这里的连接的格式需要注意**
+
+
+
+
+
+- 404问题， 我们只需要在templates下创建一个error文件夹， 然后把我们的404页面丢进去， 当我们浏览器状态码是404的时候， 就会自动跳到那边， 还有500 也是一样。
+
+
+
+## 如何写一个网站
 

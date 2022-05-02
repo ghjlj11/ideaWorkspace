@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,6 +51,7 @@
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<h2>Section title</h2>
+					<a th:href="@{/add}"><button class="btn btn-sm btn-success">添加</button></a>
 					<div class="table-responsive">
 						<table class="table table-striped table-sm">
 							<thead>
@@ -71,10 +72,10 @@
 									<td th:text="${emp.getEmail()}"></td>
 									<td th:text="${emp.getSex() == 1 ? '男':'女'}"></td>
 									<td th:text="${emp.getDepartment().getName()}"></td>
-									<td th:text="${#dates.format(emp.getBrith(), 'yyyy-MM-dd : HH:mm:ss')}"></td>
+									<td th:text="${#dates.format(emp.getBrith(), 'yyyy-MM-dd')}"></td>
 									<td>
-										<button class="btn btn-sm btn-primary">修改</button>
-										<button class="btn btn-sm btn-danger">删除</button>
+										<a th:href="@{/update(id=${emp.getId()})}"><button class="btn btn-sm btn-primary">修改</button></a>
+										<a th:href="@{/delete/{id}(id=${emp.getId()})}"><button class="btn btn-sm btn-danger">删除</button></a>
 									</td>
 								</tr>
 							</tbody>
