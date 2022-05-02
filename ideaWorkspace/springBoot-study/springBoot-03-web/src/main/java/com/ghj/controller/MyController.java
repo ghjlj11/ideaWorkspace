@@ -22,9 +22,15 @@ public class MyController {
         }
         return "index";
     }
+
     @RequestMapping("/out")
     public String test02(HttpSession session){
         session.removeAttribute("Login");
         return "redirect:index";
+    }
+
+    @RequestMapping("/main")
+    public String test03(Model model){
+        return "dashboard";
     }
 }

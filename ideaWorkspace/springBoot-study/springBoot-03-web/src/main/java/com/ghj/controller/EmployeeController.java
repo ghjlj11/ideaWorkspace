@@ -20,7 +20,8 @@ public class EmployeeController {
     @RequestMapping("/emps")
     public String show(Model model){
         Collection<Employee> employees = employeeDao.getAll();
-        model.addAttribute("emp", employeeDao);
-        return "/list";
+        model.addAttribute("emps", employees);
+        System.out.println(employees);
+        return "/emp/list";
     }
 }

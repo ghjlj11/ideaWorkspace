@@ -935,7 +935,7 @@ login.username=Username
 
 
 
-- 把index.html里的文字设置成， 从配置文件里面取值  注意这里的传参我们采用@{/index(l='zh_CH')}这种() 的格式传参。
+- 把index.html里的文字设置成， 从配置文件里面取值  注意这里的传参我们采用**@{/index(l='zh_CH')}这种() 的格式传参**。
 
 ```html
 <body class="text-center">
@@ -1151,4 +1151,56 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
 
-​		**这里需要先拦截所有的请求， 然后选择 一些需要放行， static下的静态资源也需要放行**
+​		**这里需要先拦截所有的请求， 然后选择 一些需要放行， static下的css、img、js静态资源也需要放行**
+
+
+
+### 员工列表管理
+
+
+
+- 首先我们先把dashboard与list页面的那些链接都改好 ， 侧边栏的链接到对应的请求， 在Controller里加上list页面的请求。 
+
+
+
+- 我们在dashboard与list页面里面会有大量的重复代码， 这里的侧边栏与顶部栏都是一样的， 然后我们就可以使用thymeleaf的fragment ， 我们把重复的部分都放在一个html文件里面， 语法： 只需要在 class后面加上 
+
+   **th:fragment="topbar"**
+
+  ![boot8](D:\my-study\笔记\img\boot8.png)
+
+
+
+- 然后我们直接在 需要用到的地方 直接引用， **<div th:insert="~{components/component::topbar}"></div>** ，<div th:replace="~{components/component::sidebar(active='list')}"></div> 使用insert或者replace语法插入，括号之前需要加上~， 括号里面就是 定义的 这个fargment的地址。 
+
+
+
+- 我们还需要设置高亮， 就是当前所在的页面， 侧边栏对应的位置高亮， ，只需要携带一个参数， 然后在 我们的组件里面接收， 并且判断是在哪个页面下， 然后使用 active 高亮， 这个参数可以是在前端页面 通过thymeleaf 模板 在连接后面加上一个()， 里面写参数， 如上代码。 对应的 组件里面接收：
+
+```html
+<a th:class="${active == 'main' ? 'nav-link active' : 'nav-link' }" th:href="@{/main}">
+    
+<a th:class="${active == 'list' ? 'nav-link active' : 'nav-link' }" th:href="@{/emps}">
+```
+
+
+
+​		**这里判断使用的是三目运算符， 要注意语法格式。**
+
+- 最后就是员工展示， 通过 Controller 去获取 Dao里的 数据， 并获取， 所有的员工放在集合里传递给前端， 这时候我们就可以使用thymeleaf的 th:each来遍历里面的数据， 并且通过#dates.format格式化date类型。
+
+```html
+<tr th:each="emp:${emps}">
+	<td th:text="${emp.getId()}"></td>
+	<td th:text="${emp.getName()}"></td>
+	<td th:text="${emp.getEmail()}"></td>
+	<td th:text="${emp.getSex() == 1 ? '男':'女'}"></td>
+	<td th:text="${emp.getDepartment().getName()}"></td>
+	<td th:text="${#dates.format(emp.getBrith(), 'yyyy-MM-dd : HH:mm:ss')}"></td>
+	<td>
+		<button class="btn btn-sm btn-primary">修改</button>
+		<button class="btn btn-sm btn-danger">删除</button>
+	</td>
+</tr>
+```
+
