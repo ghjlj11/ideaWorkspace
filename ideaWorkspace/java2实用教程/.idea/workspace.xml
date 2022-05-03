@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dbc1c79-a718-401f-b8cc-523816638ee2" name="变更" comment="java">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java2实用教程/mysql/MySql.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java2实用教程/mysql/MySql.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java2实用教程/test/Test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java2实用教程/test/Test1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mysql/MySql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mysql/MySql.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/src/test/java/myTest/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/src/test/java/myTest/Test01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/classes/com/ghj/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/test-classes/myTest/Test01.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-05-anno/target/test-classes/myTest/Test01.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +42,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26HHzEtAKMrPZYi5btFDGp7hcK3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -72,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springBoot-study/springBoot-03-web" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -91,8 +73,24 @@
       <recent name="C:\Users\86187\AppData\Roaming\JetBrains\IntelliJIdea2021.3\extensions" />
       <recent name="C:\Users\86187\AppData\Roaming\JetBrains\IntelliJIdea2021.3\extensions\mybatis04\lib" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="myClass" />
+    </key>
   </component>
-  <component name="RunManager" selected="应用程序.MySql">
+  <component name="RunManager" selected="应用程序.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="myClass.Main" />
+      <module name="java2实用教程" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="myClass.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MySql" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mysql.MySql" />
       <module name="java2实用教程" />
@@ -145,26 +143,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test9" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test.Test9" />
-      <module name="java2实用教程" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Main" />
         <item itemvalue="应用程序.MySql" />
         <item itemvalue="应用程序.Test1" />
         <item itemvalue="应用程序.Test7" />
         <item itemvalue="应用程序.Test6" />
-        <item itemvalue="应用程序.Test9" />
       </list>
     </recent_temporary>
   </component>
@@ -200,6 +185,7 @@
       <workItem from="1650674380935" duration="6952000" />
       <workItem from="1651300375419" duration="530000" />
       <workItem from="1651300929738" duration="93000" />
+      <workItem from="1651560480474" duration="3328000" />
     </task>
     <servers />
   </component>

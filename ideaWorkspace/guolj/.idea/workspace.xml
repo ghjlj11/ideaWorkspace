@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="111" />
+    <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="MyClass">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,16 +77,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDK" />
+    <property name="project.structure.last.edited" value="项目" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -91,11 +94,11 @@
       <recent name="D:\ideaWorkspace\guolj\src\lj\leetcode" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lj.leetcode.code117" />
       <recent name="lj.leetcode.code111" />
       <recent name="lj.leetcode.code110" />
       <recent name="lj.leetcode.code113" />
       <recent name="lj.leetcode.code143" />
-      <recent name="lj.leetcode.code109" />
     </key>
   </component>
   <component name="RunManager" selected="应用程序.Main (3)">
@@ -323,6 +326,8 @@
       <workItem from="1651197822175" duration="19652000" />
       <workItem from="1651301300347" duration="7530000" />
       <workItem from="1651390403382" duration="10125000" />
+      <workItem from="1651505007907" duration="510000" />
+      <workItem from="1651535970055" duration="15628000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1645518073132</created>
@@ -422,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651405139436</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="117  116">
+      <created>1651567556675</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1651567556675</updated>
+    </task>
+    <task id="LOCAL-00016" summary="MyClass">
+      <created>1651567610283</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651567610283</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +474,9 @@
     <MESSAGE value="国际化" />
     <MESSAGE value="189" />
     <MESSAGE value="111" />
-    <option name="LAST_COMMIT_MESSAGE" value="111" />
+    <MESSAGE value="117  116" />
+    <MESSAGE value="MyClass" />
+    <option name="LAST_COMMIT_MESSAGE" value="MyClass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
