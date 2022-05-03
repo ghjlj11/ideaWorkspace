@@ -1,4 +1,4 @@
-package com.ghj.fg;
+package com.ghj.springboot04data;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author 86187
  */
 @SpringBootApplication
-public class FgApplication {
+public class SpringBoot04DataApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FgApplication.class, args);
+        SpringApplication.run(SpringBoot04DataApplication.class, args);
     }
 
 }

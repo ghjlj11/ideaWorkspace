@@ -1240,3 +1240,95 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 ## 如何写一个网站
 
+
+
+- 前端；
+- 设计数据库；
+- 前端能够独立运行；
+- 数据接口如何对接：json
+- 前后端联调测试
+- 需要有一套自己收悉的后台模板
+- 前端界面通过框架搭建；
+- 可以运行。
+
+
+
+
+
+## JDBC
+
+
+
+- 我们正常创建一个web项目， 导入jdbc依赖， mysql依赖
+
+```xml
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+```
+
+
+
+- 配置datasource参数， 然后我们就可以链接数据库了。可以查看一下源码。 
+
+```yaml
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/malajava?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+
+
+
+- JdbcTemplateConfiguration这个配置类注入了JdbcTemplate到spring中，我们可以直接使用， 这是一个jdbc的模板类， 可以直接使用里面的功能。 
+
+```java
+@RestController
+public class DataController {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @GetMapping("/que")
+    public String select(){
+        String s = jdbcTemplate.queryForList("select * from user").toString();
+        return s;
+    }
+    @GetMapping("/add")
+    public String add(){
+        String sql = "insert into user(id, name, age) values(4, 'ghj', 12)";
+        jdbcTemplate.update(sql);
+        return "ok";
+    }
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable("id")int id){
+        String sql = "update user set name = ?, age = ? where id = "+ id;
+        Object[] objects = new Object[2];
+        objects[0] = "kkk";
+        objects[1] = 21;
+        jdbcTemplate.update(sql,objects);
+        return "ok";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id")int id){
+        String sql = "delete from user where id = ?";
+        Object j = new Integer(4);
+        jdbcTemplate.update(sql,j);
+        return "ok";
+    }
+}
+
+```
+
+
+
+​		**这里我们可以通过？来现有一个占位， 然后通过下面的Object给？传参， 这样的效果也是一样的。**

@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/hh/kk/${names}" method="post">
+<form action="${pageContext.request.contextPath}/hh/kk/{names}" method="post">
     <input type="text" name="names" id="names">
     <input type="submit">
 </form>
