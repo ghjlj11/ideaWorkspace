@@ -10,25 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/addEmp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/500.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/EmployeeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,6 +227,7 @@
       <workItem from="1650931052909" duration="10342000" />
       <workItem from="1651021848385" duration="6004000" />
       <workItem from="1651477601431" duration="1512000" />
+      <workItem from="1651675903851" duration="330000" />
     </task>
     <servers />
   </component>
