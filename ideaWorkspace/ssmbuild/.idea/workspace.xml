@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="">
+    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
       <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,12 +227,35 @@
       <workItem from="1650931052909" duration="10342000" />
       <workItem from="1651021848385" duration="6004000" />
       <workItem from="1651477601431" duration="1512000" />
-      <workItem from="1651675903851" duration="330000" />
+      <workItem from="1651675903851" duration="474000" />
     </task>
+    <task id="LOCAL-00001" summary="ssmbuild">
+      <created>1651676376224</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651676376224</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ssmbuild" />
+    <option name="LAST_COMMIT_MESSAGE" value="ssmbuild" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
