@@ -807,7 +807,7 @@ public class SpringBootController {
 
 
 - 官网说他的SpringMVC默认引入引入 `ContentNegotiatingViewResolver` 和 `BeanNameViewResolver` bean。我们就去找这两个类，他们都需要去实现ViewResolver这个接口， 通过ContentNegotiatingViewResolver， 我们发现他的核心就是去获取所有的视图解析器， 然后去获取所有的视图，再从其中获取最好的视图（最合适的）。 
-- ![boot02](D:\my-study\笔记\img\boot02.png)
+- ![boot02](img\boot02.png)
 
 
 
@@ -838,7 +838,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 下一个阶段：  我们该如何知道我们自己的视图解析器被用上了 呢， 我们在SpringMVC阶段都知道， 所有的请求都需要 通过DispatchServlet（前端控制器），这个控制器的核心方法就是 doDispatch， 我们在这里打上断点， 再Debug一下， 然后请求一下hello页面。
 
-![boot3](D:\my-study\笔记\img\boot3.png)
+![boot3](img\boot3.png)
 
 
 
@@ -854,11 +854,11 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 上面官方特地强调说不能使用这个@EnableWebMvc， 那么是为什么呢 ？ 点卡这个注解， 我们就会发现这里面import了一个类， 就是**DelegatingWebMvcConfiguration**， 再点进去会发现这个类继承了**WebMvcConfigurationSupport**这个类。 
 
-![boot4](D:\my-study\笔记\img\boot4.png)
+![boot4](img\boot4.png)
 
 
 
-![boot5](D:\my-study\笔记\img\boot5.png)
+![boot5](img\boot5.png)
 
 
 
@@ -866,7 +866,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 然后我们再看**WebMvcAutoConfiguration**的源码，这里面有一个条件。
 
-![boot6](D:\my-study\笔记\img\boot6.png)
+![boot6](img\boot6.png)
 
 
 
@@ -966,7 +966,7 @@ login.username=Username
 
   
 
-  ![boot7](D:\my-study\笔记\img\boot7.png)
+  ![boot7](img\boot7.png)
 
 
 
@@ -1167,7 +1167,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
    **th:fragment="topbar"**
 
-  ![boot8](D:\my-study\笔记\img\boot8.png)
+  ![boot8](img\boot8.png)
 
 
 
@@ -1332,3 +1332,206 @@ public class DataController {
 
 
 ​		**这里我们可以通过？来现有一个占位， 然后通过下面的Object给？传参， 这样的效果也是一样的。**
+
+
+
+## Druid
+
+
+
+- 我们引入Druid数据源， 不能使用SpringBoot3.0.0快照版， 降版本到2.6.7即可使用。 
+
+
+
+- 首先导入maven， log4j也要导入。
+
+  ```xml
+  <dependency>
+              <groupId>com.alibaba</groupId>
+              <artifactId>druid</artifactId>
+              <version>1.2.8</version>
+          </dependency>
+          <dependency>
+              <groupId>com.alibaba</groupId>
+              <artifactId>druid-spring-boot-starter</artifactId>
+              <version>1.2.8</version>
+          </dependency>
+  
+          <dependency>
+              <groupId>log4j</groupId>
+              <artifactId>log4j</artifactId>
+              <version>1.2.17</version>
+          </dependency>
+  ```
+
+
+
+- 然后添加yml配置
+
+  ```yml
+  spring:
+    datasource:
+      username: root
+      password: 123456
+      url: jdbc:mysql://localhost:3306/malajava?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+  
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+  
+      #配置监控统计拦截的filters，stat：监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许报错，java.lang.ClassNotFoundException: org.apache.Log4j.Properity
+      #则导入log4j 依赖就行
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  
+  ```
+
+  
+
+- 配置监控器， 自己写一个config文件， 并注入到Spring中去。
+
+```java
+@Configuration
+public class DruidConfig {
+
+    @ConfigurationProperties(prefix = "spring.datasource")
+    @Bean
+    public DruidDataSource druidDataSource(){
+        return new DruidDataSource();
+    }
+
+    /**
+     * 因为SpringBoot包含了servlet， 没有对应的web.xml文件， 所以我们不能设置到web.xml
+     * 但是因为他在SpringBoot里面， 我们可以通过@Bean设置到里面， 自己加一些配置。
+     * @return
+     */
+    @Bean
+    public ServletRegistrationBean<StatViewServlet> statViewServlet(){
+        ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
+        Map<String, String> map = new HashMap<>();
+        map.put("loginUsername","ghj");
+        map.put("loginPassword","123456");
+        map.put("allow","");
+        bean.setInitParameters(map);
+        return bean;
+    }
+
+    @Bean
+    public FilterRegistrationBean webStatFilter(){
+        FilterRegistrationBean bean = new FilterRegistrationBean();
+        bean.setFilter(new WebStatFilter());
+        Map<String, String> map = new HashMap<>();
+        map.put("exclusions","*.jsp, *.css, /druid/*");
+        bean.setInitParameters(map);
+        return bean;
+    }
+}
+
+```
+
+
+
+​		**这里如何让yml配置文件与我们的config绑定在一起， 就是以前的操作， 加上一个@ConfigurationProperties(prefix = "spring.datasource")， 然后注入到Spring中**
+
+
+
+​		**然后是配置 监视器，设置登录名， 密码， 以及允许哪个用户访问， 这里就是允许所有的， 这些配置都可以通过一个map来配置， 只需要 key是对应的属性名， 然后value就是值。 **
+
+​		**最后就是配置过滤器，map.put("exclusions","*.jsp, *.css, /druid/*")， 表示哪些请求将会被过滤。 **
+
+
+
+![boot9](img\boot9.png)
+
+
+
+
+
+## SpringBoot的默认扫描的位置
+
+
+
+- 默认位置就是@SpringBootApplication所在的包， 所以我们在这个包内建的component， @Repository， @Service， @Controller都可以直接扫描到， 不需要手动配置ComponentScan。
+
+- 加上这个配置
+
+  ```java
+  @SpringBootApplication(scanBasePackages = { "com.ghj"})
+  ```
+
+
+
+- 点开这个scanBasePackages， 我们可以看到里面默认的配置就是 @SpringBootApplication所在的包下
+
+![boot10](img\boot10.png)
+
+
+
+## 整合mybatis
+
+
+
+- 老规矩， 先导依赖
+
+```xml
+		<dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+```
+
+
+
+​		**这里可以看到mybatis是直接以mybatis开头， 不是spring开头， 所以我们配置对应的yml文件时候也是以mybaitis开头**
+
+
+
+- 配置对应的yml文件
+
+```yml
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/malajava?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.ghj.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+
+```
+
+
+
+​		**前部分是链接数据库的， 后部分就是配置mybatis， 配置别名扫描的包， 配置mapper文件的位置。**
+
+
+
+- 接下来就是老套路，pojo实体类，  mapper层， service层， controller层。
