@@ -9,7 +9,7 @@ public class MyTest {
     public void test01(){
         //如果完全使用配置类，我们就只能通过ApplicationConfig上下文来获取容器；
         ApplicationContext context = new AnnotationConfigApplicationContext(GhjConfig.class);
-        User user  = context.getBean("getUser", User.class);
+        User user  = context.getBean("user", User.class);
         System.out.println(user.getName());
     }
 }
