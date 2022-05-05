@@ -19,9 +19,9 @@ public class Main {
         //反射获得实例对象
         Class<S1> aClass = S1.class;
         Class<String> stringClass = String.class;
-        Constructor<S1> constructor = aClass.getConstructor(null);
+        Constructor<S1> constructor = aClass.getConstructor();
         constructor.setAccessible(true);
-        S1 s = constructor.newInstance(null);
+        S1 s = constructor.newInstance();
         System.out.println(aClass);
 
         System.out.println("------------------------------------------------");
