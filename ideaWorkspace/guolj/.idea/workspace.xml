@@ -8,8 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1a12c93-8834-4956-96d4-b6d753ed0ceb" name="Changes" comment="MyClass">
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code144/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code144/Solution2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code144/TreeNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +79,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -94,11 +96,11 @@
       <recent name="D:\ideaWorkspace\guolj\src\lj\leetcode" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lj.leetcode.code144" />
       <recent name="lj.leetcode.code117" />
       <recent name="lj.leetcode.code111" />
       <recent name="lj.leetcode.code110" />
       <recent name="lj.leetcode.code113" />
-      <recent name="lj.leetcode.code143" />
     </key>
   </component>
   <component name="RunManager" selected="应用程序.Main (3)">
@@ -328,6 +330,7 @@
       <workItem from="1651390403382" duration="10125000" />
       <workItem from="1651505007907" duration="510000" />
       <workItem from="1651535970055" duration="15628000" />
+      <workItem from="1651762278530" duration="1387000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1645518073132</created>
