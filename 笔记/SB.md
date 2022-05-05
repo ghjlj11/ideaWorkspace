@@ -34,3 +34,148 @@ ANSI编码是一种对ASCII的拓展：ANSI编码用0x00~0x7f （即十进制下
 2 然后再进行上传:
 
 > git push -u origin master
+
+
+
+## 类加载，注解，反射
+
+
+
+### 类加载
+
+- 类 存在生命周期 ：
+
+  > 加载、连接、初始化、使用、卸载
+
+- 当程序主动使用一个类的时候， 那么如果在JVM 中， 没有找到这个类，那么 系统就会通过 加载、连接、初始化 三个步骤 将类进行初始化 。
+
+- 当Java程序首次通过下面6种方式来使用某个类或接口时，系统就会初始化该类或接口 。
+
+  > 创建类的实例。为某个类创建实例的方式包括：使用new操作符来创建实例，通过反射来创建实例，通过反序列化的方式来创建实例 调用某个类的类方法（静态方法） 访问某个类或接口的类变量，或为该类变量赋值 使用反射方式来强制创建某个类或接口对应的java.lang.Class对象 初始化某个类的子类。当初始化某个类的子类时，该子类的所有父类都会被初始化。 JVM启动时被标明是启动类的类。简而言之，就是使用java.exe命令执行的类，也就是有main方法的类
+
+  以上 6 种 情况 被称为 主动使用， 其他的所有情况被称为 被动使用 。**被动使用不会导致类的初始化， 不被初始化就表示类的一些static的代码也不会被执行** 。
+
+
+
+### 反射
+
+- 通过反射我们可以获得到类里面的任何东西， 但是不能实例化一个枚举类。
+
+```java
+public class Main {
+    public static void main(String[] args) throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        System.out.println(S1.P);
+        Class<S1> s1Class = S1.class;
+        System.out.println(s1Class.getClassLoader());
+
+        System.out.println("------------------------------------------------");
+        //反射获得实例对象
+        Class<S1> aClass = S1.class;
+        Class<String> stringClass = String.class;
+        Constructor<S1> constructor = aClass.getConstructor();
+        constructor.setAccessible(true);
+        S1 s = constructor.newInstance();
+        System.out.println(aClass);
+
+        System.out.println("------------------------------------------------");
+        //反射给对象的字段赋值
+        Field[] fields = aClass.getDeclaredFields();
+        System.out.println(Arrays.toString(fields));
+        Field p = aClass.getDeclaredField("s");
+        p.set(s, new String("222"));
+        System.out.println(s);
+        Field k = aClass.getDeclaredField("k");
+        k.setAccessible(true);
+        k.set(s,12345);
+        System.out.println(s);
+
+        System.out.println("------------------------------------------------");
+        //反射获得类的方法
+        Method[] methods = aClass.getDeclaredMethods();
+        System.out.println(Arrays.toString(methods));
+        //通过名字获得声明的方法
+        Method method2 = aClass.getDeclaredMethod("method4");
+        method2.setAccessible(true);
+        //如果获得实例方法， 那么invoke必须传一个对应的实例， 如果类方法， 那么invoke实例随意
+        Object invoke = method2.invoke(new Object());
+        System.out.println(invoke);
+
+        System.out.println("------------------------------------------------");
+        //通过反射获取内部类
+        Class<?>[] classes = aClass.getDeclaredClasses();
+
+//        for (Class<?> a : classes) {
+//            String name = a.getSimpleName();
+//            System.out.println(name);
+//            if("Bk".equals(name)){
+//                Constructor<?> aConstructor = a.getConstructor(null);
+//                System.out.println("000000");
+//                Object o = aConstructor.newInstance(null);
+//                System.out.println(o);
+//            }
+//        }
+        System.out.println(Arrays.toString(classes));
+        System.out.println(Arrays.toString(aClass.getClasses()));
+        //获得所属类， 方法或者字段调用。
+        Class<?> declaringClass = method2.getDeclaringClass();
+        System.out.println(declaringClass);
+
+    }
+}
+```
+
+
+
+
+
+### 注解
+
+
+
+- 注解，其实是代码里的特殊标记，这些标记可以在编译、类加载、运行时被读取，并执行相应的处理。
+
+- 在 注解上 使用的注解 被称为 元注解。
+
+  - @Documented : 被 @Documented 修饰的注解， 可以被 javadoc 工具识别，并提取到文档上 。
+  - @Inherited : 基本不用
+  - @Repeatable ： 使用意义不大， 仅仅表示 一个 注解 可以重复使用。
+  - @Target : 标注注解 能够在哪些地方上使用 : 构造、类（接口）、成员变量、参数、方法等
+  - @Retention ： 决定注解 保留到什么时候
+    - SOURCE : 在 源代码中存在
+    - CLASS : 在 .class 文件中存在
+    - RUNTIME : 在 运行期间 存在 。
+
+  自定义注解 ： 声明的形式 ： `修饰符 @interface 注解名称{}`
+
+- 我们可以通过反射查看 MVC里的一些注解的 属性
+
+```java
+@SpringBootTest
+class SpringBoot06SecurityApplicationTests {
+
+    @Test
+    void contextLoads() {
+
+        //通过反射获得注解， 然后获得注解里的属性
+        Class<MyController> aClass = MyController.class;
+        RequestMapping annotation = aClass.getAnnotation(RequestMapping.class);
+        String[] strings = annotation.value();
+        System.out.println(Arrays.toString(strings));
+
+        //反射获得方法， 方法上的注解， 注解里的属性。
+        Method[] methods = aClass.getDeclaredMethods();
+        System.out.println(methods.length);
+        for (Method method : methods) {
+            RequestMapping annotation1 = method.getAnnotation(RequestMapping.class);
+            String[] path = annotation1.value();
+            System.out.println(Arrays.toString(path));
+        }
+    }
+
+}
+
+```
+
+
+
+可以查看到RequestMapping映射的那些请求路径。
