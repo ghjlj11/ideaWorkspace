@@ -1540,3 +1540,215 @@ mybatis:
 
 ## Spring Security
 
+
+
+​			一般访问网站会有权限设置， 有些页面并不是所有人都可以访问， 我们可以对不同的用户设置一些相应的权限，实现这功能。 
+
+
+
+- 首先导入依赖
+
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+```
+
+
+
+- 把静态资源抄一份。
+
+- 配置controller，这里有一些新套路， 一共九个页面， 我们只用三个@RequestMapping就好了， 通过传过来的id， 对String进行拼接， 实现跳转到不同的页面。
+
+  ```java
+  @RequestMapping("/level1/{id}")
+  public String level1(@PathVariable("id")int id){
+      return "views/level1/" + id;
+  }
+  @RequestMapping("/level2/{id}")
+  public String level2(@PathVariable("id")int id){
+      return "views/level2/" + id;
+  }
+  @RequestMapping("/level3/{id}")
+  public String level3(@PathVariable("id")int id){
+      return "views/level3/" + id;
+  }
+  ```
+
+
+
+- 然后就是配置config， 这里继承一个WebSecurityConfigurerAdapter类，然后设置里面的属性。 
+
+  ```java
+  @EnableWebSecurity
+  public class MyConfig extends WebSecurityConfigurerAdapter {
+      @Override
+      protected void configure(HttpSecurity http) throws Exception {
+          http.authorizeHttpRequests()
+                  .antMatchers("/").permitAll()
+                  .antMatchers("/level1/**").hasRole("vip1")
+                  .antMatchers("/level2/**").hasRole("vip2")
+                  .antMatchers("/level3/**").hasRole("vip3");
+  
+          http.formLogin();
+      }
+  
+      @Override
+      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+          auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                  .withUser("ghjlj").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1","vip2","vip3")
+                  .and()
+                  .withUser("ghj").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1")
+                  .and()
+                  .withUser("lj").password(new BCryptPasswordEncoder().encode("123456")).roles("vip2","vip3");
+      }
+  }
+  
+  ```
+
+  
+
+
+
+​		**@EnableWebSecurity一定要加这个注解， 然后通过 链式编程，设置每个界面的访问级别 ，再根据用户名与密码来设置用户的级别， 这里的密码一定要有BCryptPasswordEncoder， 代表加密的意思， 然后还要设置对应的级别，这里的http.formLogin()表示 如果未登录访问到没有权限的页面， 那么就会跳转到登录页面，是系统给定的一个登录页面， 并不是我们自己写的。  **
+
+
+
+​		**还有注销页面， 我们只需要在配置类上加上一行代码就可以了， 而且这个页面也是系统自带的。**
+
+```java
+       http.logout().logoutSuccessUrl("/");
+```
+
+
+
+### thymeleaf 整合 security
+
+
+
+- 导入依赖：
+
+```xml
+<dependency>
+    <groupId>org.thymeleaf.extras</groupId>
+    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+    <version>3.0.4.RELEASE</version>
+</dependency>
+```
+
+
+
+- 再index.html上整合这两个 ,这里的isAuthenticated()就是判断 是否登录的意思sec就是整合后的标签。
+
+```html
+<div sec:authorize="!isAuthenticated()">
+    <a class="item" th:href="@{/login}">
+        <i class="address card icon"></i> 登录
+    </a>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+    <a class="item">
+        用户名<span sec:authentication="name"></span>
+        角色<span sec:authentication="principal.authorities"></span>
+    </a>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <a class="item" th:href="@{/logout}">
+        <i class="address card icon"></i>注销
+    </a>
+</div>
+```
+
+
+
+- 需要加上命名空间：xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
+
+
+- 还可以设置展示的页面， 根据vip级别来展示。
+
+```html
+<div class="column" sec:authorize="hasRole('vip1')">
+    <div class="ui raised segment">
+        <div class="ui">
+            <div class="content">
+                <h5 class="content">Level 1</h5>
+                <hr>
+                <div><a th:href="@{/level1/1}"><i class="bullhorn icon"></i> Level-1-1</a></div>
+                <div><a th:href="@{/level1/2}"><i class="bullhorn icon"></i> Level-1-2</a></div>
+                <div><a th:href="@{/level1/3}"><i class="bullhorn icon"></i> Level-1-3</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+
+
+​		**这里就是通过hasRole('vip1')这个方法来判断是否包含了这个vip1， 如果有就展示， 下面的也是一样。**
+
+
+
+### 首页定制及记住我 
+
+
+
+- 首页定制， 我们只需要把上面的代码改一点点就好了， 把首页映射到我们自己的首页， 而下面这个代码就是为了 注销可以成功， 如果没有这个的话那么可能注销会404。
+
+```java
+http.formLogin().loginPage("/login");
+
+http.csrf().disable();
+```
+
+
+
+- 记住我选项 
+
+```java
+http.rememberMe().rememberMeParameter("rememberMe");
+```
+
+
+
+```html
+<div class="field">
+    <input type="checkbox" name="rememberMe"> 记住我
+</div>
+```
+
+
+
+​		**我们只需要加上这个两个配置 ， 记住我选项， 然后后面的就是获得的参数， 前端加上一个复选框， 然后参数名字需要一至， 这样后端才可以 接收到。记住我的原理其实就是浏览器的一个cookie， 他会记住我们之前的 数据， 然后下次登录就会记住我们的账号信息， 不用登陆， 如果删除这个cooki ， 那么就不会有这个效果**
+
+
+
+- 在记住我之前，并没有这个cooki：
+
+![boot11](img\boot11.png)
+
+
+
+- 勾选记住我登录之后 ， 就会有这个cookie：
+
+
+
+![boot12](img\boot12.png)
