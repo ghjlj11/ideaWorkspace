@@ -20,7 +20,10 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level2/**").hasRole("vip2")
                 .antMatchers("/level3/**").hasRole("vip3");
 
-        http.formLogin();
+        http.formLogin().loginPage("/login");
+        http.csrf().disable();
+        http.rememberMe().rememberMeParameter("rememberMe");
+        http.logout().logoutSuccessUrl("/");
     }
 
     @Override
