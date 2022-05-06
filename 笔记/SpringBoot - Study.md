@@ -1347,21 +1347,21 @@ public class DataController {
 
   ```xml
   <dependency>
-              <groupId>com.alibaba</groupId>
-              <artifactId>druid</artifactId>
-              <version>1.2.8</version>
-          </dependency>
-          <dependency>
-              <groupId>com.alibaba</groupId>
-              <artifactId>druid-spring-boot-starter</artifactId>
-              <version>1.2.8</version>
-          </dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.8</version>
+  </dependency>
+  <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid-spring-boot-starter</artifactId>
+      <version>1.2.8</version>
+  </dependency>
   
-          <dependency>
-              <groupId>log4j</groupId>
-              <artifactId>log4j</artifactId>
-              <version>1.2.17</version>
-          </dependency>
+  <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+  </dependency>
   ```
 
 
@@ -1752,3 +1752,507 @@ http.rememberMe().rememberMeParameter("rememberMe");
 
 
 ![boot12](img\boot12.png)
+
+
+
+
+
+## shiro
+
+
+
+- 这也是一个为程序提供安全的一个东西， 就和之前的Spring Security类似。
+- **这里面有三个要素， Realm， Subject， 和shiroSecurityManager** 
+
+
+
+### 第一个shiro程序， 非Web程序
+
+- 首先我们去shiro的官网， 然后找到quickstar， 然后去github上打开，如果是直接在官网上复制代码， 可能会出问题，  找到对应的文件夹， 把里面的依赖都导入进来。
+
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+
+        <!-- configure logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+</dependencies>
+```
+
+
+
+
+
+- 然后是配置文件， resources下的文件复制过来。 这里有一个.ini文件， 我们需要下载一个插件 Ini， 然后重启idea。 
+
+```ini
+# =============================================================================
+# Tutorial INI configuration
+#
+# Usernames/passwords are based on the classic Mel Brooks' film "Spaceballs" :)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Users and their (optional) assigned roles
+# username = password, role1, role2, ..., roleN
+# -----------------------------------------------------------------------------
+[users]
+# user 'root' with password 'secret' and the 'admin' role
+root = secret, admin
+# user 'guest' with the password 'guest' and the 'guest' role
+guest = guest, guest
+# user 'presidentskroob' with password '12345' ("That's the same combination on
+# my luggage!!!" ;)), and role 'president'
+presidentskroob = 12345, president
+# user 'darkhelmet' with password 'ludicrousspeed' and roles 'darklord' and 'schwartz'
+darkhelmet = ludicrousspeed, darklord, schwartz
+# user 'lonestarr' with password 'vespa' and roles 'goodguy' and 'schwartz'
+lonestarr = vespa, goodguy, schwartz
+
+# -----------------------------------------------------------------------------
+# Roles with assigned permissions
+# roleName = perm1, perm2, ..., permN
+# -----------------------------------------------------------------------------
+[roles]
+# 'admin' role has all permissions, indicated by the wildcard '*'
+admin = *
+# The 'schwartz' role can do anything (*) with any lightsaber:
+schwartz = lightsaber:*
+# The 'goodguy' role is allowed to 'drive' (action) the winnebago (type) with
+# license plate 'eagle5' (instance specific id)
+goodguy = winnebago:drive:eagle5
+```
+
+
+
+
+
+​		**这里的users就是角色，lonestarr = vespa, goodguy, schwartz就表示 lonestarr这个用户， 密码是vespa， 然后拥有  goodguy, schwartz这两种角色， 其他的也是；  然后roles就是角色， admin = *就代表 admin可以做任何事情。 其他的也是这样理解。 **
+
+- 最后就是去复制Quickstar的代码， 复制完会有爆红， 只要把对应的类导入， 然后爆红的import直接删除， 然后直接运行， 就ok了。
+
+
+
+```java
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.Factory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+/**
+ *
+ * @author 86187
+ */
+public class Quickstart {
+
+    private static final transient Logger log = LoggerFactory.getLogger(Quickstart.class);
+
+
+    public static void main(String[] args) {
+
+        // The easiest way to create a Shiro SecurityManager with configured
+        // realms, users, roles and permissions is to use the simple INI config.
+        // We'll do that by using a factory that can ingest a .ini file and
+        // return a SecurityManager instance:
+
+        // Use the shiro.ini file at the root of the classpath
+        // (file: and url: prefixes load from files and urls respectively):
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+        SecurityManager securityManager = factory.getInstance();
+
+        SecurityUtils.setSecurityManager(securityManager);
+
+        // Now that a simple Shiro environment is set up, let's see what you can do:
+
+        // get the currently executing user:
+        Subject currentUser = SecurityUtils.getSubject();
+
+        // Do some stuff with a Session (no need for a web or EJB container!!!)
+        Session session = currentUser.getSession();
+        session.setAttribute("someKey", "aValue");
+        String value = (String) session.getAttribute("someKey");
+        if ("aValue".equals(value)) {
+            log.info("Retrieved the correct value! [" + value + "]");
+        }
+
+        // let's login the current user so we can check against roles and permissions:
+        if (!currentUser.isAuthenticated()) {
+            UsernamePasswordToken token = new UsernamePasswordToken("lonestarr", "vespa");
+            token.setRememberMe(false);
+            try {
+                currentUser.login(token);
+            } catch (UnknownAccountException uae) {
+                log.info("There is no user with username of " + token.getPrincipal());
+            } catch (IncorrectCredentialsException ice) {
+                log.info("Password for account " + token.getPrincipal() + " was incorrect!");
+            } catch (LockedAccountException lae) {
+                log.info("The account for username " + token.getPrincipal() + " is locked.  " +
+                        "Please contact your administrator to unlock it.");
+            }
+            // ... catch more exceptions here (maybe custom ones specific to your application?
+            catch (AuthenticationException ae) {
+                //unexpected condition?  error?
+            }
+        }
+
+        //say who they are:
+        //print their identifying principal (in this case, a username):
+        log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
+
+        //test a role:
+        if (currentUser.hasRole("schwartz")) {
+            log.info("May the Schwartz be with you!");
+        } else {
+            log.info("Hello, mere mortal.");
+        }
+
+        //test a typed permission (not instance-level)
+        if (currentUser.isPermitted("lightsaber:wield")) {
+            log.info("You may use a lightsaber ring.  Use it wisely.");
+        } else {
+            log.info("Sorry, lightsaber rings are for schwartz masters only.");
+        }
+
+        //a (very powerful) Instance Level permission:
+        if (currentUser.isPermitted("winnebago:drive:eagle5")) {
+            log.info("You are permitted to 'drive' the winnebago with license plate (id) 'eagle5'.  " +
+                    "Here are the keys - have fun!");
+        } else {
+            log.info("Sorry, you aren't allowed to drive the 'eagle5' winnebago!");
+        }
+        if(currentUser.isPermitted("lightsaber: eat shirt")){
+            log.info("you are a fucking genius!!");
+        }
+        else {
+            log.info("you are rubbish!!");
+        }
+
+        //all done - log out!
+        currentUser.logout();
+
+        System.exit(0);
+    }
+}
+```
+
+
+
+​		**这里就是 先把ini这个文件放在一个工厂里 ， 这个工厂去获得一个 securityManager管理者，并且放到SecurityUtils里面， 然后由着个去获得 角色，  这个session.setAttribute貌似没啥用， 没有也会有结果， 然后下面就是获取当前用户， 然后登录用户， 然后根据用户拥有的角色， 又通过角色的功能来判断打印一些东西。 **
+
+
+
+### shito第一个web程序
+
+
+
+- 首先导入依赖， 导入一个启动器就行， web启动器肯定是要的。
+
+```xml
+<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+    </dependencies>
+```
+
+
+
+- 然后我们就开始配置 shiro ， 首先创建一个UserRealm， 继承了AuthorizingRealm， 这个就是用来配置Realm
+
+```java
+public class UserRealm extends AuthorizingRealm {
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("执行了参数===>PrincipalCollection");
+        return null;
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.out.println("执行了参数===>AuthenticationToken");
+        return null;
+    }
+}
+```
+
+
+
+- 再写一个配置类， 里面主要是为了获取到shiroFilterFactoryBean， 并且设置 SecurityManager， 这里方法里的参数 是可以通过@Qualifier来获取的， 就是通过名字来注入值进去， 也可以直接写一个@Autowired， 也可以注入。
+
+```java
+@Configuration
+public class ShiroConfig {
+
+    @Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("getSecurityManager") DefaultWebSecurityManager de){
+        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+        bean.setSecurityManager(de);
+        return bean;
+    }
+
+    @Bean
+    public DefaultWebSecurityManager getSecurityManager(@Qualifier("getUserRealm") UserRealm userRealm){
+        DefaultWebSecurityManager de = new DefaultWebSecurityManager();
+        de.setRealm(userRealm);
+        return de;
+    }
+
+    @Bean
+    public UserRealm getUserRealm(){
+        return new UserRealm();
+    }
+}
+```
+
+
+
+### 拦截功能
+
+​		我们设置一些页面的权限， 让他们需要对应的权限才可以访问， 由之前的Spring Security 知道，我们没有登录的话会跳到对应的登录页面， 所以我们也需要一个登陆页面， 并且设置好他。
+
+
+
+- 我们只需要改一下这个方法， 然后加上对应的登陆页面， 还有对应的controller。
+
+```java
+
+@Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("getSecurityManager") DefaultWebSecurityManager de){
+        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+        bean.setSecurityManager(de);
+        /**
+         * anno : 无需认证就可访问；
+         * authc： 必须认证才可以访问；
+         * user： 必须拥有记住我才可以访问
+         * perms： 拥有对某个资源权限才可以访问
+         * role：拥有某个角色权限才可以访问
+         *
+         */
+
+        //拦截设置
+        Map<String, String> filterMap = new LinkedHashMap<>();
+        filterMap.put("/user/*", "authc");
+        bean.setFilterChainDefinitionMap(filterMap);
+
+        //设置登录页面
+        bean.setLoginUrl("/toLogin");
+        return bean;
+    }
+
+```
+
+
+
+
+
+通过以上方法我们只是进行了拦截， 并没有进行登录验证， 以及权限授予的功能。 
+
+
+
+- 我们先写上一个login表单提交的请求， 然后来处理 ：
+
+```java
+@RequestMapping("/login")
+    public String login(String username, String password, Model model){
+        //获取当前用户
+        Subject subject = SecurityUtils.getSubject();
+
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        try {
+            //登录
+            subject.login(token);
+            return "hello";
+        } catch (UnknownAccountException e) {
+            model.addAttribute("msg","用户名错误");
+            e.printStackTrace();
+            return "login";
+        }catch (IncorrectCredentialsException e){
+            model.addAttribute("msg","密码错误");
+            return "login";
+        }
+
+    }
+```
+
+
+
+​		**这里就是跟之前的非Web项目一样，获取当前用户然后登录 ** ， 我们先跑一下看看。
+
+![boot13](img\boot13.png)
+
+
+
+​		**这里没有验证， 所以都是登录失败， 用户名错误， 但是这里可以看到进入到上面的方法了， 有输出，所以， 验证就是在这里面进行。**
+
+
+
+- 验证用户名与密码，只需要修改一下之前的验证方法， 这里我们模拟的数据， 需要注意的是， 我们这个方法是可以拿到 之前用户的信息的， 因为这里也没有什么获取之前用户信息的代码， 只需要获取模拟数据里的信息， 就可以验证， 所以就是之前的 controller 传过来的 信息。
+
+```java
+ @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.out.println("执行了参数===>AuthenticationToken");
+        String name = "root";
+        String password = "123456";
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        //验证用户名；
+        if(!token.getUsername().equals(name)){
+            return null;
+        }
+        //验证密码，shiro自动帮我们做了
+        return new SimpleAuthenticationInfo("",password,"");
+    }
+```
+
+
+
+### 整合数据库
+
+
+
+- 数据库那套操作， Durid， mybatis， mysql， log4j， lombok， 全都往里面导进去就完了， 然后就配置yml文件， druid的， 还有mybatis的，写pojo层， mapper层，service层，再进行测试，   测试成功之后，我们直接在之前的验证登录环节加上数据库查询， 就不需要模拟数据。
+
+```java
+@Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.out.println("执行了参数===>AuthenticationToken");
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        //验证用户名；
+        People people = peopleService.selectByName(token.getUsername());
+        if(people == null){
+            return null;
+        }
+        //验证密码
+        return new SimpleAuthenticationInfo("",people.getPwd(),"");
+    }
+```
+
+
+
+
+
+### 授权操作
+
+
+
+- 我们给配置类的ShiroFilterFactoryBean添加一些页面的权限限制， 
+
+```java
+@Bean
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("getSecurityManager") DefaultWebSecurityManager de){
+        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
+        bean.setSecurityManager(de);
+        /**
+         * anno : 无需认证就可访问；
+         * authc： 必须认证才可以访问；
+         * user： 必须拥有记住我才可以访问
+         * perms： 拥有对某个资源权限才可以访问
+         * role：拥有某个角色权限才可以访问
+         *
+         */
+
+        //拦截设置
+        Map<String, String> filterMap = new LinkedHashMap<>();
+        filterMap.put("/user/add","perms[user:add]");
+        filterMap.put("/user/update","perms[user:update]");
+        filterMap.put("/user/*", "authc");
+        bean.setFilterChainDefinitionMap(filterMap);
+        System.out.println(filterMap);
+
+        //设置登录页面
+        bean.setLoginUrl("/toLogin");
+        bean.setUnauthorizedUrl("/unauthorized");
+        return bean;
+    }
+
+```
+
+
+
+​		**这里要注意就是最后一个put要放在最后， 要不然会拦截失败， put这里面的意思就是制定一些页面， 然后 只有 拥有value后面的这些权限才可以访问， 这样我们的people就都被拦截了。 **
+
+
+
+- 我们要给people加权限， 要改变数据库， 增加一个perms的列， 然后加上一些数据， 这里要记得去修改 pojo， 然后我们就是要授权了。 
+
+```java
+public class UserRealm extends AuthorizingRealm {
+
+    @Autowired
+    PeopleServiceImpl peopleService;
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("执行了授权===>PrincipalCollection");
+
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+        //获取people
+        Subject subject = SecurityUtils.getSubject();
+        People curPeople = (People) subject.getPrincipal();
+        //给用户授权
+        info.addStringPermission("user:add");
+        info.addStringPermission(curPeople.getPerms());
+        return info;
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.out.println("执行了认证===>AuthenticationToken");
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        //验证用户名；
+        People people = peopleService.selectByName(token.getUsername());
+        if(people == null){
+            return null;
+        }
+        //验证密码
+        //把people传到授权的方法里面。
+        return new SimpleAuthenticationInfo(people,people.getPwd(),"");
+    }
+}
+
+```
+
+
+
+​		**送数据库里面读出权限， 然后给people赋上权限， 这里就是要注意要如何 在授权方法里面获得当前的用户， 是通过下面的验证方法传入people， 然后通过SecurityUtils.getSubject() ， 获得subject ， 再通过getPrincipal()获得用户， 这样我们就可以查询到数据库里的 用户权限， 并且通过info.addStringPermission(curPeople.getPerms()) 给他赋上权限。**

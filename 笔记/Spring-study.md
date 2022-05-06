@@ -490,7 +490,7 @@
 
     
 
-  - @Qualifier(value = "cat2") 采用byName查找来自动装配，这个必须要与@Autowired一起使用才可以，不然会报错。
+  - @Qualifier(value = "cat2") 采用byName查找来自动装配，这个需要与@Autowired一起使用才可以，不然会报错。
 
 ## 使用注解开发
 
