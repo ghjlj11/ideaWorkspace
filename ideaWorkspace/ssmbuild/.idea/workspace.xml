@@ -10,7 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/java/Quickstart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/shiro.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +241,7 @@
       <workItem from="1651021848385" duration="6004000" />
       <workItem from="1651477601431" duration="1512000" />
       <workItem from="1651675903851" duration="474000" />
+      <workItem from="1651808455076" duration="640000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>
