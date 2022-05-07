@@ -1,4 +1,6 @@
 spring:
   mvc:
     dispatch-trace-request: false
-    format:
+    view:
+      prefix: "/"
+      suffix: ".html"
