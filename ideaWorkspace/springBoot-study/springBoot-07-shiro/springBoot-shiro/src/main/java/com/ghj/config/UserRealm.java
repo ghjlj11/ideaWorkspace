@@ -11,6 +11,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.HttpCookie;
+
 /**
  * @author 86187
  */
@@ -42,6 +44,7 @@ public class UserRealm extends AuthorizingRealm {
         if(people == null){
             return null;
         }
+
         //验证密码
         //把people传到授权的方法里面。
         return new SimpleAuthenticationInfo(people,people.getPwd(),"");
