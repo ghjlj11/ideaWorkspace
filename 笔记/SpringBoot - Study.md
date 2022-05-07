@@ -486,6 +486,10 @@ message的值也可以不写入， 有对应的默认值。
 
 
 
+​		**关于配置文件的详情， 可以看看这个类ConfigFileApplicationListener**
+
+
+
 官网下说配置文件可以放在这四个地方。
 
 ![image-20220424103125933](img\image-20220424103125933.png)
@@ -2326,3 +2330,206 @@ public class UserRealm extends AuthorizingRealm {
 
 
 ​		**这里记得导入命名空间， shiro:hasPermission="user:add"这个方法就是判断 当前用户是否有user:add权限， 有的话这个div就显示， 否则不显示；shiro:authenticated=""这个方法就是判断是否登录认证，如果有就展示 ， shiro:notAuthenticated=""这个就是相反的意思， 这个登录验证我们以前也做过， 可以用session来做， 登陆了就setAttribute， 注销就remove， 然后前端判断就可以， 就是我注释的代码。  **
+
+
+
+## swagger
+
+
+
+​		介绍：主流的Api框架， RestFul Api文档在线自动生成工具=> Api文档与Api定义实时更新。他会扫描我们的controller还有接口， 然后更新在页面上。
+
+
+
+- 导包
+
+```xml
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.9.2</version>
+</dependency>
+```
+
+
+
+​		**这里的springBoot的版本需要降到2.5.6， 然后上面包的版本也只用上面的2.9.2， 要不然会报错， 或者打不开页面。**
+
+
+
+- 配置一个swagger配置类， 只需要加上一个注解@EnableSwagger2
+
+```java
+@EnableSwagger2
+@Configuration
+public class SwaggerConfig {
+}
+
+```
+
+
+
+- 运行测试， 输入请求swagger-ui.html
+
+![boot14](img\boot14.png)
+
+
+
+​		**这里就相当于之前的Durid， 自己的页面， 他有默认配置， 所以我们不配也可以。**
+
+
+
+- 设置 swagger：
+
+  - 这里我们首先要知道需要一个Docket实例才可以设置swagger， 所以我们就注入一个Docket。 
+  - 但是Docket只有一个构造方法，所以我们还是需要有一个DocumentationType对象。 
+
+  ```java
+  public Docket(DocumentationType documentationType) {
+          this.apiInfo = ApiInfo.DEFAULT;
+          this.groupName = "default";
+          this.enabled = true;
+          this.genericsNamingStrategy = new DefaultGenericTypeNamingStrategy();
+          this.applyDefaultResponseMessages = true;
+          this.host = "";
+          this.pathMapping = Optional.absent();
+          this.apiSelector = ApiSelector.DEFAULT;
+          this.enableUrlTemplating = false;
+          this.vendorExtensions = Lists.newArrayList();
+          this.documentationType = documentationType;
+      }
+  ```
+
+  
+
+  - DocumentationType可以直接获取静态对象， 这里我们选SWAGGER_2
+
+  ```java
+  public static final DocumentationType SWAGGER_12 = new DocumentationType("swagger", "1.2");
+      public static final DocumentationType SWAGGER_2 = new DocumentationType("swagger", "2.0");
+      public static final DocumentationType SPRING_WEB = new DocumentationType("spring-web", "1.0");
+  ```
+
+  
+
+  - 然后新建了一个Docket实例我们还要设置一些值， 可以通过apiInfo(ApiInfo apiInfo)这个方法， 于是我们又要获得一个ApiInfo对象， 这个对象有一个静态方法获得默认的对象， 我们模仿他。
+
+  ```java
+  static {
+          DEFAULT = new ApiInfo("Api Documentation", "Api Documentation", "1.0", "urn:tos", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList());
+      }
+  ```
+
+  
+
+  - 这里又有一个DEFAULT_CONTACT的Contact类的实例， 我们去new一个， 这个很简单，就是设置要展示的用户的名字， url， 还有邮箱。
+
+  ```java
+  public Contact(String name, String url, String email) {
+          this.name = name;
+          this.url = url;
+          this.email = email;
+      }
+  ```
+
+  
+
+  - 然后ApiInfo里的别的东西我们也可以设置玩玩。
+
+  
+
+- 最后的config就是这样了：
+
+```java
+@EnableSwagger2
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public Contact contact(){
+        return new Contact("郭欢军","https://www.baidu.com","2367792309@qq.com");
+    }
+
+    private ApiInfo apiInfo(){
+        /**
+        *标题；
+        *描述；
+        *版本号；
+        *访问的地址；
+        *Contact；
+        */
+        return new ApiInfo(
+                "郭欢军的Swagger",
+                "什么东西啊",
+                "2.0",
+                "https://www.baidu.com",
+                contact(),
+                "Apache 2.0",
+                "http://www.apache.org/licenses/LICENSE-2.0",
+                new ArrayList());
+    }
+    @Bean
+    public Docket docket(){
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo());
+    }
+}
+
+```
+
+
+
+- swagger更多的配置：
+
+```java
+@EnableSwagger2
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public Contact contact(){
+        return new Contact("郭欢军","https://www.baidu.com","2367792309@qq.com");
+    }
+
+    private ApiInfo apiInfo(){
+        return new ApiInfo(
+                "郭欢军的Swagger",
+                "什么东西啊",
+                "2.0",
+                "https://www.baidu.com",
+                contact(),
+                "Apache 2.0",
+                "http://www.apache.org/licenses/LICENSE-2.0",
+                new ArrayList());
+    }
+    @Bean
+    public Docket docket(Environment environment){
+
+        //通过获得环境的profiles.active的值， 然后进行判断是否在定义的profiles里面获得boolean， 在判断是否开启swagger。
+        Profiles of = Profiles.of("dev", "test");
+        boolean b = environment.acceptsProfiles(of);
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                //设置是否开启
+                .enable(b)
+                //select下就只有这三个方法；
+                .select()
+                //RequestHandlerSelectors选择器，basePackage通过包扫描, withClassAnnotation通过类注解扫描，withMethodAnnotation方法注解
+                .apis(RequestHandlerSelectors.basePackage("com.ghj.controller"))
+                //ant就是过滤 ， 只扫描该路径下的请求
+                //any就是所有的，none就是所有都不。
+                .paths(PathSelectors.ant("/ghj/**"))
+                .build();
+    }
+}
+
+```
+
+
+
+​		**在Docket里面有很多配置的， 都可以玩玩。Environment就是当前环境，acceptsProfiles(of)就是判断当前的 profile.active 是否被包含在of里面。**
+
