@@ -2256,3 +2256,73 @@ public class UserRealm extends AuthorizingRealm {
 
 
 ​		**送数据库里面读出权限， 然后给people赋上权限， 这里就是要注意要如何 在授权方法里面获得当前的用户， 是通过下面的验证方法传入people， 然后通过SecurityUtils.getSubject() ， 获得subject ， 再通过getPrincipal()获得用户， 这样我们就可以查询到数据库里的 用户权限， 并且通过info.addStringPermission(curPeople.getPerms()) 给他赋上权限。**
+
+
+
+### 整合thymeleaf
+
+- 首先导入依赖：
+
+```xml
+<dependency>
+    <groupId>com.github.theborakompanioni</groupId>
+    <artifactId>thymeleaf-extras-shiro</artifactId>
+    <version>2.1.0</version>
+</dependency>
+```
+
+
+
+- 然后需要在配置类里面加一个东西来整合， 这个类就是专门整合的。
+
+```java
+/**
+     * 使用ShiroDialect 整合 shiro 与 thymeleaf
+     * @return
+     */
+    @Bean
+    public ShiroDialect getShiroDialect(){
+        return new ShiroDialect();
+    }
+```
+
+
+
+- 然后我们就可以在前端做一些验证的方式， 把当前用户有权限的地方都展示， 没权限的就不展示。
+
+
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>首页</p>
+<br>
+<div shiro:hasPermission="user:add">
+    <a th:href="@{/user/add}">add</a>
+</div>
+<div shiro:hasPermission="user:update">
+    <a th:href="@{/user/update}">update</a>
+</div>
+<br>
+<hr>
+<div shiro:authenticated="">
+    <a th:href="@{/outLogin}"><button class="btn-danger" th:text="注销"></button></a>
+<!--    <a class="ui-button" th:text="${session.get('isLogin') != null ? '注销' : ''}" th:href="@{/outLogin}"></a>-->
+</div>
+<div shiro:notAuthenticated="">
+    <a th:href="@{/toLogin}"><button class="btn-success" th:text="登录"></button></a>
+<!--    <a class="ui-button" th:text="${session.get('isLogin') == null ? '登录' : ''}" th:href="@{/toLogin}"></a>-->
+</div>
+</body>
+</html>
+```
+
+
+
+​		**这里记得导入命名空间， shiro:hasPermission="user:add"这个方法就是判断 当前用户是否有user:add权限， 有的话这个div就显示， 否则不显示；shiro:authenticated=""这个方法就是判断是否登录认证，如果有就展示 ， shiro:notAuthenticated=""这个就是相反的意思， 这个登录验证我们以前也做过， 可以用session来做， 登陆了就setAttribute， 注销就remove， 然后前端判断就可以， 就是我注释的代码。  **

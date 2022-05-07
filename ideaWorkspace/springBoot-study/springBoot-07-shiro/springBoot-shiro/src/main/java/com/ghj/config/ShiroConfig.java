@@ -1,5 +1,6 @@
 package com.ghj.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class ShiroConfig {
         //设置登录页面
         bean.setLoginUrl("/toLogin");
         bean.setUnauthorizedUrl("/unauthorized");
+
         return bean;
     }
 
@@ -51,8 +53,21 @@ public class ShiroConfig {
         return de;
     }
 
+    /**
+     * 创建realm；
+     * @return
+     */
     @Bean
     public UserRealm getUserRealm(){
         return new UserRealm();
+    }
+
+    /**
+     * 使用ShiroDialect 整合 shiro 与 thymeleaf
+     * @return
+     */
+    @Bean
+    public ShiroDialect getShiroDialect(){
+        return new ShiroDialect();
     }
 }

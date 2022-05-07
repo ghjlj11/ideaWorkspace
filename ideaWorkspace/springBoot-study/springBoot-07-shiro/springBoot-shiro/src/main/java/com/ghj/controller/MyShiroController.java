@@ -5,12 +5,16 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.boot.Banner;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author 86187
@@ -30,6 +34,11 @@ public class MyShiroController {
 
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
+            Session session = subject.getSession();
+            session.setAttribute("isLogin", username);
+            System.out.println("http=>"+session);
+            System.out.println("subject=>"+subject.getSession());
+            model.addAttribute("username",username);
             subject.login(token);
             return "hello";
         } catch (UnknownAccountException e) {
@@ -62,5 +71,14 @@ public class MyShiroController {
     @RequestMapping("/unauthorized")
     public String unauthorized(){
         return "未授权，不允许访问";
+    }
+
+    @RequestMapping("/outLogin")
+    public String outLogin(HttpSession session){
+
+        session.removeAttribute("isLogin");
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/";
     }
 }

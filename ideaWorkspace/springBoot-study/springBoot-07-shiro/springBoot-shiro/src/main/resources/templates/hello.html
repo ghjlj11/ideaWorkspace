@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <p>首页</p>
-
-<a th:href="@{/user/add}">add</a>  |  <a th:href="@{/user/update}">update</a>
+<br>
+<div shiro:hasPermission="user:add">
+    <a th:href="@{/user/add}">add</a>
+</div>
+<div shiro:hasPermission="user:update">
+    <a th:href="@{/user/update}">update</a>
+</div>
+<br>
+<hr>
+<div shiro:authenticated="">
+    <a th:href="@{/outLogin}"><button class="btn-danger" th:text="注销"></button></a>
+<!--    <a class="ui-button" th:text="${session.get('isLogin') != null ? '注销' : ''}" th:href="@{/outLogin}"></a>-->
+</div>
+<div shiro:notAuthenticated="">
+    <a th:href="@{/toLogin}"><button class="btn-success" th:text="登录"></button></a>
+<!--    <a class="ui-button" th:text="${session.get('isLogin') == null ? '登录' : ''}" th:href="@{/toLogin}"></a>-->
+</div>
 </body>
 </html>
