@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code137/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code137/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code179/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code179/Solution.java" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="179">
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/my_timer/TestTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/helloworld/.idea/helloworld.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/helloworld/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/helloworld/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/main/java/com/ghj/springboot09test/SpringBoot09TestApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/main/java/com/ghj/springboot09test/controller/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/main/java/com/ghj/springboot09test/service/HelloService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/main/java/com/ghj/springboot09test/service/SchedulingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/test/java/com/ghj/springboot09test/SpringBoot09TestApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-Redis/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +62,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -103,8 +114,23 @@
       <option name="presentableId" value="Default" />
       <updated>1651937168895</updated>
       <workItem from="1651937170213" duration="275000" />
-      <workItem from="1651968665830" duration="7059000" />
+      <workItem from="1651968665830" duration="8448000" />
     </task>
+    <task id="LOCAL-00001" summary="137">
+      <created>1651977590416</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651977590416</updated>
+    </task>
+    <task id="LOCAL-00002" summary="179">
+      <created>1651977635818</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651977635818</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,5 +146,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="137" />
+    <MESSAGE value="179" />
+    <option name="LAST_COMMIT_MESSAGE" value="179" />
   </component>
 </project>
