@@ -53,6 +53,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 //设置是否开启
+                .groupName("ghj")
                 .enable(b)
                 //select下就只有这三个方法；
                 .select()
@@ -60,7 +61,19 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.ghj.controller"))
                 //ant就是过滤 ， 只扫描该路径下的请求
                 //any就是所有的，none就是所有都不。
-                .paths(PathSelectors.ant("/ghj/**"))
                 .build();
+    }
+
+    @Bean
+    public Docket docket1(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("lj");
+    }
+    @Bean
+    public Docket docket2(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("郭欢军");
+    }
+    @Bean
+    public Docket docket3(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("罗静");
     }
 }
