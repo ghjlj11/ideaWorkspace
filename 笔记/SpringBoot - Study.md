@@ -2533,3 +2533,335 @@ public class SwaggerConfig {
 
 ​		**在Docket里面有很多配置的， 都可以玩玩。Environment就是当前环境，acceptsProfiles(of)就是判断当前的 profile.active 是否被包含在of里面。**
 
+
+
+- 设置groupName()， 这个就是页面上的右上角那个default， 我们可以给他设置名字， 如果有多个Docket， 我们就可以有多个页面， 多个groupName， 可以在前端切换， 也就是配置了多个环境。 
+
+```java
+@Bean
+    public Docket docket(Environment environment){
+
+        //通过获得环境的profiles.active的值， 然后进行判断是否在定义的profiles里面获得boolean， 在判断是否开启swagger。
+        Profiles of = Profiles.of("dev", "test");
+        boolean b = environment.acceptsProfiles(of);
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                //设置是否开启
+                .groupName("ghj")
+                .enable(b)
+                //select下就只有这三个方法；
+                .select()
+                //RequestHandlerSelectors选择器，basePackage通过包扫描, withClassAnnotation通过类注解扫描，withMethodAnnotation方法注解
+                .apis(RequestHandlerSelectors.basePackage("com.ghj.controller"))
+                //ant就是过滤 ， 只扫描该路径下的请求
+                //any就是所有的，none就是所有都不。
+                .build();
+    }
+
+    @Bean
+    public Docket docket1(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("lj");
+    }
+    @Bean
+    public Docket docket2(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("郭欢军");
+    }
+    @Bean
+    public Docket docket3(){
+        return new Docket(DocumentationType.SWAGGER_2).groupName("罗静");
+    }
+}
+```
+
+
+
+- 设置Api文档， 我们的controller会被展示到前端页面 ， 之前就可以看到， 然后还可以展示一些model， 就像实体类， 还可以设置 标题， 信息 给类，方法，字段：
+- 新建一个实体类， 这里的@ApiModel(value = "user 实体类")就会在前端展示这个类的信息， 以及字段的。但是前提是得扫描的得到， 因为里设置了select()， 所以正常情况下扫描不到， 需要某一个controller的返回值是这个实体类类型， 那么就可以扫描到， 要么也可以不加select()， 默认情况下可以扫描。 
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ApiModel(value = "user 实体类")
+public class User {
+    @ApiModelProperty("用户名")
+    private String username;
+    @ApiModelProperty("密码")
+    private String password;
+}
+
+```
+
+
+
+- 当然我们的controller也可以有注解
+
+```java
+@Api(tags = "hello控制类")
+@Controller
+public class MyController {
+
+    @ResponseBody
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
+
+    @ApiOperation(value = "shb")
+    @ResponseBody
+    @PostMapping("/hello")
+    public String hello2(){
+        return "hello2";
+    }
+    @ApiOperation(value = "什么")
+    @ResponseBody
+    @PostMapping("/user")
+    public User user(){
+        return new User();
+    }
+    @ApiOperation(value = "获取")
+    @ResponseBody
+    @GetMapping("/user2")
+    public User user2(User user){
+        return user;
+    }
+}
+```
+
+
+
+​			**@Api(tags = "hello控制类")是注解类上的，@ApiOperation(value = "什么")注解方法上的。 **
+
+
+
+- swagger更强大的还是 ， 可以直接线上测试， 就不用去自己写的页面上测试， 直接在swagger上就可以。![boot15](img\boot15.png)
+
+
+
+
+
+## 异步任务
+
+
+
+​		一般有的网站会有发邮件或者发短信的功能， 点击发送， 其实并没有接收到， 但是上面还是显示说发送成功， 说明这个时候开了另一个线程， 这个线程就去干发送的事情， 原来的线程就提示你说发送成功， 如果说要等信息发完了，才来提示你说发送成功， 那么可能会很慢， 很影响体验， 所以开一个线程是很有必要的。
+
+
+
+- 在spring中只要是异步任务只需要两个注解， 下面的本来是应该等三秒才会显示数据正在处理， 完了之后才显示hello， 加了的话就是两个线程开跑， 请求完就直接hello， 然后等另一个线程跑完才会显示数据正在处理。
+
+
+
+- 一个service层的类
+
+```java
+@Service
+public class HelloService {
+
+    @Async
+    public void hello(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("数据处理中....");
+    }
+}
+```
+
+ 
+
+- controller
+
+```java
+@Controller
+public class HelloController {
+
+    @Autowired
+    HelloService helloService;
+
+    @ResponseBody
+    @RequestMapping("/hello")
+    public String hello(){
+        helloService.hello();
+        return "hello";
+    }
+}
+
+```
+
+
+
+- Application
+
+```java
+@EnableAsync
+@SpringBootApplication
+public class SpringBoot09TestApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoot09TestApplication.class, args);
+    }
+
+}
+```
+
+
+
+​		**只需要在Application加上@EnableAsync， 然后在需要开启多线程的方法上加一个@Async就可以实现异步。**
+
+
+
+## 邮件任务
+
+
+
+- 首先导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+```
+
+
+
+- 然后需要去qq邮箱官网去获得一个 密码， 在设置， 账户里面找到 下面这个服务开启， 然后会获得一个密码， 这个密码就是下面你要用的密码， 如果用自己的qq密码是没用的。
+
+![boot16](img\boot16.png)
+
+
+
+- 然后配置yml文件， 这里的密码就是刚刚的， 然后下面的properties是键值对的形式 ， 必须写成这样的格式。
+
+```yml
+spring:
+  mail:
+    username: 2367792309@qq.com
+    password: emyneybtnmkoebgg
+    host: smtp.qq.com
+    properties: {mail.smtp.ssl.enable: true}
+```
+
+
+
+- 最后测试， 简单邮件测试。
+
+```java
+@SpringBootTest
+class SpringBoot09TestApplicationTests {
+
+
+    @Autowired
+    JavaMailSenderImpl mailSender;
+    @Test
+    void contextLoads() {
+
+        SimpleMailMessage simpleMessage = new SimpleMailMessage();
+
+        simpleMessage.setSubject("我是姜金征");
+        simpleMessage.setText("来我办公室喝茶！");
+        simpleMessage.setTo("2367792309@qq.com");
+        simpleMessage.setFrom("2367792309@qq.com");
+        mailSender.send(simpleMessage);
+
+    }
+
+    @Test
+    public void test1() throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setSubject("是什么");
+        helper.addAttachment("别点", new File("D:/Pictures/lj.jpg"));
+        helper.setText("<h1 style='color: red'>你好呀</h1>", true);
+
+        helper.setFrom("2367792309@qq.com");
+        helper.setTo("2367792309@qq.com");
+        mailSender.send(mimeMessage);
+    }
+
+}
+
+```
+
+
+
+​		**首先我们要有一个JavaMailSenderImpl类，这个就相当于是一个发送器， 然后就是写邮件了，可以调用mailSender的send()方法， 看看它可以send那些类， 然后去创建这些类，  这里先用SimpleMailMessage， 然后还需要设置 发送者， 接收者， 发送邮件的标题， 邮件的内容， 然后就可以发送； 下面的是用的MimeMessage， 然后他有一个helper ， 直接把这个MimeMessage丢进helper里面， 然后通过helper设置他，后面的true代表支持多文件发送，  可以额外加一些附件， 还可以加文本带html格式， 也会展示出来， 最后把这个MimeMessage丢进send方法里面就可以了。 **
+
+
+
+## 定时执行任务
+
+
+
+​		设置一个时间模式， 只要程序在运行， 当前时间符合该格式，那么这个程序就会执行， 不需要调用，只需要加一个注解。
+
+
+
+- 首先我们要用这个 ， 就直接加一个@Enablexxxx， 在Application， 这里我们加@EnableScheduling。
+
+```java
+@EnableAsync
+@EnableScheduling
+@SpringBootApplication
+public class SpringBoot09TestApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoot09TestApplication.class, args);
+    }
+
+}
+
+```
+
+
+
+- 然后我们创建一个service类， 要加上@Service注解， 然后在执行的方法上加一个@Scheduled(cron = "10 * * * 5 0")注解， 就代表每个5月的星期天的 第10秒他都会执行一次。
+
+```java
+@Service
+public class SchedulingService {
+
+    @Scheduled(cron = "10 * * * 5 0")
+    public void scheduling(){
+        System.out.println("你好呀.......");
+    }
+}
+
+```
+
+
+
+- 下面是一些匹配的规则， 以及例子。
+
+![boot17](img\boot17.png)
+
+
+
+
+
+![boot18](img\boot18.png)
+
+
+
+
+
+![boot19](img\boot19.png)
+
+
+
+
+
+## Dubbo + zookeeper
+
+
+
+- 首先安装zookeeper， 官网下载 https://zookeeper.apache.org/releases.html ；
+- 安装注意事项：
+  - 直接解压后在bin下双击zkServer.cmd， 如果可以打开 ， 那没事了， 如果不能 ，那么就在config下复制一份zoo_sample.cfg文件名叫zoo.cfg， 然后去双击他， 要是还不行， 报错：ZooKeeper audit is disabled， 那就编辑zkServer.cmd文件， 加上下面这个， 要是还不行， 那就去百度吧。
+  - ![boot21](img\boot21.png)
+  - 需要先打开服务端显示成功， 然后再打开客户端的cmd， 就会连接起来， 然后可以执行一些命令， 
+  - ![boot22](img\boot22.png)
