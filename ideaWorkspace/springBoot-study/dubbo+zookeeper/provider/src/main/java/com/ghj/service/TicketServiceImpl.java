@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Service
-public class TicketServiceImpl implements TicketService{
+public class TicketServiceImpl implements TicketService {
     @Override
     public String tackTicket() {
-        return "《java好看》";
+        return "《狂神说Java》";
     }
 }
