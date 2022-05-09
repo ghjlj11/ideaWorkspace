@@ -1,0 +1,7 @@
+server:
+  port: 8849
+dubbo:
+  application:
+    name: consumer
+  registry:
+    address: zookeeper://0.0.0.0:2181

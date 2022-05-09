@@ -2865,3 +2865,7 @@ public class SchedulingService {
   - ![boot21](img\boot21.png)
   - 需要先打开服务端显示成功， 然后再打开客户端的cmd， 就会连接起来， 然后可以执行一些命令， 
   - ![boot22](img\boot22.png)
+
+
+
+无了。。。。

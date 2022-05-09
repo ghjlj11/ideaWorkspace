@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchedulingService {
 
-    @Scheduled(cron = "0/2 * * * 5 0")
+    @Scheduled(cron = "0/2 * * * 5 *")
     public void scheduling(){
         System.out.println("你好呀.......");
     }
