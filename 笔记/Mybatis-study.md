@@ -37,7 +37,7 @@ objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvide
 
 
 
-## 配置文件
+## 接口的配置文件
 
 
 
