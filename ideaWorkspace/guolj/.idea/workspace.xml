@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="150">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code144/Solution3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Mid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution2.java" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二叉树的前中后序遍历（非递归）">
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +112,7 @@
       <workItem from="1652054007305" duration="1402000" />
       <workItem from="1652062658917" duration="85000" />
       <workItem from="1652103565163" duration="6280000" />
-      <workItem from="1652140350033" duration="12731000" />
+      <workItem from="1652140350033" duration="17072000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -143,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652110487213</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="二叉树的前中后序遍历（非递归）">
+      <created>1652169683347</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652169683347</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +171,7 @@
     <MESSAGE value="179" />
     <MESSAGE value="定时任务" />
     <MESSAGE value="150" />
-    <option name="LAST_COMMIT_MESSAGE" value="150" />
+    <MESSAGE value="二叉树的前中后序遍历（非递归）" />
+    <option name="LAST_COMMIT_MESSAGE" value="二叉树的前中后序遍历（非递归）" />
   </component>
 </project>
