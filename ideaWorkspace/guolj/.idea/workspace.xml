@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="150">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/TreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code144/Solution3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Mid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/leetcode/code145/Solution.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -111,6 +113,7 @@
       <workItem from="1652054007305" duration="1402000" />
       <workItem from="1652062658917" duration="85000" />
       <workItem from="1652103565163" duration="6280000" />
+      <workItem from="1652140350033" duration="12731000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>

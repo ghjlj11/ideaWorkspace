@@ -11,13 +11,27 @@ import java.util.List;
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        if(root == null){
-            return res;
-        }
         Deque<TreeNode> total = new ArrayDeque<>();
-        total.add(root);
-        while (!total.isEmpty()){
-            TreeNode t = total.pop();
+        TreeNode p = null;
+        while (!total.isEmpty() || root != null){
+            if (root != null){
+                total.push(root);
+                root = root.left;
+            }
+            else {
+                root = total.peek();
+                if(root.right == null || root.right == p){
+                    res.add(root.val);
+                    total.pop();
+                    p = root;
+                    root = null;
+                }
+                else {
+                    root = root.right;
+                }
+            }
+
         }
+        return res;
     }
 }
