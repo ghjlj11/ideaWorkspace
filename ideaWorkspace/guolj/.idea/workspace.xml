@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment=" 复制带随机指针的链表">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code129/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code129/TreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Solution2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Solution2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Solution3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="复制带随机指针的链表">
       <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +112,7 @@
       <workItem from="1652062658917" duration="85000" />
       <workItem from="1652103565163" duration="6280000" />
       <workItem from="1652140350033" duration="17278000" />
-      <workItem from="1652249238949" duration="10769000" />
+      <workItem from="1652249238949" duration="10953000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -164,7 +156,28 @@
       <option name="project" value="LOCAL" />
       <updated>1652186875702</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="克隆图">
+      <created>1652268733478</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652268733479</updated>
+    </task>
+    <task id="LOCAL-00008" summary="根节点到叶节点的数字之和">
+      <created>1652268798492</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652268798492</updated>
+    </task>
+    <task id="LOCAL-00009" summary="复制带随机指针的链表">
+      <created>1652268840674</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1652268840674</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +201,9 @@
     <MESSAGE value="150" />
     <MESSAGE value="二叉树的前中后序遍历（非递归）" />
     <MESSAGE value=" 复制带随机指针的链表" />
-    <option name="LAST_COMMIT_MESSAGE" value=" 复制带随机指针的链表" />
+    <MESSAGE value="克隆图" />
+    <MESSAGE value="根节点到叶节点的数字之和" />
+    <MESSAGE value="复制带随机指针的链表" />
+    <option name="LAST_COMMIT_MESSAGE" value="复制带随机指针的链表" />
   </component>
 </project>

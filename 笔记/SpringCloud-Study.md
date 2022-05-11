@@ -195,3 +195,181 @@ public class Dept implements Serializable {//需要实现序列化， 这样才�
     
 
   - 这样就可以实现从consumer跳转到provider的service，是基于Http请求跳转的。
+
+
+
+
+
+## Eureka
+
+
+
+​		**eureka就是类似之前的Dubbo 就是一个组测服务中心，把所有的服务都注册进去， 然后客户端就可以直接在里面访问了**
+
+
+
+垃圾玩意停更了， 垃圾。
+
+
+
+- 首先导入依赖。
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        <version>1.4.7.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+</dependencies>
+```
+
+
+
+- 然后配置yml文件 。
+
+```yml
+server:
+  port: 7001
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false #表示是否需要注册到服务中心
+    fetch-registry: false #为false就表示自己是服务注册中心
+    service-url: #监控页面
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+```
+
+
+
+- 然后建一个启动类， 直接启动访问localhost:7001
+
+![cloud01](img\cloud01.png)
+
+
+
+- 自我保护机制： 如果某个服务在运行时候出现了问题， 那么Eureka不会立即丢弃这个服务， 而是会保存下这些信息，还会出现爆红的现象，  然后如果这个服务好了 ， 也还可以继续链接上来， 就会退出自我保护机制。 
+
+
+
+- 配置client， 就是服务注册者：
+
+```yml
+server:
+  port: 8001
+
+mybatis:
+  type-aliases-package: com.ghj.springcloud.pojo
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+spring:
+  application:
+    name: spring-provider-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db01?userUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 123456
+
+#eureka的配置， 服务注册到什么地方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: springcloud-provider-dept-8001 #修改eureka上的默认信息描述
+
+# 配置这个才会有info的信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+# info配置, 这里的配置随便玩。
+info:
+  app.name: ghj-springcloud
+  company.name: alibaba
+  school.name: ECUT
+  ghj.name: lj
+
+
+```
+
+
+
+- 配置controller，写一个控制接口， 可以按照id来获取服务实例，然后可以获取到一些信息：
+
+```java
+@RestController
+public class DeptController {
+
+    @Autowired
+    private DeptService deptService;
+
+    @Autowired
+    private DiscoveryClient client;
+
+    @PostMapping("/dept/add")
+    public String add(@RequestBody Dept dept){
+        deptService.addDept(dept);
+        return "ok";
+    }
+
+    @GetMapping("/dept/get/{id}")
+    public Dept get(@PathVariable("id")Long id){
+        return deptService.queryById(id);
+    }
+
+    @GetMapping("/dept/list")
+    public List<Dept> getAll(){
+        return deptService.queryAll();
+    }
+
+    @GetMapping("/dept/disc")
+    public Object discovery(){
+        List<String> services = client.getServices();
+        List<ServiceInstance> instances = client.getInstances("SPRING-PROVIDER-DEPT");
+
+        for (ServiceInstance instance : instances) {
+            System.out.println(
+                    instance.getHost() + "\t" +
+                    instance.getPort() + "\t" +
+                    instance.getUri() + "\t" +
+                    instance.getInstanceId());
+        }
+        return this.client;
+    }
+}
+```
+
+ 
+
+- 然后 就是 配置启动类
+
+```java
+@EnableEurekaClient 
+@SpringBootApplication
+@EnableDiscoveryClient // 配置发现服务
+public class DeptProvider_8001 {
+    public static void main(String[] args) {
+        SpringApplication.run(DeptProvider_8001.class,args);
+    }
+}
+```
+
+
+
+- 然后跑起来可以看到 服务的信息

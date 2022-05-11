@@ -1,15 +1,18 @@
-package com.ghj.springcloud;
+package com.ghj;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @author 86187
  */
 
+@EnableEurekaServer
 @SpringBootApplication
-public class DeptProvider_8001 {
+public class EurekaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DeptProvider_8001.class,args);
+        SpringApplication.run(EurekaApplication.class, args);
     }
 }

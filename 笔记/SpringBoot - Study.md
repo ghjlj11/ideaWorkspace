@@ -2358,7 +2358,7 @@ public class UserRealm extends AuthorizingRealm {
 
 
 
-​		**这里的springBoot的版本需要降到2.5.6， 然后上面包的版本也只用上面的2.9.2， 要不然会报错， 或者打不开页面。**
+​		**这里的springBoot的版本需要降到2.5.6， 然后上面的包的版本也只用上面的2.9.2， 要不然会报错， 或者打不开页面。**
 
 
 
