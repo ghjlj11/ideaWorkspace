@@ -11,7 +11,7 @@
 
 
 
-## 手写springBoot代码
+## Rest学习环境搭建
 
 
 
@@ -138,3 +138,60 @@ public class Dept implements Serializable {//需要实现序列化， 这样才�
 
 
 - 然后建一个名为sptingcloud-provider-dept-8001的子模块， 里面自己导包，从写springBoot的代码， 自己实现 之前自动生成的springboot的代码，也就是自己写一个启动类，  然后连接数据库， 整合mybatis， 配置好yml文件， 还有mapper.xml， server层， controller， 然后就可以启动了。 
+
+
+
+​		**controller层调用service层的时候， 需要定义一个service对应的实现类，  然后自动注入， 我们也可以定对应接口， 然后自动注入， 因为实现类， 就是实现的接口， 就是一个接口被实现类实例化。 **
+
+
+
+- 然后再建一个consumer， 用来调用provider的service， 这个consumer没有server层， 只有一些请求， 然后通过跳转到 provider上， 再返回给用户。 
+
+  - 首先是要有controller， 然后我们的controller如何跳转到provider的service ， 这就需要用到一个类， 就是RestTemplate， 可实现跳转， 并且携带数据与返回数据， 然而这个类没有注入到Spring离去， 我们就再写一个config， 把他注入进去：
+
+  - ```java
+    @Configuration
+    public class ConfigBean {
+        @Bean
+        public RestTemplate restTemplate(){
+            return new RestTemplate();
+        }
+    }
+    ```
+
+    
+
+  - 然后再写controller
+
+  - ```java
+    @RestController
+    public class MyController {
+    
+        @Autowired
+        RestTemplate restTemplate;
+        private static final String PREFIX = "http://localhost:8001";
+    
+        @RequestMapping("/consumer/dept/get/{id}")
+        public Dept get(@PathVariable("id") Long id){
+            return restTemplate.getForObject(PREFIX + "/dept/get/" + id, Dept.class);
+        }
+    
+        @RequestMapping("/consumer/dept/add")
+        public String add( Dept dept){
+            return restTemplate.postForObject(PREFIX + "/dept/add", dept, String.class);
+        }
+        @RequestMapping("/consumer/dept/list")
+        public List list(){
+            return restTemplate.getForObject(PREFIX + "/dept/list",List.class);
+        }
+    }
+    
+    ```
+
+  
+
+  - 这里的getForObject就是以get方式请求， 然后请求后面的地址， 以及返回的值的类型；postForObject就是以post方式请求， 然后后面就是地址， 请求携带的参数类型， 返回值的类型。
+
+    
+
+  - 这样就可以实现从consumer跳转到provider的service，是基于Http请求跳转的。
