@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment=" 复制带随机指针的链表">
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code129/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code129/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code133/Solution2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Solution2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code138/Solution3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +58,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -63,6 +67,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lj.leetcode.code138" />
+      <recent name="lj.leetcode.code129" />
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
@@ -114,6 +120,7 @@
       <workItem from="1652062658917" duration="85000" />
       <workItem from="1652103565163" duration="6280000" />
       <workItem from="1652140350033" duration="17278000" />
+      <workItem from="1652249238949" duration="10769000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
