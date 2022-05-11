@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework:spring-test:6.0.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220429.105912-422.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../apps/maven/maven-pro/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220511.015152-447.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220429.105912-422-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../apps/maven/maven-pro/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220511.015152-447-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220429.105912-422-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../apps/maven/maven-pro/org/springframework/spring-test/6.0.0-SNAPSHOT/spring-test-6.0.0-20220511.015152-447-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

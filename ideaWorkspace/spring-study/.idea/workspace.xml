@@ -5,42 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="java方式注解">
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/java/Quickstart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/shiro.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/SpringBootShiroApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/ShiroConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/hello.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/user/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/user/update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/people.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/people.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/out/artifacts/springmvc_04_annotation_war_exploded/WEB-INF/classes/com/ghj/controller/Controller03.class" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/out/artifacts/springmvc_04_annotation_war_exploded/WEB-INF/classes/com/ghj/controller/Controller03.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/src/main/resources/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/src/main/resources/springmvc-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/target/classes/com/ghj/controller/Controller03.class" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/target/classes/com/ghj/controller/Controller03.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/web/WEB-INF/jsp/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/springmvc-04-annotation/web/WEB-INF/jsp/form.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ssmbuild/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +37,15 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../apps/maven/apache-maven-3.6.3" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\apps\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="275UAlFQScQEgxDMrSEpCWdL47g" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -85,7 +62,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="SQL Dialects" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -203,6 +180,7 @@
       <workItem from="1651288505443" duration="5288000" />
       <workItem from="1651668955156" duration="1607000" />
       <workItem from="1651827810376" duration="2039000" />
+      <workItem from="1652240864777" duration="85000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

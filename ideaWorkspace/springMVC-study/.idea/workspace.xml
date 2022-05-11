@@ -10,23 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/java/Quickstart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/hello-shiro/src/main/resources/shiro.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springmvc-04-annotation/src/main/resources/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-04-annotation/src/main/resources/springmvc-servlet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springmvc-04-annotation/web/WEB-INF/jsp/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-04-annotation/web/WEB-INF/jsp/form.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ssmbuild/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +44,15 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../apps/maven/apache-maven-3.6.3" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\apps\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="27bjtfNB5Xvy0xAjzX2I0k30WlE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -67,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springBoot-study/springBoot-03-web" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -75,7 +72,7 @@
     <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.rainbow.brackets" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -205,6 +202,7 @@
       <workItem from="1651239258853" duration="697000" />
       <workItem from="1651582544881" duration="1090000" />
       <workItem from="1651816081315" duration="951000" />
+      <workItem from="1652240961843" duration="85000" />
     </task>
     <servers />
   </component>
