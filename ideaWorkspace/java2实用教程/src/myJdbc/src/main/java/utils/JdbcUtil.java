@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,8 +24,10 @@ public class JdbcUtil {
     static {
         Properties properties = new Properties();
         try {
+            InputStream stream = JdbcUtil.class.getClassLoader().getResourceAsStream("jdbc.properties");
+
             Reader reader = new FileReader("D:/my-study/ideaWorkspace/java2实用教程/src/myJdbc/src/main/resources/jdbc.properties");
-            properties.load(reader);
+            properties.load(stream);
         } catch (IOException e) {
             e.printStackTrace();
         }

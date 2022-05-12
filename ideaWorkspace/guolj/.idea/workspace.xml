@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="复制带随机指针的链表">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code130/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="被包围的区域">
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/java/com/ghj/EurekaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/java/com/ghj/springcloud/EurekaApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
@@ -116,7 +115,7 @@
       <workItem from="1652103565163" duration="6280000" />
       <workItem from="1652140350033" duration="17278000" />
       <workItem from="1652249238949" duration="10953000" />
-      <workItem from="1652314070611" duration="8264000" />
+      <workItem from="1652314070611" duration="8342000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -181,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652268840674</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="被包围的区域">
+      <created>1652334691722</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652334691722</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +214,7 @@
     <MESSAGE value="克隆图" />
     <MESSAGE value="根节点到叶节点的数字之和" />
     <MESSAGE value="复制带随机指针的链表" />
-    <option name="LAST_COMMIT_MESSAGE" value="复制带随机指针的链表" />
+    <MESSAGE value="被包围的区域" />
+    <option name="LAST_COMMIT_MESSAGE" value="被包围的区域" />
   </component>
 </project>
