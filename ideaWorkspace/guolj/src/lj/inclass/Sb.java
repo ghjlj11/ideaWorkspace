@@ -35,5 +35,11 @@ public class Sb {
         k.add(null);
         k.add(null);
         System.out.println(k);
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(2);
+        Set<Integer> set1 = new HashSet<>(list);
+        System.out.println(set1);
     }
 }

@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7002/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7002/src/main/java/com/ghj/springcloud/EurekaApplication_7002.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7002/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7003/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7003/src/main/java/com/ghj/springcloud/EurekaApplication_7003.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7003/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/src/main/java/utils/JdbcUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/src/main/java/utils/JdbcUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/java/com/ghj/EurekaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/java/com/ghj/springcloud/EurekaApplication_7001.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-eureka-7001/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-8001/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/inclass/Sb.class" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/inclass/Sb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/src/lj/inclass/Sb.java" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/src/lj/inclass/Sb.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/更改 SQL 方言" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -234,6 +216,7 @@
       <workItem from="1652083779084" duration="170000" />
       <workItem from="1652240833621" duration="21000" />
       <workItem from="1652345002856" duration="1106000" />
+      <workItem from="1652402545552" duration="86000" />
     </task>
     <servers />
   </component>

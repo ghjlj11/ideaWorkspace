@@ -4,5 +4,6 @@ eureka:
   client:
     service-url:
       #访问端口
-      defaultZone: http://localhost7001:7001/eureka/,http://localhost7002/eureka/,http://localhost7003:7003/eureka/
+      defaultZone: http://localhost7001:7001/eureka/,http://localhost7002:7002/eureka/,http://localhost7003:7003/eureka/
     register-with-eureka: false #不向Eureka注册自己
+

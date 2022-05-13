@@ -304,7 +304,7 @@ public class EurekaApplication {
 
 ​		**注意这里的版本需要低一点， 高了的话会注册不进去**
 
-
+​		**可以直接用下面的新版， 船新版本。**
 
 - 然后配yml文件
 
@@ -408,9 +408,9 @@ public class DeptController {
 - 然后 就是 配置启动类
 
 ```java
-@EnableEurekaClient //配置eureka
+@EnableEurekaClient //配置eureka， 让注册中心发现， 扫描这个服务。
 @SpringBootApplication
-@EnableDiscoveryClient // 配置发现服务
+@EnableDiscoveryClient // 配置发现服务， 让注册中心发现， 扫描这个服务， 两个配置效果相同
 public class DeptProvider_8001 {
     public static void main(String[] args) {
         SpringApplication.run(DeptProvider_8001.class,args);
@@ -546,7 +546,11 @@ CAP三进二原则: 要么满足CA， 要么AP， 要么CP， 不能三个都满
 
 
 
-## Ribbon
+## Ribbon负载均衡器
+
+
+
+**SpringCloud已经不用Ribbon了， 而是用的LoadBalancer， 来进行负载均衡。**
 
 
 
@@ -574,14 +578,14 @@ CAP三进二原则: 要么满足CA， 要么AP， 要么CP， 不能三个都满
 
 
 
-- 我们首先还是需要到依赖， 就是之前的client依赖就够了，这里面存在Ribbon的依赖。 然后只需要在config文件里面， 我们之前向Spring注册了RestTemplate，在上面加一个负载均衡的注解就可以了：
+- 我们首先还是需要到依赖， 就是之前的client依赖就够了，这里面存在LoadBalancer的依赖。 然后只需要在config文件里面， 我们之前向Spring注册了RestTemplate，在上面加一个负载均衡的注解就可以了：
 
 ```java
 @Configuration
 public class ConfigBean {
 
     /**
-     * 实现负载均衡Ribbon
+     * 实现负载均衡
      */
 
     @LoadBalanced
@@ -617,4 +621,298 @@ public class ConfigBean {
 
 
 
-​		**这里Ribbon首先会去服务注册中心获取可用地址列表， 然后通过负载均衡算法， 获取最合适的一个地址， 再去访问， 这样就实现了负载均衡了。我们这里采用的市默认的负载均衡算法， 就是轮询， 每个服务器轮着来。 ** 
+​		**这里LoadBalance首先会去服务注册中心获取可用地址列表， 然后通过负载均衡算法， 获取最合适的一个地址， 再去访问， 这样就实现了负载均衡了。我们这里采用的市默认的负载均衡算法， 就是轮询， 每个服务器轮着来。 ** 
+
+
+
+### 自定义负载均衡算法
+
+通过ReactorServiceInstanceLoadBalancer这个接口， 我们可以看到有两个系统提供的实现类， 这两个就是 轮询算法， 和随机算法， 另一个是我们自己写的， 点进系统的两个算法， 会发现基本都一样， 就是构造不一样， 还有下面的算法计算不一样， 我们可以自己写一个随机算法， 就按照系统的抄一些， 然后很多东西我们可以省略。
+
+
+
+![cloud02](img\cloud02.png)
+
+
+
+
+
+- 下面来看看我们自己写的负载均衡随机算法， 我们应该另外写一个包， 不被Spring默扫描的包， 也就是在application外的目录的包， 来存放这个类， 以及他的配置类， 因为如果放在了默认扫描的目录下， 那么Spring就会直接扫描到并注册到Spring里面， 会把原来负载均衡算法的覆盖掉，这样就算别的服务需要用， 也会使用我们自己定义的， 而默认的算法就没了。 ：
+
+```java
+public class MyRandomLoadBalancer implements ReactorServiceInstanceLoadBalancer {
+
+    private ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider;
+
+    public MyRandomLoadBalancer(ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider) {
+        this.serviceInstanceListSupplierProvider = serviceInstanceListSupplierProvider;
+    }
+
+    @Override
+    public Mono<Response<ServiceInstance>> choose(Request request) {
+        ServiceInstanceListSupplier supplier = (ServiceInstanceListSupplier)this.serviceInstanceListSupplierProvider.getIfAvailable(NoopServiceInstanceListSupplier::new);
+        return supplier.get(request).next().map((serviceInstances) -> {
+            return this.processInstanceResponse(supplier, serviceInstances);
+        });
+    }
+
+    private Response<ServiceInstance> processInstanceResponse(ServiceInstanceListSupplier supplier, List<ServiceInstance> serviceInstances) {
+        Response<ServiceInstance> serviceInstanceResponse = this.getInstanceResponse(serviceInstances);
+        if (supplier instanceof SelectedInstanceCallback && serviceInstanceResponse.hasServer()) {
+            ((SelectedInstanceCallback)supplier).selectedServiceInstance(serviceInstanceResponse.getServer());
+        }
+
+        return serviceInstanceResponse;
+    }
+    private Response<ServiceInstance> getInstanceResponse(List<ServiceInstance> instances) {
+        Random random = new Random();
+        System.out.println("------------------------------"+instances.size());
+        ServiceInstance instance = instances.get(random.nextInt(instances.size()));
+        return new DefaultResponse(instance);
+    }
+}
+
+```
+
+
+
+​		**通过获得可用服务的列表， 然后放在一个List里面， 然后通过Random获取里面随机的一个返回，就可以实现随机获取了。 **
+
+
+
+- 然后需要把这个算法注册到Spring里面， 就放在Configuration文件里面就行， 也是要在外面不被扫描的目录下。
+
+```java
+@Configuration
+public class MyConfig {
+
+    @Bean
+    public ReactorServiceInstanceLoadBalancer myLoadBalancer(ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider){
+        return new MyRandomLoadBalancer(serviceInstanceListSupplierProvider);
+    }
+
+}
+
+```
+
+
+
+​		**这里的参数不用管， Spring会自动注入进去， 我们就可以创建实例了。**
+
+
+
+- 然后最后还要配置一下启动类：
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+@LoadBalancerClient(name = "SPRING-PROVIDER-DEPT", configuration = MyConfig.class)
+public class ConsumerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerApplication.class, args);
+    }
+}
+
+```
+
+
+
+​		**这里的@LoadBalancerClient(name = "SPRING-PROVIDER-DEPT", configuration = ConfigBean.class)就是配置负载均衡， name就是服务的名称， 就是8001~8003的名称，configuration 就是我们的配置类 的类型， 表示从里面去获取负载均衡算法。 **
+
+
+
+- 然后直接启动， 访问数据库就会发现， 访问的是随机的数据库， 代表访问的服务是按照服务名字里面相同的随机的一个，这样就实现了负载均衡随机算法。 
+
+
+
+- 修改负载均衡算法， 定义每个服务器访问五次就换下一个：
+
+```java
+private Response<ServiceInstance> getInstanceResponse(List<ServiceInstance> instances) {
+        Random random = new Random();
+        System.out.println("------------------------------"+instances.size());
+        int index = (count/5)%3;
+        count++;
+        ServiceInstance instance = instances.get(index);
+        return new DefaultResponse(instance);
+    }
+```
+
+
+
+### Feign
+
+
+
+​		我们之前从消费者访问服务者的service是通过RestTemplate来根据服务名称跳转请求的，而这种看起来会很不舒服，链接都是拼接来的，  java万物皆对象， 就把 这个服务名称放在一个对象里面， 这些消费者的请求也放在里面， 然后消费者如果要调用服务， 就只需要拿到这个对象， 然后去用里面的方法调用服务， Feign就是这样实现的。 
+
+
+
+- 首先导入依赖：
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+    <version>3.1.2</version>
+</dependency>
+```
+
+
+
+- 在共模块上面 写一个service， 就是api模块， 这个service用来实现调用到服务端的请求。
+
+```java
+@Service
+@FeignClient(name = "SPRING-PROVIDER-DEPT")
+public interface FeignService {
+
+    @PostMapping("/dept/add}")
+    public String addDept(Dept dept);
+
+    @GetMapping("/dept/get/{id}")
+    public Dept queryById(@PathVariable("id") Long id);
+
+    @GetMapping("/dept/list")
+    public List<Dept> queryAll();
+
+}
+
+```
+
+
+
+​		**这里的@FeignClient(name = "SPRING-PROVIDER-DEPT")就是根据名字去找到这个服务， 然后下面的代码实现调用这个服务的请求。 **
+
+
+
+- 然后复制一个消费者， 名叫Feign， 配置和消费者的一样， 只需要改controller
+
+```java
+@RestController
+public class MyController {
+
+    @Autowired
+    FeignService feignService;
+
+    @RequestMapping("/consumer/dept/get/{id}")
+    public Dept get(@PathVariable("id") Long id){
+        return feignService.queryById(id);
+    }
+
+    @RequestMapping("/consumer/dept/add")
+    public String add( Dept dept){
+        return feignService.addDept(dept);
+    }
+    @RequestMapping("/consumer/dept/list")
+    public List list(){
+        return feignService.queryAll();
+    }
+}
+
+```
+
+
+
+​		**这里就是通过注入上面的FeignService， 来调用里面的方法， 从而调用服务提供者的请求**
+
+
+
+- 启动类也需要加上注解@EnableFeignClients
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients(basePackages = "com.ghj.springcloud")
+public class FeignApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(FeignApplication.class, args);
+    }
+}
+```
+
+
+
+​		**这个@EnableFeignClients(basePackages = "com.ghj.springcloud")， 就代表会Spring扫描到com.ghj.springcloud下的带有Feign的注解， 因为api模板是一个子模版， 所有的模板的pom依赖都有包含他， 所以， 我们这个Feign模板也是可以扫描到api模板的com.ghj.springcloud下的注解。**
+
+
+
+## Hystrix
+
+​		
+
+​		服务熔断，我们的微服务可能是一段连续请求各个服务器的， 如果其中有一个服务器崩了， 那么请求就会过不去， 那么就会一直卡在那边， 消费者就会一直占用这个请求， 越来越多之后就会让整个服务宕机， 这时候我们需要， 有一个备选的服务， 这样如果服务崩了， 就会有备选的服务， 从而返回给用户信息， 这时候就不会一直占用这个资源了， Hystrix就是来做这种的，为了保护服务器。
+
+
+
+下面我们就来实现：
+
+
+
+- 首先建复制一个8001的服务， 然后导入以下依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+    <version>2.2.10.RELEASE</version>
+</dependency>
+```
+
+
+
+- 其次修改controller，这里我们只保留一个根据id查询的服务
+
+```java
+@RestController
+public class DeptController {
+
+    @Autowired
+    private DeptService deptService;
+
+
+    @HystrixCommand(fallbackMethod = "hystrixGet")
+    @GetMapping("/dept/get/{id}")
+    public Dept get(@PathVariable("id")Long id){
+        Dept dept = deptService.queryById(id);
+        if(dept == null){
+            throw new RuntimeException("id is null not found");
+        }
+        return dept;
+    }
+
+    private Dept hystrixGet(@PathVariable("id") Long id){
+        return new Dept()
+                .setDept_no(id)
+                .setD_name("id=>" + id + "is not found")
+                .setDb_source("no database in MySQL");
+    }
+
+
+}
+
+```
+
+
+
+​		**只要加上了@HystrixCommand(fallbackMethod = "hystrixGet")， 就代表如果该方法出现异常， 那么就会调用hystrixGet方法， 也就是我们下面定义的方法， 会返回一个 错误对象的信息， 而不是抛出异常， 出现错误。**
+
+
+
+- 最后启动类加上注解：
+
+```java
+@EnableEurekaClient
+@SpringBootApplication
+@EnableHystrix
+public class DeptProviderHystrix8001 {
+    public static void main(String[] args) {
+        SpringApplication.run(DeptProviderHystrix8001.class,args);
+    }
+}
+
+```
+
+
+
+​		**@EnableHystrix就代表该程序支持Hystrix。**

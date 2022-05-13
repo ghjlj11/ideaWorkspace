@@ -203,7 +203,7 @@ form.jsp文件：
 
 -  说明： 这里的 **/**表示会匹配到用户的所有请求不包括jsp页面， 而**/***则表示会匹配所有请求，也包括jsp页面。
 
-​		url-pattern匹配优先级：精确匹配>最长路径匹配（/*）>后缀匹配（Tomcat中的web.xml默认定义了jsp的servlet）>缺省匹配（/）
+**url-pattern匹配优先级：精确匹配>最长路径匹配（/*）>后缀匹配（Tomcat中的web.xml默认定义了jsp的servlet）>缺省匹（/）**
 
 ​		<load-on-startup>1</load-on-startup>为启动级别。
 
