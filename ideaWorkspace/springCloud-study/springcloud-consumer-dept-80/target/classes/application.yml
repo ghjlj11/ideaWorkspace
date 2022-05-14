@@ -7,3 +7,6 @@ eureka:
       defaultZone: http://localhost7001:7001/eureka/,http://localhost7002:7002/eureka/,http://localhost7003:7003/eureka/
     register-with-eureka: false #不向Eureka注册自己
 
+feign:
+  circuitbreaker:
+    enabled: true

@@ -841,7 +841,11 @@ public class FeignApplication {
 
 ​		
 
-​		服务熔断，我们的微服务可能是一段连续请求各个服务器的， 如果其中有一个服务器崩了， 那么请求就会过不去， 那么就会一直卡在那边， 消费者就会一直占用这个请求， 越来越多之后就会让整个服务宕机， 这时候我们需要， 有一个备选的服务， 这样如果服务崩了， 就会有备选的服务， 从而返回给用户信息， 这时候就不会一直占用这个资源了， Hystrix就是来做这种的，为了保护服务器。
+### 服务熔断
+
+
+
+​		服务熔断，我们的微服务可能是一段连续请求各个服务器的， 如果其中有一个服务器崩了， 那么请求就会过不去， 那么就会一直卡在那边， 消费者就会一直占用这个请求， 越来越多之后就会让整个服务宕机， 这时候我们需要， 有一个备选的服务， 这样如果服务崩了， 就会有备选的服务， 从而返回给用户信息， 这时候就不会一直占用这个资源了， Hystrix就是来做这种的，为了保护服务器，这里都是在服务端做的措施。
 
 
 
@@ -915,4 +919,193 @@ public class DeptProviderHystrix8001 {
 
 
 
-​		**@EnableHystrix就代表该程序支持Hystrix。**
+​		**@EnableHystrix就代表该程序支持Hystrix。**、
+
+
+
+- 我们还可以给yml配置一下eureka.client.prefer-ip-address: true， 这样我们开启服务的时候， 鼠标悬浮在服务的连接上的时候， 就不是显示localhost:xxxx， 而是127.0.0.1:xxxx这种格式。
+
+
+
+
+
+### 服务降级
+
+
+
+​		服务降级， 当一个服务器访问过多时候， 服务器可能会绷不住， 这时候就需要更多的服务器， 有些服务器就很空闲， 我们可以直接把这个空闲的服务器停了， 去服务那些很火爆的服务， 这样就不至于服务器崩了， 但是会让这个空闲的服务器提供的服务关闭，但是如果用户访问这个服务， 我们并不希望直接报错， 而是有一些错误提示返回。 我们可以通过Feign来实现
+
+
+
+- 首先要导入依赖， 在api客户端， 还有Fegin消费者都需要导入， 就是之前Hystrix的依赖。
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+    <version>2.2.10.RELEASE</version>
+</dependency>
+```
+
+
+
+- 然后在api模块的服务写一个服务暂停的备用服务， 需要实现FallbackFactory接口。
+
+```java
+@Service
+public class FeignServiceDe implements FallbackFactory {
+    @Override
+    public FeignService create(Throwable cause) {
+        return new FeignService() {
+            @Override
+            public String addDept(Dept dept) {
+                return "null";
+            }
+
+            @Override
+            public Dept queryById(Long id) {
+                return new Dept()
+                        .setDept_no(id)
+                        .setD_name("该服务由于服务降级， 暂时暂停服务")
+                        .setDb_source("无数据");
+            }
+
+            @Override
+            public List<Dept> queryAll() {
+                return new ArrayList<>();
+            }
+        };
+    }
+}
+
+```
+
+
+
+- 然后在常用的服务接口关联这个备用的服务， fallbackFactory = FeignServiceDe.class就是加了个这个注解， 出现服务降级就会直接访问这个接口：
+
+```java
+@Service
+@FeignClient(name = "SPRING-PROVIDER-DEPT", fallbackFactory = FeignServiceDe.class)
+public interface FeignService {
+
+    @PostMapping("/dept/add}")
+    public String addDept(Dept dept);
+
+    @GetMapping("/dept/get/{id}")
+    public Dept queryById(@PathVariable("id") Long id);
+
+    @GetMapping("/dept/list")
+    public List<Dept> queryAll();
+
+}
+
+```
+
+
+
+- 最后需要在Feign消费者这里加一个配置 ， 开启服务降级
+
+```yml
+feign:
+  circuitbreaker:
+    enabled: true
+
+```
+
+
+
+### Dashboard 流监控
+
+
+
+​		配置一个Hystrix的监控
+
+
+
+- 首先建一个消费者的模块，导入对应的依赖， 还有新的依赖：
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+    <version>2.2.10.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+    <version>2.2.10.RELEASE</version>
+</dependency>
+```
+
+
+
+- 然后编写yml文件， 修改端口为 9001
+
+- 然后创建启动类， 加上注解开启流监控功能
+
+```java
+@SpringBootApplication
+/**
+ * 开启dashboard
+ */
+@EnableHystrixDashboard
+public class DashboardApp {
+    public static void main(String[] args) {
+        SpringApplication.run(DashboardApp.class, args);
+    }
+}
+```
+
+
+
+- 然后就可以启动， 请求路径http://localhost:9001/hystrix， 然后就可以看到下面的页面：
+
+![cloud03](img\cloud03.png)
+
+
+
+- 然后如果我们想要监控某个服务，需要有 @EnableHystrix注解的服务，那么就要去启动类里加一些东西， 这里的服务是之前的hystrix的服务，只需要加那个@Bean就好了， 这里的"/actuator/hystrix.stream" ， 就是上面的页面上的链接的后缀。
+
+```java
+@EnableEurekaClient
+@SpringBootApplication
+@EnableHystrix//对熔断的支持
+public class DeptProviderHystrix8001 {
+    public static void main(String[] args) {
+        SpringApplication.run(DeptProviderHystrix8001.class,args);
+    }
+    @Bean
+    public ServletRegistrationBean hystrixMetricsStreamServlet(){
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
+        registrationBean.addUrlMappings("/actuator/hystrix.stream");
+        return registrationBean;
+    }
+}
+
+```
+
+
+
+- 然后还需要配置dashboard的yml文件
+
+```yml
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+```
+
+
+
+- 然后启动一个注册中心， 启动hystrix的服务， 启动dashboard的消费者， 然后访问hystrix的http://localhost:8001/actuator/hystrix.stream， 如果一直在ping， 那么就先发一个get请求， 再请求这个， 然后在各个的dashboard的豪猪页面上输入请求路径， 毫秒数， 还有标题， 点击下面的监视就可以看到页面了
+
+![cloud04](img\cloud04.png)
+
+
+
+​		**这里的心跳图就是我们访问请求的频率， 频率越高圆点也越大， 还有请求出错率。**
+
+
+
+## Zuul路由网关
+

@@ -13,7 +13,7 @@ import java.util.List;
  * @author 86187
  */
 @Service
-@FeignClient(name = "SPRING-PROVIDER-DEPT")
+@FeignClient(name = "SPRING-PROVIDER-DEPT", fallbackFactory = FeignServiceDe.class)
 public interface FeignService {
 
     @PostMapping("/dept/add}")

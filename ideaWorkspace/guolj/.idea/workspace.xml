@@ -4,20 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="被包围的区域">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code147/ListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code147/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/random/heapSort/Solution2.java" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="147">
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code5299/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6067/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6068/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-api/src/main/java/com/ghj/springcloud/service/FeignServiceDe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-hystrix-dashboard/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-hystrix-dashboard/src/main/java/com/ghj/springcloud/DashboardApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-hystrix-dashboard/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/java/com/ghj/springcloud/ZuulApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code55/ad.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code79/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code79/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code79/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/code79/Solution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/random/merge/Merge.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/random/merge/Merge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/random/merge/Text.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/random/merge/Text.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/leetcode/code55/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/leetcode/code55/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/leetcode/code79/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/leetcode/code79/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/random/merge/Merge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/random/merge/Merge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-api/src/main/java/com/ghj/springcloud/service/FeignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-api/src/main/java/com/ghj/springcloud/service/FeignService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/src/main/java/com/ghj/springcloud/FeignApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/src/main/java/com/ghj/springcloud/FeignApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-feign/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/src/main/java/com/ghj/springcloud/DeptProviderHystrix8001.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/src/main/java/com/ghj/springcloud/DeptProviderHystrix8001.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-provider-dept-hystrix-8001/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,39 +89,39 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Solution2">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code179.Main" />
-      <module name="guolj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lj.leetcode.code179.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code137.Main" />
-      <module name="guolj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lj.leetcode.code137.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="应用程序.Solution (1)">
     <configuration name="Sb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lj.inclass.Sb" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="lj.inclass.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6067.Solution" />
+      <module name="guolj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lj.leetcode.code6067.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code5299.Solution" />
+      <module name="guolj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lj.leetcode.code5299.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -144,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Solution (1)" />
+        <item itemvalue="应用程序.Solution" />
         <item itemvalue="应用程序.Solution2" />
         <item itemvalue="应用程序.Text" />
         <item itemvalue="应用程序.Sb" />
-        <item itemvalue="应用程序.Main (1)" />
-        <item itemvalue="应用程序.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +182,8 @@
       <workItem from="1652249238949" duration="10953000" />
       <workItem from="1652314070611" duration="8342000" />
       <workItem from="1652401525246" duration="4560000" />
-      <workItem from="1652486476171" duration="18786000" />
+      <workItem from="1652486476171" duration="20011000" />
+      <workItem from="1652538591868" duration="4981000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -241,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652334691722</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="147">
+      <created>1652516187686</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652516187687</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +290,7 @@
     <MESSAGE value="根节点到叶节点的数字之和" />
     <MESSAGE value="复制带随机指针的链表" />
     <MESSAGE value="被包围的区域" />
-    <option name="LAST_COMMIT_MESSAGE" value="被包围的区域" />
+    <MESSAGE value="147" />
+    <option name="LAST_COMMIT_MESSAGE" value="147" />
   </component>
 </project>
