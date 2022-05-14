@@ -15,15 +15,6 @@ public class Merge {
         sort(nums, starIndex, mid);
         sort(nums, mid + 1,endIndex);
         merge(nums, starIndex, mid, endIndex);
-/*
-        if(starIndex < endIndex){
-            int mid = (starIndex + endIndex)/2;
-            nums = sort(nums, starIndex, mid);
-            nums = sort(nums, mid + 1, endIndex);
-            merge(nums, starIndex, mid, endIndex);
-        }
-        return nums;
-*/
     }
     private void merge(int[] nums, int starIndex, int mid, int endIndex){
         int[] temp = new int[endIndex - starIndex + 1];

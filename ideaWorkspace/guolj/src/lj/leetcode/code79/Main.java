@@ -1,5 +1,7 @@
 package lj.leetcode.code79;
 
+import java.util.HashMap;
+
 /**
  * @author ghj
  */

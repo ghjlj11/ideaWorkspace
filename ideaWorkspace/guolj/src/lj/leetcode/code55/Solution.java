@@ -39,7 +39,7 @@ class Solution {
         return false;
     }
 }
-class ad{
+class Main {
     public static void main(String[] args){
         int[] n={3,2,1,0,4};
         Solution A=new Solution();
