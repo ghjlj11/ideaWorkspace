@@ -1315,3 +1315,178 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
 
 ![cloud07](img\cloud07.png)
+
+
+
+## config
+
+​		我们在平时写程序时候， 可能需要修改一些配置文件， 如果是一个大型项目， 那就要成批修改，很麻烦， 我们可以把配置文件放在gitee上面， 然后改一个就好，项目里的就直接去读取里面的配置文件就好了。
+
+
+
+#### 配置总控中心
+
+
+
+- 搭建一个模块导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-config-server</artifactId>
+</dependency>
+```
+
+
+
+- 然后是配置文件
+
+```yml
+server:
+  port: 3344
+
+
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/guo-huanjun/cloud.git #访问的路径
+          search-paths:
+            - cloud #路径下的厂库
+      label: main #分支， master就是main
+
+```
+
+这里要注意的就是不要写错路径， 
+
+
+
+- 启动类只需要加一个注解**@EnableConfigServer**就好了
+
+```java
+@SpringBootApplication
+@EnableConfigServer
+public class Config3344 {
+    public static void main(String[] args) {
+        SpringApplication.run(Config3344.class, args);
+    }
+}
+
+```
+
+
+
+- 然后启动直接访问 http://localhost:3344/application-dev.yml ， 就可以看到我们的配置文件里的内容；
+- 这里需要注意的是访问后面的路径要以以下形式访问， 我们一般用第三种， 就是/分支/文件名-版本.yml。
+
+```txt
+/{application}/{profile}[/{label}]
+/{application}-{profile}.yml
+/{label}/{application}-{profile}.yml
+/{application}-{profile}.properties
+/{label}/{application}-{profile}.properties
+```
+
+
+
+#### 客户端配置
+
+
+
+- 我们搭建一个客户端， 从总控中心获取一些配置
+- 首先导入依赖， 记得都要导入， 第一个是支持bootstarp.yml的依赖
+
+```xml
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+```
+
+
+
+​		**bootstarp.xml是系统配置， 比application.yml优先级更高。**
+
+- 编写配置 ， 要注意这里的 拼接， 配置分支， 名字， 版本， 以及uri。
+
+```yml
+server:
+  port: 3366
+
+spring:
+  cloud:
+    config:
+      label: main # 分支名
+      name: application # 文件名
+      profile: dev # 版本名
+      uri: http://localhost:3344 # 访问的uri， 都拼接起来就是 http://localhost:3344/appliction-dev.yml
+```
+
+
+
+- 写一个controller， 这里可以直接从application里面拿到信息， 直接拿到config.info， 然后注入到info里面。
+
+```java
+@RestController
+public class ConfigController {
+    @Value("${config.info}")
+    String info;
+    @RequestMapping("/info")
+    public String info(){
+        return info;
+    }
+}
+
+```
+
+
+
+- 启动类不需要加别的注解， 直接启动， 可以直接访问数据。
+
+
+
+​		**但是如果gitee上修改了数据， 虽然3344可以直接刷新获得新数据， 但是3366不可以， 只可以通过重启才可以获得新数据， 这样就非常的麻烦**
+
+- 这个时候我们又可以来一点操作， 首先导入依赖， 图形化监控， 就是我们之前加过的。
+
+```xml
+<!--        图形化监控-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+    <version>2.6.7</version>
+</dependency>
+```
+
+
+
+- 然后还要改yml文件， 暴露监控端点。
+
+```yml
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+
+
+- 最后在controller上加一个注解， 刷新的注解
+
+```java
+@RefreshScope
+```
+
+
+
+- 然后直接启动， 这样还是不可以直接刷新出最新的数据， 我们还要搞一点操作， 在cmd里面发一个post请求去当前的这个端口 curl -X POST "http://localhost:3366/actuator/refresh"，然后我们就可以直接在网页上刷新 ，可以获取最新的数据， 每次更新都是需要， 要不然就得重启。
+
