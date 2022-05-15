@@ -4,9 +4,11 @@ import com.ghj.springcloud.pojo.Dept;
 import com.ghj.springcloud.service.DeptService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class DeptController {
 
     @Autowired
     private DeptService deptService;
+
+    @Value("${server.port}")
+    int port;
 
 
     @HystrixCommand(fallbackMethod = "hystrixGet")
@@ -38,5 +43,14 @@ public class DeptController {
                 .setDb_source("no database in MySQL");
     }
 
+    @GetMapping("/dept/list")
+    public List list(){
+        return deptService.queryAll();
+    }
+
+    @GetMapping("dept/port")
+    public int port(){
+        return this.port;
+    }
 
 }

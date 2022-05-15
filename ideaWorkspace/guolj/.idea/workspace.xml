@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="5/15双周赛">
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code5234/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6064/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6065/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="5/15周赛">
       <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/java/com/ghj/springcloud/ZuulApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/java/com/ghj/springcloud/ZuulApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/resources/application.yml" afterDir="false" />
@@ -167,7 +163,7 @@
       <workItem from="1652401525246" duration="4560000" />
       <workItem from="1652486476171" duration="20011000" />
       <workItem from="1652538591868" duration="5086000" />
-      <workItem from="1652574221620" duration="7947000" />
+      <workItem from="1652574221620" duration="7998000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -253,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652544040237</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="5/15周赛">
+      <created>1652596021316</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1652596021316</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +286,7 @@
     <MESSAGE value="被包围的区域" />
     <MESSAGE value="147" />
     <MESSAGE value="5/15双周赛" />
-    <option name="LAST_COMMIT_MESSAGE" value="5/15双周赛" />
+    <MESSAGE value="5/15周赛" />
+    <option name="LAST_COMMIT_MESSAGE" value="5/15周赛" />
   </component>
 </project>

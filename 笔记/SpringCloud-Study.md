@@ -740,7 +740,7 @@ private Response<ServiceInstance> getInstanceResponse(List<ServiceInstance> inst
 
 
 
-### Feign
+### Openfeign
 
 
 
@@ -1107,5 +1107,211 @@ hystrix:
 
 
 
-## Zuul路由网关
+## Gateway路由网关
 
+ 
+
+**Spring Cloud Gateway 建立在 Spring Boot 2.x、Spring WebFlux 和 Project Reactor 之上。非阻塞异步模型， Zuul是阻塞式模型， 在高并发情况 ，Gateway具有更快的速度。**
+
+
+
+**Route， Predicate， Filter**
+
+- 首先我们来新建一个模块导入依赖， 记得不要导入spring-boot-starter-web，要么就要去配置yml 
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+    <version>3.1.2</version>
+</dependency>
+```
+
+
+
+- 然后配置yml文件
+
+```yml
+server:
+  port: 9527
+
+spring:
+  main:
+    web-application-type: reactive #spring-boot-starter-web会与gateway依赖相互矛盾。
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes: # 可以配置多个， 这里只配置了一个， 再加的话就是 -id下面的再写一套
+        - id: dept_8001 #路由ID，要唯一
+          uri: http://localhost:8001 #匹配后提供服务的路径
+          predicates:
+            - Path=/dept/** #断言， 路径相匹配的进行路由
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost7001:7001/eureka/,http://localhost7002:7002/eureka/,http://localhost7003:7003/eureka/
+      fetch-registry: true # 要不要去注册中心获取其他服务的地址
+      register-with-eureka: true
+
+  instance:
+    instance-id: gateway9527
+    prefer-ip-address: true
+
+
+
+```
+
+
+
+- 然后配置启动类， 只需要加一个注册到Eureka服务就行
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+public class ZuulApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ZuulApplication.class, args);
+    }
+}
+```
+
+
+
+- 直接启动， 可以通过http://localhost:9527/dept/get/3访问到8001的服务。
+
+
+
+- 第二种配置路由， 可以通过配置类来写， 但是有一点麻烦， 配置文件更简单。
+
+
+
+### gateway配置负载均衡Route.uri配置
+
+
+
+我们知道负载均衡就是通过服务的名字来按照负载均衡算法获取对应的服务器， 所以我们需要改之前yml里的uri， 不能写死， 写成服务名就好了
+
+```yml
+spring:
+  main:
+    web-application-type: reactive #spring-boot-starter-web会与gateway依赖相互矛盾。
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes: # 可以配置多个， 这里只配置了一个， 再加的话就是 -id下面的再写一套
+        - id: dept_8001 #路由ID，要唯一
+          #uri: http:localhost:8001 匹配后提供服务的路径
+          uri: lb://spring-provider-dept #匹配后提供服务的路由地址， lb就是LoadBalance的缩写， 就可以实现负载均衡了；
+          predicates:
+            - Path=/dept/** #断言， 路径相匹配的进行路由
+      discovery:
+        locator:
+          enabled: true #开启从服务中心动态创建路由功能， 理由服务名进行路由
+
+
+```
+
+
+
+**注意这里的lb:就是用负载均衡的意思， 然后后面还需要开启从服务中心动态创建路由功能。**
+
+
+
+#### gateway的routes.predicates配置
+
+
+
+通过运行程序可以看到， 右侧有一堆After， Before， Header等一些配置， 这都是predicates里的配置， 就相当于是很多个判断语句， 需要都满足才可以进入访问， 如果不满足就会被拦截
+
+![cloud05](img\cloud05.png)
+
+
+
+- 我们来设置一些玩意
+
+```yml
+predicates:
+            - Path=/dept/** #断言， 路径相匹配的进行路由
+            # - After=2022-06-15T17:23:06.302617600+08:00[Asia/Shanghai] #匹配改时间之后的， 进行路由
+            - Cookie=username,ghj
+            - Method=GET
+```
+
+
+
+- 可以看到设置了Cookie就需要Cookie带有username=ghj才可以访问
+
+![cloud06](img\cloud06.png)
+
+
+
+#### routes.filter配置
+
+  官方给了三十多种玩法：
+
+
+
+配一个：
+
+```yml
+routes: # 可以配置多个， 这里只配置了一个， 再加的话就是 -id下面的再写一套
+        - id: dept_8001 #路由ID，要唯一
+          #uri: http:localhost:8001 匹配后提供服务的路径
+          uri: lb://spring-provider-dept #匹配后提供服务的路由地址， lb就是LoadBalance的缩写， 就可以实现负载均衡了；
+          predicates:
+            - Path=/dept/** #断言， 路径相匹配的进行路由
+            # - After=2022-06-15T17:23:06.302617600+08:00[Asia/Shanghai] #匹配改时间之后的， 进行路由
+            - Method=GET
+          filters:
+            - AddRequestHeader=X-Request-red, blue
+```
+
+
+
+​		**他将 X-Request-red:blue 标头添加到所有匹配请求的下游请求标头中**
+
+
+
+
+
+#### Global Filters
+
+- 自己写一个全局过滤器， 这种方式用的比较多， 官方的用的少， 我们可以给定规则， 只有name参数不为null才可以进入路由， 否则不行。
+
+
+
+- 跟着官方文档来， 写一个组件， 注入spring， 这两个接口是官方说的， 不用管， 写就完了。
+
+```java
+@Component
+
+public class CustomGlobalFilter implements GlobalFilter, Ordered {
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        MultiValueMap<String, String> queryParams = exchange.getRequest().getQueryParams();
+        String name = queryParams.getFirst("name");
+        if(name == null){
+            exchange.getResponse().setStatusCode(HttpStatus.NOT_ACCEPTABLE);
+            return exchange.getResponse().setComplete();
+        }
+        return chain.filter(exchange);
+    }
+
+    @Override
+    public int getOrder() {
+        return 0;
+    }
+}
+
+```
+
+
+
+​		**里面的方法就是获取request里的参数，然后判断是否为空， 空的话就被过滤了， 否则就可以进入下一个过滤器。**
+
+
+
+![cloud07](img\cloud07.png)
