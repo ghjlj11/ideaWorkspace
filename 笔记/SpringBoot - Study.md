@@ -713,7 +713,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 
 
-- th:utext , 这个不转译一些代码， 就比如上面的msg的为“<h1>你在搞什么啊!</h1>”，这个就可以直接以h1显示
+- th:text , 这个不转译一些代码， 就比如上面的msg的为“<h1>你在搞什么啊!</h1>”，这个就可以直接以h1显示
 
 
 
