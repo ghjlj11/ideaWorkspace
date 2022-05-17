@@ -192,8 +192,40 @@ select concat(s1.id,s1.name,s1.manage_id) as sta, concat(s2.id,s2.name,s2.manage
 
 /*子查询*/
 
+/*增加索引， add index index_name(column)*/
+alter table kecheng add index id(id);
 
 ```
+
+> ### 索引
+
+
+
+```sql
+create table t_dept(
+    no int not null primary key,
+    name varchar(20) null,
+    sex varchar(2) null,
+    info varchar(20) null,
+    index index_no(no)
+  )
+```
+
+1、添加PRIMARY KEY(主键索引)mysql>ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )
+
+2、添加UNIQUE(唯一索引)mysql>ALTER TABLE `table_name` ADD UNIQUE (
+
+`column`
+
+)
+
+3、添加INDEX(普通索引)mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
+
+4、添加FULLTEXT(全文索引)mysql>ALTER TABLE `table_name` ADD FULLTEXT ( `column`)
+
+5、添加多列索引mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
+
+
 
 
 

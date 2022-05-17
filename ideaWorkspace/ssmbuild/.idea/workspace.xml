@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/test/java/com/ghj/springboot09test/SpringBoot09TestApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-test/src/test/java/com/ghj/springboot09test/SpringBoot09TestApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,6 +235,7 @@
       <workItem from="1651675903851" duration="474000" />
       <workItem from="1651808455076" duration="640000" />
       <workItem from="1652240711842" duration="104000" />
+      <workItem from="1652797836905" duration="1358000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>

@@ -1,5 +1,6 @@
 package com.ghj.springboot09test;
 
+import com.google.gson.Gson;
 import org.apache.logging.log4j.message.SimpleMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.concurrent.Executor;
 
@@ -39,12 +41,15 @@ class SpringBoot09TestApplicationTests {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
         helper.setSubject("是什么");
-        helper.addAttachment("别点", new File("D:/Pictures/lj.jpg"));
+        helper.addAttachment("别点", new File("D:/my-study/笔记/img/boot14.png"));
         helper.setText("<h1 style='color: red'>你好呀</h1>", true);
 
         helper.setFrom("2367792309@qq.com");
         helper.setTo("2367792309@qq.com");
         mailSender.send(mimeMessage);
+        Gson gson = new Gson();
+        String s = gson.toJson(mimeMessage);
+        System.out.println(s);
     }
 
 }
