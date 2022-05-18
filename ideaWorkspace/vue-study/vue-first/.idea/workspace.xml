@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9bc4b88-bfe5-4296-adc7-4e11ddc41224" name="变更" comment="" />
+    <list default="true" id="c9bc4b88-bfe5-4296-adc7-4e11ddc41224" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java2实用教程/src/myJdbc/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java2实用教程/src/myJdbc/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hello-vue/src/views/user/prof.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myvue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../myvue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,10 +23,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="28I4uuHakHMW84d3c3PtDWNTPwy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -59,11 +69,23 @@
       <workItem from="1651017664619" duration="732000" />
       <workItem from="1651057851877" duration="1037000" />
       <workItem from="1651139902087" duration="8516000" />
+      <workItem from="1652842586169" duration="1874000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

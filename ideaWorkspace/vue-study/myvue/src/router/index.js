@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Content from "../components/Content";
 import Main from "../components/Main"
-import Ghj from "../components/Lj"
+import ghj from "../components/Lj"
 
 Vue.use(VueRouter);
 
@@ -21,7 +21,7 @@ export default new VueRouter({
     },
     {
       path: '/lj',
-      component: Ghj,
+      component: ghj,
       name: 'lj'
     }
   ]

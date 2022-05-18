@@ -4,6 +4,7 @@ import utils.JdbcUtil;
 
 import java.io.Reader;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class MyTest {
@@ -18,8 +19,7 @@ public class MyTest {
             String name = resultSet.getString("name");
             System.out.println(name);
         }
-
-
+        System.out.println(-5/2);
         statement.close();
         connection.close();
     }

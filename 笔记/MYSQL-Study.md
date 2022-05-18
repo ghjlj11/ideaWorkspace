@@ -18,6 +18,10 @@ nvarchar： 可变长度，存储Unicode字符，根据数据长度自动变化�
 
 
 
+## Innodb
+
+
+
 ## 数据库分页显示
 
 ```text
