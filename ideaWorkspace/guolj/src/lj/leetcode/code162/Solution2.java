@@ -1,5 +1,8 @@
 package lj.leetcode.code162;
 
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+
 class Solution2 {
     public int findPeakElement(int[] nums) {
         int l = 0, r = nums.length -  1;

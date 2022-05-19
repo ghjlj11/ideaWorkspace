@@ -17,6 +17,8 @@ public class MyServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext servletContext = this.getServletContext();
         servletContext.setAttribute("name", "ghj");
+        int maxInactiveInterval = req.getSession().getMaxInactiveInterval();
+        System.out.println(maxInactiveInterval);
         System.out.println(servletContext);
         System.out.println(servletContext.getAttribute("name"));
     }
