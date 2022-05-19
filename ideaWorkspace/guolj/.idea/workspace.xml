@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="5/15周赛">
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/java/com/ghj/springcloud/ZuulApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/java/com/ghj/springcloud/ZuulApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-zuul-9527/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code162/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code162/Solution2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springCloud-study" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -68,13 +66,13 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Solution (1)">
-    <configuration name="Sb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.inclass.Sb" />
+  <component name="RunManager" selected="应用程序.Solution (2)">
+    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6067.Solution" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.inclass.*" />
+          <option name="PATTERN" value="lj.leetcode.code6067.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,12 +80,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6067.Solution" />
+    <configuration name="Solution (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code162.Solution" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.code6067.*" />
+          <option name="PATTERN" value="lj.leetcode.code162.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Solution (2)" />
         <item itemvalue="应用程序.Solution (1)" />
         <item itemvalue="应用程序.Solution" />
         <item itemvalue="应用程序.Solution2" />
         <item itemvalue="应用程序.Text" />
-        <item itemvalue="应用程序.Sb" />
       </list>
     </recent_temporary>
   </component>
@@ -164,6 +162,7 @@
       <workItem from="1652486476171" duration="20011000" />
       <workItem from="1652538591868" duration="5086000" />
       <workItem from="1652574221620" duration="7998000" />
+      <workItem from="1652921108392" duration="4896000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
