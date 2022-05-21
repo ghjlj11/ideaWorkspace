@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 86187
-  Date: 2022/5/19
-  Time: 10:29
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <div style="text-align: center; padding-top: 10%">
+    <a href="${pageContext.request.contextPath}/selectAll"><button>访问</button></a>
+  </div>
   </body>
 </html>

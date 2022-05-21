@@ -11,16 +11,40 @@ public class MyTest {
 
     @Test
     public void test1() throws SQLException {
-        Connection connection = DriverManager.getConnection(JdbcUtil.URL, JdbcUtil.USERNAME, JdbcUtil.PASSWORD);
-        Statement statement = connection.createStatement();
-        String SQL = "select * from user where id = 2";
-        ResultSet resultSet = statement.executeQuery(SQL);
+
+        String SQL = "select * from user";
+        Integer id = 2;
+        ResultSet resultSet = JdbcUtil.executeSelect(SQL);
         while (resultSet.next()){
-            String name = resultSet.getString("name");
-            System.out.println(name);
+            System.out.println(resultSet.getInt("id"));
+            System.out.println(resultSet.getString("name"));
+            System.out.println(resultSet.getInt("age"));
         }
-        System.out.println(-5/2);
-        statement.close();
-        connection.close();
+
+    }
+    @Test
+    public void test2() throws SQLException {
+
+        String SQL = "insert into user (id, name, age) values(?, ? ,?)";
+        int kk = JdbcUtil.executeUpdate(SQL, 5, "kk", 23);
+        System.out.println(kk);
+
+
+    }
+    @Test
+    public void test3() throws SQLException {
+
+        String SQL = "update user set name = ?, age = ? where id = ?";
+        int kk = JdbcUtil.executeUpdate(SQL, "lk", 12, 5);
+        System.out.println(kk);
+
+    }
+    @Test
+    public void test4() throws SQLException {
+
+        String SQL = "delete from user where id = ?";
+        int kk = JdbcUtil.executeUpdate(SQL,  5);
+        System.out.println(kk);
+
     }
 }

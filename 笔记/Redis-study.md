@@ -98,7 +98,7 @@ LPUSH: 145560.41 requests per second
 
 - Redis里面一共有16个数据库， 默认选择的是0号数据库， 我们可以通过``select index``切换
 
-```ba
+```bash
 127.0.0.1:6379> dbsize
 (integer) 6
 127.0.0.1:6379> get ghj
@@ -109,11 +109,11 @@ LPUSH: 145560.41 requests per second
 OK
 127.0.0.1:6379[3]> dbsize
 (integer) 0
-127.0.0.1:6379[3]> select 0 选择数据库
+127.0.0.1:6379[3]> select 0 # 选择数据库
 OK
-127.0.0.1:6379> dbsize 	数据库大小
+127.0.0.1:6379> dbsize 	# 数据库大小
 (integer) 6
-127.0.0.1:6379[3]> flushdb  删库
+127.0.0.1:6379[3]> flushdb  # 删库
 OK
 127.0.0.1:6379> dbsize
 (integer) 0
@@ -177,3 +177,66 @@ Redis是通过key-value来存储的， key就是String类型的
 > type key
 
 - 查看当前值的类型
+
+
+
+## String （字符串）
+
+
+
+```bash
+127.0.0.1:6379> keys *  # 获取所有的key
+1) "name"
+127.0.0.1:6379> get name	#获取对应的value
+"ghj"
+127.0.0.1:6379> exists name		#判断是否存在name这个key
+(integer) 1
+127.0.0.1:6379> append name " hello"	#追加字符， 如果key不存在， 就相当于set了一个key
+(integer) 9
+127.0.0.1:6379> get name
+"ghj hello"
+127.0.0.1:6379> strlen name		#获取字符串的长度
+(integer) 9
+127.0.0.1:6379> APPEND name " lj"
+(integer) 12
+127.0.0.1:6379> strlen name
+(integer) 12
+127.0.0.1:6379> get name
+"ghj hello lj"
+127.0.0.1:6379> append va "ghj"		#相当于set了一个key
+(integer) 3
+127.0.0.1:6379> get va
+"ghj"
+
+```
+
+
+
+- 关于数字value增加
+
+```bash
+127.0.0.1:6379> set view 0
+OK
+127.0.0.1:6379> get view
+"0"
+127.0.0.1:6379> incr view		# 自增
+(integer) 1
+127.0.0.1:6379> get view
+"1"
+127.0.0.1:6379> incr view
+(integer) 2
+127.0.0.1:6379> get view 
+"2"
+127.0.0.1:6379> decr view		#自减
+(integer) 1
+127.0.0.1:6379> get view
+"1"
+127.0.0.1:6379> incrby view view
+(error) ERR value is not an integer or out of range
+127.0.0.1:6379> incrby view 10		#每次增加固定值
+(integer) 11
+127.0.0.1:6379> decrby view 10		#每次减少固定值
+(integer) 1
+
+```
+
