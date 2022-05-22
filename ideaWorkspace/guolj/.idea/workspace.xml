@@ -5,31 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二分查找旋转数组最小值">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__com_sun_activation_jakarta_activation_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__jakarta_el_jakarta_el_api_4_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__jakarta_servlet_jakarta_servlet_api_5_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__jakarta_servlet_jsp_jakarta_servlet_jsp_api_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__jakarta_servlet_jsp_jstl_jakarta_servlet_jsp_jstl_api_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/dao/MyDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/pojo/Clazz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/pojo/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/utils/JdbcUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/resources/jdbc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/test/java/MyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/test.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6074/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6075/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/leetcode/code6076/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/Add.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/Modify.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/ToAdd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/ToModify.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/add.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/modify.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/static/selectAll.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/jsp/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/DeleteStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/DeleteStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/main.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +85,7 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Solution (2)">
+  <component name="RunManager" selected="应用程序.Solution (3)">
     <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6067.Solution" />
       <module name="guolj" />
@@ -109,6 +105,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="lj.leetcode.code162.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Solution (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6074.Solution" />
+      <module name="guolj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lj.leetcode.code6074.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,26 +151,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Text" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.random.merge.Text" />
-      <module name="guolj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lj.random.merge.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Solution (3)" />
         <item itemvalue="应用程序.Solution (2)" />
         <item itemvalue="应用程序.Solution (1)" />
         <item itemvalue="应用程序.Solution" />
         <item itemvalue="应用程序.Solution2" />
-        <item itemvalue="应用程序.Text" />
       </list>
     </recent_temporary>
   </component>
@@ -187,6 +183,7 @@
       <workItem from="1652574221620" duration="7998000" />
       <workItem from="1652921108392" duration="15650000" />
       <workItem from="1653007738478" duration="5071000" />
+      <workItem from="1653187510213" duration="5483000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
