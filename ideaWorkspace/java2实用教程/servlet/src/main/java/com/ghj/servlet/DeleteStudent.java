@@ -27,13 +27,13 @@ public class DeleteStudent extends HttpServlet {
         try {
             System.out.println(req.getParameter("id"));
             service.delete(Integer.parseInt(req.getParameter("id")));
-            List<Student> all = service.getAll();
-            Map<String, Object> map  = new HashMap<>();
-            map.put("data", all);
-            System.out.println(map);
-            String s = JSON.toJSONString(map);
-            System.out.println(s);
-            resp.getWriter().println(s);
+//            List<Student> all = service.getAll();
+//            Map<String, Object> map  = new HashMap<>();
+//            map.put("data", all);
+//            System.out.println(map);
+//            String s = JSON.toJSONString(map);
+//            System.out.println(s);
+//            resp.getWriter().println(s);
 
         } catch (SQLException e) {
             e.printStackTrace();

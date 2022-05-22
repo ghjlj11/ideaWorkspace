@@ -6,7 +6,7 @@
   </head>
   <body>
   <div style="text-align: center; padding-top: 10%">
-    <a href="${pageContext.request.contextPath}/selectAll"><button>访问</button></a>
+    <a href="${pageContext.request.contextPath}/main"><button>访问</button></a>
   </div>
   </body>
 </html>

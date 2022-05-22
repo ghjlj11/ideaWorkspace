@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class MyTest {
@@ -38,5 +40,12 @@ public class MyTest {
     public void te5() throws SQLException    {
         int delete = myDao.delete(9);
         System.out.println(delete);
+    }
+    @Test
+    public void t6(){
+        long time = new Date().getTime();
+        LocalDateTime now = LocalDateTime.now();
+        int hour = now.getHour();
+        System.out.println(hour);
     }
 }
