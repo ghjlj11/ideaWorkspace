@@ -47,7 +47,7 @@ select * from User limit 6;
 
 
 
-```My
+```mysql
 use malajava;
 select * from kecheng where name like '%体%';
 select distinct id from kecheng;
@@ -171,6 +171,12 @@ select * from supermarket s right join consumer c on c.consumer_id = s.consumers
 select * from supermarket s  join consumer c on c.consumer_id = s.consumers;
 
 insert into supermarket(id, name, consumers) values (6, '太平洋', null);
+
+/*笛卡尔积*/
+select * from student cross join teacher;
+
+/*相当于是join查询*/
+select * from student cross join teacher t on t.id = student.tid;
 
 /*自链接查询*/
 create table staff (

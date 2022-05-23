@@ -3,6 +3,7 @@ package com.ghj.pojo;
 /**
  * @author 86187
  */
+
 public class User {
     private int id;
     private String name;

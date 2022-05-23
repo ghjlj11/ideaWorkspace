@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/inclass/Sb.class" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/inclass/Sb.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/src/lj/inclass/Sb.java" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/src/lj/inclass/Sb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Mybatis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Mybatis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/更改 SQL 方言" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -217,6 +220,7 @@
       <workItem from="1652240833621" duration="21000" />
       <workItem from="1652345002856" duration="1106000" />
       <workItem from="1652402545552" duration="86000" />
+      <workItem from="1653266217607" duration="10052000" />
     </task>
     <servers />
   </component>
