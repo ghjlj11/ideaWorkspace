@@ -1539,6 +1539,39 @@ mybatis:
 
 
 - 接下来就是老套路，pojo实体类，  mapper层， service层， controller层。
+- 这里的接口需要注册到Spring里面， 所以就需要加上注解， @Mapper， 只需要这个注解就可以跑。
+
+```java
+@Mapper
+@Repository
+public interface UserMapper {
+    public List<User> selectAll();
+    public User selectById(int id);
+    public void update(User user);
+    public void delete(int id);
+    public void add(User user);
+}
+
+```
+
+- 或者在启动类上面加上注解@MapperScan("com.ghj.mapper")， 可以直接扫描到mapper下的接口， 虽然如果后面直接@Autowired会爆红， 但是一样可以运行。 
+
+```java
+@SpringBootApplication(scanBasePackages = {"com.ghj"})
+@MapperScan("com.ghj.mapper")
+public class SpringBoot05MybatisApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBoot05MybatisApplication.class, args);
+    }
+
+}
+
+```
+
+
+
+
 
 
 
