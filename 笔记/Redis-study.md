@@ -824,3 +824,306 @@ zcount 获取指定的score的区间里的元素个数
 - 这个Zset就是set的排序版。
 - 我们可以用在排序公司员工的工资， 排序每个人的成绩， 因为员工id与学生id都是唯一的
 - 也可以用来对某个网站的热搜排序， 或者粉丝量， 访问量等等。
+
+
+
+## 三种特殊的数据类型
+
+
+
+### geospatial地理位置
+
+**这里面就只有六个命令**
+
+
+
+> ## geoadd 
+
+- 向一个地理对象中添加地区，不存在对象则创建。
+- 参数key值 （经度、纬度、名称） 名称
+
+```bash
+127.0.0.1:6379> geoadd china:city 116.40 39.90 beijing  # 添加地理位置
+(integer) 1
+127.0.0.1:6379> geoadd china:city 121.47 31.23 shanghai
+(integer) 1
+127.0.0.1:6379> geoadd china:city 106.50 29.53 chongqin 114.05 22.52 shengzhen 	# 同时添加多个
+(integer) 2
+127.0.0.1:6379> geoadd china:city 120.16 30.24 hangzhou 108.96 34.26 xian
+(integer) 2
+
+```
+
+
+
+> ## geopos
+
+- 获取指定key的指定地理位置的经纬度
+
+```bash
+127.0.0.1:6379> geopos china:city shanghai 
+1) 1) "121.47000163793563843"
+   2) "31.22999903975783553"
+127.0.0.1:6379> geopos china:city shanghai beijing chongqin		#获取多个地理位置的经纬度
+1) 1) "121.47000163793563843"
+   2) "31.22999903975783553"
+2) 1) "116.39999896287918091"
+   2) "39.90000009167092543"
+3) 1) "106.49999767541885376"
+   2) "29.52999957900659211"
+
+```
+
+
+
+> ## geodist
+
+- 查看指定key里的两个地理位置的直线距离
+
+- 单位：
+  - **m** 表示单位为米。
+  - **km** 表示单位为千米。
+  - **mi** 表示单位为英里。
+  - **ft** 表示单位为英尺。
+  - 这里的单位默认就是**m**
+
+```bash
+127.0.0.1:6379> geodist china:city shanghai beijing
+"1067378.7564"
+127.0.0.1:6379> geodist china:city shanghai beijing km
+"1067.3788"
+127.0.0.1:6379> geodist china:city shanghai chongqin km
+"1447.6737"
+
+```
+
+
+
+> ## georadius
+
+- 获取指定的经纬度位置按指定的半径为圆内key里的所有位置
+
+```bash
+127.0.0.1:6379> georadius china:city 110 38 1000 km 		# 获取指定位置范围里的所有地理位置
+1) "xian"
+2) "chongqin"
+3) "beijing"
+127.0.0.1:6379> georadius china:city 110 38 500 km 
+1) "xian"
+127.0.0.1:6379> georadius china:city 110 38 500 km withdist
+1) 1) "xian"
+   2) "426.3396"
+127.0.0.1:6379> georadius china:city 110 38 500 km withdist withcoord		#带距离以及经纬度输出
+1) 1) "xian"
+   2) "426.3396"
+   3) 1) "108.96000176668167114"
+      2) "34.25999964418929977"
+127.0.0.1:6379> georadius china:city 110 38 1000 km withdist withcoord
+1) 1) "xian"
+   2) "426.3396"
+   3) 1) "108.96000176668167114"
+      2) "34.25999964418929977"
+2) 1) "chongqin"
+   2) "995.8944"
+   3) 1) "106.49999767541885376"
+      2) "29.52999957900659211"
+3) 1) "beijing"
+   2) "592.3892"
+   3) 1) "116.39999896287918091"
+      2) "39.90000009167092543"
+127.0.0.1:6379> georadius china:city 110 38 1000 km withdist withcoord count 1		#限制只允许寻找出一个位置
+1) 1) "xian"
+   2) "426.3396"
+   3) 1) "108.96000176668167114"
+      2) "34.25999964418929977"
+
+```
+
+
+
+> ## georadiusbymember
+
+- 获取指定位置附近指定范围的地理位置， 就是把上面的经纬度换成指定的位置
+
+```bash
+127.0.0.1:6379> georadiusbymember china:city beijing 500 km
+1) "beijing"
+127.0.0.1:6379> georadiusbymember china:city beijing 1000 km
+1) "beijing"
+2) "xian"
+127.0.0.1:6379> georadiusbymember china:city shanghai 500 km
+1) "hangzhou"
+2) "shanghai"
+127.0.0.1:6379> georadiusbymember china:city shanghai 1000 km
+1) "hangzhou"
+2) "shanghai"
+
+```
+
+
+
+> ## geohash
+
+- 获取某些地理位置的hash， 由11个字符串组成
+
+```bash
+127.0.0.1:6379> geohash china:city beijing
+1) "wx4fbxxfke0"
+127.0.0.1:6379> geohash china:city beijing shanghai
+1) "wx4fbxxfke0"
+2) "wtw3sj5zbj0"
+
+```
+
+
+
+> ## geospatial 底层基于Zset实现
+
+- 因此我们可以使用Zset的命令来操控他
+
+```bash
+127.0.0.1:6379> zrange china:city 0 -1		#查看所有的地理位置
+1) "chongqin"
+2) "xian"
+3) "shengzhen"
+4) "hangzhou"
+5) "shanghai"
+6) "beijing"
+127.0.0.1:6379> zrem china:city beijing		#删除某个地理位置
+(integer) 1
+127.0.0.1:6379> zrange china:city 0 -1
+1) "chongqin"
+2) "xian"
+3) "shengzhen"
+4) "hangzhou"
+5) "shanghai"
+
+```
+
+
+
+- 这个geospatial 可以用来定位， 生活中就会有很多的实例可以用他， 比如游戏区域排名， 微信的附近的人等等。
+
+
+
+### Hyperloglog
+
+- 用来做基数统计， 就是只允许不同的对象在这个里面， 这个基本只是用来计数的， 因为他的方法很少。可以不用set， 这个的占用内存会更小。
+
+```bash
+127.0.0.1:6379> pfadd mypf a b c d e f g h i		#添加数据
+(integer) 1
+127.0.0.1:6379> pfcount mypf			# 获取里面的数据的数量
+(integer) 9
+127.0.0.1:6379> pfadd mypf2 g h i j k l m n 
+(integer) 1
+127.0.0.1:6379> pfcount mypf2
+(integer) 8
+127.0.0.1:6379> pfmerge mypf3 mypf mypf2		#把两个合并成一个
+OK
+127.0.0.1:6379> pfcount mypf3		# 会自动删除重复的元素
+(integer) 14
+127.0.0.1:6379> pfadd mypf3 a		# 不能添加重复的元素
+(integer) 0
+127.0.0.1:6379> pfcount mypf3
+(integer) 14
+
+```
+
+
+
+- 如果允许容错， 那么就一定可以使用Hyperloglog
+- 如果不允许容错， 那么就使用set或者自己的数据类型即可。
+
+
+
+### Bitmaps
+
+- 这是一个存储元素只有1，0这两个值的map，可以用来表示两种状态， 比方说打卡，登录，签到等等
+
+```bash
+#########################################################################################
+setbit 用来往Bitmaps里面放值， 值只有0 ，1
+
+127.0.0.1:6379> setbit sign 0 1
+(integer) 0
+127.0.0.1:6379> setbit sign 1 1
+(integer) 0
+127.0.0.1:6379> setbit sign 2 0
+(integer) 0
+127.0.0.1:6379> setbit sign 3 0
+(integer) 0
+127.0.0.1:6379> setbit sign 4 1
+(integer) 0
+127.0.0.1:6379> setbit sign 5 0
+(integer) 0
+#########################################################################################
+getbit 用来获取bitmap里的某个值
+
+127.0.0.1:6379> getbit sign 2
+(integer) 0
+127.0.0.1:6379> getbit sign 4
+(integer) 1
+#########################################################################################
+bitcount 统计里面所有的1的数量
+
+127.0.0.1:6379> setbit sign 6 1
+(integer) 0
+127.0.0.1:6379> bitcount sign 
+(integer) 4
+
+```
+
+
+
+## 事务
+
+- **Redis的单条命令是保证原子性的， 但是Redis的事务并不保证原子性， 有可能其中一个命令执行失败了，但是其他的成功了**。
+- **Redis的事务本质**：就是一组命令的集合， 一个事务中所有的命令都会被序列化， 在执行的过程中， 会按照顺序执行！ 一次性、顺序性、 排他性、执行一列的命令
+- **Redis事务没有隔离级别的概念**
+- 所有的命令并不会被直接执行， 只有发起执行命令的时候才会执行
+- Redis的事务：
+  - 开启事务（multi）
+  - 命令入队（set....）
+  - 执行事务（exec）
+
+> 正常执行事务
+
+```bash
+
+127.0.0.1:6379> multi		#开启事务
+OK
+127.0.0.1:6379(TX)> set k1 v1 		#命令入队
+QUEUED							# 进入队列
+127.0.0.1:6379(TX)> set k2 v2 
+QUEUED
+127.0.0.1:6379(TX)> get k2
+QUEUED
+127.0.0.1:6379(TX)> set k3 v3
+QUEUED
+127.0.0.1:6379(TX)> exec		#执行事务
+1) OK
+2) OK
+3) "v2"
+4) OK
+
+```
+
+
+
+> 放弃事务
+
+```bash
+127.0.0.1:6379(TX)> set k1 l1 
+QUEUED
+127.0.0.1:6379(TX)> set k2 l2 
+QUEUED
+127.0.0.1:6379(TX)> set k4 v4
+QUEUED
+127.0.0.1:6379(TX)> discard		#放弃事务
+OK
+127.0.0.1:6379> get k4		#事务队列中的命令都不会被执行
+(nil)
+
+```
+

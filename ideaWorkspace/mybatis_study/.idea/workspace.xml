@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/ghj/dao/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/test/java/com/ghj/dao/UserMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-03-di/src/main/java/com/ghj/pojo/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-03-di/src/main/java/com/ghj/pojo/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-03-di/target/classes/com/ghj/pojo/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-03-di/target/classes/com/ghj/pojo/Student.class" afterDir="false" />
-    </list>
+    <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/更改 SQL 方言" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../学习作业/偷来的项目/campus-secondary-market-app---sys-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -224,6 +215,7 @@
       <workItem from="1652402545552" duration="86000" />
       <workItem from="1653266217607" duration="12266000" />
       <workItem from="1653352406296" duration="5903000" />
+      <workItem from="1653468352745" duration="542000" />
     </task>
     <servers />
   </component>
