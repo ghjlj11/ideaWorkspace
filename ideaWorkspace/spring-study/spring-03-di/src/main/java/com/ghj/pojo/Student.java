@@ -15,6 +15,9 @@ public class Student {
     private String wife;
     private Properties info;
 
+    public Student() {
+    }
+
     @Override
     public String toString() {
         return "Student{" +

@@ -10,8 +10,6 @@ import java.util.List;
 /**
  * @author 86187
  */
-@Mapper
-@Repository
 public interface UserMapper {
     public List<User> selectAll();
     public User selectById(int id);

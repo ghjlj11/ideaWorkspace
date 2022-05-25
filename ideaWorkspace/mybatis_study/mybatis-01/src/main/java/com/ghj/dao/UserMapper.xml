@@ -11,11 +11,11 @@
     <select id="getById" parameterType="int" resultType="com.ghj.pojo.User">
         select * from malajava.kecheng where id = #{id}
     </select>
-    
+
     <insert id="addUser" parameterType="com.ghj.pojo.User">
         insert into malajava.kecheng (id, name, keshi) values (#{id}, #{name}, #{keshi})
     </insert>
-    
+
     <delete id="deleteUser" parameterType="int">
         delete from malajava.kecheng where id = #{id}
     </delete>
@@ -30,5 +30,9 @@
     
     <select id="getUserLike" resultType="com.ghj.pojo.User">
         select * from malajava.kecheng where name like #{value}
+    </select>
+
+    <select id="getByIdName" resultType="com.ghj.pojo.User">
+        select * from malajava.kecheng where id = #{id} and name = #{name};
     </select>
 </mapper>

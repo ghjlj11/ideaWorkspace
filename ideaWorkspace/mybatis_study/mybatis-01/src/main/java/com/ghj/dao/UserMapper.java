@@ -1,6 +1,7 @@
 package com.ghj.dao;
 
 import com.ghj.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ public interface UserMapper {
     List<User> getUserLike(String s);
 
     User getById(int id);
+    User getByIdName(@Param("name") String name ,@Param("id") int id);
 
     void addUser(User user);
 
