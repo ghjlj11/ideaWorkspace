@@ -6,10 +6,13 @@
 
 
     <bean id="hello" class="com.ghj.pojo.Hello">
-<!--        <constructor-arg name="name" value="nie"/>-->
-<!--        <constructor-arg name="age" value="4"/>-->
+<!--        先执行构造，再执行setter，后面的值总是property里的-->
         <property name="name" value="Spring"/>
-        <property name="age" value="5"/>
+        <property name="age">
+            <value>5</value>
+        </property>
+        <constructor-arg name="name" value="nie"/>
+        <constructor-arg name="age" value="4"/>
 <!--        <constructor-arg type="java.lang.String" value="sha"/>-->
 <!--        <constructor-arg index="1" value="2"/>-->
 <!--        <constructor-arg index="0" value="ghj"/>-->

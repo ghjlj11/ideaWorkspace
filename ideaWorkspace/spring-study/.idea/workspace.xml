@@ -4,10 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="java方式注解">
+    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="SpringIoC">
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__com_alibaba_fastjson_1_2_70.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__com_google_code_gson_gson_2_8_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_json_json_20211205.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_32.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__redis_clients_jedis_4_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/redis-01-study.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/src/main/java/com/ghj/TestRedis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-test/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/CPU.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-05/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-05/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/classes/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/classes/beans2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-03-di/src/test/java/com/ghj/pojo/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/src/test/java/com/ghj/pojo/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-03-di/target/test-classes/com/ghj/pojo/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/target/test-classes/com/ghj/pojo/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/test/java/mytest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/test/java/mytest/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/test-classes/mytest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/test-classes/mytest/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +56,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="spring-beans.schema" />
         <option value="Class" />
       </list>
     </option>
@@ -46,7 +85,9 @@
     </option>
   </component>
   <component name="ProjectId" id="275UAlFQScQEgxDMrSEpCWdL47g" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -74,13 +115,13 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Test">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ghj.pojo.Test" />
-      <module name="spring-03-di" />
+  <component name="RunManager" selected="JUnit.Test.test01">
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ghj.myTest.MyTest" />
+      <module name="spring-02-hello" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ghj.pojo.*" />
+          <option name="PATTERN" value="com.ghj.myTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,7 +130,7 @@
       </method>
     </configuration>
     <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-06-appconfig" />
+      <module name="spring-test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
       <option name="TEST_OBJECT" value="class" />
@@ -97,11 +138,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test01 (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-06-appconfig" />
+    <configuration name="MyTest.t1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test01" />
+      <option name="METHOD_NAME" value="t1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,16 +164,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test01.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-05-anno" />
+    <configuration name="Test.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-03-di" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="myTest.*" />
+          <option name="PATTERN" value="com.ghj.pojo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="myTest" />
-      <option name="MAIN_CLASS_NAME" value="myTest.Test01" />
+      <option name="PACKAGE_NAME" value="com.ghj.pojo" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.pojo.Test" />
       <option name="METHOD_NAME" value="test01" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -141,11 +182,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Test" />
+        <item itemvalue="JUnit.Test.test01" />
         <item itemvalue="JUnit.MyTest" />
+        <item itemvalue="JUnit.MyTest.t1" />
+        <item itemvalue="应用程序.MyTest" />
         <item itemvalue="JUnit.MyTest.test01" />
-        <item itemvalue="JUnit.MyTest.test01 (2)" />
-        <item itemvalue="JUnit.Test01.test01" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +222,8 @@
       <workItem from="1653271904367" duration="2390000" />
       <workItem from="1653306438870" duration="6050000" />
       <workItem from="1653350267244" duration="1239000" />
-      <workItem from="1653524816316" duration="1465000" />
+      <workItem from="1653524816316" duration="11879000" />
+      <workItem from="1653555327539" duration="2322000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
@@ -197,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651302082066</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="java">
+      <created>1653529213027</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653529213027</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +265,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="java方式注解" />
-    <option name="LAST_COMMIT_MESSAGE" value="java方式注解" />
+    <MESSAGE value="java" />
+    <MESSAGE value="SpringIoC" />
+    <option name="LAST_COMMIT_MESSAGE" value="SpringIoC" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

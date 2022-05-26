@@ -19,6 +19,7 @@
         <module>spring-08-aop</module>
         <module>spring-10-mybatis</module>
         <module>spring-11-transcation</module>
+        <module>spring-test</module>
     </modules>
 
     <properties>

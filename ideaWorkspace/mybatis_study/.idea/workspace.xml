@@ -5,9 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/java/com/ghj/pojo/CPU.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/java/com/ghj/pojo/Computer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/resources/application.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-05/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-05/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/main/resources/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/main/resources/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/main/resources/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/main/resources/beans2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/classes/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/classes/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/classes/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/classes/beans2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-03-di/src/test/java/com/ghj/pojo/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-03-di/src/test/java/com/ghj/pojo/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/test/java/mytest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/test/java/mytest/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/test-classes/mytest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/test-classes/mytest/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +241,7 @@
       <workItem from="1653266217607" duration="12266000" />
       <workItem from="1653352406296" duration="5903000" />
       <workItem from="1653468352745" duration="542000" />
-      <workItem from="1653523354182" duration="1543000" />
+      <workItem from="1653523354182" duration="3030000" />
     </task>
     <servers />
   </component>
