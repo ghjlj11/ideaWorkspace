@@ -30,8 +30,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/ghj/dao/TeacherMapper.xml"/>
-        <mapper resource="com/ghj/dao/StudentMapper.xml"/>
+<!--        <mapper resource="com/ghj/dao/TeacherMapper.xml"/>-->
+<!--        <mapper resource="com/ghj/dao/StudentMapper.xml"/>-->
+        <package name="com.ghj.dao"/>
 <!--        <mapper class="com.ghj.dao.TeacherMapper"/>-->
 <!--        <mapper class="com.ghj.dao.StudentMapper"/>-->
     </mappers>

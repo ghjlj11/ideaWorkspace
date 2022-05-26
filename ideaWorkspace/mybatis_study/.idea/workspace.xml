@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="" />
+    <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-05/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-05/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/更改 SQL 方言" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -85,7 +89,7 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserMapperTest.tt1">
+  <component name="RunManager" selected="JUnit.TestMapper.test02">
     <configuration name="TestBlog.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-07" />
       <extension name="coverage">
@@ -102,8 +106,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestMapper.test01 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-06" />
+    <configuration name="TestMapper.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-05" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.ghj.dao.*" />
@@ -112,7 +116,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.ghj.dao" />
       <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestMapper" />
-      <option name="METHOD_NAME" value="test01" />
+      <option name="METHOD_NAME" value="test02" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -168,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestMapper.test02" />
         <item itemvalue="JUnit.UserMapperTest.tt1" />
         <item itemvalue="JUnit.UserMapperTest.test03" />
         <item itemvalue="JUnit.UserMapperTest.test08" />
         <item itemvalue="JUnit.TestBlog.test05" />
-        <item itemvalue="JUnit.TestMapper.test01 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -216,6 +220,7 @@
       <workItem from="1653266217607" duration="12266000" />
       <workItem from="1653352406296" duration="5903000" />
       <workItem from="1653468352745" duration="542000" />
+      <workItem from="1653523354182" duration="1543000" />
     </task>
     <servers />
   </component>
