@@ -1129,6 +1129,267 @@ OK
 
 
 
+> 编译型异常，就是代码有问题， 命令有问题，事务中的左右命令都不执行
+
+```bash
+127.0.0.1:6379> multi		
+OK
+127.0.0.1:6379(TX)> set k3 v3 
+QUEUED
+127.0.0.1:6379(TX)> set k4 v4 
+QUEUED
+127.0.0.1:6379(TX)> sets k5 v5		#命令有问题直接提示
+(error) ERR unknown command 'sets', with args beginning with: 'k5' 'v5' 
+127.0.0.1:6379(TX)> set k6 v6 
+QUEUED
+127.0.0.1:6379(TX)> getset k7
+(error) ERR wrong number of arguments for 'getset' command
+127.0.0.1:6379(TX)> exec		#执行事务出问题
+(error) EXECABORT Transaction discarded because of previous errors.
+127.0.0.1:6379> get k6		#获取不到k6.并没有执行前面的。
+(nil)
+127.0.0.1:6379> get k4
+(nil)
+
+```
 
 
-- 
+
+
+
+> 运行时异常， 如果事务队列由语法型错误，那么执行的时候其他命令正常执行， 错误的命令抛出异常
+
+```bash
+127.0.0.1:6379> set k1 "v1"
+OK
+127.0.0.1:6379> multi
+OK
+127.0.0.1:6379(TX)> set k2 v2 
+QUEUED
+127.0.0.1:6379(TX)> INCR k1		#自增字符串，运行时异常
+QUEUED
+127.0.0.1:6379(TX)> set k3 v3 
+QUEUED
+127.0.0.1:6379(TX)> get k3
+QUEUED
+127.0.0.1:6379(TX)> exec		#执行的的时候仅仅是一个命令有错，其他的正常执行
+1) OK
+2) (error) ERR value is not an integer or out of range
+3) OK
+4) "v3"
+127.0.0.1:6379> get k2		#d
+"v2"
+127.0.0.1:6379> get k1
+"v1"
+127.0.0.1:6379> get k3
+"v3"
+
+```
+
+
+
+> 监控！Watch
+
+**悲观锁：**
+
+- 做任何操作都要上锁
+
+**乐观锁：**
+
+- 认为什么时候都不会出问题， 不用上锁， 更新数据的时候进行判断，在此期间是否有人修改过数据
+- 获取版本号version
+- 更新的时候比较版本号version
+
+
+
+> Redis测监视测试
+
+正常执行成功
+
+```bash
+127.0.0.1:6379> set mo 100
+OK
+127.0.0.1:6379> set out 0
+OK
+127.0.0.1:6379> watch mo 	#监视mo对象
+OK
+127.0.0.1:6379> multi
+OK
+127.0.0.1:6379(TX)> decrby mo 20
+QUEUED
+127.0.0.1:6379(TX)> incrby out 20
+QUEUED
+127.0.0.1:6379(TX)> exec		#事务正常执行成功
+1) (integer) 80
+2) (integer) 20
+
+```
+
+
+
+- 开了多线程之后， 如果在监视的时期， 另外一个线程修改了里面对象的值，那么本线程事务就会提交失败。
+- 此时如果要继续执行事务的话， 就要先放弃监视， 然后再重新监视， 然后继续执行事务。
+- 这时Redis就可以利用watch实现乐观锁。
+
+
+
+## Jedis
+
+
+
+使用java来操作Redis
+
+- 导入依赖
+
+```xml
+<dependencies>
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>4.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.70</version>
+        </dependency>
+
+
+    </dependencies>
+```
+
+
+
+- 创建链接
+
+```java
+public class TestRedis {
+    public static void main(String[] args) {
+        Jedis jedis = new Jedis("43.142.32.254",6379);
+        System.out.println(jedis.ping());
+        System.out.println(jedis.keys("*"));
+        System.out.println(jedis.set("k1", "k2"));
+        System.out.println(jedis.get("k1"));
+    }
+}
+
+```
+
+
+
+- 事务
+
+```java
+public class TestRedis {
+    public static void main(String[] args) {
+        Jedis jedis = new Jedis("43.142.32.254",6379);
+        Transaction multi = jedis.multi();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("hello","world");
+        jsonObject.put("name", "ghj");
+        String s = jsonObject.toJSONString();
+        try {
+            multi.set("user1",s);
+            multi.set("user2",s);
+            multi.exec();
+        } catch (Exception e) {
+            multi.discard();
+            e.printStackTrace();
+        }finally {
+            System.out.println(jedis.get("user1"));
+            System.out.println(jedis.get("user2"));
+        }
+    }
+}
+
+```
+
+
+
+## 整合SpringBoot
+
+
+
+- 我们首先创建一个Spring的项目，建项目的时候勾选NoSQL的第一个Redis， 还有Web，主要时下面这个依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+
+
+- 然后可以查看RedisAutoConfiguration的源码， 里面有一个RedisProperties的配置类， 我们只需要在yml文件里面用spring.redis后面的配置就可以配置这里面的属性， 注意SpringBoot集成Redis不是用的jedis， 而是lettuce
+
+```yml
+spring:
+  redis:
+    host: "43.142.32.254"
+    port: 6379
+
+```
+
+
+
+- 我们就可以直接测试，直接注入一个RedisTemplate，就可以使用他的方法， 就跟之前的使用方法是一样的，  redisTemplate.opsForXXXX就可以对某一种类型进行操作， 但是前提需要把MyUser序列化， 或者用json来进行传递数据。
+
+```java
+@SpringBootTest
+class Redis02SpringbootApplicationTests {
+
+    @Autowired
+    RedisTemplate redisTemplate;
+    @Test
+    void contextLoads() throws JsonProcessingException {
+        MyUser myUser = new MyUser("郭欢军", 2);
+        redisTemplate.opsForValue().set("me", myUser);
+        System.out.println(redisTemplate.opsForValue().get("me"));
+    }
+
+}
+```
+
+但是这样进行传递，虽然java可以取到值，但是在命令行上看他的key就是有别的代码。
+
+- 我们可以定义自己的RedisTemplate， 就可以让命令行的key变成正常的了
+
+```java
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    @SuppressWarnings("all")
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        template.setConnectionFactory(factory);
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+
+        // key采用String的序列化方式
+        template.setKeySerializer(stringRedisSerializer);
+        // hash的key也采用String的序列化方式
+        template.setHashKeySerializer(stringRedisSerializer);
+        // value序列化方式采用jackson
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        // hash的value序列化方式采用jackson
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+
+        return template;
+    }
+
+
+}
+```
+
+
+
+- 对于RedisTemplate操作总是有点繁琐， 我们可以写一个工具类， 把RedisTemplate封装进去， 就可以更简便的去使用。

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="cpu" class="com.ghj.pojo.CPU"></bean>
+    <bean name="computer" class="com.ghj.pojo.Computer">
+        <property name="name" value="ghj"/>
+        <property name="cpu" ref="cpu"/>
+        <property name="cpu.id" value="23"/>
+        <property name="cpu.name" value="kkk"/>
+        <constructor-arg name="name" value="lll"/>
+        <constructor-arg name="id" value="002"/>
+        <constructor-arg name="cpu" ref="cpu"/>
+    </bean>
+</beans>

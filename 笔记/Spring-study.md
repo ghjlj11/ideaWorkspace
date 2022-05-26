@@ -17,7 +17,9 @@
 
 ### 理解IOC（控制反转）
 
-- 创建类对象的过程将交给Spring容器来做，不用自己手动new 容器就是Spring的beans，他会自己创建对象，我们写好程序后，不用管程序，只需要修改beans里的参数就可以实现创建想要的对象。
+- Spring中的IoC就是DI依赖注入， 底层需要的技术有，xml文件解析或者注解扫描， 反射，工厂模式，通过解析xml文件然后使用反射的技术构建bean， 并把参数注入到bean中， 然后通过工厂模式生产出bean， 我们就可以直接从工厂中取出bean使用。
+
+- 将创建对象的过程，以及对象调度过程交给Spring容器来做，不用自己手动new 容器就是Spring的beans，他会自己创建对象，我们写好程序后，不用管程序，只需要修改beans里的参数就可以实现创建想要的对象。
 
 
 
@@ -98,7 +100,7 @@
 
 ## 依赖注入
 
-
+- **Spring在构建ClassPathXmlApplicationContext时候就把所有的bean都创建好了**
 
 ### 概念
 
@@ -108,7 +110,7 @@
 
 ### 构造器注入
 
-- 使用constructor-arg则采用有参构造函数，
+- 使用constructor-arg则采用有参构造函数，使用property则是使用setter注入
 
 ```xml
     <bean id="hello" class="com.ghj.pojo.Hello">
@@ -132,11 +134,9 @@
       <import resource="beans2.xml"/>
   ```
 
-### set注入
+### Setter注入
 
-
-
-- 基于类元素的set函数来设置里面的值，因为调用的是无参构造；
+- 基于 Setter 的 DI 是通过容器在调用无参数构造函数或无参数静态工厂方法来实例化 bean 后调用 bean 上的 setter 方法来完成的。
 
 - 定义一个Student类与Address类
 
@@ -317,7 +317,7 @@
       </bean>
   ```
 
-- 可以给元素设置null值 。、
+- 可以给元素设置null值 。
 
 - 使用p命名，与c命名。
 
@@ -337,7 +337,7 @@
   </beans>
   ```
 
-  p调用的是无参构造，而c调用的是有参构造。
+  p就是取代了上面的property，而c取代了constructor-arg。
 
 
 
