@@ -358,8 +358,118 @@
   ```
 
   原型模式就是只有要调用的时候才会生成一个对象，并且生成的都是新的对象。
+  
+  
+
+- 请求模式
+
+  ```xml
+  <bean id="user" class="com.ghj.pojo.User" p:name="hgj" p:age="21" scope="request"/>
+  ```
+
+  在一个请求中使用同一个bean
+
+- 会话模式
+
+  ```xml
+  <bean id="user" class="com.ghj.pojo.User" p:name="hgj" p:age="21" scope="session"/>
+  ```
+
+  在一个会话中使用的是同一个bean
 
 
+
+## Bean的生命周期
+
+- 首先创建一个实例
+
+```java
+@Data
+@AllArgsConstructor
+public class Computer {
+    private Integer id;
+    private String name;
+    private CPU cpu;
+    static{
+        System.out.println("static....");
+    }
+    public void init (){
+        System.out.println("初始化....");
+    }
+    public void destroy(){
+        System.out.println("销毁了....");
+    }
+    public Computer(){
+        System.out.println("执行了 无参构造");
+    }
+}
+
+```
+
+
+
+- 通过xml注入到Spring里面去
+
+```xml
+<bean name="cpu" class="com.ghj.pojo.CPU"></bean>
+    <bean name="computer" class="com.ghj.pojo.Computer" init-method="init" destroy-method="destroy">
+        <property name="name" value="ghj"/>
+        <property name="cpu" ref="cpu"/>
+        <property name="cpu.id" value="23"/>
+        <property name="cpu.name" value="kkk"/>
+    </bean>
+```
+
+
+
+- 然后直接测试
+
+```java
+public class MyTest {
+    @Test
+    public void t1(){
+        System.out.println("-------------------");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        System.out.println("-------------------");
+        Computer computer = context.getBean("computer", Computer.class);
+        System.out.println("-------------------");
+        System.out.println(computer);
+        context.close();
+    }
+}
+```
+
+
+
+- 测试结果是
+
+```txt
+-------------------
+static....
+执行了 无参构造
+初始化....
+-------------------
+-------------------
+Computer(id=null, name=ghj, cpu=CPU(id=23, name=kkk))
+销毁了....
+
+进程已结束,退出代码0
+
+```
+
+
+
+bean的生命周期
+
+- 首先创建实例
+-  为bean的属性设置值，和对其他bean引用（调用set方法）
+-  把bean的实例传递bean后置处理器的方法（postProcessBeforeInitialization）
+- 执行指定的init方法
+- 把bean的实例传递bean后置处理器的方法（postProcessAfterInitialization）
+- bean对象的使用， 调用
+- bean销毁
+
+-- 如果想要实现bean的前后置的方法， 需要有一个类实现了BeanPostProcessor接口， 然后重写该方法， 并且把这个类注入到Spring里面去就可以了。
 
 ## 自动装配
 

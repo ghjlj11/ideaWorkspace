@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="SpringIoC">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/src/main/resources/userbeans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/src/main/resources/userbeans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" afterDir="false" />
+    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="Bean的生命周期">
       <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +184,7 @@
       <workItem from="1653350267244" duration="1239000" />
       <workItem from="1653524816316" duration="11879000" />
       <workItem from="1653555327539" duration="2322000" />
-      <workItem from="1653609944181" duration="2909000" />
+      <workItem from="1653609944181" duration="3562000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
@@ -212,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653529213027</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Bean的生命周期">
+      <created>1653621693005</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653621693005</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +235,8 @@
     <MESSAGE value="java方式注解" />
     <MESSAGE value="java" />
     <MESSAGE value="SpringIoC" />
-    <option name="LAST_COMMIT_MESSAGE" value="SpringIoC" />
+    <MESSAGE value="Bean的生命周期" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bean的生命周期" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
