@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="user" class="com.ghj.pojo.User" p:name="hgj" p:age="21" scope="prototype"/>
+    <bean id="user" class="com.ghj.pojo.User" p:name="hgj" p:age="21" scope="request"/>
 
     <bean id="user2" class="com.ghj.pojo.User" c:name="lj" c:_1="33" />
 </beans>

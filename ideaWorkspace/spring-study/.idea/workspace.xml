@@ -5,46 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="SpringIoC">
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__com_alibaba_fastjson_1_2_70.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__com_google_code_gson_gson_2_8_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_json_json_20211205.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_32.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/libraries/Maven__redis_clients_jedis_4_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/redis-01-study.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../redis-study/redis-01-study/src/main/java/com/ghj/TestRedis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/CPU.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/main/resources/beans2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/src/test/java/com/ghj/myTest/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/classes/beans.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/classes/beans2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/src/test/java/com/ghj/pojo/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/src/test/java/com/ghj/pojo/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/test-classes/com/ghj/pojo/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/target/test-classes/com/ghj/pojo/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/main/java/com/ghj/pojo/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/src/test/java/mytest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/src/test/java/mytest/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/test-classes/mytest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-04-Autowired/target/test-classes/mytest/MyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-03-di/src/main/resources/userbeans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-03-di/src/main/resources/userbeans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/pojo/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../redis-study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -115,7 +80,7 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Test.test01">
+  <component name="RunManager" selected="JUnit.MyTest.t1">
     <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ghj.myTest.MyTest" />
       <module name="spring-02-hello" />
@@ -182,9 +147,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Test.test01" />
-        <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest.t1" />
+        <item itemvalue="JUnit.MyTest" />
+        <item itemvalue="JUnit.Test.test01" />
         <item itemvalue="应用程序.MyTest" />
         <item itemvalue="JUnit.MyTest.test01" />
       </list>
@@ -224,6 +189,7 @@
       <workItem from="1653350267244" duration="1239000" />
       <workItem from="1653524816316" duration="11879000" />
       <workItem from="1653555327539" duration="2322000" />
+      <workItem from="1653609944181" duration="2909000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

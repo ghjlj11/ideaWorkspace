@@ -8,8 +8,12 @@ import java.util.Properties;
 public class MyTest {
     @Test
     public void t1(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        System.out.println("-------------------");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        System.out.println("-------------------");
         Computer computer = context.getBean("computer", Computer.class);
+        System.out.println("-------------------");
         System.out.println(computer);
+        context.close();
     }
 }
