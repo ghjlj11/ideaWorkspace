@@ -757,9 +757,25 @@ public class MyTest {
 
 
 
+## 代理模式
+
+- 代理模式就是，我们需要使用某个对象的功能时， 我们不直接使用他，而是创建一个代理对象， 代理对象拥有其所有的功能， 或者增强其功能，通过代理对象实现功能。
+
+### 静态代理
+
+创建一个目标类， 然后创建一个代理类， 静态代理针对于单个的类，如果需要为另一个类代理的话，就需要再创建一个代理类。
 
 
-##  动态代理
+
+### 动态代理
+
+- 动态代理可以实现，不管往里面放什么类，都会对其进行代理，其原理就是通过反射内部创建一个代理的类。
+
+
+
+#### java自带的代理Proxy
+
+- **基于接口的代理方式**
 
 我们先创建一个可以生成动态代理实现InvocationHandler接口的类， 这个需要重写invoke（）方法， 放进一个需要被代理的对象则会生成一个相应的代理对象， 这个过程可以用创建一个getProxy（）方法， 使用Proxy类的获得代理实例的静态方法 ： 
 
@@ -793,6 +809,7 @@ Proxy.newProxyInstance(this.getClass().getClassLoader(),
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
   
           log(method.getName());
+          
           Object result =method.invoke(target, args);
           return result;
       }
@@ -823,15 +840,97 @@ public class MyTest {
 
 ```
 
-
-
-代理可以实现UserServiceImp的所有方法；
+**值得注意的是， 这里的Proxy是基于接口的代理方式，代理生成的代理类只会有传入参数中的接口的那些方法， 如果目标对象有他自己的方法， 那么就不会被代理，代理类里面没有这些独有的方法**
 
 
 
-- 动态代理的好处
+#### cglib
 
-  ![image-20220405213900973](img\image-20220405213900973.png)
+- **基于类的代理方式， 也可基于接口**
+
+1、需要引入cglib依赖
+
+```xml
+<dependency>
+    <groupId>cglib</groupId>
+    <artifactId>cglib</artifactId>
+    <version>3.3.0</version>
+</dependency>
+```
+
+2、需要配置vm选项， 在编辑配置中修改选项，加上配置`--add-opens java.base/java.lang=ALL-UNNAMED`才可以正常运行。
+
+- 我们建两个接口，然后一个实现类实现两个接口， 其中的`isM`方法是实现类自己的
+
+```java
+public class FooImp implements Foo, Koo{
+
+    @Override
+    public void add(int i, int j) {
+        int k = i + j;
+        System.out.println("结果为： " + k);
+    }
+    public void isM(String name){
+        System.out.println("is me " + name);
+    }
+
+    @Override
+    public void kkk(String a, String b) {
+        System.out.println(a + "......" + b);
+    }
+}
+
+```
+
+
+
+- 测试
+
+```java
+public class TestCglib {
+    public static void main(String[] args) {
+        FooImp fooImp = new FooImp();
+        Class[] interfaces = new Class[]{Koo.class, Foo.class};
+        System.out.println(Arrays.toString(interfaces));
+        System.out.println("fooImp的接口==>"+Arrays.toString(fooImp.getClass().getInterfaces()));
+        Object o = Enhancer.create(fooImp.getClass(),  new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                System.out.println("执行之前啊");
+                Object invoke = method.invoke(fooImp, args);
+                System.out.println("执行完了啊");
+                return invoke;
+            }
+        });
+        System.out.println("o的class==>"+o.getClass());
+        System.out.println("o的父类==>"+o.getClass().getSuperclass());
+        System.out.println("o的接口==>"+Arrays.toString(o.getClass().getInterfaces()));
+        System.out.println("--------------------------------");
+        if(o instanceof Foo){
+            System.out.println("是属于Foo这个接口的");
+        }
+        if(o instanceof Koo){
+            System.out.println("是属于Koo这个接口的");
+        }
+        if(o instanceof FooImp f){
+            System.out.println("----------");
+            f.kkk("a", "b");
+            f.isM("hahah");
+        }
+    }
+}
+
+```
+
+**这里的create方法有重载， 可以是两个参数，也可以三个参数。如果第一个参数是目标对象的class， 那么其内部的代理类会有目标对象自己的方法， 否则只会有接口的方法。**
+
+
+
+>  #### 动态代理的好处
+
+
+
+![image-20220405213900973](img\image-20220405213900973.png)
 
 
 
