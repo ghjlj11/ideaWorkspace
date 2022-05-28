@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/static/selectAll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/java/com/ghj/dynamic_proxy/Foo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/java/com/ghj/dynamic_proxy/FooImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-test/src/main/java/com/ghj/dynamic_proxy/TestProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +72,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring-study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -238,6 +243,8 @@
       <workItem from="1653097908633" duration="1405000" />
       <workItem from="1653124540704" duration="1029000" />
       <workItem from="1653179926147" duration="2460000" />
+      <workItem from="1653661610252" duration="681000" />
+      <workItem from="1653696529701" duration="395000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>
