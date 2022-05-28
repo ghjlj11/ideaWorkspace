@@ -98,6 +98,23 @@ LPUSH: 145560.41 requests per second
 
 
 
+- 开启Redis服务与关闭，开启客户端与关闭，首先找到redis.conf对应的目录
+
+```bash
+redis-server redis.conf  	#开启服务
+redis-cli -p 6379		#开启客户端
+127.0.0.1:6379> ping		#测试链接
+PONG
+127.0.0.1:6379> SHUTDOWN		#关闭服务
+not connected> exit
+
+
+```
+
+
+
+
+
 - Redis里面一共有16个数据库， 默认选择的是0号数据库， 我们可以通过``select index``切换
 
 ```bash
@@ -1393,3 +1410,616 @@ public class RedisConfig {
 
 
 - 对于RedisTemplate操作总是有点繁琐， 我们可以写一个工具类， 把RedisTemplate封装进去， 就可以更简便的去使用。
+
+
+
+## Redis.config详解
+
+- 找到对应的redis.config文件， 这个就是Redis的配置文件 ，使用vim命令进行编辑
+
+```bash
+protected-mode no 	#是否开启保护模式
+
+port 6379 #端口号
+
+################################ SNAPSHOTTING  ################################
+关于RDB的一些操作
+
+############################## APPEND ONLY MODE ###############################
+关于AOF的一些操作
+```
+
+
+
+
+
+## Redis持久化
+
+
+
+### RDB（Redis Database）
+
+
+
+在指定的时间间隔将内存中的数据集快照写入磁盘，也就是Snapshot， 他恢复时是将快照文件直接读到内存
+
+
+
+Redis会单独创建一个子进程来进行持久化， 会先将数据写入到一个临时的文件中， 待持久化过程都结束， 在用这个文件替换上次持久化的文件。整个过程主进程不进行IO操作， 确保了性能极高， 如果需要进行大规模数据的恢复，且对于恢复的完整性不是非常敏感， 那么RDB比AOF会更加高效， RDB的缺点就是最后一次的持久化后的数据可能会丢失，我们默认就是使用的RDB， 一般不需要修改这个配置。
+
+
+
+- 我们通过修改配置文件的RDB对应的属性， 修改把之前的save注释， 然后加上`save 60 3` 代表60秒内执行了3次操作的话就会保存文件， 保存的文件名也可以配置  ， 默认是 `dbfilename dump.rdb`， 就是保存在dump.rdb文件里面， 我们首先删除这个文件， 然后操作几次。
+
+```bash
+#########################################################################################
+先删除文件， 然后另一个线程执行几次跟新或者查询数据库的语句 ，就是set或者get，就会发现又有这个文件了。
+
+[root@ghj-study ghjconfig]# ls 
+dump.rdb  redis.conf
+[root@ghj-study ghjconfig]# rm dump.rdb 
+rm: remove regular file ‘dump.rdb’? y
+[root@ghj-study ghjconfig]# ls
+redis.conf
+[root@ghj-study ghjconfig]# ls
+dump.rdb  redis.conf
+
+```
+
+
+
+- 如果我们保存好了文件没有删除， 我们再来重启一下redis的服务器， 这时候按理来说里面应该是没有数据了， 因为存在缓存里面重启就没了， 但是我们进行了持久化， 这时候开启客户端又可以发现之前保存的那些key都还存在
+
+```bash
+127.0.0.1:6379> SHUTDOWN		#关闭服务
+not connected> exit
+[root@ghj-study ghjconfig]# redis-server redis.conf 		#开启服务与开启客户端
+[root@ghj-study ghjconfig]# redis-cli -p 6379
+127.0.0.1:6379> keys *
+1) "k3"
+2) "k1"
+3) "k2"
+127.0.0.1:6379> get k1			#依然可以获取里面的值
+"v"
+
+```
+
+
+
+> 触发机制
+
+- 满足save的条件
+- 执行flushdb命令
+- 退出redis
+
+备份就会自动生成一个.rdb文件， 只要rdb文件在redis.config文件所在的目录下， 我们下次开启redis服务就会自动读取这个服务，恢复数据。
+
+
+
+> **优点**
+
+- 适合大规模的数据恢复
+- 对数据的完整性要求不高
+
+> **缺点**
+
+- 需要一定的时间间隔进行操作， 如果redis意外宕机了， 最后一次的数据就没了
+- fork进程的时候， 会占用一定的内存。
+
+
+
+### AOF（Append Only File）
+
+将我们所有的命令都记录下来（除了读的操作）， 恢复的时候就在执行一次所有的命令， 只许追加文件， 但是不可以修改文件， redis启动的时候就会读取文件， 重新构建数据， 就是再执行一次所有的命令，然后恢复数据。
+
+我们首先查看一下peizhiwenjian
+
+```bash
+appendonly no		#这里默认是关闭的
+
+appendfilename "appendonly.aof"		#保存下来的文件名
+appenddirname "appendonlydir"		#保存文件的文件夹
+
+# appendfsync always
+appendfsync everysec		#这里默认的配置是每秒钟都保存一次
+# appendfsync no
+
+```
+
+- 只需要把`appendonly`改成yes即可
+
+然后修改完配置文件只需要重启一下redis就可以了
+
+```bash
+127.0.0.1:6379> SHUTDOWN
+not connected> exit
+[root@ghj-study ghjconfig]# redis-server redis.conf 
+[root@ghj-study ghjconfig]# redis-cli -p 6379
+127.0.0.1:6379> ping
+PONG
+
+```
+
+- 在另一个线程里面就可以查看到有对应的文件夹以及文件。
+
+我们set几个值然后查看文件里的内容
+
+```bash
+^M
+*3^M
+$3^M
+set^M
+$2^M
+k1^M
+$2^M
+v1^M
+*3^M
+$3^M
+set^M
+$2^M
+k2^M
+                
+```
+
+
+
+- 如果说我们的aof文件出错误了，我们重启redis服务就会失败 ， 这是我们需要找到`redis-check-aof` 这个文件去修复aof文件，下面的命令就可以了， 但是出错的那条语句会被删除， 就会导致少了一些数据
+
+```bash
+redis-check-aof --fix ghjconfig/appendonlydir/appendonly.aof.1.incr.aof
+```
+
+
+
+> **优点**
+
+- 每次修改都同步， 文件的完整会更加好
+- 每秒同步一次， 会丢失最后一秒的数据
+
+> **缺点**
+
+- 对于数据文件来说aof远远大于rdb， 修复速度也是很慢
+- Aof运行的效率也比rdb慢得多， 因为Aof是文件读取操作IO操作，会比rdb慢得多
+
+
+
+如果说同时开启了RDB与AOF那么数据恢复会默认使用AOF的文件
+
+
+
+## Redis发布订阅
+
+
+
+- 首先打开两个redis的服务端， 这个作为是关注公众号的人。
+
+```bash
+127.0.0.1:6379> subscribe ghjlj  	#关注某个频道
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "ghjlj"
+3) (integer) 1
+#等待接收信息
+```
+
+
+
+- 这个客户端就当作是公众号
+
+```bash
+127.0.0.1:6379> publish ghjlj "hi"		#往频道里面发布消息
+(integer) 1
+127.0.0.1:6379> publish ghjlj "hello"
+(integer) 1
+
+```
+
+
+
+- 另一个客户端不需要执行任何操作， 就可以获得信息
+
+```bash
+127.0.0.1:6379> subscribe ghjlj
+Reading messages... (press Ctrl-C to quit)
+1) "subscribe"
+2) "ghjlj"
+3) (integer) 1
+1) "message"		#消息#自动获取信息
+2) "ghjlj"		#消息的频道
+3) "hi"			#消息的内容
+1) "message"
+2) "ghjlj"
+3) "hello"
+
+```
+
+
+
+
+
+## 主从复制
+
+主从复制， 是指将一台Redis的服务器的数据复制到其他的Redis服务器。前者就是主节点（master），后者就是从节点（slave）；数据复制是单向的， 只能从主节点到从节点，master以写为主， slave以读为主。
+
+主从复制，读写分离，可以减缓服务器的压力。
+
+**默认情况下， 每个redis服务器都是一个主节点**
+
+一个主节点可以有多个从节点， 但一个从节点只可以有一个主节点。
+
+**主从复制的作用主要包括：**
+
+1、数据冗余
+
+2、故障恢复
+
+3、负载均衡
+
+4、高可用（集群）基石
+
+
+
+### 环境配置
+
+只需要配置从库， 不用配置主库
+
+```bash
+127.0.0.1:6379> info replication
+# Replication
+role:master					#当前角色， 主机
+connected_slaves:0			#从机数量
+master_failover_state:no-failover
+master_replid:ef762559619e3000d6840889ef5d484d50161b7d
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:0
+second_repl_offset:-1
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+
+```
+
+
+
+#### 一主二从
+
+- 首先复制三个redis.conf文件重命名， 然后vim修改里面的配置， 把端口号， 日志文件输出名，RDB对应的配置， 还有pidfile就好了，然后开启多个服务， 查看后台看有没有成功
+
+```bash
+[root@ghj-study ghjconfig]# ps -ef|grep redis
+root      5784     1  0 22:20 ?        00:00:00 redis-server 0.0.0.0:6379
+root      5896     1  0 22:20 ?        00:00:00 redis-server 0.0.0.0:6380
+root      6191     1  0 22:21 ?        00:00:00 redis-server 0.0.0.0:6381
+root      8124 32470  0 22:29 pts/0    00:00:00 grep --color=auto redis
+
+```
+
+- 一般情况我们只需要配置从机。在从机上使用命令就可以去认主机，把自己变成从机
+
+```bash
+127.0.0.1:6380> slaveof 127.0.0.1 6379		#去认老大， 地址与端口号
+OK
+127.0.0.1:6380> info replication			#查看当前服务的info
+# Replication
+role:slave									#自己的角色变成了从机
+master_host:127.0.0.1						#主机地址
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:5
+master_sync_in_progress:0
+slave_read_repl_offset:14
+slave_repl_offset:14
+slave_priority:100
+slave_read_only:1
+replica_announced:1
+connected_slaves:0
+master_failover_state:no-failover
+master_replid:84c4a8ea8e26a939244709ba7fcf4c9336d3c1ac
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:14
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:15
+repl_backlog_histlen:0
+
+#########################################################################################
+再来查看一下主机的info
+
+127.0.0.1:6379> info replication
+# Replication
+role:master
+connected_slaves:1
+slave0:ip=127.0.0.1,port=6380,state=online,offset=70,lag=0		#从机的信息
+master_failover_state:no-failover
+master_replid:84c4a8ea8e26a939244709ba7fcf4c9336d3c1ac
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:70
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:70
+
+
+
+```
+
+
+
+- 这样的主从配置只是暂时的，真实的是需要修改配置文件， 才可以永久的配置。关于主从复制的配置也在配置文件里面
+
+```bash
+################################# REPLICATION #################################
+
+# replicaof <masterip> <masterport>   #配置主机的ip与端口号
+
+# masterauth <master-password>		#主机的密码
+```
+
+
+
+**主机负责写， 从机负责读， 从机的数据会与主机同步， 从机不能写数据**
+
+```bash
+#########################################################################################
+在主机中写入数据
+
+127.0.0.1:6379> keys *		#主机可以正常的get与set
+(empty array)
+127.0.0.1:6379> set k1 v1
+OK
+#########################################################################################
+从机中可以直接读取， 但是从机是不可以写入数据的
+
+127.0.0.1:6380> keys *
+1) "k1"
+127.0.0.1:6380> get k1
+"v1"
+127.0.0.1:6380> set k2 v2
+(error) READONLY You can't write against a read only replica.
+```
+
+
+
+- 期间就算主机宕机， 从机依旧可以获得数据， 如果主机重连了， 那么从机还会继续共享主机的数据。
+
+```bash
+#########################################################################################
+主机断开重连，并设置值
+
+127.0.0.1:6379> set k1 v1
+OK
+127.0.0.1:6379> SHUTDOWN
+not connected> exit
+[root@ghj-study ghjconfig]# redis-server redis79.conf 
+[root@ghj-study ghjconfig]# redis-cli -p 6379
+127.0.0.1:6379> keys *
+1) "k1"
+127.0.0.1:6379> set k2 v2
+OK
+
+#########################################################################################
+从机依旧获得k2
+
+127.0.0.1:6380> get k2
+"v2"
+
+
+
+```
+
+
+
+- 如果从机宕机， 那么重连回来， 主机的数据依然可以共享，但是我们这里使用命令配置的主机， 所以重连回来还需要设置主机， 数据还是可以共享， 即使是在从机宕机的时候新增的数据依旧可以共享， 这说明， 只要新加了从机，那么他就会直接共享主机的数据， 即使他之前没有链接主机。
+
+> 复制原理
+
+- 全量复制：刚开始链接主机的时候， master就会发送一个sync命令， 从机就会全部复制里面的数据。
+- 增量复制：连接之后， 主机新增的数据也会同步到从机里面， 就是增量复制。
+
+
+
+#### 层层链路
+
+这个模型，就与之前的不同， 他是第一个为主节点， 下一个是前一个的从节点， 就是三个的主节点是第二个节点， 中间的节点既是主节点， 也是从节点。
+
+
+
+这样的话第一个主节点就只有一个从节点，第二个节点是最特殊的，他既是主节点也是从节点， 但是他的角色依旧是从节点 ，也就是只可以读。
+
+```bash
+127.0.0.1:6380> info replication
+# Replication
+role:slave
+master_host:127.0.0.1
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:9
+master_sync_in_progress:0
+slave_read_repl_offset:37670
+slave_repl_offset:37670
+slave_priority:100
+slave_read_only:1
+replica_announced:1
+connected_slaves:1
+slave0:ip=127.0.0.1,port=6381,state=online,offset=37670,lag=1
+master_failover_state:no-failover
+master_replid:fba2d2377bd3218fa78a061225f7eb862480a3f6
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:37670
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:11373
+repl_backlog_histlen:26298
+
+```
+
+
+
+- 如果此时主节点宕机， 那第二个节点相当主节点的话，就要执行命令
+
+```bash
+
+127.0.0.1:6380> slaveof no one			#自己当主节点
+OK
+127.0.0.1:6380> info replication
+# Replication
+role:slave
+master_host:127.0.0.1
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:9
+master_sync_in_progress:0
+slave_read_repl_offset:37670
+slave_repl_offset:37670
+slave_priority:100
+slave_read_only:1
+replica_announced:1
+connected_slaves:1
+slave0:ip=127.0.0.1,port=6381,state=online,offset=37670,lag=1
+master_failover_state:no-failover
+master_replid:fba2d2377bd3218fa78a061225f7eb862480a3f6
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:37670
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:11373
+repl_backlog_histlen:26298
+
+```
+
+
+
+## 哨兵模式（sentinel）
+
+如果说主节点宕机了， 那么需要选举出一个新的主节点，哨兵就是用来监控所有的节点是否宕机，就是一个进程， 一直往所有的节点发请求，如果没有响应， 那么就认为节点宕机了，哨兵也有可能宕机， 所以会有多个哨兵相互监视，当主节点宕机， 那么就会由某一个哨兵发起一次投票， 选取下一个主节点。
+
+**最好参见官网**
+
+- 配置哨兵配置文件，在redis.conf同及目录下创建一个sentinel.conf文件，配置：
+
+```bash
+sentinel monitor myredis 127.0.0.1 6379 1 #这里代表这个哨兵监视了127.0.0.1 的6379端口的主服务器，这个主服务器判断失效至少需要1个sentinel同意才可以
+```
+
+
+
+到bin目录下启动sentinel服务，使用命令`redis-sentinel ghjconfig/sentinel.conf `即可。
+
+
+
+- 如果说此时关闭了6379的主节点，那么哨兵过一会就会选举出新的主节点
+
+```bash
+
+2844:X 28 May 2022 15:48:22.629 * +failover-state-send-slaveof-noone slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:22.687 * +failover-state-wait-promotion slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:23.536 * Sentinel new configuration saved on disk
+2844:X 28 May 2022 15:48:23.536 # +promoted-slave slave 127.0.0.1:6381 127.0.0.1 6381 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:23.536 # +failover-state-reconf-slaves master myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:23.602 * +slave-reconf-sent slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:24.543 * +slave-reconf-inprog slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:24.543 * +slave-reconf-done slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:24.620 # +failover-end master myredis 127.0.0.1 6379
+2844:X 28 May 2022 15:48:24.620 # +switch-master myredis 127.0.0.1 6379 127.0.0.1 6381
+2844:X 28 May 2022 15:48:24.620 * +slave slave 127.0.0.1:6380 127.0.0.1 6380 @ myredis 127.0.0.1 6381
+2844:X 28 May 2022 15:48:24.620 * +slave slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381
+2844:X 28 May 2022 15:48:24.631 * Sentinel new configuration saved on disk
+2844:X 28 May 2022 15:48:54.633 # +sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ myredis 127.0.0.1 6381
+#修改其他的从节点的主机为6381
+
+```
+
+- 自动故障迁移（Automatic failover）： 当一个主服务器不能正常工作时， Sentinel 会开始一次自动故障迁移操作，  它会将失效主服务器的其中一个从服务器升级为新的主服务器， 并让失效主服务器的其他从服务器改为复制新的主服务器；  当客户端试图连接失效的主服务器时， 集群也会向客户端返回新主服务器的地址， 使得集群可以使用新主服务器代替失效服务器。
+
+
+
+- 如果说旧的主机回归， 那么也不会成为主节点， 只会变成新的主节点的从节点。
+
+
+
+> 哨兵模式
+
+优点：
+
+- 哨兵集群， 基于主从复制，有主从复制的所有优点
+- 主从可以切换故障转移
+- 可以自动化，自动切换
+
+缺点：
+
+- Redis不好做在线扩容，集群容量满了， 那就很麻烦
+- 哨兵模式的配置很麻烦
+
+
+
+## 缓存穿透与雪崩
+
+
+
+### 缓存穿透
+
+
+
+- 当客户端查询的内容缓存中没有，那么就会直接去数据库中查询，但如果本身就没有这个数据， 数据库中也没有， 那么如果大量的请求访问数据库， 数据库就会崩了，就相当于出现了缓存穿透。
+
+> ### 解决方案
+
+**布隆过滤器**
+
+布隆过滤器是一种数据结构， 对所有可能查询的参数以hash形式存储， 在控制层先进行校验，不符合就丢弃， 从而避免了对底层存储系统的查询压力；
+
+
+
+**缓存空对象**
+
+当存储层不命中后，即使返回的空对象也将其缓存起来，同时会设置一个过期时间， 之后在访问这个数据就会从缓存中获取，保护了后端数据源。
+
+缺点：
+
+- 有大量的空的缓存，浪费了空间
+- 虽然空缓存会有过期时间， 但是还是会有一段时间缓存层与存储层的数据不一致，就会导致一些业务很麻烦。
+
+
+
+### 缓存击穿
+
+这个与缓存穿透有区别， 当某一个key非常热点， 不停的被请求，由于有缓存过期， 如果这个key在失效的瞬间，就会有大量的请求到数据库， 就像是屏幕被打开了一个洞， 这时候数据库就会有很大的压力。
+
+
+
+> 解决方案
+
+**设置热点key不过期**
+
+但是不过期的话就会有大量的key一直被保存，就会占用大量的空间。
+
+**加互斥锁**
+
+分布式锁： 使用分布式锁，保证同时只有一个线程去查询后端服务， 其他线程没有权限， 因此需要等待，这时候，压力就都到了分布式锁这边。
+
+
+
+### 缓存雪崩
+
+当很多key在某一时间被集中访问， 那么等到key的过期时间之后，就会有一段时间有大量的key都不在缓存， 需要去查找数据库，这时候数据库就可能崩掉
+
+> 解决方案
+
+**Redis高可用**
+
+这个就是，多增加几台Redis服务即可， 这样一个宕机之后还有其他的可以继续工作，其实就是搭建集群。
+
+**限流降级**
+
+缓存失效后，通过加锁或者队列来控制都数据库写缓存的线程数量。
+
+还有就是服务降级， 关掉某一些服务， 从而把服务器用到那些使用很频繁的服务上。
+
+**数据预热**
+
+在正式部署前， 把所有的可能的数据都访问一般，这样就会有很多数据加载到缓存。
