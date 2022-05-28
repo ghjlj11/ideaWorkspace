@@ -12,10 +12,10 @@ import java.util.Arrays;
 public class TestCglib {
     public static void main(String[] args) {
         FooImp fooImp = new FooImp();
-        Class[] interfaces = new Class[]{Koo.class, Foo.class};
-        System.out.println(Arrays.toString(interfaces));
-        System.out.println("fooImp的接口==>"+Arrays.toString(fooImp.getClass().getInterfaces()));
-        Object o = Enhancer.create(fooImp.getClass(),  new InvocationHandler() {
+        Class[] interfaces = new Class[]{ Foo.class, Koo.class};
+        System.out.println("fooImp的接口==>" + Arrays.toString(interfaces));
+        System.out.println("fooImp的接口==>" + Arrays.toString(fooImp.getClass().getInterfaces()));
+        Object o = Enhancer.create(fooImp.getClass(), interfaces,  new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("执行之前啊");

@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="proxy">
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/Koo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestCglib.java" afterDir="false" />
+    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/Foo.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/Foo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/FooImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/FooImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestCglib.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestCglib.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
@@ -199,7 +194,7 @@
       <workItem from="1653524816316" duration="11879000" />
       <workItem from="1653555327539" duration="2322000" />
       <workItem from="1653609944181" duration="7779000" />
-      <workItem from="1653696569614" duration="6650000" />
+      <workItem from="1653696569614" duration="11897000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
@@ -236,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653697399912</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="测试cglib">
+      <created>1653707521051</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653707521051</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +261,8 @@
     <MESSAGE value="SpringIoC" />
     <MESSAGE value="Bean的生命周期" />
     <MESSAGE value="proxy" />
-    <option name="LAST_COMMIT_MESSAGE" value="proxy" />
+    <MESSAGE value="测试cglib" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试cglib" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
