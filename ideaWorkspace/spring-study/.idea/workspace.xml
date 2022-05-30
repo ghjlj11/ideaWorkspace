@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
+      <change afterPath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/log/MethodAround.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-08-aop/src/main/resources/factoryBean.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestCglib.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestCglib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/diy/AnnotationPointCut.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/diy/AnnotationPointCut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/diy/DiyPointCut.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/diy/DiyPointCut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/log/AfterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/log/AfterLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/main/java/com/ghj/log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/AnnotationPointCut.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/AnnotationPointCut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/DiyPointCut.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/DiyPointCut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/AfterLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/AfterLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/Log.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-08-aop/target/test-classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/dynamic_proxy/TestProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
@@ -19,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="spring-beans.schema" />
         <option value="Interface" />
+        <option value="spring-beans.schema" />
         <option value="Class" />
       </list>
     </option>
@@ -61,11 +77,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -79,7 +98,14 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.TestCglib">
+  <component name="RunManager" selected="应用程序.MyTest">
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <module name="spring-08-aop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestCglib" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ghj.dynamic_proxy.TestCglib" />
       <module name="spring-test" />
@@ -126,36 +152,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-03-di" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ghj.pojo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ghj.pojo" />
-      <option name="MAIN_CLASS_NAME" value="com.ghj.pojo.Test" />
-      <option name="METHOD_NAME" value="test01" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="JUnit.MyTest" />
       <item itemvalue="JUnit.MyTest.t1" />
-      <item itemvalue="JUnit.Test.test01" />
       <item itemvalue="应用程序.TestCglib" />
       <item itemvalue="应用程序.TestProxy" />
+      <item itemvalue="应用程序.MyTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.TestCglib" />
+        <item itemvalue="应用程序.MyTest" />
         <item itemvalue="应用程序.TestProxy" />
+        <item itemvalue="应用程序.TestCglib" />
         <item itemvalue="JUnit.MyTest.t1" />
         <item itemvalue="JUnit.MyTest" />
-        <item itemvalue="JUnit.Test.test01" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +204,8 @@
       <workItem from="1653524816316" duration="11879000" />
       <workItem from="1653555327539" duration="2322000" />
       <workItem from="1653609944181" duration="7779000" />
-      <workItem from="1653696569614" duration="12514000" />
+      <workItem from="1653696569614" duration="15168000" />
+      <workItem from="1653870540776" duration="17413000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
@@ -238,7 +249,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653707521051</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="测试cglib">
+      <created>1653729480660</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653729480660</updated>
+    </task>
+    <task id="LOCAL-00008" summary="测试cglib">
+      <created>1653729564551</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653729564551</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

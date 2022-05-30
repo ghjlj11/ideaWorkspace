@@ -24,7 +24,7 @@ public class TestProxy {
         System.out.println(o);
         System.out.println(o.getClass());
         if(o instanceof FooImp l){
-            System.out.println("+++++++++");
+            l.isM("kl");
         }
         if(o instanceof Foo f){
             f.add(1 ,2);

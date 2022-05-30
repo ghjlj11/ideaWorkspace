@@ -15,12 +15,12 @@ public class AnnotationPointCut {
 
     @Before("execution(* com.ghj.service.UserServiceImpl.*(..))")
     public void before(){
-        System.out.println("============执行前===========");
+        System.out.println("注解方式==>==========执行前===========");
     }
 
     @After("execution(* com.ghj.service.UserServiceImpl.*(..))")
     public void after(){
-        System.out.println("============执行后============");
+        System.out.println("注解方式==>==========执行后============");
     }
 
     @Around("execution(* com.ghj.service.UserServiceImpl.*(..))")
@@ -30,7 +30,7 @@ public class AnnotationPointCut {
         Object proceed = jp.proceed();
 
         //获得方法的签名
-        System.out.println(jp.getSignature());
+        System.out.println("获得方法的签名==>" + jp.getSignature());
         System.out.println("环绕后");
     }
 }

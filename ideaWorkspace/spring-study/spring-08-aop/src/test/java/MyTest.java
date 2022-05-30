@@ -5,8 +5,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MyTest {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserService bean = context.getBean("userService", UserService.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("factoryBean.xml");
+        UserService bean = context.getBean("proxy", UserService.class);
         String s = bean.delete();
 
     }
