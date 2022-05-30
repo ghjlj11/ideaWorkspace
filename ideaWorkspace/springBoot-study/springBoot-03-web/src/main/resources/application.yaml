@@ -6,6 +6,7 @@
 server:
   servlet:
     context-path: "/ghj"
+  port: 8000
 
 spring:
   messages:
