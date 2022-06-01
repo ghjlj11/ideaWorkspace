@@ -1,0 +1,17 @@
+#spring:
+#  thymeleaf:
+#    prefix: classpath:/static/
+#    encoding: utf-8
+
+server:
+  servlet:
+    context-path: "/ghj"
+  port: 8000
+
+spring:
+  messages:
+    basename: "i18n.login"
+
+  mvc:
+    format:
+      date: yyyy-MM-dd

@@ -13,6 +13,7 @@ public class MyTest {
         People people = context.getBean("people", People.class);
         System.out.println(people.getCat());
         System.out.println(people.getDog());
+        System.out.println(people.getIPhone());
         people.getDog().shout();
         people.getCat().shout();
     }

@@ -6,15 +6,25 @@ import org.springframework.stereotype.Component;
 /**
  * @author 86187
  */
-@Component
-public class User {
+//@Component
+public class  User {
     private String name;
+    private Cat cat;
 
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", cat=" + cat +
                 '}';
+    }
+
+    public Cat getCat() {
+        return cat;
+    }
+
+    public void setCat(Cat cat) {
+        this.cat = cat;
     }
 
     public String getName() {

@@ -15,6 +15,7 @@
         <module name="spring-10-mybatis" />
         <module name="spring-07-proxy" />
         <module name="spring-05-anno" />
+        <module name="spring-JDBC" />
         <module name="spring-01-ioc1" />
         <module name="spring-02-hello" />
         <module name="spring-06-appconfig" />

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="springmvc-04-annotation:war exploded" />
+      <artifact name="springmvc-09-file:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,28 +10,88 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/leetcode/code6074/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/leetcode/code6075/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/leetcode/code6076/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/Add.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/Modify.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/ToAdd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/ToModify.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/add.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/modify.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/static/selectAll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/out/artifacts/servlet_war_exploded/jsp/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/DeleteStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/DeleteStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/main/java/com/ghj/servlet/MyServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/web/jsp/main.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/fileAndIO/TestPicture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/src/main/java/com/ghj/controller/FirstController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/src/main/resources/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/target/classes/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/springMVC-01/target/site-webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/target/newSpringMVC/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/target/newSpringMVC/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/IPhone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/MiPhone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/Phone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/pojo/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/src/main/java/com/ghj/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/src/main/resources/spring-JDBC.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-study/spring-JDBC/src/test/java/Test01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myIO-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../myIO-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/resources/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/main/resources/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/test/java/mytest/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/src/test/java/mytest/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/beans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/beans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/People.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/classes/com/ghj/pojo/People.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/test-classes/mytest/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-04-Autowired/target/test-classes/mytest/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-05-anno/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../myIO-study/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/config/GhjConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/classes/com/ghj/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-06-appconfig/target/test-classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/diy/AnnotationPointCut.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/diy/AnnotationPointCut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/factoryBean.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/factoryBean.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/classes/com/ghj/diy/AnnotationPointCut.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/classes/com/ghj/diy/AnnotationPointCut.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/target/test-classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/main/java/com/ghj/mapper/UserMapperImpl2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/main/java/com/ghj/mapper/UserMapperImpl2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/main/resources/spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/main/resources/spring-dao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/classes/com/ghj/mapper/UserMapperImpl2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/classes/com/ghj/mapper/UserMapperImpl2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/classes/spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/classes/spring-dao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-11-transcation/target/test-classes/MyTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springmvc-04-annotation/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-04-annotation/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第10个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第11个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第12个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第13个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第14个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第15个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第4个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第5个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第6个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第7个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第8个文件.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/测试文件夹/第9个文件.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,9 +176,9 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.52" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.52" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="17" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="springmvc-04-annotation:war exploded">
+        <artifact name="springmvc-09-file:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -198,7 +258,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="springmvc-04-annotation:war exploded" />
+          <artifact name="springmvc-09-file:war exploded" />
         </option>
       </method>
     </configuration>
@@ -232,6 +292,8 @@
       <workItem from="1653005017770" duration="5744000" />
       <workItem from="1653093877525" duration="5532000" />
       <workItem from="1653185468353" duration="2301000" />
+      <workItem from="1653977608724" duration="693000" />
+      <workItem from="1654071249366" duration="5483000" />
     </task>
     <servers />
   </component>
