@@ -1554,6 +1554,8 @@ public interface UserMapper {
 
 ```
 
+
+
 - 或者在启动类上面加上注解@MapperScan("com.ghj.mapper")， 可以直接扫描到mapper下的接口， 虽然如果后面直接@Autowired会爆红， 但是一样可以运行。 
 
 ```java

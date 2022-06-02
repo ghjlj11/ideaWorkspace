@@ -1415,7 +1415,7 @@ public class RedisConfig {
 
 ## Redis.config详解
 
-- 找到对应的redis.config文件， 这个就是Redis的配置文件 ，使用vim命令进行编辑
+- 找到对应的redis.config文件，每个Redis服务都对应一个Redis.config这个配置文件， 使用vim命令进行编辑
 
 ```bash
 protected-mode no 	#是否开启保护模式

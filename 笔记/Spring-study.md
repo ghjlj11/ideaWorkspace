@@ -936,9 +936,81 @@ public class TestCglib {
 
 
 
-## APO
+## APO(面向切面编程)
 
-### 使用Spring实现APO
+切面是由切点与Advice组成，通过筛选连接点（Spring中连接点是方法）， 然后加上Advice。
+
+### 使用ProxyFactoryBean类代理
+
+- 实现接口MethodBeforeAdvice，切点是方法执行之前
+
+```java
+public class Log implements MethodBeforeAdvice {
+
+    @Override
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println("advisor==>" + target.getClass().getName() + "执行了" + method.getName() + "方法");
+    }
+}
+
+```
+
+
+
+- 实现接口AfterReturningAdvice，切点是方法返回之后
+
+```java
+public class AfterLog implements AfterReturningAdvice {
+    @Override
+    public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+        System.out.println( "advisor==>" + target.getClass().getName() + "的" +  method.getName()
+        + "方法，返回了" + returnValue);
+    }
+}
+```
+
+- 实现接口MethodInterceptor， 切点是环绕方法前后。
+
+```java
+public class MethodAround implements MethodInterceptor {
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+
+        System.out.println("---------------方法执行前---------------");
+        Object proceed = invocation.proceed();//执行方法
+        System.out.println("---------------方法执行后---------------");
+        return proceed;
+    }
+}
+
+```
+
+
+
+- 注册到Spring中， 这里的**ProxyFactoryBean**，是一个代理工厂， 在里面会通过**getObject**方法返回代理类，里面的**target**属性就是被代理的对象， **interceptorNames**就是**Advise**，详细可看ProxyFactoryBean类源码。
+
+```xml
+<bean id="userService" class="com.ghj.service.UserServiceImpl"/>
+    <bean id="log" class="com.ghj.log.Log"/>
+    <bean id="afterLog" class="com.ghj.log.AfterLog"/>
+    <bean id="around" class="com.ghj.log.MethodAround"/>
+<bean name="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="userService"/>
+        <property name="interceptorNames">
+            <array>
+<!--                <idref bean="log"/>-->
+<!--                <idref bean="afterLog"/>-->
+                <idref bean="around"/>
+            </array>
+        </property>
+    </bean>
+```
+
+- 测试类需要获得Spring中的proxy，也就是组测的工厂，会返回一个代理类通过getObject方法。
+
+
+
+### 使用Spring的APO标签（看IDEA代码）
 
 - 导入依赖
 
@@ -1080,11 +1152,20 @@ public class MyTest {
 public class DiyPointCut {
 
     public void before(){
-        System.out.println("============执行方法之前===========");
+        System.out.println("before==>==========执行方法之前===========");
+    }
+    public void around(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("around.before:" + joinPoint.getSignature().getName() + "执行了");
+        Object proceed = joinPoint.proceed();
+        System.out.println("around.after:" + joinPoint.getSignature().getName() + "返回了" + proceed);
     }
 
     public void after(){
-        System.out.println("=============执行方法之后===========");
+        System.out.println("after==>===========执行方法之后===========");
+    }
+
+    public void afterReturn(JoinPoint joinPoint,Object result){
+        System.out.println("around.afterReturn:" + "返回了" + result);
     }
 }
 
@@ -1113,11 +1194,13 @@ public class DiyPointCut {
         <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
     </aop:config>-->
     <bean id="diy" class="com.ghj.diy.DiyPointCut"/>
-    <aop:config>
+     <aop:config>
         <aop:aspect ref="diy">
             <aop:pointcut id="pointcut" expression="execution(* com.ghj.service.UserServiceImpl.*(..))"/>
             <aop:before method="before" pointcut-ref="pointcut"/>
             <aop:after method="after" pointcut-ref="pointcut"/>
+            <aop:around method="around" pointcut-ref="pointcut"/>
+            <aop:after-returning method="afterReturn" pointcut-ref="pointcut" returning="result"/>
         </aop:aspect>
     </aop:config>
 </beans>
@@ -1427,3 +1510,36 @@ public List<User> select() {
 
 
 **propagation（传播）**默认为REQUIRED，一共有七种方式。
+
+- propagation ： 事务传播行为 。
+  - PROPAGATION_MANDATORY（强制） ： 使用当前事务 （ 使用当前 方法中的事务 ） ； 如果没有事务， 抛出异常
+  - PROPAGATION_NESTED （嵌套） ： 如果当前存在事务，则在嵌套事务内执行；如果当前没有事务，则执行与 PROPAGATION_REQUIRED 类似的操作
+  - PROPAGATION_NEVER （ 从不 ） ： 以非事务方式执行操作，如果当前存在事务，则抛出异常
+  - PROPAGATION_NOT_SUPPORTED （ 不支持） ： 以非事务方式执行操作，如果当前存在事务，则把当前事务挂起
+  - PROPAGATION_REQUIRED （必需的） ： 如果当前没有事务，则新建一个事务；如果已经存在一个事务，则加入到这个事务中。这是最常见的选择
+  - PROPAGATION_REQUIRES_NEW （ 必须新建） ： 新建事务。如果当前存在事务，则把当前事务挂起。
+  - PROPAGATION_SUPPORTS （ 支持 ） ： 如果当前有事务，支持当前事务并加入当前的事务，如果没有事务，则以非事务的方式执行
+
+### 使用注解开启事务
+
+- 在方法上添加这个注释， 就相当于为方法配置了事务管理器，但前提是有这个事务管理器。并且需要添加配置， 支持事务注解的使用，以及指定事务管理器。
+
+```xml
+ <tx:annotation-driven transaction-manager="transactionManager"/>
+```
+
+
+
+```java
+@Override
+    @Transactional(rollbackFor = Exception.class, transactionManager = "transactionManager")
+    public List<User> select() {
+        SqlSession sqlSession = this.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User(2, "罗静", 21);
+        mapper.delete(1);
+        mapper.add(user);
+        return mapper.select();
+    }
+```
+

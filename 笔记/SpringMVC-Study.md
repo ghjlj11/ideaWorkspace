@@ -171,6 +171,21 @@ form.jsp文件：
 
 
 
+##### SpringMVC处理流程
+
+- 客户端请求服务端。
+
+- 请求被DispatcherServlet拦截。
+- DispatcherServlet根据请求中的信息（请求头，请求方式，请求的URL），找到对应的HandlerMapping，就是一个具体的映射【URL-pattern】。
+- HandlerMapping根据请求找到对应的处理器，并封装成一个处理器执行链（HandlerExecutionChain）返回给DispatcherServlet
+- DispatcherServlet根据返回的信息找到对应的处理器适配器HandlerAdapter（ 就是一个 普通的类 ， 而这个类被注解【Controller、RestController、RequestMapping】 所标注）
+- HandlerAdapter就会找到对应的Handler，就是对应的方法
+- Handler执行后会返回一个ModelAndView， 包含了Model（数据），View（视图的逻辑名）。
+- DispatcherServlet收到返回的信息会调用ViewResolver解析视图的逻辑名，找到具体的视图。
+- DispatcherServlet再把数据渲染到视图上返回给客户端。
+
+
+
 来通过第二个项目来说明 ： 
 
 

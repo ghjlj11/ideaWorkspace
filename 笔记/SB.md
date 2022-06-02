@@ -197,3 +197,76 @@ class SpringBoot06SecurityApplicationTests {
 - 如果不是的话判断该位置是否为链表。
   - 如果是链表， 那么就去遍历一遍链表，直到找到put的key==链表节点的key， 或者equals相等， 那么就直接替换该节点， 并且维护， 如果没有找到， 那么就直接put到后面， 然后，还需要判断链表长度是否大于8， 并且tab长度是否大于等于 64 ， 如果都满足， 那么就要转化成一棵树。
   - 如果是一棵树，那么就要去搜索， 看看是大于当前节点的hash还是小于， 大于的话， 那么就往左边搜索， 小于就往右边， 如果期间有相等的， 就是要put的key==节点的key， 或者euqals相等， 那么直接返回该节点并替换，如果期间出现hash冲突， 就是hash相同了，但是这两个key又不相等， 就去  看看这个put的key是否实现comparable接口， 以及求出put的key与该节点的key的compare之后的值， 如果是没有实现该接口， 或者比较的值不一样， 那么就通过递归去寻找该节点的左右节点下的所有节点， 看看有没有要put的节点的key， 找到了那么就直接返回 ， 没有的话那就暴力比较，调用tieBreakOrder(k, pk)， 要么返回-1， 要么1， 要么下一个往左边找， 要么就往右边， 直到找到后面的节点， 该节点左边或者右边是等于null的， 那么就看看是在左边还是右边， 就是比较的是-1， 还是1， 然后直接插入进去， 并且维护双链表关系以及树之间的关系， 然后还需要进行旋转， 因为之前破坏了平衡， 并且移动该头节点到书的根节点上。 
+
+
+
+## LinkedHashMap
+
+- 一个基于双端链表的Map， 继承了HashMap， 实现了Map
+
+- 需要维护这个双端链表，有三个方法
+
+  - **afterNodeRemoval**， 维护移除一个节点后的链表，方式很简单， 只需要对前后两个链表的after与before操作就行
+
+  ```java
+  void afterNodeRemoval(Node<K,V> e) { // unlink
+          LinkedHashMap.Entry<K,V> p =
+              (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
+          p.before = p.after = null;
+          if (b == null)
+              head = a;
+          else
+              b.after = a;
+          if (a == null)
+              tail = b;
+          else
+              a.before = b;
+      }
+  ```
+
+  
+
+  - **afterNodeInsertion**， 维护新增一个节点后的链表，判断是否需要删除最年长的一个节点，也就是最开始的节点， **removeEldestEntry**这个方法默认返回是false， 有需要的话就可以修改。
+
+  ```java
+  void afterNodeInsertion(boolean evict) { // possibly remove eldest
+          LinkedHashMap.Entry<K,V> first;
+          if (evict && (first = head) != null && removeEldestEntry(first)) {
+              K key = first.key;
+              removeNode(hash(key), key, null, false, true);
+          }
+      }
+  ```
+
+  
+
+  - **afterNodeAccess**， 维护获取（get）一个节点后的链表， 把这个节点放到最后边，在原来的位置删除， 并维护前后节点。
+
+  ```java
+  void afterNodeAccess(Node<K,V> e) { // move node to last
+          LinkedHashMap.Entry<K,V> last;
+          if (accessOrder && (last = tail) != e) {
+              LinkedHashMap.Entry<K,V> p =
+                  (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
+              p.after = null;
+              if (b == null)
+                  head = a;
+              else
+                  b.after = a;
+              if (a != null)
+                  a.before = b;
+              else
+                  last = b;
+              if (last == null)
+                  head = p;
+              else {
+                  p.before = last;
+                  last.after = p;
+              }
+              tail = p;
+              ++modCount;
+          }
+      }
+  ```
+
+  

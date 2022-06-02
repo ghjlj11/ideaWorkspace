@@ -1,17 +1,25 @@
 package com.ghj.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedHashMap;
 
 /**
  * @author 86187
  */
-@Controller
+@RestController
 public class FirstController {
-    @ResponseBody
-    @RequestMapping("/first")
+    @GetMapping("/first")
     public String add(){
-        return "add";
+        return "Get#add";
+    }
+    @PostMapping("/first")
+    public String add1(){
+        return "Post#add";
+    }
+    @PutMapping("/first")
+    public String add2(){
+        return "Put#add";
     }
 }
