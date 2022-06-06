@@ -244,3 +244,16 @@ create table t_dept(
 ```
 concat(s1.id,s1.name,s1.manage_id) as sta
 ```
+
+
+
+### 降序升序
+
+
+
+```SQl
+order by *** desc
+
+order by *** asc		默认
+```
+

@@ -1205,9 +1205,34 @@ public class AjaxController {
 
 **拦截器（Interceptor）与过滤器（Filter）**
 
-- 拦截器是Spring里的， 而过滤器是servlet里面的， 他们的触发时机不同。过滤器是在请求进入容器之后， servlet之前执行，以及请求结束返回，servlet处理完之后，返回前端之前执行 ； 而拦截器是在请求进入servlet之后的。 拦截器是被包裹在过滤器之间的。
-- 拦截器是基于java的反射机制的，而过滤器是基于函数回调。
+- 拦截器是Spring里的， 而过滤器是servlet里面的， 他们的触发时机不同。过滤器是在请求进入容器之后， servlet之前执行，以及请求结束返回，servlet处理完之后，返回前端之前执行； 而拦截器是在请求进入servlet之后的。
+-  过滤器过滤的是请求， 一般是检查Request，Response，里的内容；拦截器是Spring里的， 可以访问Spring里的所有的Bean， 以及他的方法。 拦截器是被包裹在过滤器之间的
+- 拦截器是基于java的反射机制的，通过生成代理对象，而过滤器是基于函数回调doFilter函数，过滤器会有初始化方法以及销毁方法。
 - 拦截器不依赖于servlet容器，而过滤器依赖于servlet容器。
+
+
+
+过滤器 (Filter)：
+
+- 过滤器的配置比较简单，直接实现Filter 接口即可，也可以通过@WebFilter注解实现对特定URL拦截，看到Filter 接口中定义了三个方法。
+
+- init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter 的整个生命周期只会被调用一次。注意：这个方法必须执行成功，否则过滤器会不起作用。
+- doFilter() ：容器中的每一次请求都会调用该方法， FilterChain 用来调用下一个过滤器 Filter。
+- destroy()： 当容器销毁 过滤器实例时调用该方法，一般在方法中销毁或关闭资源，在过滤器 Filter 的整个生命周期也只会被调用一次
+
+
+
+
+
+拦截器的特点：
+
+- **preHandle()** ：这个方法将在请求处理之前进行调用。注意：如果该方法的返回值为false ，将视为当前请求结束，不仅自身的拦截器会失效，还会导致其他的拦截器也不再执行。
+- **postHandle()**：只有在 preHandle() 方法返回值为true 时才会执行。会在Controller 中的方法调用之后，DispatcherServlet 返回渲染视图之前被调用。 有意思的是：postHandle() 方法被调用的顺序跟 preHandle() 是相反的，先声明的拦截器 preHandle() 方法先执行，而postHandle()方法反而会后执行。
+- **afterCompletion()**：只有在 preHandle() 方法返回值为true 时才会执行。在整个请求结束之后， DispatcherServlet 渲染了对应的视图之后执行。
+
+
+
+
 
 ![20200602173814901](img\20200602173814901.png)
 
