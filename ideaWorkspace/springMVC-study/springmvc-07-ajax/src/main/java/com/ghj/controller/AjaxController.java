@@ -25,7 +25,7 @@ public class AjaxController {
         }
         else {
             response.getWriter().print("false");
-        }
+        };
     }
 
     @RequestMapping("/a2")

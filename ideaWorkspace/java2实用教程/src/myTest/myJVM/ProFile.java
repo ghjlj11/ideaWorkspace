@@ -17,7 +17,7 @@ public class ProFile {
                 count++;
             }
         } catch (Error e) {
-            System.out.println(count);
+            System.out.println("count:" + count);
             e.printStackTrace();
         }
     }

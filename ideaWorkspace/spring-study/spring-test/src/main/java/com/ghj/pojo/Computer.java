@@ -14,15 +14,15 @@ public class Computer {
     private String name;
     private CPU cpu;
     static{
-        System.out.println("static....");
+//        System.out.println("static....");
     }
     public void init (){
-        System.out.println("初始化....");
+//        System.out.println("初始化....");
     }
     public void destroy(){
-        System.out.println("销毁了....");
+//        System.out.println("销毁了....");
     }
     public Computer(){
-        System.out.println("执行了 无参构造");
+//        System.out.println("执行了 无参构造");
     }
 }

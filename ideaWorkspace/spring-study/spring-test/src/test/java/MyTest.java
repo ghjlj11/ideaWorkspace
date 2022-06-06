@@ -1,4 +1,5 @@
 import com.ghj.pojo.Computer;
+import com.ghj.pojo.Test01;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,5 +16,12 @@ public class MyTest {
         System.out.println("-------------------");
         System.out.println(computer);
         context.close();
+    }
+    @Test
+    public void t2(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
+        Test01 test01 = applicationContext.getBean("test01", Test01.class);
+        System.out.println(test01);
+        applicationContext.close();
     }
 }

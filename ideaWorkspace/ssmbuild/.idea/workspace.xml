@@ -10,9 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/myTest/MyBase/MyComparable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Grand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Father.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Father.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Son.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Son.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myTest/myExtends/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,6 +251,8 @@
       <workItem from="1653661610252" duration="681000" />
       <workItem from="1653696529701" duration="2420000" />
       <workItem from="1653750748445" duration="630000" />
+      <workItem from="1654394449989" duration="1447000" />
+      <workItem from="1654484178412" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>

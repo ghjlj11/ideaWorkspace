@@ -12,6 +12,8 @@ public class Test {
         String name1 = s.getName();
         System.out.println(name1);
         s.setName("kk");
+        System.out.println(s.x);
         System.out.println(s.getName());
+        System.out.println(s.s.get());
     }
 }
