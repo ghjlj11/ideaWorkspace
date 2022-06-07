@@ -1,0 +1,3 @@
+com\ghj\controller\FirstController.class
+com\ghj\model\User.class
+com\ghj\mapper\UserMapper.class
