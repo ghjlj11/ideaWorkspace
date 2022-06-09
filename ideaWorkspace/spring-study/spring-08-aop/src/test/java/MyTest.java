@@ -3,9 +3,7 @@ import com.ghj.service.UserServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class MyTest {
     public static void main(String[] args) {
@@ -18,6 +16,14 @@ public class MyTest {
         if(bean instanceof ArrayList<?>){
             System.out.println("是属于ArrayList");
         }
+        HashMap<Integer, String> map = new HashMap<>();
+
+        Iterable<String> list = new LinkedList<>();
+        for (String s1 : list) {
+            
+        }
+        
+        HashSet<String> set = new HashSet<>();
         System.out.println(bean.getClass());
         System.out.println(Arrays.toString(bean.getClass().getInterfaces()));
     }

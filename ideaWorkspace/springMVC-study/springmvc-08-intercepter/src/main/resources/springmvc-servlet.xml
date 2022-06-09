@@ -37,6 +37,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/resources/"/>
             <bean class="com.ghj.config.HelloInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>

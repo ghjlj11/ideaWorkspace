@@ -1,3 +1,9 @@
 com\ghj\controller\FirstController.class
+com\ghj\util\MyResponseEntity.class
+com\ghj\util\MyException.class
+com\ghj\service\UserServiceImpl.class
 com\ghj\model\User.class
+com\ghj\aspect\MyAspect.class
+com\ghj\aspect\AdviceController.class
+com\ghj\service\UserService.class
 com\ghj\mapper\UserMapper.class
