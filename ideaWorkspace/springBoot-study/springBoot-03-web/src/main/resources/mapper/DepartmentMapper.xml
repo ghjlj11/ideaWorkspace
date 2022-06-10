@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghj.dao.DepartmentMapper">
+    <insert id="addDepartment" parameterType="department">
+        insert into malajava.dep(name) values (#{name}) ;
+    </insert>
+
+    <delete id="deleteDepartment" parameterType="int">
+        delete from malajava.dep where id = #{id}
+    </delete>
+
+    <select id="getDepartment" parameterType="int" resultType="department">
+        select * from malajava.dep where id = #{id};
+    </select>
+
+    <update id="updateDepartment" parameterType="department">
+        update malajava.dep set name = #{name} where id = #{id};
+    </update>
+
+    <select id="getAll" resultType="department">
+        select * from malajava.dep;
+    </select>
+</mapper>

@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Test extends Thread{
 
     private Lock lock = new ReentrantLock();
-    private  String i ="sss";
+    private String i ="sss";
     private volatile int n = 0;
 
     private void setI(String i){

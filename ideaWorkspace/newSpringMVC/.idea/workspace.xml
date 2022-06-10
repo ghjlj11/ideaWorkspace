@@ -5,50 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50f83301-1d4c-4163-8486-591d3a364bb9" name="变更" comment="Redis">
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bbs/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bbs/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bbs/src/main/webapp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/log_2022-06-08.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/log_2022-06-08.txt.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/aspect/AdviceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/aspect/MyAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/util/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/util/MyResponseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/resources/tinylog.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/webapp/css/first.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/webapp/js/first.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/webapp/jsp/first.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/main/webapp/jsp/hello.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/src/test/java/MyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/target/classes/tinylog.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ssm/target/tmp/jsp/org/apache/jsp/jsp/hello_jsp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ssm/log_2022-06-09.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ssm/target/tmp/jsp/org/apache/jsp/index_jsp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/util/MD5Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_en_US.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_zh_CN.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/controller/FirstController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/src/main/java/com/ghj/controller/FirstController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/src/main/resources/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/src/main/resources/spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/src/main/resources/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/src/main/resources/springMVC.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/target/classes/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/target/classes/spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/target/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/target/classes/springMVC.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/static/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/static/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/springmvc-08-intercepter/src/main/resources/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/springmvc-08-intercepter/src/main/resources/springmvc-servlet.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +74,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springMVC-study" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mybatis_study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -166,6 +138,7 @@
       <workItem from="1654215876153" duration="12940000" />
       <workItem from="1654568481377" duration="15273000" />
       <workItem from="1654646503882" duration="21204000" />
+      <workItem from="1654744951224" duration="3382000" />
     </task>
     <task id="LOCAL-00001" summary="整合SSM">
       <created>1654617137498</created>

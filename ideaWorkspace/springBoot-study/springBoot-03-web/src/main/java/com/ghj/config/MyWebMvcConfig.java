@@ -1,15 +1,10 @@
 package com.ghj.config;
 
-import com.ghj.dao.EmployeeDao;
+import com.ghj.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
-
-import java.util.Locale;
 
 /**
  * @author 86187

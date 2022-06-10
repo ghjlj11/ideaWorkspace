@@ -10,48 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC">
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/bbs/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/bbs/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/bbs/src/main/webapp/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/log_2022-06-08.txt.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/aspect/AdviceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/aspect/MyAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/util/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/util/MyResponseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/resources/tinylog.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/webapp/css/first.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/webapp/js/first.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/webapp/jsp/first.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/webapp/jsp/hello.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/test/java/MyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/classes/tinylog.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/log_2022-06-09.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/tmp/jsp/org/apache/jsp/index_jsp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/util/MD5Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/controller/FirstController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/java/com/ghj/controller/FirstController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/resources/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/resources/spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/resources/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/src/main/resources/springMVC.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/target/classes/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/classes/spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/target/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/classes/springMVC.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/java/com/ghj/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/spring-08-aop/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/static/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/static/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springmvc-08-intercepter/src/main/resources/springmvc-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-08-intercepter/src/main/resources/springmvc-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springBoot-study/springBoot-03-web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -281,6 +248,7 @@
       <workItem from="1654483373134" duration="9458000" />
       <workItem from="1654560123235" duration="4475000" />
       <workItem from="1654678293975" duration="3509000" />
+      <workItem from="1654755414034" duration="59000" />
     </task>
     <task id="LOCAL-00001" summary="newSpringMVC">
       <created>1654094482345</created>

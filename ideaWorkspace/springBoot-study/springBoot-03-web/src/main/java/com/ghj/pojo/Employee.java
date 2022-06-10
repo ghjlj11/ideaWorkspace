@@ -3,6 +3,7 @@ package com.ghj.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 /**
  * @author 86187
  */
+@Alias("employee")
 @Data
 @NoArgsConstructor
 public class Employee {

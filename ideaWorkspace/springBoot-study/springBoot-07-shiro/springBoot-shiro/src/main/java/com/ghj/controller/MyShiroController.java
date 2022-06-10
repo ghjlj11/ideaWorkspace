@@ -1,5 +1,6 @@
 package com.ghj.controller;
 
+import com.ghj.util.MD5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -29,10 +30,13 @@ public class MyShiroController {
     }
 
     @RequestMapping("/login")
-    public String login(String username, String password, Model model){
+    public String login(String username, String password, boolean rememberMe, Model model){
         Subject subject = SecurityUtils.getSubject();
 
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        System.out.println("rememberMe===>" + rememberMe);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Util.md5(password), rememberMe);
+        System.out.println("token=====>" + token.getPrincipal());
+        System.out.println("subject===>" + subject.getPrincipal() + "subject  : " + subject.getClass() );
         try {
             Session session = subject.getSession();
             session.setAttribute("isLogin", username);

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghj.dao.EmployeeMapper">
+    <insert id="addEmployee" parameterType="employee">
+        insert into malajava.emp(name, email, sex, department, brith)
+        VALUES (#{name}, #{email}, #{sex}, #{department}, #{brith});
+    </insert>
+
+    <delete id="deleteEmployee" parameterType="int">
+        delete
+        from malajava.emp
+        where id = #{id};
+    </delete>
+
+    <resultMap id="empDep" type="employee">
+        <association property="department" column="department" select="getDepartment">
+        </association>
+    </resultMap>
+
+    <select id="getDepartment" parameterType="int" resultType="department">
+        select * from malajava.dep where id = #{id};
+    </select>
+
+    <select id="getEmployee" parameterType="int" resultMap="empDep">
+        select *
+        from malajava.emp
+        where id = #{id};
+    </select>
+
+
+    <update id="updateEmployee" parameterType="employee">
+        update malajava.emp
+        set name       = #{name},
+            email      = #{email},
+            sex        = #{sex},
+            department = #{department},
+            brith      = #{brith}
+        where id = #{id};
+    </update>
+
+    <select id="getAll" resultMap="empDep">
+        select * from malajava.emp;
+    </select>
+</mapper>

@@ -2,6 +2,7 @@ package com.ghj.config;
 
 import com.ghj.pojo.People;
 import com.ghj.service.PeopleServiceImpl;
+import com.ghj.util.MD5Util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -9,6 +10,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.HttpCookie;
@@ -30,7 +32,8 @@ public class UserRealm extends AuthorizingRealm {
         Subject subject = SecurityUtils.getSubject();
         People curPeople = (People) subject.getPrincipal();
         //给用户授权
-        info.addStringPermission("user:add");
+        //info.addStringPermission("user:add");
+        System.out.println("curPeople===>" + curPeople);
         info.addStringPermission(curPeople.getPerms());
         return info;
     }
@@ -47,6 +50,7 @@ public class UserRealm extends AuthorizingRealm {
 
         //验证密码
         //把people传到授权的方法里面。
-        return new SimpleAuthenticationInfo(people,people.getPwd(),"");
+        System.out.println("密码===>" + people.getPwd());
+        return new SimpleAuthenticationInfo(people, people.getPwd(),"");
     }
 }

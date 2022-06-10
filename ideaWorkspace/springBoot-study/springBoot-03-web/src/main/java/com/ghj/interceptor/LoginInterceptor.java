@@ -1,4 +1,4 @@
-package com.ghj.config;
+package com.ghj.interceptor;
 
 
 import org.springframework.web.servlet.HandlerInterceptor;
