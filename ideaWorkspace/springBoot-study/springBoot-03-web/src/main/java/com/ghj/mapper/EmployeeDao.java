@@ -1,8 +1,6 @@
-package com.ghj.dao;
+package com.ghj.mapper;
 
-import com.ghj.pojo.Department;
 import com.ghj.pojo.Employee;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

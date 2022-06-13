@@ -14,6 +14,7 @@
           <node kind="schema">
             <name qname="malajava" />
             <name qname="myservlet" />
+            <name qname="study" />
           </node>
         </introspection-scope>
       </schema-mapping>

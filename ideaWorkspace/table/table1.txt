@@ -1,56 +1,53 @@
-drop table d_category cascade constraints purge;
-create table d_category ( 
-     id number(12) primary key ,
-     turn number(3) not null , 
-     en_name varchar2(50) ,
-     cn_name varchar2(50) , 
-     abridge_name varchar2(50) , 
-     category_value varchar2(200) ,
-     parent_id number(12) , 
-     foreign key ( parent_id ) references d_category( id )
- );
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: malajava
+-- ------------------------------------------------------
+-- Server version	8.0.27
 
-INSERT INTO d_category VALUES (1,1,'Book','图书',NULL,NULL,null);
-INSERT INTO d_category VALUES (2,1,'Novel','小说',NULL,NULL,1);
-INSERT INTO d_category VALUES (3,2,'Youth','青春',NULL,NULL,1);
-INSERT INTO d_category VALUES (4,3,'Humanity And Social Science','人文社科',NULL,NULL,1);
-INSERT INTO d_category VALUES (5,4,'Management','管理',NULL,NULL,1);
-INSERT INTO d_category VALUES (6,5,'Children','少儿',NULL,NULL,1);
-INSERT INTO d_category VALUES (7,6,'Foreign Language','外语',NULL,NULL,1);
-INSERT INTO d_category VALUES (8,7,'Computer','计算机',NULL,NULL,1);
-INSERT INTO d_category VALUES (9,1,'Chinese Contemporary Novel','当代小说',NULL,NULL,2);
-INSERT INTO d_category VALUES (10,2,'Chinese Modern Novel','近现代小说',NULL,NULL,2);
-INSERT INTO d_category VALUES (11,3,'Chinese Classical  Novel','古典小说',NULL,NULL,2);
-INSERT INTO d_category VALUES (12,4,'Four Classic Novels','四大名著',NULL,NULL,2);
-INSERT INTO d_category VALUES (13,5,'Translated Works','世界名著',NULL,NULL,2);
-INSERT INTO d_category VALUES (14,1,'School','校园',NULL,NULL,3);
-INSERT INTO d_category VALUES (15,2,'Love','爱情/情感',NULL,NULL,3);
-INSERT INTO d_category VALUES (16,3,'Grow Up','叛逆/成长',NULL,NULL,3);
-INSERT INTO d_category VALUES (17,4,'Fantasy','玄幻',NULL,NULL,3);
-INSERT INTO d_category VALUES (18,5,'Original','原创',NULL,NULL,3);
-INSERT INTO d_category VALUES (19,1,'Political','政治',NULL,NULL,4);
-INSERT INTO d_category VALUES (20,2,'Economic','经济',NULL,NULL,4);
-INSERT INTO d_category VALUES (21,3,'Law','法律',NULL,NULL,4);
-INSERT INTO d_category VALUES (22,4,'Philosophy','哲学',NULL,NULL,4);
-INSERT INTO d_category VALUES (23,5,'History','历史',NULL,NULL,4);
-INSERT INTO d_category VALUES (24,1,'Commen Management','管理学',NULL,NULL,5);
-INSERT INTO d_category VALUES (25,2,'Strategic Management','战略管理',NULL,NULL,5);
-INSERT INTO d_category VALUES (26,3,'Marketing','市场营销',NULL,NULL,5);
-INSERT INTO d_category VALUES (27,4,'Business History','商业史传',NULL,NULL,5);
-INSERT INTO d_category VALUES (28,5,'E-Business','电子商务',NULL,NULL,5);
-INSERT INTO d_category VALUES (29,1,'0-2','0-2岁',NULL,NULL,6);
-INSERT INTO d_category VALUES (30,2,'3-6','3-6岁',NULL,NULL,6);
-INSERT INTO d_category VALUES (31,3,'7-10','7-10岁',NULL,NULL,6);
-INSERT INTO d_category VALUES (32,4,'11-14','11-14岁',NULL,NULL,6);
-INSERT INTO d_category VALUES (33,5,'Child Literature','儿童文学',NULL,NULL,6);
-INSERT INTO d_category VALUES (34,1,'English','英语',NULL,NULL,7);
-INSERT INTO d_category VALUES (35,2,'Japanese','日语',NULL,NULL,7);
-INSERT INTO d_category VALUES (36,3,'Korean','韩语',NULL,NULL,7);
-INSERT INTO d_category VALUES (37,4,'Russian','俄语',NULL,NULL,7);
-INSERT INTO d_category VALUES (38,5,'German','德语',NULL,NULL,7);
-INSERT INTO d_category VALUES (39,1,'Computer Theory','计算机理论',NULL,NULL,8);
-INSERT INTO d_category VALUES (40,2,'Database','数据库',NULL,NULL,8);
-INSERT INTO d_category VALUES (41,3,'Programming','程序设计',NULL,NULL,8);
-INSERT INTO d_category VALUES (42,4,'Artificial Intelligence','人工智能',NULL,NULL,8);
-INSERT INTO d_category VALUES (43,5,'Computer Examination','计算机考试',NULL,NULL,8);
-commit;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `blog`
+--
+
+DROP TABLE IF EXISTS `blog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `blog` (
+  `id` varchar(50) NOT NULL COMMENT '博客id',
+  `title` varchar(100) NOT NULL COMMENT '博客标题',
+  `author` varchar(30) NOT NULL COMMENT '博客作者',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `views` int NOT NULL COMMENT '浏览量'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blog`
+--
+
+LOCK TABLES `blog` WRITE;
+/*!40000 ALTER TABLE `blog` DISABLE KEYS */;
+INSERT INTO `blog` VALUES ('1','如何养猪','阿花','2022-03-28 19:44:21',2),('2','如何养鸡','郭欢军','2022-03-28 19:53:18',4),('3','抓水母','邹龙','2022-03-28 19:53:18',10),('4','如何养牛','阿甘','2022-03-28 19:53:17',4);
+/*!40000 ALTER TABLE `blog` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-06-12 22:56:17

@@ -463,7 +463,7 @@ bean的生命周期
 
 - 首先创建实例
 -  为bean的属性设置值，和对其他bean引用（调用set方法）
--  把bean的实例传递bean后置处理器的方法（postProcessBeforeInitialization）
+-  把bean的实例传递bean前置处理器的方法（postProcessBeforeInitialization）
 - 执行指定的init方法
 - 把bean的实例传递bean后置处理器的方法（postProcessAfterInitialization）
 - bean对象的使用， 调用

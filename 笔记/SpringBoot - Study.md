@@ -906,7 +906,7 @@ Configuration和AutoConfiguration
 
 ### 准备工作；
 
-- 先导入对应的Web项目， 将静态资源放在templates包下；
+- 先导入对应的Web项目， 将页面放在templates包下；
 - 己写一个controller，请求路径为“/”， 先看看能不能跳转到首页， 然后再用thymeleaf格式， 把链接之类的都改掉， 这样就可以适配我们的thymeleaf模板。
 
 
@@ -2005,7 +2005,7 @@ public class Quickstart {
 
 
 
-### shito第一个web程序
+### shiro第一个web程序
 
 
 

@@ -235,7 +235,7 @@ keys *  exists  append  strlen
 "ghj"
 127.0.0.1:6379> exists name		#判断是否存在name这个key
 (integer) 1
-127.0.0.1:6379> append name " hello"	#追加字符， 如果key不存在， 就相当于set了一个key
+127.0.0.1:6379> append name "hello"	#追加字符， 如果key不存在， 就相当于set了一个key
 (integer) 9
 127.0.0.1:6379> get name
 "ghj hello"
@@ -297,7 +297,7 @@ incrby  decrby
 
 ```bash
 #########################################################################################
-getrange  setrange
+getrange  setrange		del s
 
 127.0.0.1:6379> set k1 "hello ghj"
 OK
@@ -723,7 +723,7 @@ hsetnx 往hash里存一个值， 如果不存在这个key就存入， 如果存�
 127.0.0.1:6379> hsetnx hash k8 hello
 (integer) 1
 127.0.0.1:6379> hsetnx hash k8 ll
-(integer) 0
+(integer) 0e
 
 ```
 
@@ -1449,7 +1449,7 @@ Redis会单独创建一个子进程来进行持久化， 会先将数据写入�
 
 
 
-- 我们通过修改配置文件的RDB对应的属性， 修改把之前的save注释， 然后加上`save 60 3` 代表60秒内执行了3次操作的话就会保存文件， 保存的文件名也可以配置  ， 默认是 `dbfilename dump.rdb`， 就是保存在dump.rdb文件里面， 我们首先删除这个文件， 然后操作几次。
+- 我们通过修改配置文件的RDB对应的属性， 修改把之前的save注释， 然后加上`save 60 3` 代表60秒内执行了3次**写操作**的话就会保存文件， 保存的文件名也可以配置  ， 默认是 `dbfilename dump.rdb`， 就是保存在dump.rdb文件里面， 我们首先删除这个文件， 然后操作几次。
 
 ```bash
 #########################################################################################

@@ -1,6 +1,6 @@
 package com.ghj.service.Impl;
 
-import com.ghj.dao.EmployeeMapper;
+import com.ghj.mapper.EmployeeMapper;
 import com.ghj.pojo.Employee;
 import com.ghj.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

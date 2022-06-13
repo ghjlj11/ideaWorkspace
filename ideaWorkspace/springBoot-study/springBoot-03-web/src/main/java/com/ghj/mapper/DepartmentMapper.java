@@ -1,10 +1,9 @@
-package com.ghj.dao;
+package com.ghj.mapper;
 
 import com.ghj.pojo.Department;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

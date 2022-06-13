@@ -1,8 +1,6 @@
-package com.ghj.dao;
+package com.ghj.mapper;
 
 import com.ghj.pojo.Department;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

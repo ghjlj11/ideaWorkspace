@@ -1,7 +1,7 @@
 package com.ghj.controller;
 
-import com.ghj.dao.DepartmentDao;
-import com.ghj.dao.EmployeeDao;
+import com.ghj.mapper.DepartmentDao;
+import com.ghj.mapper.EmployeeDao;
 import com.ghj.pojo.Department;
 import com.ghj.pojo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;

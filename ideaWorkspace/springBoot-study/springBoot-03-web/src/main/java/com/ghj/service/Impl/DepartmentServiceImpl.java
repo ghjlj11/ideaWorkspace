@@ -1,6 +1,6 @@
 package com.ghj.service.Impl;
 
-import com.ghj.dao.DepartmentMapper;
+import com.ghj.mapper.DepartmentMapper;
 import com.ghj.pojo.Department;
 import com.ghj.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;

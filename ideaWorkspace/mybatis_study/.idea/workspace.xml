@@ -5,22 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8327922c-2d01-4f10-a2f5-42afc5198335" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/log_2022-06-09.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/target/tmp/jsp/org/apache/jsp/index_jsp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/util/MD5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_en_US.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_zh_CN.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/MyAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-05/src/test/java/com/ghj/dao/TestMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-05/src/test/java/com/ghj/dao/TestMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/DepartmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/mapper/DepartmentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/DepartmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/mapper/DepartmentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/mapper/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/mapper/EmployeeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/service/Impl/DepartmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/service/Impl/DepartmentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/service/Impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/service/Impl/EmployeeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/mapper/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/mapper/EmployeeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/test/java/com/ghj/SpringBoot03WebApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/test/java/com/ghj/SpringBoot03WebApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Redis-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Redis-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/Spring-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Spring-study.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,9 +109,9 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestMapper.test02">
-    <configuration name="TestBlog.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-07" />
+  <component name="RunManager" selected="JUnit.TestMapper.test01">
+    <configuration name="TestMapper.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-05" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.ghj.dao.*" />
@@ -113,8 +119,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.ghj.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestBlog" />
-      <option name="METHOD_NAME" value="test05" />
+      <option name="MAIN_CLASS_NAME" value="com.ghj.dao.TestMapper" />
+      <option name="METHOD_NAME" value="test01" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -186,11 +192,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestMapper.test01" />
         <item itemvalue="JUnit.TestMapper.test02" />
         <item itemvalue="JUnit.UserMapperTest.tt1" />
         <item itemvalue="JUnit.UserMapperTest.test03" />
         <item itemvalue="JUnit.UserMapperTest.test08" />
-        <item itemvalue="JUnit.TestBlog.test05" />
       </list>
     </recent_temporary>
   </component>
@@ -239,6 +245,9 @@
       <workItem from="1654392108244" duration="1406000" />
       <workItem from="1654564956873" duration="3046000" />
       <workItem from="1654762475177" duration="3065000" />
+      <workItem from="1654831528150" duration="2056000" />
+      <workItem from="1654905583046" duration="222000" />
+      <workItem from="1654998032840" duration="1575000" />
     </task>
     <servers />
   </component>

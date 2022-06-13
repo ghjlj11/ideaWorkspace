@@ -29,6 +29,12 @@ class SpringBootShiroApplicationTests {
 
         String pattern = "^1[3-9][0-9]{9}";
         System.out.println(Pattern.matches("^1[3-9][0-9]{9}",s));
+
+        StringBuffer k = new StringBuffer("123456");
+        while (true){
+            k = k.append(k);
+            System.out.println("======>" + k.length());
+        }
     }
 
 }

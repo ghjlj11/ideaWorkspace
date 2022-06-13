@@ -51,6 +51,6 @@ public class UserRealm extends AuthorizingRealm {
         //验证密码
         //把people传到授权的方法里面。
         System.out.println("密码===>" + people.getPwd());
-        return new SimpleAuthenticationInfo(people, people.getPwd(),"");
+        return new SimpleAuthenticationInfo(people, people.getPwd(), people.getName());
     }
 }

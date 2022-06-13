@@ -257,3 +257,74 @@ order by *** desc
 order by *** asc		默认
 ```
 
+
+
+## 给表的字段添加索引
+
+
+
+PRIMARY KEY主键索引：mysql>ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` ) 
+ NIQUE：mysql>ALTER TABLE `table_name` ADD UNIQUE ( `column` ) 
+ INDEX普通索引 ：mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` ) 
+ FULLTEXT全文索引 ：mysql>ALTER TABLE `table_name` ADD FULLTEXT ( `column`) 
+ INDEX多列索引：mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
+
+
+
+外键约束： 
+
+```SQL
+ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFERENCES <外键表名> (<列名>);
+```
+
+
+
+## 给表的字段修改属性
+
+
+
+```SQL
+ALTER TABLE 表名 CHANGE 旧字段名 新字段名 字段类型(长度) comment (评论);
+```
+
+ 
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+## Start
+
+
+
+### SQL语句分类
+
+- DQL：数据库查询语句（凡是带有select的语句都是）
+- DML：数据库操作语言， 凡是对表进行修改的 ， insert， delete， update， 是对表的数据进行修改；
+- DDL：数据定义语言， 带有create， drop，alter都是DDL， 对表的结构进行修改。
+- TCL： 事务控制语言， 事务提交， 事务回滚。
+- DCL：数据控制语言， 授权， 撤销权限。
+
+
+
+
+
+```SQL
+
+-- 使用source执行sql存储文件。 
+
+source D:\my-study\ideaWorkspace\table\table1.txt   
+```
+
+
+
+
+

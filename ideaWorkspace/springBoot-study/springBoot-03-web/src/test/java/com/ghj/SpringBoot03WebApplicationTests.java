@@ -12,13 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringBoot03WebApplicationTests {
 
-
+    @Autowired
+    DepartmentServiceImpl departmentService ;
+    @Autowired
+    EmployeeService employeeService;
 
     @Test
     void contextLoads() {
 
-        DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-        System.out.println(departmentService);
+
+        System.out.println(employeeService.getAll());
     }
 
 }
