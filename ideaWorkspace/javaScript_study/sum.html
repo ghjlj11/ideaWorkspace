@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sum(a, b, c) {
+            let sum = a + b + c;
+            alert(sum);
+            return "sout";
+        }
+        console.log(sum(3, 4, 5));
+        let i = document.getElementsByName("na");
+        i.values("1234");
+        console.log(i);
+        var fun = function(a){
+            return a.name + a.age + a.gender + a.sports +  "ghj";
+        }
+        var obj = {
+            name:"ghj",
+            age:12,
+            gender:"男",
+            sports:"篮球"
+        };
+        console.log(obj);
+        console.log(fun(obj));
+        for(let i = 0 ; i < 5 ; i ++){
+            console.log(i);
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="na" id="name"> 名字
+    </div>
+
+</body>
+
+</html>

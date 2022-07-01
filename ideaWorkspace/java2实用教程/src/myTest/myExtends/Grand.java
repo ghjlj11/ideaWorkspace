@@ -10,9 +10,7 @@ public interface Grand {
         System.out.println("jj");
     }
     public void kk();
-    private int ll(int k){
-        return k;
-    }
+
     public default void ll(){
         System.out.println("ll");
     }

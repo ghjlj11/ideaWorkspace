@@ -207,6 +207,23 @@ alter table kecheng add index id(id);
 
 ```
 
+
+
+## 更新表的结构
+
+
+
+> 修改字段
+
+```SQL
+
+alter table classes modify id int  comment '用户名';
+```
+
+
+
+
+
 > ### 索引
 
 
