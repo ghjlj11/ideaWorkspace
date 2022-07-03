@@ -25,7 +25,7 @@
 
 
 - 原理也是通过官网来下载的
-- ![image-20220422175253178](img\image-20220422175253178.png)
+- <img src="img\image-20220422175253178.png">
 
 
 
@@ -232,7 +232,7 @@
 
 这里的自动配置的文件都在这个包里面，也就是上面代码上的 “ No auto configuration classes found in META-INF/spring.factories nor in META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports. If you are using a custom packaging, make sure that file is correct ” .这里面的。
 
-![image-20220423173948012](img\image-20220423173948012.png)
+<img src="img\image-20220423173948012.png">
 
 
 
@@ -472,7 +472,7 @@ message的值也可以不写入， 有对应的默认值。
 
 - 这样运行的话，就会校验报错了
 
-![image-20220424100028285](img\image-20220424100028285.png)
+<img src="img\image-20220424100028285.png">
 
 
 
@@ -492,7 +492,7 @@ message的值也可以不写入， 有对应的默认值。
 
 官网下说配置文件可以放在这四个地方。
 
-![image-20220424103125933](img\image-20220424103125933.png)
+<img src="img\image-20220424103125933.png">
 
 
 
@@ -609,7 +609,7 @@ spring:
 
 这个注解， 而这个注解就是java的类与yaml配置联系的注解， 通过这个就可以 在 yaml文件里面去配置这个类的一些值，所以**@EnableConfigurationProperties**这个注解就是表示可以自动配置的文件， 后面的ServerProperties这个类里面会有默认值， 我们也可以通过yaml文件自己来配置。
 
-![image-20220424194539589](img\image-20220424194539589.png)
+<img src="img\image-20220424194539589.png">
 
 
 
@@ -651,7 +651,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 - 在**WebProperties.class文件下我们可以看到之前看到的Resources目录其实就是我们项目里的classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/这些目录 ， 就是放置静态资源的目录。**
 
-![image-20220425175813866](img\image-20220425175813866.png)
+<img src="img\image-20220425175813866.png">
 
 
 
@@ -659,7 +659,7 @@ classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", 
 
 - 图标的话就是在我们的Resources下也就是上面的那些路径下，放上一个favicon.ico图片文件，这个文件就是我们网站的图标。
 
-![image-20220425193815144](img\image-20220425193815144.png)
+<img src="img\image-20220425193815144.png">
 
 
 
@@ -765,7 +765,7 @@ public class SpringBootController {
 
 
 
-![image-20220429230948644](img\springBoot01.png)
+<img src="img\springBoot01.png">
 
 
 
@@ -811,7 +811,7 @@ public class SpringBootController {
 
 
 - 官网说他的SpringMVC默认引入引入 `ContentNegotiatingViewResolver` 和 `BeanNameViewResolver` bean。我们就去找这两个类，他们都需要去实现ViewResolver这个接口， 通过ContentNegotiatingViewResolver， 我们发现他的核心就是去获取所有的视图解析器， 然后去获取所有的视图，再从其中获取最好的视图（最合适的）。 
-- ![boot02](img\boot02.png)
+- <img src="img\boot02.png">
 
 
 
@@ -842,7 +842,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 下一个阶段：  我们该如何知道我们自己的视图解析器被用上了 呢， 我们在SpringMVC阶段都知道， 所有的请求都需要 通过DispatchServlet（前端控制器），这个控制器的核心方法就是 doDispatch， 我们在这里打上断点， 再Debug一下， 然后请求一下hello页面。
 
-![boot3](img\boot3.png)
+<img src="img\boot3.png">
 
 
 
@@ -858,11 +858,11 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 上面官方特地强调说不能使用这个@EnableWebMvc， 那么是为什么呢 ？ 点卡这个注解， 我们就会发现这里面import了一个类， 就是**DelegatingWebMvcConfiguration**， 再点进去会发现这个类继承了**WebMvcConfigurationSupport**这个类。 
 
-![boot4](img\boot4.png)
+<img src="img\boot4.png">
 
 
 
-![boot5](img\boot5.png)
+<img src="img\boot5.png">
 
 
 
@@ -870,7 +870,7 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 
 - 然后我们再看**WebMvcAutoConfiguration**的源码，这里面有一个条件。
 
-![boot6](img\boot6.png)
+<img src="img\boot6.png">
 
 
 
@@ -970,7 +970,7 @@ login.username=Username
 
   
 
-  ![boot7](img\boot7.png)
+  <img src="img\boot7.png">
 
 
 
@@ -1171,7 +1171,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
    **th:fragment="topbar"**
 
-  ![boot8](img\boot8.png)
+  <img src="img\boot8.png">
 
 
 
@@ -1458,7 +1458,7 @@ public class DruidConfig {
 
 
 
-![boot9](img\boot9.png)
+<img src="img\boot9.png">
 
 
 
@@ -1480,7 +1480,7 @@ public class DruidConfig {
 
 - 点开这个scanBasePackages， 我们可以看到里面默认的配置就是 @SpringBootApplication所在的包下
 
-![boot10](img\boot10.png)
+<img src="img\boot10.png">
 
 
 
@@ -1780,9 +1780,9 @@ http.rememberMe().rememberMeParameter("rememberMe");
 
 
 
-- 在记住我之前，并没有这个cooki：
+- 在记住我之前，并没有这个cookie：
 
-![boot11](img\boot11.png)
+<img src="img\boot11.png">
 
 
 
@@ -1790,7 +1790,7 @@ http.rememberMe().rememberMeParameter("rememberMe");
 
 
 
-![boot12](img\boot12.png)
+!<img src="img\boot12.png">
 
 
 
@@ -2158,7 +2158,7 @@ public class ShiroConfig {
 
 ​		**这里就是跟之前的非Web项目一样，获取当前用户然后登录 ** ， 我们先跑一下看看。
 
-![boot13](img\boot13.png)
+<img src="img\boot13.png">
 
 
 
@@ -2411,7 +2411,7 @@ public class SwaggerConfig {
 
 - 运行测试， 输入请求swagger-ui.html
 
-![boot14](img\boot14.png)
+<img src="img\boot14.png">
 
 
 
@@ -2669,7 +2669,7 @@ public class MyController {
 
 
 
-- swagger更强大的还是 ， 可以直接线上测试， 就不用去自己写的页面上测试， 直接在swagger上就可以。![boot15](img\boot15.png)
+- swagger更强大的还是 ， 可以直接线上测试， 就不用去自己写的页面上测试， 直接在swagger上就可以。<img src="img\boot15.png">
 
 
 
@@ -2765,7 +2765,7 @@ public class SpringBoot09TestApplication {
 
 - 然后需要去qq邮箱官网去获得一个 密码， 在设置， 账户里面找到 下面这个服务开启， 然后会获得一个密码， 这个密码就是下面你要用的密码， 如果用自己的qq密码是没用的。
 
-![boot16](img\boot16.png)
+<img src="img\boot16.png">
 
 
 
@@ -2872,19 +2872,19 @@ public class SchedulingService {
 
 - 下面是一些匹配的规则， 以及例子。
 
-![boot17](img\boot17.png)
+<img src="img\boot17.png">
 
 
 
 
 
-![boot18](img\boot18.png)
+<img src="img\boot18.png">
 
 
 
 
 
-![boot19](img\boot19.png)
+<img src="img\boot19.png">
 
 
 
@@ -2897,9 +2897,9 @@ public class SchedulingService {
 - 首先安装zookeeper， 官网下载 https://zookeeper.apache.org/releases.html ；
 - 安装注意事项：
   - 直接解压后在bin下双击zkServer.cmd， 如果可以打开 ， 那没事了， 如果不能 ，那么就在config下复制一份zoo_sample.cfg文件名叫zoo.cfg， 然后去双击他， 要是还不行， 报错：ZooKeeper audit is disabled， 那就编辑zkServer.cmd文件， 加上下面这个， 要是还不行， 那就去百度吧。
-  - ![boot21](img\boot21.png)
+  - <img src="img\boot21.png">
   - 需要先打开服务端显示成功， 然后再打开客户端的cmd， 就会连接起来， 然后可以执行一些命令， 
-  - ![boot22](img\boot22.png)
+  - <img src="img\boot22.png">
 
 
 
