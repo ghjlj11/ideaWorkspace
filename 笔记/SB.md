@@ -343,3 +343,60 @@ B/S架构， 是C/S三层架构的一种实现方式，客户端通过请求到�
 
 ## 关于git
 
+
+
+1.配置全局的用户名和邮箱，命令分别为
+
+```bash
+  git config --global user.name "username"
+
+  git config --global user.email "email"
+```
+
+
+
+ 查看全局的用户名和邮箱，命令分别为
+
+```bash
+ git config --global user.name
+
+ git config --global user.email
+```
+
+
+
+2.配置完后，全局的用户名和邮箱会写到C盘下的.gitconfig中。
+
+  
+
+3.配置单一的用户名和密码
+
+ 为单一的仓库配置用户名和邮箱，命令分别为
+
+```bash
+ git config user.name "username"
+
+ git config user.email "email"
+```
+
+
+
+ 查看单一的仓库配置的用户名和邮箱，命令分别为
+
+```bash
+ git config user.name
+
+ git config user.email 
+```
+
+
+
+4.配置完后，单一的仓库的用户名和邮箱会写到该仓库.git下的config文件中
+
+
+
+5.生成秘钥（SSH key）
+
+```bash
+ssh-keygen -t rsa -C "your_email@youremail.com"
+```
