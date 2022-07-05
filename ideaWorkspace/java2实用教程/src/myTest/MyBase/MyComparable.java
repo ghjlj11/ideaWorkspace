@@ -13,7 +13,6 @@ public class MyComparable {
         Queue<Integer> q = new ArrayDeque<>();
         Iterator<Integer> iterator = q.iterator();
         String s = "123456";
-        String k = "123456";
         String v = s.intern();
         v = new String(v);
         System.out.println(s == v);
