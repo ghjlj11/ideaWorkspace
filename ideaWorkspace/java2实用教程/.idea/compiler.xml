@@ -7,13 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="workTest" />
         <module name="servlet" />
         <module name="myJdbc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="myJdbc" target="17" />
-      <module name="servlet" target="17" />
+      <module name="myJdbc" target="1.8" />
+      <module name="servlet" target="1.8" />
+      <module name="workTest" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
