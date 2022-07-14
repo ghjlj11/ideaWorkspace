@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author ghj
  */
 @SpringBootApplication
-@MapperScan("com.ghj.mapper")
 public class MybatisPlusStudyApplication {
 
     public static void main(String[] args) {

@@ -386,3 +386,187 @@ SQL:
 
 
 
+#### 乐观锁
+
+
+
+- 使用Mybatis-puls实现乐观锁， 需要在数据库加上一个字段version，然后实体类加上对应的属性， 表上注解`@Version`
+
+
+
+- 写一个配置类。
+
+```java
+
+@Configuration
+@EnableTransactionManagement
+@MapperScan("com.ghj.mapper")
+public class MybatisPlusConfig {
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+
+}
+```
+
+
+
+-  然后就可以直接测试
+
+```java
+    @Test
+    public void optimistic(){
+
+        User user = new User();
+        user.setId(1111L);
+        user.setName("郭欢军");
+        
+        //先要查询出表里的数据的version， 然后设置到user里面进行对比version
+        User user1 = userMapper.selectById(1111L);
+        user.setVersion(user1.getVersion());
+        
+        //如果此时version不对， 那么更新失败。如果正确那么version++。
+        int i = userMapper.updateById(user);
+        System.out.println(i);
+
+    }
+```
+
+
+
+- 测试后的SQL：
+
+```java
+==>  Preparing: UPDATE user SET name=?, update_time=?, version=? WHERE id=? AND version=?
+==> Parameters: 郭欢军(String), 2022-07-12 21:00:50.515(Timestamp), 3(Integer), 1111(Long), 2(Integer)
+<==    Updates: 1
+```
+
+
+
+
+
+### select
+
+
+
+- 通过`selectList(null)`， 查询所有的数据
+
+```java
+List<User> users = userMapper.selectList(null);
+```
+
+
+
+
+
+- 通过`selectBatchIds()`来输入一个id的集合， 然后查询这些id的数据
+
+```java
+List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+```
+
+
+
+- 通过`selectByMap(Map<String, Object>)`， 查询指定条件的数据。
+
+```java
+ /**
+     *查询语句， 通过map封装查询条件查询。
+     */
+
+    @Test
+    public void selectByMap(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("name", "ghj");
+//        map.put("id", "1111");
+//        map.put("age", "21");
+//        map.put("email", "123456");
+
+        List<User> list = userMapper.selectByMap(map);
+        for (User user : list) {
+            System.out.println(user);
+        }
+    }
+
+```
+
+
+
+
+
+### 分页查询
+
+
+
+- 首先需要添加配置， 添加一个拦截器， 就是之前的乐观锁的拦截器那边在add一个。
+
+```java
+
+@Configuration
+@EnableTransactionManagement
+@MapperScan("com.ghj.mapper")
+public class MybatisPlusConfig {
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        //添加乐观锁的拦截器。
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+
+        //添加分页拦截
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
+    }
+
+}
+```
+
+
+
+- 然后需要测试时候需要一个Page的对象， 用来装数据， 并且设置第几页，以及页面大小。
+
+```java
+    /**
+     * 测试分页插件selectPage(Page, null)
+     */
+    @Test
+    public void testPage(){
+
+        //首先需要new 一个page ， 第一个参数是第几页， 第二个参数是页面的大小。
+        Page<User> page = new Page<>(2, 3);
+
+        //通过page查询。
+        userMapper.selectPage(page, null);
+
+
+        List<User> users = page.getRecords();
+
+        users.forEach(System.out::println);
+
+    }
+```
+
+
+
+对应的SQL：
+
+```txt
+==>  Preparing: SELECT COUNT(*) AS total FROM user
+==> Parameters: 
+<==    Columns: total
+<==        Row: 13
+<==      Total: 1
+==>  Preparing: SELECT id,name,age,email,create_time,update_time,version FROM user LIMIT ?,?
+==> Parameters: 3(Long), 3(Long)
+<==    Columns: id, name, age, email, create_time, update_time, version
+<==        Row: 4, Sandy, 21, test4@baomidou.com, null, null, 1
+<==        Row: 5, Billie, 24, test5@baomidou.com, null, null, 1
+<==        Row: 1111, 郭欢军, 21, 123456, 2022-07-11 22:41:48, 2022-07-12 22:10:58, 4
+<==      Total: 3
+```
+
