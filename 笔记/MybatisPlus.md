@@ -462,6 +462,14 @@ List<User> users = userMapper.selectList(null);
 
 
 
+- 通过`selectById(Serializable id)`， 查询指定条件的数据。
+
+```java
+User user = userMapper.selectById(1L);
+```
+
+
+
 
 
 - 通过`selectBatchIds()`来输入一个id的集合， 然后查询这些id的数据
@@ -568,5 +576,475 @@ public class MybatisPlusConfig {
 <==        Row: 5, Billie, 24, test5@baomidou.com, null, null, 1
 <==        Row: 1111, 郭欢军, 21, 123456, 2022-07-11 22:41:48, 2022-07-12 22:10:58, 4
 <==      Total: 3
+```
+
+
+
+###  delete语句
+
+delete语句与select语句方法类似
+
+- 通过id删除， `deleteById()`
+
+```java
+//直接指定id
+int i = userMapper.deleteById(1546474832920682501L);
+//把id放在一个实体类 里面， 即使里面存放了别的属性， 也只会通过id删除
+User user = new User();
+user.setId(1546474832920682502L);
+
+user.setName("ll");
+int i = userMapper.deleteById(user);
+```
+
+
+
+- 通过map来删除，里面存放的东西就是查询条件， `deleteByMap()`
+
+```java
+HashMap<String, Object> map = new HashMap<>();
+
+map.put("id", 1546474832920682499L);
+map.put("name", "ghj");
+map.put("age", "21");
+int i = userMapper.deleteByMap(map);
+System.out.println(i);
+```
+
+
+
+对应的SQL：
+
+```txt
+
+==>  Preparing: DELETE FROM user WHERE name = ? AND id = ? AND age = ?
+==> Parameters: ghj(String), 1546474832920682499(Long), 21(String)
+<==    Updates: 1
+```
+
+
+
+- 通过Collection来存放id， 然后全部删除， `deleteBatchIds()`。
+
+```java
+ArrayList<Long> longs = new ArrayList<>();
+
+longs.add(1546474832920682497L);
+longs.add(4321L);
+int i = userMapper.deleteBatchIds(longs);
+
+System.out.println(i);
+```
+
+
+
+对应的SQL：
+
+```txt
+==>  Preparing: DELETE FROM user WHERE id IN ( ? , ? )
+==> Parameters: 1546474832920682497(Long), 4321(Long)
+<==    Updates: 2
+```
+
+
+
+### 逻辑删除
+
+
+
+> 物理删除
+
+直接从数据库中删除
+
+>逻辑删除
+
+通过设置字段， 实现逻辑删除。
+
+- 首先我们需要在数据库表里面加一个`deleted`字段， 并且设置默认值为0，删除值为1。
+
+- 然后实体类， 加上对应的字段和注解
+
+```java
+    /**
+     * 逻辑删除注解
+     */
+    @TableLogic
+    private Integer deleted;
+```
+
+
+
+- 在yaml文件配置
+
+```yaml
+#配置日志
+mybatis-plus:
+  global-config:
+    db-config:
+      #配置逻辑删除字段
+      logic-delete-field: deleted
+      #配置对应的删除时候的值
+      logic-delete-value: 1
+      #配置对应的默认值
+      logic-not-delete-value: 0
+```
+
+
+
+- 最后直接测试删除效果
+
+```java
+int i = userMapper.deleteById(1546474832920682500L);
+```
+
+
+
+可以看到到对应的SQL变成了update语句， 而不是delete语句：
+
+```txt
+==>  Preparing: UPDATE user SET deleted=1 WHERE id=? AND deleted=0
+==> Parameters: 1546474832920682500(Long)
+<==    Updates: 1
+```
+
+
+
+- 并且加上了逻辑删除的话， 那么查询语句也会加上判断， 查询deleted= 0
+
+```txt
+SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=0
+```
+
+
+
+## 性能分析器
+
+
+
+插件已经移除了。。。
+
+
+
+
+
+## 条件构造器
+
+
+
+可以支持我们写一些复杂的数据库操作
+
+
+
+官方列出了很多个方法
+
+```txt
+allEq全部eq(或个别isNull)
+例1: allEq({id:1,name:"老王",age:null})--->id = 1 and name = '老王' and age is null
+例2: allEq({id:1,name:"老王",age:null}, false)--->id = 1 and name = '老王'
+
+
+eq(相等)
+例: eq("name", "老王")--->name = '老王'
+
+
+ne
+例: ne("name", "老王")--->name <> '老王'
+
+gt
+例: gt("age", 18)--->age > 18
+
+
+ge
+例: ge("age", 18)--->age >= 18
+
+
+lt
+例: lt("age", 18)--->age < 18
+
+
+le
+例: le("age", 18)--->age <= 18
+
+
+between
+BETWEEN 值1 AND 值2
+例: between("age", 18, 30)--->age between 18 and 30
+    
+    
+notBetween
+NOT BETWEEN 值1 AND 值2
+例: notBetween("age", 18, 30)--->age not between 18 and 30
+    
+
+like
+LIKE '%值%'
+例: like("name", "王")--->name like '%王%'
+    
+    
+notLike
+NOT LIKE '%值%'
+例: notLike("name", "王")--->name not like '%王%'
+    
+    
+likeLeft
+LIKE '%值'
+例: likeLeft("name", "王")--->name like '%王'
+
+
+likeRight
+LIKE '值%'
+例: likeRight("name", "王")--->name like '王%'
+    
+    
+isNull
+字段 IS NULL
+例: isNull("name")--->name is null
+    
+    
+isNotNull
+字段 IS NOT NULL
+例: isNotNull("name")--->name is not null
+    
+    
+in
+字段 IN (value.get(0), value.get(1), ...)
+例: in("age",{1,2,3})--->age in (1,2,3)
+字段 IN (v0, v1, ...)
+例: in("age", 1, 2, 3)--->age in (1,2,3)
+    
+    
+notIn
+
+
+inSql
+字段 IN ( sql语句 )
+例: inSql("age", "1,2,3,4,5,6")--->age in (1,2,3,4,5,6)
+例: inSql("id", "select id from table where id < 3")--->id in (select id from table where id < 3)
+
+notInSql
+
+
+groupBy
+    分组：GROUP BY 字段, ...
+    例: groupBy("id", "name")--->group by id,name
+    
+    
+orderByAsc
+    排序：ORDER BY 字段, ... ASC
+    例: orderByAsc("id", "name")--->order by id ASC,name ASC
+    
+    
+orderByDesc
+    排序：ORDER BY 字段, ... DESC
+    例: orderByDesc("id", "name")--->order by id DESC,name DESC
+    
+    
+orderBy
+    排序：ORDER BY 字段, ...
+    例: orderBy(true, true, "id", "name")--->order by id ASC,name ASC
+    
+    
+having
+    HAVING ( sql语句 )
+    例: having("sum(age) > 10")--->having sum(age) > 10
+    例: having("sum(age) > {0}", 11)--->having sum(age) > 11
+    
+    
+func
+    func 方法(主要方便在出现if...else下调用不同方法能不断链)
+    例: func(i -> if(true) {i.eq("id", 1)} else {i.ne("id", 1)})
+    
+    
+or
+拼接 OR
+例: eq("id",1).or().eq("name","老王")--->id = 1 or name = '老王'
+    OR 嵌套
+    例: or(i -> i.eq("name", "李白").ne("status", "活着"))--->or (name = '李白' and status <> '活着')
+    
+    
+and
+    AND 嵌套
+    例: and(i -> i.eq("name", "李白").ne("status", "活着"))--->and (name = '李白' and status <> '活着')
+    
+    
+nested
+    正常嵌套 不带 AND 或者 OR
+    例: nested(i -> i.eq("name", "李白").ne("status", "活着"))--->(name = '李白' and status <> '活着')
+    
+    
+apply
+拼接 sql
+例: apply("id = 1")--->id = 1
+例: apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")--->date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")
+例: apply("date_format(dateColumn,'%Y-%m-%d') = {0}", "2008-08-08")--->date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")
+
+
+last
+    无视优化规则直接拼接到 sql 的最后
+
+    注意事项:只能调用一次,多次调用以最后一次为准 有sql注入的风险,请谨慎使用
+    例: last("limit 1")
+    
+
+exists
+    拼接 EXISTS ( sql语句 )
+    例: exists("select id from table where age = 1")--->exists (select id from table where age = 1)
+    
+    
+notExists
+    拼接 NOT EXISTS ( sql语句 )
+    例: notExists("select id from table where age = 1")--->not exists (select id from table where age = 1)
+    
+    
+select
+例: select("id", "name", "age")
+例: select(i -> i.getProperty().startsWith("test"))
+
+
+set
+    SQL SET 字段
+    例: set("name", "老李头")
+    例: set("name", "")--->数据库字段值变为空字符串
+    例: set("name", null)--->数据库字段值变为null
+    
+setSql
+    设置 SET 部分 SQL
+    例: setSql("name = '老李头'")
+    
+    
+ 
+```
+
+
+
+```java
+/**
+     * 测试条件构造器 wrapper
+     */
+    @Test
+    public void testWrapper(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        //链式语法， eq等于，column与对应的值匹配，ge大于。
+        wrapper
+                .eq("id", 2)
+                .ge("age", 12)
+                .eq("name", "jack");
+
+        List<Object> objects = userMapper.selectObjs(wrapper);
+
+        System.out.println(objects);
+    }
+```
+
+
+
+对应的SQL就会有更复杂的条件：
+
+```txt
+==>  Preparing: SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=0 AND (id = ? AND age >= ? AND name = ?)
+==> Parameters: 2(Integer), 12(Integer), jack(String)
+<==    Columns: id, name, age, email, create_time, update_time, version, deleted
+<==        Row: 2, Jack, 20, test2@baomidou.com, null, null, 1, 0
+<==      Total: 1
+
+```
+
+
+
+
+
+- 模糊查询
+
+```java
+QueryWrapper<User> wrapper = new QueryWrapper<>();
+wrapper.like("name", "j");
+List<Map<String, Object>> maps = userMapper.selectMaps(wrapper);
+```
+
+
+
+SQL:
+
+```txt
+==>  Preparing: SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=0 AND (name LIKE ?)
+==> Parameters: %j%(String)
+<==    Columns: id, name, age, email, create_time, update_time, version, deleted
+<==        Row: 1, Jone, 18, test1@baomidou.com, null, null, 1, 0
+<==        Row: 2, Jack, 20, test2@baomidou.com, null, null, 1, 0
+<==        Row: 1234, ljlj, 22, 123456, 2022-07-11 22:42:47, 2022-07-11 22:42:47, 1, 0
+<==      Total: 3
+```
+
+
+
+- 子查询
+
+```java
+/**
+     * 子查询inSql()
+     */
+    @Test
+    public void testWrapper4(){
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.inSql("id", "select id from user where id < 3");
+
+        List<Object> list = userMapper.selectObjs(wrapper);
+
+        for (Object o : list) {
+            System.out.println(o);
+        }
+    }
+```
+
+
+
+SQL
+
+```txt
+==>  Preparing: SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=0 AND (id IN (select id from user where id < 3))
+==> Parameters: 
+<==    Columns: id, name, age, email, create_time, update_time, version, deleted
+<==        Row: 1, Jone, 18, test1@baomidou.com, null, null, 1, 0
+<==        Row: 2, Jack, 20, test2@baomidou.com, null, null, 1, 0
+<==      Total: 2
+
+```
+
+
+
+
+
+## 代码生成器
+
+
+
+
+
+java代码：
+
+```java
+public class GhjCode {
+    public static void main(String[] args) {
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/malajava?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "123456")
+                .globalConfig(builder -> {
+                    builder.author("ghj") // 设置作者
+                            //.enableSwagger() // 开启 swagger 模式
+                            .fileOverride() // 覆盖已生成文件
+                            .outputDir("D:/my-study/ideaWorkspace/mybatis-plus-study/src/main/java/com/ghj/blog"); // 指定输出目录
+                })
+                .packageConfig(builder -> {
+                    builder.parent("com.ghj")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, "D:/my-study/ideaWorkspace/mybatis-plus-study/src/main/java/com/ghj/blog")); // 设置mapperXml生成路径
+                })
+                .strategyConfig(builder -> {
+                    builder.addInclude("blog") ;// 设置需要生成的表名
+                })
+                .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .execute();
+    }
+}
+
 ```
 
