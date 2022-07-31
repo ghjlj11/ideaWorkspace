@@ -25,7 +25,7 @@ public class MyController {
      * Ribbon这里应该需要的是一个服务名， 因为如果写的是http://localhost:8001那么就只会直接访问服务端，
      * 都不会走注册中心， 这里需要写一个服务的名字， 这样就可以访问注册中心。
      */
-    private static final String PREFIX = "http://SPRING-PROVIDER-DEPT";
+    private static final String PREFIX = "http://SPRING-POVIDER-DEPT";
 
     @RequestMapping("/consumer/dept/get/{id}")
     public Dept get(@PathVariable("id") Long id){

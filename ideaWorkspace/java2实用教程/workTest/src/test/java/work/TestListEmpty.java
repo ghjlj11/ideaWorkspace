@@ -2,9 +2,7 @@ package work;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author 86187
@@ -13,14 +11,15 @@ import java.util.List;
 public class TestListEmpty {
     @Test
     public void t1(){
-        List<Integer> list = new ArrayList<>();
-        //false
-        System.out.println(list == null);
-        list.add(1);
-        list.remove(0);
-        //true
-        System.out.println(list.isEmpty());
-        //false
-        System.out.println(list == null);
+        Integer[] l = new Integer[]{3,2,1,4,8,9,6,5,7};
+        Comparator<Integer> comparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                System.out.println(o1 + "---->" + o2);
+                return o2 - o1;
+            }
+        };
+        Arrays.sort(l, comparator);
+        System.out.println(Arrays.toString(l));
     }
 }
