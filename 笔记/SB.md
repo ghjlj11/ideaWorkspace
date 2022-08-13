@@ -465,7 +465,9 @@ ssh-keygen -t rsa -C "your_email@youremail.com"
 
 
 
-#####  废弃修改
+#### 废弃修改
+
+
 
 核心思想就是版本回退，具体命令如下，本地修改清除。
 
@@ -483,6 +485,14 @@ git pull origin master
 ```
 
 
+
+
+
+#### 生成ssh密钥
+
+```bash
+ssh-keygen -t rsa -C "邮箱"
+```
 
 
 
