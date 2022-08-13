@@ -475,7 +475,14 @@ git reset --hard
 
 
 git pull origin master
+
+
+用版本库内容清空暂存区，git reset HEAD （谨慎使用）
+
+只把特定文件从暂存区删除，git rm --cached xxx
 ```
+
+
 
 
 
