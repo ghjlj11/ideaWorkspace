@@ -293,3 +293,99 @@ class A{
 
 ```
 
+
+
+## Lock版本的生产消费者
+
+首先我们知道Lock可以直接替换synchronized， 然后wait()方法和notifyAll()方法也可以被Condition的await()方法与signal()方法代替。
+
+使用官网的例子说明Condition
+
+```java
+/**
+ * 官网的例子
+ */
+class BoundedBuffer {
+   final Lock lock = new ReentrantLock();
+   final Condition notFull  = lock.newCondition();
+   final Condition notEmpty = lock.newCondition(); 
+
+   final Object[] items = new Object[5];
+   int putptr, takeptr, count;
+
+   public void put(Object x) throws InterruptedException {
+     lock.lock(); try {
+       while (count == items.length)
+         notFull.await();
+       items[putptr] = x;
+       if (++putptr == items.length) putptr = 0;
+       ++count;
+       System.out.println(Thread.currentThread().getName() + "存放了了第" + putptr + "个， 是====>" + x);
+       notEmpty.signal();
+     } finally { lock.unlock(); }
+   }
+
+   public Object take() throws InterruptedException {
+     lock.lock(); try {
+       while (count == 0)
+         notEmpty.await();
+       Object x = items[takeptr];
+       if (++takeptr == items.length) takeptr = 0;
+       --count;
+       System.out.println(Thread.currentThread().getName() + "拿取了第" + count + "个， 是====>" + x);
+       notFull.signal();
+       return x;
+     } finally { lock.unlock(); }
+   }
+ } 
+```
+
+
+
+Condition可以实现精准唤醒线程。
+
+之前的例子可以换成
+
+```java
+class A{
+    public int num = 0;
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
+    Condition condition1 = lock.newCondition();
+    public void increment() throws InterruptedException {
+        lock.lock();
+        try {
+            while (num != 0){
+                //相当于wait方法
+                condition.await();
+            }
+            System.out.println(Thread.currentThread().getName() + "===>" + num);
+            num ++;
+            //相当于notify方法
+            condition1.signal();//实现精准唤醒
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+    public void decrement() throws InterruptedException {
+        lock.lock();
+        try {
+            while (num == 0){
+                condition1.await();
+            }
+            System.out.println(Thread.currentThread().getName() + "===>" + num);
+            num --;
+            condition.signal();//实现精准唤醒
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            lock.unlock();
+        }
+    }
+}
+
+```
+
