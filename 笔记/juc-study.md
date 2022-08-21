@@ -389,3 +389,562 @@ class A{
 
 ```
 
+
+
+## 8锁现象
+
+
+
+- 1 锁是锁住的调用者
+
+```java
+/**
+ * @author 86187
+ * 关于锁的问题
+ * 方法上的锁是将调用该方法的对象锁住
+ * 下面测试始终是发短信先获取锁， 因为中间主线程有睡眠1秒， 在发短信时候不管睡眠多久， 锁都是在发短信身上， 必须执行完发短信， 打电话才能获取锁
+ */
+public class Test01 {
+    public static void main(String[] args) {
+        Phone phone = new Phone();
+        new Thread(() -> {
+            phone.sendSm();
+        }, "A").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            phone.call();
+        }, "B").start();
+    }
+}
+class Phone{
+    public synchronized void sendSm(){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("发短信");
+    }
+    public synchronized void call(){
+        System.out.println("打电话");
+    }
+    public void sayHello(){
+        System.out.println("hello");
+    }
+}
+
+```
+
+
+
+- 2 未被锁住的方法， 可以不用获取锁也可以执行
+
+```java
+/**
+ * @author 86187
+ * 关于锁的问题
+ * 方法上的锁是将调用该方法的对象锁住
+ * 当执行没有被锁的方法， 那么就不需要拿取到对象的锁， 先执行hello
+ */
+public class Test02 {
+    public static void main(String[] args) {
+        Phone2 phone = new Phone2();
+        new Thread(() -> {
+            phone.sendSm();
+        }, "A").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            phone.sayHello();
+        }, "B").start();
+    }
+}
+class Phone2{
+    public synchronized void sendSm(){
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("发短信");
+    }
+    public synchronized void call(){
+        System.out.println("打电话");
+    }
+    public void sayHello(){
+        System.out.println("hello");
+    }
+}
+```
+
+
+
+- 3 不同的对象有不同的锁
+
+```java
+/**
+ * @author 86187
+ * 关于锁的问题
+ * 方法上的锁是将调用该方法的对象锁住， 这里有两个对象， 因此phone1的锁被拿走了， phone2的锁一样可以获取， 因此先执行打电话， 再发短信
+ * 先打电话， 再发短信
+ */
+public class Test03 {
+    public static void main(String[] args) {
+        Phone3 phone1 = new Phone3();
+        Phone3 phone2 = new Phone3();
+        new Thread(() -> {
+            phone1.sendSm();
+        }, "A").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            phone2.call();
+        }, "B").start();
+    }
+}
+class Phone3{
+    public synchronized void sendSm(){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("发短信");
+    }
+    public synchronized void call(){
+        System.out.println("打电话");
+    }
+}
+
+```
+
+
+
+- 4 带有static的方法是锁住类的class模板
+
+```java
+/**
+ * @author 86187
+ * 关于锁的问题
+ * 先发短信， 再打电话
+ */
+public class Test04 {
+    public static void main(String[] args) {
+        Phone4 phone1 = new Phone4();
+        Phone4 phone2 = new Phone4();
+        new Thread(() -> {
+            phone1.sendSm();
+        }, "A").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            phone2.call();
+        }, "B").start();
+    }
+}
+class Phone4{
+    //当这里加上了static，那就是锁的Class对象，每个类只有一个Class对象
+    // Class<Phone4> aClass = Phone4.class;
+    public static synchronized void sendSm(){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("发短信");
+    }
+    public static synchronized void call(){
+        System.out.println("打电话");
+    }
+}
+
+```
+
+
+
+- 5 锁住类的class模板， 类new出来的对象并不会被锁住
+
+```java
+/**
+ * @author 86187
+ * 关于锁的问题
+ * 先发短信， 再打电话
+ */
+public class Test04 {
+    public static void main(String[] args) {
+        Phone4 phone1 = new Phone4();
+        Phone4 phone2 = new Phone4();
+        new Thread(() -> {
+            phone1.sendSm();
+        }, "A").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> {
+            phone2.call();
+        }, "B").start();
+    }
+}
+class Phone4{
+    //当这里加上了static，那就是锁的Class对象，每个类只有一个Class对象
+    // Class<Phone4> aClass = Phone4.class;
+    public static synchronized void sendSm(){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("发短信");
+    }
+    public static synchronized void call(){
+        System.out.println("打电话");
+    }
+}
+
+```
+
+
+
+## CopyOnWriteArrayList
+
+
+
+- 写入时复制的ArrayList， 其中的add()方法， 先复制原先的数组， 然后add数据， 然后改变原先数组的Array的引用
+
+```java
+    public boolean add(E e) {
+        final ReentrantLock lock = this.lock;
+        lock.lock();
+        try {
+            Object[] elements = getArray();
+            int len = elements.length;
+            Object[] newElements = Arrays.copyOf(elements, len + 1);
+            newElements[len] = e;
+            setArray(newElements);
+            return true;
+        } finally {
+            lock.unlock();
+        }
+    }
+```
+
+
+
+- 测试
+
+```java
+/**
+ * @author 86187
+ * ConcurrentModificationException并发修改异常
+ */
+public class TestList {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        //这里会直接抛出这个异常
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                list.add(String.valueOf(new Random().nextInt(100)));
+                System.out.println(list);
+            },String.valueOf(i)).start();
+        }
+    }
+    @Test
+    public void test01(){
+        //Collections让List集合线程安全的方法 或者使用Vector也是线程安全的
+        List<String> list = Collections.synchronizedList(new ArrayList<String>());
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                list.add(String.valueOf(new Random().nextInt(100)));
+                System.out.println(list);
+            },String.valueOf(i)).start();
+        }
+    }
+
+    @Test
+    public void test02(){
+        //写入时复制的ArrayList， 线程安全
+        //在多线程写入的时候， 会先复制一份，然后改变Array引用 ， 避免写入的数据被覆盖掉
+        //CopyOnWriteArrayList适合用在'读多写少'的时候， 比Vector的效率更高， Vector都是用的synchronized， 这个用的是Lock
+        List<String> list = new CopyOnWriteArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                list.add(String.valueOf(new Random().nextInt(100)));
+                System.out.println(list);
+            },String.valueOf(i)).start();
+        }
+    }
+}
+
+```
+
+
+
+## CopyOnWriteArraySet
+
+
+
+- 多线程下Set与List类似
+
+```java
+/**
+ * 同理， Set和list类似
+ * ConcurrentModificationException用HashSet一样抛这个异常
+ */
+public class TestSet {
+    @Test
+    public void test01(){
+        //Set<String> set = new HashSet<>();
+        Set<String> set = Collections.synchronizedSet(new HashSet<>());
+        for (int i = 0; i < 20; i++) {
+            new Thread(() -> {
+                set.add(String.valueOf(new Random().nextInt(100)));
+                System.out.println(Thread.currentThread().getName() +  "====>" + set);
+            } , String.valueOf(i)).start();
+        }
+    }
+    @Test
+    public void test02(){
+        Set<String> set = new CopyOnWriteArraySet<>();
+        for (int i = 0; i < 20; i++) {
+            new Thread(() -> {
+                set.add(String.valueOf(new Random().nextInt(100)));
+                System.out.println(Thread.currentThread().getName() +  "====>" + set);
+            } , String.valueOf(i)).start();
+        }
+    }
+}
+
+```
+
+
+
+## Callable
+
+
+
+- Callable与Runnable不同的是， Callabe有返回值， 并且可以抛异常
+
+
+
+我们观察Thread的构造方法， 可以看出里面没有关于Callable接口的构造， 只有一些Runnable以及线程组的构造， 想要让Callable跑起来还是需要Thread的构造， 因此在Runnable下有一个FutureTask类， 它的构造既可以用Runnable也可以用Callable， 因此这就把Callable和Runnable关联起来了， 也就和Thread关联起来了。
+
+
+
+- 因此我们直接调用Callable的call()方法就相当于是利用FutureTask新开了一个线程
+
+```java
+public class TestCallAble {
+    public static void main(String[] args) throws Exception {
+        FutureTask futureTask = new FutureTask(new Call());
+        new Thread(futureTask, "A").start();
+        //这里并没有再次执行 ，应为会被缓存
+        new Thread(futureTask, "B").start();
+        //如果get方法是一个很耗时的操作那可能会产生阻塞
+        Object o = futureTask.get();
+        System.out.println(o);
+        //等价于上面的
+        new Call().call();
+    }
+}
+
+class Call implements Callable{
+    @Override
+    public Object call() throws Exception {
+        System.out.println("call()");
+        return 333;
+    }
+}
+
+```
+
+
+
+## 常用辅助类
+
+
+
+- 用作减1的计数器操作CountDownLatch
+
+```java
+public class CountDownLatchDemo {
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(8);
+        for (int i = 0; i < 8; i++) {
+            new Thread(() -> {
+                //让CountDownLatch里的值减1
+                System.out.println(Thread.currentThread().getName() + "==>" + "xxxxxx");
+                countDownLatch.countDown();
+            }, String.valueOf(i)).start();
+        }
+        //当CountDownLatch里的值变为0才会继续走下去
+        countDownLatch.await();
+        System.out.println("haha");
+    }
+}
+
+```
+
+
+
+- CyclicBarrier是一个加法计数器， 当调用cyclicBarrier.await()就会加1， 达到指定的值就会执行指定的线程， 调用cyclicBarrier.await()也会让执行这条命令的线程阻塞
+
+```java
+/**
+ * @author 86187
+ * CyclicBarrier也是一个计数器， 当达到一定值时候就会执行一个线程
+ * 这个值需要每次调用cyclicBarrier.await()就会加1， 调用同时也会让使用此方法的线程进入阻塞
+ * 当达到这个规定的值的时候， 指定的线程会自动执行。
+ */
+public class CyclicBarrierDemo {
+    public static void main(String[] args) throws BrokenBarrierException, InterruptedException {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(7 , () -> {
+            System.out.println("芝麻开门");
+        });
+
+        for (int i = 0; i < 7; i++) {
+            final int temp = i;
+            new Thread(() ->{
+                System.out.println(Thread.currentThread().getName() + "===>" + temp);
+                try {
+                    cyclicBarrier.await();
+                    System.out.println("现在是===>" + temp);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            }, String.valueOf(i)).start();
+        }
+    }
+}
+
+```
+
+
+
+结果：
+
+```txt
+1===>1
+3===>3
+2===>2
+0===>0
+5===>5
+4===>4
+6===>6
+芝麻开门
+现在是===>3
+现在是===>2
+现在是===>4
+现在是===>1
+现在是===>6
+现在是===>5
+现在是===>0
+
+进程已结束,退出代码0
+
+```
+
+
+
+- Semaphore拿取与释放资源
+
+```java
+/**
+ * @author 86187
+ * Semaphore设置一个资源数， 线程可以去获取资源也可以释放资源， 如果资源全被获取， 那么需要拿取资源的线程就需要等待有线程释放资源
+ * 可以用来限流
+ */
+public class SemaphoreDemo {
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(3);
+        for (int i = 0; i < 6; i++) {
+            new Thread(() -> {
+                try {
+                    //拿取资源
+                    semaphore.acquire();
+                    System.out.println(Thread.currentThread().getName() + "==>获取到了资源");
+                    //释放资源
+                    semaphore.release();
+                    System.out.println(Thread.currentThread().getName() + "==>释放了了资源");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }, String.valueOf(i)).start();
+        }
+    }
+}
+
+```
+
+
+
+## ReadWriteLock
+
+
+
+读写锁是比Lock更细致的锁， 拥有读写两把锁， 写锁只可以一个线程拥有； 读锁可以共享， 但是不可以写
+
+```java
+/**
+ * @author 86187
+ * 读写锁
+ */
+public class ReadWriteLockDemo {
+    public static void main(String[] args) {
+        Catch aCatch = new Catch();
+        //写入操作
+        for (int i = 0; i < 5; i++) {
+            final int t = i;
+            new Thread(() -> {
+                aCatch.put(t + "", t + "");
+            }, i + "").start();
+        }
+        //读取操作
+        for (int i = 0; i < 5; i++) {
+            final int t = i;
+            new Thread(() -> {
+                aCatch.get(t + "");
+            }, i + "").start();
+        }
+    }
+}
+class Catch{
+    private volatile Map<String, String> map = new HashMap<>();
+    ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+
+    public void put(String k, String v){
+        //写锁， 只可以有一个线程写
+        readWriteLock.writeLock().lock();
+        System.out.println(Thread.currentThread().getName() + "==>进入到写操作");
+        map.put(k, v);
+        System.out.println(Thread.currentThread().getName() + "==>写操作  ok");
+        readWriteLock.writeLock().unlock();
+    }
+    public void get(String k){
+        //读锁， 可以多个线程读， 但是不可以写
+        readWriteLock.readLock().lock();
+        System.out.println(Thread.currentThread().getName() + "==>进入到读操作");
+        map.get(k);
+        System.out.println(Thread.currentThread().getName() + "==>读操作  ok");
+        readWriteLock.readLock().unlock();
+    }
+}
+
+```
+
