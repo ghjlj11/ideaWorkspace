@@ -1,4 +1,4 @@
-package lj.leetcode.offer09;
+package lj.leetcode.offer.offer09;
 import java.util.LinkedList;
 class Queue {
     LinkedList<Integer> s1;

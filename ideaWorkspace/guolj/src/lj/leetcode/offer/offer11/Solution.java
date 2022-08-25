@@ -1,4 +1,4 @@
-package lj.leetcode.offer11;
+package lj.leetcode.offer.offer11;
 
 class Solution {
     public int minArray(int[] numbers) {

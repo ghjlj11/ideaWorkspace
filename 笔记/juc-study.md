@@ -948,3 +948,181 @@ class Catch{
 
 ```
 
+
+
+## 阻塞队列
+
+- 在Collection下的Queue下的BlockingQueue  ， 实现类：
+
+```java
+ArrayBlockingQueue<Object> blockingQueue = new ArrayBlockingQueue<>(3);
+```
+
+
+
+常用的四组API：
+
+| 方式         | 抛出异常  | 有返回值，不抛出异常 | 阻塞 等待 | 超时等待  |
+| ------------ | --------- | -------------------- | --------- | --------- |
+| **添加**     | add()     | offer()              | put()     | offer(,,) |
+| **移除**     | remove()  | poll()               | take()    | poll(,)   |
+| **队首元素** | element() | peek()               | -         | -         |
+
+
+
+> 同步队列 SynchronousQueue
+
+
+
+- 这个队列是BlockingQueue的子类， 特点就是里面只能存储一个元素， 存了之后必须取出来才可以继续存入。
+
+
+
+## 线程池
+
+
+
+Executors是一个工具类，可以为我们创建线程池， 有三种方式， 单一的， 指定数量的， 以及无限的依赖的系统的
+
+```java
+/**
+ * @author 86187
+ * Executors
+ */
+public class ExecutorDemo {
+    public static void main(String[] args) {
+        //创建一个单一的线程池
+        ExecutorService threadPoll = Executors.newSingleThreadExecutor();
+        //创建指定大小的线程池
+        threadPoll = Executors.newFixedThreadPool(5);
+        //无上限，系统能执行多少就多少
+        threadPoll = Executors.newCachedThreadPool();
+
+        for (int i = 0; i < 100; i++) {
+            threadPoll.execute(() -> {
+                System.out.println(Thread.currentThread().getName() + "===>" );
+            });
+        }
+        threadPoll.shutdown();
+    }
+}
+```
+
+ 
+
+
+
+以上三中方式创建线程池都是调用了下面的方法：
+
+```java
+public ThreadPoolExecutor(int corePoolSize,//核心线程数
+                              int maximumPoolSize,// 最大线程数
+                              long keepAliveTime,// 最大存活时间，超时 就会释放该线程池
+                              TimeUnit unit,// 上面时间的单位
+                              BlockingQueue<Runnable> workQueue,// 阻塞队列， 等待区的位置
+                              ThreadFactory threadFactory,// 线程工厂， 一般不改
+                              RejectedExecutionHandler handler// 拒绝策略 4 种
+                         ) {
+        if (corePoolSize < 0 ||
+            maximumPoolSize <= 0 ||
+            maximumPoolSize < corePoolSize ||
+            keepAliveTime < 0)
+            throw new IllegalArgumentException();
+        if (workQueue == null || threadFactory == null || handler == null)
+            throw new NullPointerException();
+        this.acc = System.getSecurityManager() == null ?
+                null :
+                AccessController.getContext();
+        this.corePoolSize = corePoolSize;
+        this.maximumPoolSize = maximumPoolSize;
+        this.workQueue = workQueue;
+        this.keepAliveTime = unit.toNanos(keepAliveTime);
+        this.threadFactory = threadFactory;
+        this.handler = handler;
+    }
+```
+
+ 
+
+正常情况下， 我们只有核心线程在执行， 当请求的太多，就会到阻塞队列里边， 当阻塞队列也满了， 那么就会开启新的线程， 就是在最大线程里面调用， 当还是满了不够用， 就会采取拒绝策略
+
+
+
+```java
+ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2,
+                5,
+                3,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(3),
+                Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy());
+
+        try {
+            for (int i = 0; i < 9; i++) {
+                poolExecutor.execute(() -> {
+                    System.out.println(Thread.currentThread().getName() + "===>");
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            poolExecutor.shutdown();
+        }
+```
+
+
+
+
+
+> 拒绝策略
+
+- 之前用Executors默认采用的是`new ThreadPoolExecutor.AbortPolicy()`，这种策略 会抛出异常
+- `new ThreadPoolExecutor.CallerRunsPolicy`， 就是哪来的回哪去。
+- `new ThreadPoolExecutor.DiscardOldestPolicy()`， 会尝试和第一个执行的线程竞争， 不会抛异常。
+- `new ThreadPoolExecutor.DiscardPolicy`， 满了不会抛出异常
+
+
+
+> 如何设置最大线程数
+
+- CPU密集型：获取CPU的最大线程数， 然后设置最大线程数为这个
+
+```java
+//获取当前服务器的最大线程数
+System.out.println(Runtime.getRuntime().availableProcessors());
+```
+
+- IO密集型：查看进行IO操作很耗时的线程数，  然后 设置大于这个数 的最大线程数，一般为两倍。 
+
+
+
+## Stream
+
+
+
+stream流是对集合的一种操作， 可以过滤， 筛选， 以及排序出一些数据
+
+```java
+/**
+ * @author 86187
+ * stream流式计算
+ * filter 过滤， 参数为断言型函数接口
+ * map 传入Stream泛型里的一个对象， 转化为一个任意的值
+ * sorted 排序输出， 传入一个比较器
+ * limit 指定输出前几个
+ * 终止操作 只能有 一次！
+ */
+public class StreamDemo {
+    public static void main(String[] args) {
+        List<Student> list = Arrays.asList(new Student(11, "A", 12), new Student(22, "B", 13), new Student(33, "C", 14));
+        Stream<Student> stream = list.stream();
+        Stream<String> limit = stream.filter(n -> n.getAge() > 11)
+                .map(n -> n.getName().toLowerCase())
+                .sorted((o1, o2) -> o2.compareTo(o1))
+                .limit(2);
+        limit.forEach(System.out::println); //相当于终止了， 接下来就不能使用这个流了
+        System.out.println(limit.count());
+    }
+}
+```
+

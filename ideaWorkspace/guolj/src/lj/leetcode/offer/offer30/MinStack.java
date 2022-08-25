@@ -1,6 +1,4 @@
-package lj.leetcode.offer30;
-
-import org.w3c.dom.Node;
+package lj.leetcode.offer.offer30;
 
 import java.util.ArrayList;
 

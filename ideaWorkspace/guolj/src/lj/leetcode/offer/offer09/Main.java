@@ -1,4 +1,4 @@
-package lj.leetcode.offer09;
+package lj.leetcode.offer.offer09;
 
 /**
  * @author 86187

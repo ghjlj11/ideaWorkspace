@@ -1,4 +1,4 @@
-package lj.leetcode.offer35;
+package lj.leetcode.offer.offer35;
 
 import java.util.ArrayList;
 import java.util.HashMap;
