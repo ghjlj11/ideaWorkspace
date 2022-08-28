@@ -1126,3 +1126,152 @@ public class StreamDemo {
 }
 ```
 
+
+
+## JMM
+
+
+
+**JMM规定了所有的变量都存储在主内存（Main Memory）中。每个线程还有自己的工作内存（Working  Memory）,线程的工作内存中保存了该线程使用到的变量的主内存的副本拷贝，线程对变量的所有操作（读取、赋值等）都必须在工作内存中进行，而不能直接读写主内存中的变量（volatile变量仍然有工作内存的拷贝，但是由于它特殊的操作顺序性规定，所以看起来如同直接在主内存中读写访问一般）。不同的线程之间也无法直接访问对方工作内存中的变量，线程之间值的传递都需要通过主内存来完成。**
+
+
+
+![8cedf683cdfacb3cfcd970cd739d5b9d](img\juc\8cedf683cdfacb3cfcd970cd739d5b9d.jpg)
+
+
+
+- 线程要获取主内存里的数据时， 都需要成对出现， 比如说Read之后就需要Write， Load之后就要Store， 否则就会导致线程阻塞。
+
+
+
+- 代码探究， 因为new的线程只是进行Read操作， 没有Write， 因此没有获取主内存里的最新的值， 就会阻塞
+
+```java
+/**
+ * @author 86187
+ * 测试jmm， 线程会阻塞
+ */
+public class JmmDemo {
+    public static int num = 0;
+
+    public static void main(String[] args) {
+        new Thread(() -> {
+            while (num == 0){
+
+            }
+        }, "A").start();
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //此时虽然修改了num， 但是线程并没有再次去读主内存里的值， 因此会阻塞
+        num = 1;
+    }
+}
+
+```
+
+
+
+> volatile
+
+
+
+- 保证可见性： 当以上代码加上volatile关键字， 就会让num在各个线程里面可见， 也就不会一直运行下去。
+- 不保证原子性：正常情况下也是很多时候不能到20000， 加了volatile也是不能保证的
+
+```java
+/**
+ * @author 86187
+ * volatile保证可见性， 不保证原子性，禁止指令重排
+ * 
+ */
+public class VolatileDemo {
+    public static volatile int num = 0;
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    num ++;
+                }
+            }).start();
+        }
+
+        //获取存活线程数量， java默认会有main，GC线程两个
+        while (Thread.activeCount() > 2){
+            Thread.yield();
+        }
+
+        //很多时候不是20000
+        System.out.println(Thread.currentThread().getName() + "=>" + num);
+    }
+}
+
+```
+
+
+
+解决这个问题我们可以用锁， 也可以使用原子性的类， 这个比锁会更加高效， 直接在内存中执行加1。
+
+```java
+/**
+ *使用juc下的atomic包下的AtomicInteger可以保证原子性
+ */
+public static volatile AtomicInteger num = new AtomicInteger(0);
+```
+
+
+
+- 禁止指令重排：我们正常写的代码， 计算机可能不会按照正常的顺序， 因为有的时候结果不受影响， 但是执行多线程的情况下， 指令重排就可能产生影响了。
+
+
+
+## 单例模式
+
+
+
+- DCL双重检查机制
+
+```java
+/**
+ * @author 86187
+ * 懒汉式枚举的多线程案例  DCL
+ */
+public class LazyMan {
+    private LazyMan(){
+        System.out.println(Thread.currentThread().getName() + "==>  ok" );
+    }
+
+    /**
+     * volatile防止指令重排， 当A线程获取锁， 然后在new 对象时候， 因为new 是一个过程， 先要分配空间， 然后创建对象， 对象指向该地址
+     * 当指令重排的时候， 直接分配空间， 然后指向该地址， 那么B线程会判断 单例不为空， 但是返回时候还是为空
+     */
+    private volatile static LazyMan lazyMan;
+    public static LazyMan getInstance(){
+        if(lazyMan == null){
+            //双重检验
+            synchronized (lazyMan){
+                if(lazyMan == null){
+                    lazyMan = new LazyMan();
+                }
+            }
+        }
+        return lazyMan;
+    }
+
+    public static void main(String[] args) {
+        new Thread(() -> {
+            LazyMan instance1 = getInstance();
+        }).start();
+        LazyMan instance = getInstance();
+    }
+}
+
+```
+
+
+
+- 但是在反射下， 单例都是没用的， 因为反射可以获取私有的构造， 然后创建对象， 只有使用枚举，才可以避免这种问题， 枚举类里面看似是有一个空参数的私有构造函数， 但是使用反射获取时候， 其实不是空参数的， 会获取失败， 其实是有一个String和int类型参数的。 
