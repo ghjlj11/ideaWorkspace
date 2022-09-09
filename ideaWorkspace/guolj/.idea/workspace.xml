@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二分查找旋转数组最小值">
+    <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二进制加法">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/workTest/src/test/java/work/TestListEmpty.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/workTest/src/test/java/work/TestListEmpty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/src/main/java/com/ghj/springcloud/controllrt/MyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springCloud-study/springcloud-consumer-dept-80/src/main/java/com/ghj/springcloud/controllrt/MyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer09/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer09/Queue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer14/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer14/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinNode$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinStack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer35/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer35/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer64/Solution.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +75,13 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Solution (3)">
-    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code6067.Solution" />
+  <component name="RunManager" selected="应用程序.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.leetcode.offer.offer02.Main" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.code6067.*" />
+          <option name="PATTERN" value="lj.leetcode.offer.offer02.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Main" />
         <item itemvalue="应用程序.Solution" />
         <item itemvalue="应用程序.Solution2" />
         <item itemvalue="应用程序.Solution (3)" />
         <item itemvalue="应用程序.Solution (2)" />
-        <item itemvalue="应用程序.Solution (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -174,6 +180,7 @@
       <workItem from="1654911406472" duration="2911000" />
       <workItem from="1654995273201" duration="2136000" />
       <workItem from="1659265836841" duration="779000" />
+      <workItem from="1661418033978" duration="2770000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -294,7 +301,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653026148310</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="二进制加法">
+      <created>1661421005720</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1661421005720</updated>
+    </task>
+    <task id="LOCAL-00019" summary="二进制加法">
+      <created>1661421058713</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1661421058713</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,6 +348,7 @@
     <MESSAGE value="5/15周赛" />
     <MESSAGE value="二分查找峰值" />
     <MESSAGE value="二分查找旋转数组最小值" />
-    <option name="LAST_COMMIT_MESSAGE" value="二分查找旋转数组最小值" />
+    <MESSAGE value="二进制加法" />
+    <option name="LAST_COMMIT_MESSAGE" value="二进制加法" />
   </component>
 </project>

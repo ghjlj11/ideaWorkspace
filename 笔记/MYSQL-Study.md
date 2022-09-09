@@ -318,8 +318,6 @@ ALTER TABLE 表名 CHANGE 旧字段名 新字段名 字段类型(长度) comment
 
 
 
-## Start
-
 
 
 ### SQL语句分类

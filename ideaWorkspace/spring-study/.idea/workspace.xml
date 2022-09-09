@@ -5,6 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer09/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer09/Queue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer14/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer14/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinNode$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinStack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer35/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer35/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer64/Solution.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,6 +204,7 @@
       <workItem from="1654647339385" duration="9279000" />
       <workItem from="1655802126137" duration="630000" />
       <workItem from="1657085615435" duration="1272000" />
+      <workItem from="1662606930062" duration="699000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

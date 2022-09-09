@@ -10,30 +10,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="ssmbuild">
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/log_2022-06-09.txt.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/DepartmentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/dao/EmployeeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/util/MD5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_en_US.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_zh_CN.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../thread-study/src/com/ghj/theVolatile/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/src/com/ghj/theVolatile/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer09/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer09/Queue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer14/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer14/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinNode$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer30/MinStack.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer35/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer35/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/leetcode/offer64/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/main/java/com/ghj/dao/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/main/java/com/ghj/pojo/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-01/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/java/com/ghj/pojo/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-02/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/java/com/ghj/dao/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/java/com/ghj/pojo/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-03/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/main/java/com/ghj/dao/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/main/java/com/ghj/pojo/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-04/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/java/com/ghj/dao/StudentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/java/com/ghj/dao/TeacherMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/java/com/ghj/pojo/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/java/com/ghj/pojo/Teacher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/resources/com/ghj/dao/StudentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/resources/com/ghj/dao/TeacherMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-05/src/test/java/com/ghj/dao/TestMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/java/com/ghj/dao/StudentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/java/com/ghj/dao/TeacherMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/java/com/ghj/pojo/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/java/com/ghj/pojo/Teacher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/resources/com/ghj/dao/StudentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/resources/com/ghj/dao/TeacherMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-06/src/test/java/com/ghj/dao/TestMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/java/com/ghj/dao/BlogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/java/com/ghj/dao/BlogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/java/com/ghj/pojo/Blog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/java/com/ghj/utils/IDUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/java/com/ghj/utils/MybatisUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/resources/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/main/resources/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/mybatis-07/src/test/java/com/ghj/dao/TestBlog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/mybatis_study/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-study/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,6 +319,7 @@
       <workItem from="1654484178412" duration="20000" />
       <workItem from="1654560858784" duration="10803000" />
       <workItem from="1654779582873" duration="23000" />
+      <workItem from="1662615455193" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>
