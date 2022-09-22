@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author 86187
@@ -32,5 +33,10 @@ public class MyController {
     @RequestMapping("/main")
     public String test03(Model model){
         return "dashboard";
+    }
+    @ResponseBody
+    @RequestMapping("/test")
+    public String test04(){
+        return "hello 罗静";
     }
 }

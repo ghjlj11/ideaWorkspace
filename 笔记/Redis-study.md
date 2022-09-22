@@ -57,6 +57,12 @@ redis.conf 配置项说明如下：
 
 来自菜鸟教程。
 
+> 启动redis
+
+- redis有16个库默认使用的是0号库， 可以通过`select index`来切换数据库
+
+本机redis.conf在`/user/local/bin/ghjconfig`下
+
 **``redis-server ghjconfig/redis.conf``启动服务， ``redis-cli -p 6379 ``开启客户端， ``shutdown``关闭客户端， ``exit``退出服务，  这里客户端输入``ping``请求， 由回应``pong``请求就是开启服务成功。** 
 
 
@@ -196,7 +202,8 @@ Redis是通过key-value来存储的， **key就是String类型的**
 
 - 通过名字获取值
 
-
+ del name
+- 删除某一个key
 
  move name 1
 
@@ -217,6 +224,12 @@ Redis是通过key-value来存储的， **key就是String类型的**
  type key
 
 - 查看当前值的类型
+
+FLUSHDB
+- 删除当前库的数据
+
+FLUSHDALL
+- 删除所有库的数据
 ```
 
 

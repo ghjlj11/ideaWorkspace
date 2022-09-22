@@ -220,7 +220,7 @@ registry.cn-hangzhou.aliyuncs.com/atghj/ghjlj   1.1       58832d523150   5 days 
 
 - 首先pull一个私服库的镜像registry
 
-- 然后以守护进程模式开启 ： `docker run -d -p 5000:5000 -v /zzyyuse/myregistry/:/tmp/registry --privileged=true registry`
+- 然后以守护进程模式开启 ： `docker run -d -p 5000:5000 -v /zzyyuse/myregistry/:/tmp/registry --privileged=true registry` ， `-d`表示以守护进程模式开启， `-p`表示指定端口  宿主机的端口 ：容器内的端口， `-v`表示后面的路径下的文件宿主机与容器相互绑定，`--privileged=true` 表示以授予真正的root权限给当前的用户。 
 
 - run一个ubuntu的镜像，然后生成的容器下载一个ifconfig ： `apt-get install net-tools`。
 
@@ -251,3 +251,76 @@ registry.cn-hangzhou.aliyuncs.com/atghj/ghjlj   1.1       58832d523150   5 days 
   {"repositories":["ifconfig-ubuntu"]}`
 
 - 最后我们把之前的镜像删了，然后pull，测试新的镜像有没有`ipconfig`  ： `docker run -it localhost:5000/ifconfig-ubuntu:1.1 /bin/bash`  ，然后直接run，测试。
+
+
+
+## 容器数据卷
+
+
+
+我们docker跑的容器就是相当于一个个小系统，一些重要的文件也是存放在容器里面，当一不小心删除容器那就什么都没有了， 因此需要有可以备份数据的东西， 并且这个东西不应该是在docker容器里面，因此就有了容器数据卷，就是相当于在宿主机里面备份了关于对应容器的数据。
+
+
+
+> 实例
+
+- 我们首先启动一个ubuntu ： `docker run -it --privileged=true -v /tmp/docker-data/:/tmp/host-data/ --name=ghjlj ubuntu`， 这里的`--privileged=true` 表示使容器内的 root用户 拥有真正的root权限， `-v /tmp/docker-data/:/tmp/host-data/` ，`-v`表示生成容器卷， 后面的路径就是 宿主机对应的文件路径 : 容器对应的文件路径， 将这两个路径下的文件绑定， 就形成了容器数据的备份， `--name=ghjlj`表示给 这个容器自定义名字。
+- 相互绑定了 后，只要是在 docke容器内修改了该路径下的内容，那么就会同步到宿主机的路径下，宿主机修改了也会同步到docker容器里面， 并且就算是docker容器 停止运行了， 期间宿主机的内容修改， 启动该容器后数据也会同步进来。
+- 执行 `docker inspect 容器名称或者id`，可以看到对应的 容器的重要信息，其中就有
+
+```bash
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/tmp/docker-data",
+                "Destination": "/tmp/host-data",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+
+```
+
+这就是与外部的宿主机对应的文件绑定的配置信息。
+
+
+
+> 设置容器内只读
+
+如果需要让容器内的相互绑定的文件只读， 那么只需要在启动容器时候容器绑定的路径上加上 `:ro`就可以，比如： `docker run --privileged=true -it -v /docker-con/ghj:/tmp/lj:ro --name ljlj ubuntu `
+
+当我们在容器里面修改对应的文件就会报错：
+
+```bash
+root@3beb4d4685bd:/tmp/lj# touch a.txt
+touch: cannot touch 'a.txt': Read-only file syste
+```
+
+但是在宿主机里面修改的文件依旧可以同步到容器里面。
+
+
+
+> 容器卷之间的继承
+
+
+
+当另一个容器想要与一个容器之间实现文件互传，那么可以使用 容器卷继承， 即一个容器继承另一个容器的容器卷，命令 ： `docker run -it --privileged=true --volumes-from ljlj --name=ghj ubuntu bash`，这里的`--volumes-from`其实就是以上的 `-v`命令的原型。
+
+
+
+这样文件将会在 两个容器以及宿主机之间共享， 但是如果被继承的容器是只读权限， 那么继承而来的容器也是， 期间修改了文件 三方都会共享， 如果容器挂了，期间文件修改了， 重启之后依旧可以共享。 
+
+
+
+## 安装软件
+
+
+
+安装软件无非就是，先搜索镜像，然后拉下来， 然后run， 然后就好了。
+
+
+
+> 安装tomcat
+
+- 按照上面的步骤， 然后我没直接 run ： `docker run -d -p 8848:8080 --name u1 tomcat` ，然后通过本地的地址加上8848端口，就可以访问到 tomcat， 这里如果需要访问到tomcat首页， 需要先把tomcat的 webapps这个文件夹删了， 然后重命名webapps.dist为webapps。
