@@ -96,25 +96,26 @@ sudo systemctl restart docker
 
 ## Docker基本命令
 
-- 启动docker： systemctl start docker
-- 停止docker： systemctl stop docker
-- 重启docker：  systemctl restart docker
-- 查看docker状态： systemctl status docker
-- 查看docker信息： docker info
-- 开机启动： systemctl enable docker
-- 查看帮助文档 ： docker --help
+- 启动docker： `systemctl start docker`
+- 停止docker： `systemctl stop docker`
+- 重启docker： ` systemctl restart docker`
+- 查看docker状态： `systemctl status docker`
+- 查看docker信息：` docker info`
+- 开机启动： `systemctl enable docker`
+- 查看帮助文档 ： `docker --help`
 
 
 
 ## 镜像有关的命令
 
-- 查看所有的镜像 ： docker images  
-- 在远程仓库搜索对应的镜像 ： docker search hello-world  
-- 删除镜像， 前提是有关的容器得删除 ： docker image rm 镜像的名字     或者      docker rmi 镜像名字或者id  （删除容器命令： docker container rm  容器的id ， 查询所有的容器 ： docker container ls -a）
-- 直接删除镜像， 就算有相关的容器也删除镜像， 不会删除容器： docker rmi -f  镜像名字或者id [多个镜像名字或者id]
-- 从远程仓库下载镜像：docker pull 镜像的名字 [: TAG（版本号，默认是最新的）] 
-- 查看镜像，容器数据卷所占空间大小 ： docker system df
-- 创建容器 ： docker run 镜像名称
+- 查看所有的镜像 ： `docker images`  
+- 在远程仓库搜索对应的镜像 ： `docker search hello-world`  
+- 删除镜像， 前提是有关的容器得删除 ： `docker image rm 镜像的名字`     或者      `docker rmi 镜像名字或者id`  
+- 直接删除镜像， 就算有相关的容器也删除镜像， 不会删除容器： `docker rmi -f  镜像名字或者id [多个镜像名字或者id]`
+- 从远程仓库下载镜像：`docker pull 镜像的名字 [: TAG（版本号，默认是最新的）] `
+- 查看镜像，容器数据卷所占空间大小 ： `docker system df`
+- 创建容器 ： `docker run 镜像名称`
+- 将镜像打包成一个tar文件： `docker save -o 镜像名称或者id:版本号`
 
 > 使用docker来创造一个ubuntu系统
 
@@ -132,29 +133,35 @@ sudo systemctl restart docker
 
 
 
-- 新建容器 ：docker run image
+- 新建容器 ：`docker run image`
 
-- 启动之前停止的容器 ： docker start 容器id或者名字
+- 启动之前停止的容器 ： `docker start 容器id或者名字`
 
-- 退出容器 ： exit 直接退出容器， ctrl + p+ q 退出实例， 但是容器不退出。
+- 退出容器 ：` exit `直接退出容器， `ctrl + p+ q `退出实例， 但是容器不退出。
 
-- 重启容器 ： docker restart 容器id或者名字
+- 重启容器 ： `docker restart 容器id或者名字`
 
-- 强制停止容器 ： docker kill 容器id或者名字
+- 强制停止容器 ： `docker kill 容器id或者名字`
 
-- 删除已经停止的容器 ： docker rm 容器id或者名字
+- 删除已经停止的容器 ： ` docker container rm  容器的id `，`docker rm 容器id或者名字`
 
-- 强制删除容器 ： docker rm -f 容器id或者名字
+- 强制删除容器 ： `docker rm -f 容器id或者名字`
 
-- 以守护模式，就是后台运行创建容器： docker run -d redis:6.0.8
+- 以守护模式，就是后台运行创建容器： `docker run -d redis:6.0.8`
 
-- 查看容器的日志 ： docker logs 容器id或者名字
+- 查看容器的日志 ：**` docker logs 容器id或者名字`**
+
+- 容器重命名： `docker rename 旧的容器名  新的容器名`
+
+- 查询所有的容器 ： `docker container ls -a` 
+
+- 查看正在运行的容器 ： `docker ps`
 
 - 重新进入容器中， 并以交互模式进入： 
 
-  - docker exec -it 容器id或名字 bash，这个使用exit退出时不会终止容器（推荐）。
+  - `docker exec -it 容器id或名字 bash`，这个使用exit退出时不会终止容器（推荐）。
 
-  - docker attach 容器id或者名字在， 这个使用attach退出时会终止容器。
+  - `docker attach 容器id或者名字`， 这个使用attach退出时会终止容器。
 
   - 我们通过 `exec`进入到redis中，就可以直接按照redis来操作：
 
@@ -182,10 +189,10 @@ sudo systemctl restart docker
 
     
 
-- 将容器内的文件复制到主机里面 ： docker cp 容器的id  容器内的路径  目的主机的路径
+- 将容器内的文件复制到主机里面 ： `docker cp 容器的id  容器内的路径  目的主机的路径`
 
-- 将容器导出成一个tar文件到当前目录下 ： docker export 容器id > 打包后的文件名.tar
-- 将打包好的tar文件导入docker为镜像， 然后run这个镜像之后， 就会得到和之前被打包一样的容器，里边的文件也都存在： cat 文件名.tar | docker import - 镜像用户/镜像名：镜像版本号
+- 将容器导出成一个tar文件到当前目录下 ：` docker export 容器id > 打包后的文件名.tar`
+- 将打包好的tar文件导入docker为镜像， 然后run这个镜像之后， 就会得到和之前被打包一样的容器，里边的文件也都存在： ` docker import - 镜像用户/镜像名：镜像版本号 < tar文件名.tar`
 
 
 
@@ -324,3 +331,155 @@ touch: cannot touch 'a.txt': Read-only file syste
 > 安装tomcat
 
 - 按照上面的步骤， 然后我没直接 run ： `docker run -d -p 8848:8080 --name u1 tomcat` ，然后通过本地的地址加上8848端口，就可以访问到 tomcat， 这里如果需要访问到tomcat首页， 需要先把tomcat的 webapps这个文件夹删了， 然后重命名webapps.dist为webapps。
+
+
+
+> 安装mysql
+
+- 拉下来镜像后直接run： `docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:tag`
+
+- 进入到容器以后就执行 `mysql -uroot -p` ，然后直接输入密码，就可以进入到mysql。
+
+  ```bash
+  mysql> show databases
+      -> ;
+  +--------------------+
+  | Database           |
+  +--------------------+
+  | information_schema |
+  | mysql              |
+  | performance_schema |
+  | sys                |
+  +--------------------+
+  4 rows in set (0.00 sec)
+  
+  mysql> create database db01;
+  Query OK, 1 row affected (0.00 sec)
+  
+  mysql> show databases
+      -> ;
+  +--------------------+
+  | Database           |
+  +--------------------+
+  | information_schema |
+  | db01               |
+  | mysql              |
+  | performance_schema |
+  | sys                |
+  +--------------------+
+  5 rows in set (0.00 sec)
+  
+  mysql> use db01
+  Database changed
+  mysql> create table t1(id int, name varchar(200),age int);
+  Query OK, 0 rows affected (0.03 sec)
+  
+  mysql> insert into t1(id, name, age) values(1, 'wert', 18);
+  Query OK, 1 row affected (0.00 sec)
+  
+  mysql> select * from t1
+      -> ;
+  +------+------+------+
+  | id   | name | age  |
+  +------+------+------+
+  |    1 | wert |   18 |
+  +------+------+------+
+  1 row in set (0.00 sec)
+  
+  
+  ```
+
+
+- 并且，根据主机号以及端口号， 我们可以使用navcat链接这个mysql进行操作。
+
+- 我们使用这个命令查看会发现， 这个数据库不支持中文，插入中文会报错，字符集都是`latin1`：
+
+  ```bash
+  mysql> show variables like 'character%'
+      -> ;
+  +--------------------------+----------------------------+
+  | Variable_name            | Value                      |
+  +--------------------------+----------------------------+
+  | character_set_client     | latin1                     |
+  | character_set_connection | latin1                     |
+  | character_set_database   | latin1                     |
+  | character_set_filesystem | binary                     |
+  | character_set_results    | latin1                     |
+  | character_set_server     | latin1                     |
+  | character_set_system     | utf8                       |
+  | character_sets_dir       | /usr/share/mysql/charsets/ |
+  +--------------------------+----------------------------+
+  8 rows in set (0.00 sec)
+  
+  ```
+
+- 使用下面的命令来启动mysql， 通过修改外部的容器数据卷，从而同步到mysql配置里面， 就可以修改字符集，实现支持中文插入：
+
+  - 先跑起来mysql， 并且建立容器数据卷：
+
+  ```bash
+  docker run -p 3667:3306 -d --privileged=true -v /zzyyuse/mysql/log:/var/log/mysql -v /zzyyuse/mysql/data:/var/lib/mysql -v /zzyyuse/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 --name jj-mysql mysql:5.7
+  ```
+
+  - 然后在`/zzyyuse/mysql/conf`， 下面新建一个my.cnf的文件，并且编辑：
+
+  ```bash
+  [client]
+  default_character_set=utf8
+  [mysqld]
+  collation_server = utf8_general_ci
+  character_set_server = utf8
+  ```
+
+  - 然后重启容器就可以看到，现在字符集就是utf8，就可以支持中文插入， 如果期间重启不了容器， 那么可以查看容器的日志， 可能是配置文件写错了：
+
+  ```bash
+  mysql> show variables like 'character%';
+  +--------------------------+----------------------------+
+  | Variable_name            | Value                      |
+  +--------------------------+----------------------------+
+  | character_set_client     | utf8                       |
+  | character_set_connection | utf8                       |
+  | character_set_database   | utf8                       |
+  | character_set_filesystem | binary                     |
+  | character_set_results    | utf8                       |
+  | character_set_server     | utf8                       |
+  | character_set_system     | utf8                       |
+  | character_sets_dir       | /usr/share/mysql/charsets/ |
+  +--------------------------+----------------------------+
+  8 rows in set (0.00 sec)
+  
+  
+  ## 建完库以及表之后就可以去navicat插入中文， 这里直接在终端命令里面输入不了中文
+  mysql> select * from t1;
+  +------+--------+
+  | id   | name   |
+  +------+--------+
+  |    1 | aa     |
+  |    2 | 罗静   |
+  +------+--------+
+  
+  
+  ```
+  
+- **经过上面的容器数据卷备份后， 即使当前mysql容器被删除， 以之前的命令重启一个mysql容器， 只要数据卷里的数据还在， 那么mysql容器里的数据也就在**
+
+
+
+> 安装redis
+
+- 首先直接拉镜像， 然后run就可以， 启动之后会默认启动redis-server， 我们只需要启动redis-cli就可以：`docker run -d -p 6399:6379 redis:6.0.8`， 然后进入容器直接启动redis-cli：`redis-cli`。
+- 配置redis.conf文件版本的安装：
+  - 首先需要新建文件夹  `/mydata/redis/conf/ `， 然后去粘贴一个好的redis.conf文件到这里（最好是版本相同的redis.conf文件）， 注意要修改 `daemonize no`， 还有注释 `bind: 127.0.0.1` , 还有开启aof，`appendonly yes` ，注意版本问题。
+- 直接运行redis ：`docker run -d -p 6399:6379 --name my-redis --privileged=true -v /mydata/redis/conf/redis.conf:/etc/redis/config/redis.conf -v /mydata/redis/data:/data  redis:7.0.0 redis-server /etc/redis/config/redis.conf`， 这里的`redis-server /etc/redis/config/redis.conf`表示使用这个目录下的配置文件启动redis。
+- 如何证明我们使用了 我们自己的redis.conf，直接修改宿主机里面redis.conf， 然后会同步到容器里面， 修改一下redis数据库的数量 ， `databases 10` ，然后重启redis，选择第10个库：
+
+```bash
+root@849831de29de:/data# redis-cli
+127.0.0.1:6379> select 9
+OK
+127.0.0.1:6379[9]> select 10
+(error) ERR DB index is out of range
+
+```
+
