@@ -336,7 +336,7 @@ touch: cannot touch 'a.txt': Read-only file syste
 
 > 安装mysql
 
-- 拉下来镜像后直接run： `docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:tag`
+- 拉下来镜像后直接run： `docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:tag`， `-e`代表环境配置。
 
 - 进入到容器以后就执行 `mysql -uroot -p` ，然后直接输入密码，就可以进入到mysql。
 
