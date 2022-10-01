@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二进制加法">
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/helloworld/Consumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/helloworld/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/util/RabbitmqConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/workqueue/WorkConsumers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/workqueue/WorkProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer09/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer09/Queue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer14/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer14/Solution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinNode$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer30/MinStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer35/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer35/Solution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/leetcode/offer64/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/RabbitMQ-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/RabbitMQ-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +177,7 @@
       <workItem from="1654995273201" duration="2136000" />
       <workItem from="1659265836841" duration="779000" />
       <workItem from="1661418033978" duration="2770000" />
+      <workItem from="1664619300280" duration="793000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
