@@ -1,4 +1,4 @@
-package com.ghj.workqueue;
+package com.ghj.workQueue;
 
 import com.ghj.util.RabbitmqConnection;
 import com.rabbitmq.client.Channel;

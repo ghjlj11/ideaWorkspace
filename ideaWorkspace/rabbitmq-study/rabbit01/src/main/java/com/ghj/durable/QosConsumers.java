@@ -1,4 +1,4 @@
-package com.ghj.responses;
+package com.ghj.durable;
 
 import com.ghj.util.RabbitmqConnection;
 import com.rabbitmq.client.CancelCallback;
@@ -13,38 +13,39 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author 86187
  */
-public class ResConsumers {
-
+public class QosConsumers {
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(2,
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,
                 3,
-                5,
+                10,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(3),
+                new ArrayBlockingQueue<>(2),
                 Executors.defaultThreadFactory(),
                 new ThreadPoolExecutor.AbortPolicy());
-
-        ResConsumer consumer1 = new ResConsumer(1);
-        ResConsumer consumer2 = new ResConsumer(30);
-
+        QosConsumer consumer1 = new QosConsumer(10, 5);
+        QosConsumer consumer2 = new QosConsumer(20, 3);
         executor.execute(consumer1);
-        //executor.execute(consumer2);
+        executor.execute(consumer2);
     }
 }
-
-class ResConsumer implements Runnable {
-    private static final String QUEUE_NAME = "ack-queue";
-    private int sleepTime;
-    public ResConsumer(int sleepTime){
+class QosConsumer implements Runnable{
+    private final int sleepTime;
+    private final int prefetch;
+    private static final String QUEUE_NAME = "dur-queue";
+    public QosConsumer(int sleepTime, int prefetch){
         this.sleepTime = sleepTime;
+        this.prefetch = prefetch;
     }
     @Override
     public void run() {
         try {
             Channel channel = RabbitmqConnection.getChannel();
+            //默认值是0，也就是轮询分配
+            channel.basicQos(prefetch);
             DeliverCallback deliverCallback = (consumerTag, message) -> {
                 try {
-                    Thread.currentThread().setName(sleepTime + "时间");
+                    Thread.currentThread().setName("睡觉时间为" + sleepTime + "的线程");
                     TimeUnit.SECONDS.sleep(sleepTime);
                     System.out.println(Thread.currentThread().getName() + "收到消息:" + new String(message.getBody()));
                     channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
@@ -53,7 +54,7 @@ class ResConsumer implements Runnable {
                 }
             };
             CancelCallback cancelCallback = (consumerTag) -> {
-                System.out.println(Thread.currentThread().getName() + "接收失败回调");
+                System.out.println(Thread.currentThread().getName() + "接收消息失败回调");
             };
             channel.basicConsume(QUEUE_NAME, false, deliverCallback, cancelCallback);
         } catch (Exception e) {
@@ -61,3 +62,4 @@ class ResConsumer implements Runnable {
         }
     }
 }
+

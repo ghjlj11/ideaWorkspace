@@ -357,7 +357,7 @@ pool-3-thread-7收到消息：jj
 
 > 消息丢失
 
- 当消费者没有完成指定的任务， 就应答了， 并且此时消费者因为某种原因不能继续执行了， 队列依旧会产出消息， 那么就会出现消息的丢失， 我们必须避免这种情况。 使用自动应答，其实是消息一旦被消费者接收那么就会应答， 此时并没有完成任务， 因此， 我们要避免使用自动应答。
+ 当消费者没有完成指定的任务， 就应答了， 并且此时消费者因为某种原因不能继续执行了， 队列依旧会产出消息， 那么就会出现消息的丢失， 我们必须避免这种情况。 使用自动应答，对于自动确认来说，当方法执行完毕后，会对MQ发出ACK；若该线程直接被关闭，会对MQ发出nack，消息会重回队列。
 
 
 
@@ -457,3 +457,176 @@ class ResConsumer implements Runnable {
 
 
 用消费者开启多个实例， idea开启多个实例支持， 然后第一个实例使用consumer1，第二个使用consumer2，这样就有一个时间差， 然后测试， 轮询分配消息， 等consumer2在sleep的时候关闭实例， 此时确认应答没有发出，消息会被分配到consumer1上面。
+
+
+
+## 持久化
+
+
+
+> 队列的持久化
+
+- 队列的持久化只需要在生成队列的时候， 在持久化这个参数上改成true就好了，当rabbitmq重启了， 有被持久化的队列就会没掉， 被持久化的才会保存。
+
+
+
+> 消息持久化
+
+- 消息的持久化需要在生产者发送消息的时候写上对应的参数， 表示这个消息需要被持久化， 也就是存储在磁盘里面， 但是也不一定完全可以持久化， 当消息还在内存里， 正打算写入磁盘的时候， rabbitmq宕机了， 那么就丢失了，  消息持久化的前提是需要 队列持久化。
+- 消息持久化参数
+
+```java
+channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, next.getBytes(StandardCharsets.UTF_8));
+```
+
+
+
+> 不公平分发
+
+- 之前消费者之间分发消息都是轮询分发， 在消费者性能不一样的情况下， 轮询会导致消息被处理的时间很长，应该遵循能者多劳的规则， 就是处理快的消费者多拿消息， 慢的少拿， 只需要设置消费者信道的参数就可以。
+
+```java
+//默认值是0，也就是轮询分配
+channel.basicQos(1);
+```
+
+
+
+首先也是按照轮询分配， 当队列发送消息时， 该消费者还在处理之前的消息， 那么就会找到另一个空闲的消费者，将消息发送。
+
+
+
+> 预取值
+
+以上的设置不公平分发， 其实是设置该信道里允许有一个还未被处理的消息，也就是被阻塞的消息，当我们修改这个值， 那么就可以实现不同的分发效果， 之前设置的1， 也可以理解为只能有一个消息未被处理， 如果再发消息那么就会被分到别的消费者。
+
+```java
+channel.basicQos(prefetch);
+```
+
+
+
+## 发布确认
+
+
+
+在之前的消息持久化的时候， 会有持久化失败的时候， 使用发布确认， 在消息发布之后， 等消息被保存之后， 会通知生产者， 只要接到了确认，那么就代表持久化一定成功了
+
+> 单个确认发布，批量确认发布， 异步确认发布
+
+- 开启发布确认代码，在生成者的信道进行设置。
+
+```java
+channel.confirmSelect();
+```
+
+
+
+- 测试情况， 异步发布耗时远远更小， 并且可以知道哪一条发送成功， 哪一条失败， 有自己的成功失败回调接口
+
+```java
+import com.ghj.util.RabbitmqConnection;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmCallback;
+
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
+/**
+ * @author 86187
+ */
+public class SendMessageTest {
+    private static final int MESSAGE_COUNT = 1000;
+    public static void main(String[] args) throws Exception {
+        //测试单个确认
+        //testSingle()
+        //测试批量确认
+        //testMany();
+        testSyn();
+    }
+
+    /**
+     * 测试单个确认发布1000条消息所需要的时间
+     * @throws Exception
+     * 耗时34992ms
+     */
+    private static void testSingle() throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //开启发布确认
+        channel.confirmSelect();
+        String queueName = UUID.randomUUID().toString();
+        channel.queueDeclare(queueName, true, false, false, null);
+        long begin = System.currentTimeMillis();
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = i + "";
+            channel.basicPublish("", queueName, null, message.getBytes(StandardCharsets.UTF_8));
+            //等待确认
+            channel.waitForConfirms();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("消息全部发送完成， 耗时" + (end - begin) + "ms");
+    }
+    /**
+     * 测试批量确认发布1000条消息耗时
+     * 每100条确认一次
+     * 耗时719ms
+     */
+
+    public static void testMany () throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        int ack = 100;
+        //开启发布确认
+        channel.confirmSelect();
+        String queueName = UUID.randomUUID().toString();
+        channel.queueDeclare(queueName, true, false, false, null);
+        long begin = System.currentTimeMillis();
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = i + "";
+            channel.basicPublish("", queueName, null, message.getBytes(StandardCharsets.UTF_8));
+            //批量等待确认
+            if(i % ack == 0){
+                channel.confirmSelect();
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("消息全部发送完成， 耗时" + (end - begin) + "ms");
+    }
+    /**
+     * 测试异步确认发送1000条消息的耗时
+     * 耗时69ms
+     */
+    private static void testSyn() throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //开启发布确认
+        channel.confirmSelect();
+        String queueName = UUID.randomUUID().toString();
+        channel.queueDeclare(queueName, true, false, false, null);
+        long begin = System.currentTimeMillis();
+        //成功消息的确认, 回调函数
+        ConfirmCallback ackCallback = (deliveryTag, multiple) -> {
+            System.out.println("成功确认的消息:" + deliveryTag);
+        };
+
+        //失败消息的确认, 回调函数
+        ConfirmCallback nackCallback = (deliveryTag, multiple) -> {
+            System.out.println("失败确认的消息:" + deliveryTag);
+        };
+        //开启异步确认  确认成功的消息  确认失败的消息
+        channel.addConfirmListener(ackCallback,  nackCallback);
+
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = i + "";
+            channel.basicPublish("", queueName, null, message.getBytes(StandardCharsets.UTF_8));
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("消息全部发送完成， 耗时" + (end - begin) + "ms");
+    }
+}
+
+```
+
+
+
+> 如何处理失败的回调
+
+首先我们应该先找一种集合存储消息， 线程安全的集合， 并且可以通过序号删除， 支持高并发， 然后在发消息的时候放入消息， 成功回调的时候删除消息， 那么剩下的就是失败回调的消息，这样就可以进行处理了。

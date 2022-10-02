@@ -1,4 +1,4 @@
-package com.ghj.helloworld;
+package com.ghj.helloWorld;
 
 import com.rabbitmq.client.*;
 
