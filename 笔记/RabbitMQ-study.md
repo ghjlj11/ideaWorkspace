@@ -630,3 +630,244 @@ public class SendMessageTest {
 > 如何处理失败的回调
 
 首先我们应该先找一种集合存储消息， 线程安全的集合， 并且可以通过序号删除， 支持高并发， 然后在发消息的时候放入消息， 成功回调的时候删除消息， 那么剩下的就是失败回调的消息，这样就可以进行处理了。
+
+
+
+
+
+## 交换机
+
+交换机的作用是一方面接收生产者发出的消息， 另一方面通过与自己绑定的队列， 以及绑定的Routing key，来选择把消息传送给队列
+
+**一个队列绑定一个交换机，可以拥有多个routing key，队列获取的消息也就会更加多样性**
+
+
+
+> 交换机的类型：
+
+- 直接（direct）：之前使用的没有名字的交换机， 就是系统默认的一个 direct类型的交换机
+- 主题（topic） ： 包含了direct和fanout类型， routingKey可以通过匹配模式来判断消息传到哪个队列
+- 标题（headers）
+- 扇出（fanout）：广播的方式，可以传给多个队列消息
+
+
+
+- 声明交换机以及队列绑定交换机的代码
+
+```java
+//声明一个交换机， 类型是fanout类型
+channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+//队列绑定交换机， routing key是"22"
+channel.queueBind(queueName, EXCHANGE_NAME, "22");
+```
+
+
+
+> 测试扇出（fanout）类型交换机
+
+- 生产者
+
+```java
+
+public class ExcProducer {
+    private static final String EXCHANGE_NAME = "lj-exchange";
+
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //声明一个交换机， 类型是fanout类型
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()){
+            String message = scanner.next();
+            channel.basicPublish(EXCHANGE_NAME, "22", null, message.getBytes(StandardCharsets.UTF_8));
+        }
+    }
+}
+
+```
+
+- 消费者
+
+```java
+public class ExcConsumers {
+
+    public static void main(String[] args) {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,
+                3,
+                3,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(1),
+                Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
+        ExcConsumer consumer1 = new ExcConsumer("ghj");
+        ExcConsumer consumer2 = new ExcConsumer("lj");
+        executor.execute(consumer1);
+        executor.execute(consumer2);
+    }
+}
+class ExcConsumer implements Runnable{
+    private static final String EXCHANGE_NAME = "lj-exchange";
+    private String name;
+    public ExcConsumer(String name){
+        this.name = name;
+    }
+    @Override
+    public void run() {
+        try {
+            Channel channel = RabbitmqConnection.getChannel();
+            //声明一个临时的队列， 当没有消费者链接就会删除此队列。
+            String queueName = channel.queueDeclare().getQueue();
+            //队列绑定交换机
+            channel.queueBind(queueName, EXCHANGE_NAME, "22");
+
+            DeliverCallback deliverCallback = (consumerTag, message) ->{
+                System.out.println(name + "成功收到消息：" + new String(message.getBody()));
+            };
+            channel.basicConsume(queueName, true, deliverCallback, (consumerTag) -> {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+测试后就会发现， 生成者发的消息在两个消费者里面都可以接收到， 即使队列的routing key和生产者消息的routing key不一致， 只要绑定了该交换机， 那么也会收到消息。
+
+
+
+> 测试直接（direct）类型交换机
+
+- 将之前的交换机的类型修改为 direct。
+- 设置交换机生产者的发出的消息的routing key为 33
+- 设置 第一个消费者的队列 routing key为 22， 第二个为 22， 33.
+- 启动之后， 就只有第二个消费者可以收到消息。
+
+
+
+
+
+> 测试主题（topic）交换机
+
+
+
+- 主题交换机包含了之前两个的功能， 其中的routing key 是由一个单词组 的形式，每个单词之间只用` . `来分隔，里面可以用 `*` 来表示任何一个单词， 用 `#`来表示多个或者 0 个单词 ， 例如：
+
+  ```txt
+  *.kk.*  表示可以匹配是三个单词，并且中间的是kk的单词组
+  
+  la.#  表示可以匹配 以la单词开头的所有的单词组
+  
+  aa.bb.cc 则表示只能匹配 aa.bb.cc的单词， 这样使用就类似是 direct 类型交换机
+  
+  #    表示可以匹配所有的单词， 这样就类似与 是 fanout类型的交换机
+  ```
+
+  
+
+- 生产者
+
+```java
+public class TopicProducer {
+    private static final String EXCHANGE_NAME = "topic-exchange";
+
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //声明一个交换机， 类型是topic类型
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+        Scanner scanner = new Scanner(System.in);
+        int i = 0;
+        while (scanner.hasNext()){
+            String message = scanner.next();
+            String routingKey;
+            switch (i % 3){
+                case 0:
+                    //第一个获取消息
+                    routingKey = "ll.kk.ww";
+                    break;
+                case 1:
+                    //第二个获取消息
+                    routingKey = "la.ss";
+                    break;
+                case 2:
+                    //1 2 都获取消息
+                    routingKey = "la.kk.zz";
+                    break;
+                default:
+                    routingKey = "";
+            }
+            i ++;
+            channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes(StandardCharsets.UTF_8));
+        }
+    }
+}
+
+```
+
+
+
+- 消费者
+
+```java
+public class TopicConsumers {
+    public static void main(String[] args) {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,
+                3,
+                3,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(1),
+                Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
+
+        TopicConsumer consumer1 = new TopicConsumer(new String[]{"*.kk.*"}, "ghj");
+        TopicConsumer consumer2 = new TopicConsumer(new String[]{"la.#"}, "lj");
+
+        executor.execute(consumer1);
+        executor.execute(consumer2);
+
+    }
+}
+class TopicConsumer implements Runnable{
+    private static final String EXCHANGE_NAME = "topic-exchange";
+    private final String[] routingKeys;
+    private final String name;
+    public TopicConsumer(String[] routingKeys, String name){
+        this.routingKeys = routingKeys;
+        this.name = name;
+    }
+    @Override
+    public void run() {
+        try {
+            Channel channel = RabbitmqConnection.getChannel();
+            String queueName = channel.queueDeclare().getQueue();
+            for (String routingKey : routingKeys) {
+                channel.queueBind(queueName, EXCHANGE_NAME, routingKey);
+            }
+            DeliverCallback deliverCallback = (consumerTag, message) ->{
+                System.out.println(name + "收到消息：" + new String(message.getBody(), StandardCharsets.UTF_8));
+                //输出 routingKey
+                System.out.println(name + "routingKey是：" + message.getEnvelope().getRoutingKey());
+            };
+            channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
+
+
+测试之后， 就会发现会根据routingKey的匹配模式来匹配对应的 队列。
+
+
+
+## 死信队列
+

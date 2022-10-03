@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author 86187
@@ -86,13 +87,21 @@ public class SendMessageTest {
         ConcurrentSkipListMap<Long, String> messages = new ConcurrentSkipListMap<>();
         //成功消息的确认, 回调函数
         ConfirmCallback ackCallback = (deliveryTag, multiple) -> {
-            System.out.println("成功确认的消息:" + deliveryTag);
-            if(messages.containsKey(deliveryTag)){
-                System.out.println("删除消息：" + deliveryTag + messages);
-                messages.remove(deliveryTag);
-            }
-            else {
-                System.out.println("找不到此消息" + deliveryTag);
+            ReentrantLock lock = new ReentrantLock();
+            lock.lock();
+            try {
+                System.out.println("成功确认的消息:" + deliveryTag);
+                if(messages.containsKey(deliveryTag)){
+                    System.out.println("删除消息：" + deliveryTag + messages);
+                    messages.remove(deliveryTag);
+                }
+                else {
+                    System.out.println("找不到此消息" + deliveryTag);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
         };
 
@@ -104,12 +113,13 @@ public class SendMessageTest {
         channel.addConfirmListener(ackCallback,  nackCallback);
 
         for (int i = 0; i < 10; i++) {
-            String message = i + "";
+            String message = (i + 1) + "";
             //存放消息
-            System.out.println("channel.getNextPublishSeqNo():" + channel.getNextPublishSeqNo());
+            long nextPublishSeqNo = channel.getNextPublishSeqNo();
+            System.out.println("channel.getNextPublishSeqNo():" + nextPublishSeqNo);
             System.out.println("放入消息：" + i + messages);
+            messages.put(nextPublishSeqNo, message);
             channel.basicPublish("", queueName, null, message.getBytes(StandardCharsets.UTF_8));
-            messages.put(channel.getNextPublishSeqNo(), message);
         }
         long end = System.currentTimeMillis();
         System.out.println("消息全部发送完成， 耗时" + (end - begin) + "ms");
