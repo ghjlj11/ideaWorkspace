@@ -871,3 +871,371 @@ class TopicConsumer implements Runnable{
 
 ## 死信队列
 
+当消息在队列里面的时间超过TTL过期时间或者 消息被拒绝， 或者 队列达到了最大长度， 那么消息就会成为死信， 也就会进入到死信队列， 进入死信队列， 也需要先经过死信交换机， 然后通过routingKey进入到对应的死信队列， 与之对应的， 也会有死信的消费者。
+
+
+
+- 正常消费者
+
+```java
+public class NormalConsumer {
+    private static final String NORMAL_EXCHANGE = "normal-exc";
+    private static final String DEAD_EXCHANGE = "dead-exc";
+    private static final String NORMAL_QUEUE = "normal-queue";
+    private static final String DEAD_QUEUE = "dead-queue";
+
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //声明普通交换机
+        channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
+        //声明死信交换机
+        channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
+        //声明普通队列
+        Map<String, Object> arguments = new HashMap<>();
+        //设置消息的ttl 一般是通过消息来设置消息的ttl， 而不是在队列统一设置ttl
+        //arguments.put("x-message-ttl",10000);
+
+        //绑定死信交换机
+        arguments.put("x-dead-letter-exchange", DEAD_EXCHANGE);
+        //设置该队列的死信routingKey
+        arguments.put("x-dead-letter-routing-key","dead");
+        channel.queueDeclare(NORMAL_QUEUE, false, false, false, arguments);
+        //绑定正常的交换机
+        channel.queueBind(NORMAL_QUEUE, NORMAL_EXCHANGE, "normal");
+        //声明死信队列
+        channel.queueDeclare(DEAD_QUEUE, false, false, false, null);
+        //死信队列绑定死信交换机
+        channel.queueBind(DEAD_QUEUE, DEAD_EXCHANGE, "dead");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("正常消费者收到消息:" + new String(message.getBody(), StandardCharsets.UTF_8));
+        };
+        channel.basicConsume(NORMAL_QUEUE, true, deliverCallback, consumerTag -> {});
+    }
+}
+
+```
+
+
+
+- 正常生产者
+
+```java
+public class DeadProducer {
+    private static final String NORMAL_EXCHANGE = "normal-exc";
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        //设置消息的ttl
+        AMQP.BasicProperties properties = new AMQP.BasicProperties()
+                .builder()
+                .expiration("10000")
+                .build();
+        for (int i = 0; i < 10; i++) {
+            String message = "info" + i;
+            channel.basicPublish(NORMAL_EXCHANGE, "normal", properties, message.getBytes(StandardCharsets.UTF_8));
+        }
+    }
+}
+
+```
+
+
+
+- 死信消费者
+
+```java
+public class DeadConsumer {
+    private static final String DEAD_QUEUE = "dead-queue";
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("死信消费者收到消息:" + new String(message.getBody(), StandardCharsets.UTF_8));
+        };
+        channel.basicConsume(DEAD_QUEUE, true, deliverCallback, consumerTag -> {});
+    }
+}
+
+```
+
+
+
+首先允许正常消费者， 创建好交换机以及队列， 然后关闭消费者， 打开生产者， 在正常队列就会有10条消息， 过了 ttl时间之后， 正常队列的消息就都会在死信队列里面。
+
+
+
+
+
+> 设置队列最大长度
+
+只需要在参数map上加一个参数：
+
+```java
+//设置队列最大长度
+arguments.put("x-max-length", 6);
+```
+
+
+
+当队列里面的消息超过最大长度， 那么就会进入到死信队列。
+
+
+
+> 拒绝接收消息
+
+修改一下普通消费者的成功回调接口， 以及设置接收消息不自动确认
+
+```java
+DeliverCallback deliverCallback = (consumerTag, message) -> {
+            String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+            if("info3".equals(msg)){
+                //拒绝接收消息， 参数是消息的tag， 以及是否重新入队列
+                channel.basicReject(message.getEnvelope().getDeliveryTag(), false);
+            }else {
+                System.out.println("正常消费者收到消息:" + msg);
+                //确认
+                channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
+            }
+};
+channel.basicConsume(NORMAL_QUEUE, false, deliverCallback, consumerTag -> {});
+```
+
+
+
+启动消费者与生产者之后就会发现， 只有一个消息是在死信队列。
+
+
+
+
+
+## 延迟队列
+
+
+
+延迟队列其实就是之前的死信队列中的 超过ttl时长 的死信队列。
+
+
+
+使用SpringBoot整合rabbitmq， springBoot版本低一点 2.5.0
+
+```xml
+	<!--rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.10</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+```
+
+
+
+- yml配置连接rabbitmq
+
+```yaml
+spring:
+  rabbitmq:
+    host: 43.142.32.254
+    port: 5672
+    username: admin
+    password: admin
+```
+
+
+
+- 配置swagger
+
+```java
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    @Bean
+    public Docket webApiConfig(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("webApi")
+                .apiInfo(webApiInfo())
+                .select()
+                .build();
+    }
+
+    private ApiInfo webApiInfo(){
+        return new ApiInfoBuilder()
+                .title("rabbitmq接口文档")
+                .description("文本描述")
+                .version("1.0")
+                .contact(new Contact("lj", "https://atljlj.com", "1342354@qq.com"))
+                .build();
+    }
+}
+
+```
+
+
+
+- 配置队列， 交换机， 以及之间的绑定
+
+```java
+@Configuration
+public class TtlQueueConfig {
+    /**
+     * 名称
+     */
+    private static final String QUEUE_A = "qa";
+    private static final String QUEUE_B = "qb";
+    private static final String DEAD_QUEUE_D = "qd";
+    private static final String EXCHANGE_X = "ex";
+    private static final String EXCHANGE_Y = "ey";
+
+    /**
+     *声明交换机
+     */
+    @Bean("xExchange")
+    public DirectExchange xExchange(){
+        return new DirectExchange(EXCHANGE_X);
+    }
+    @Bean("yExchange")
+    public DirectExchange yExchange(){
+        return new DirectExchange(EXCHANGE_Y);
+    }
+
+    /**
+     * 声明队列
+     */
+    @Bean("queueA")
+    public Queue queueA(){
+        Map<String, Object> args = new HashMap<>(3);
+        //设置死信交换机
+        args.put("x-dead-letter-exchange", EXCHANGE_Y);
+        //设置死信routingKey
+        args.put("x-dead-letter-routing-key", "da");
+        //设置ttl时间
+        args.put("x-message-ttl", 10000);
+        return QueueBuilder.nonDurable(QUEUE_A).withArguments(args).build();
+    }
+
+    @Bean("queueB")
+    public Queue queueB(){
+        Map<String, Object> args = new HashMap<>(3);
+        //设置死信交换机
+        args.put("x-dead-letter-exchange", EXCHANGE_Y);
+        //设置死信routingKey
+        args.put("x-dead-letter-routing-key", "da");
+        //设置ttl时间
+        args.put("x-message-ttl", 40000);
+        return QueueBuilder.nonDurable(QUEUE_B).withArguments(args).build();
+    }
+
+    @Bean("queueD")
+    public Queue queueD(){
+        return QueueBuilder.nonDurable(DEAD_QUEUE_D).build();
+    }
+
+    /**
+     * 绑定
+     */
+    @Bean
+    public Binding queueABindX(@Qualifier("queueA") Queue queueA, @Qualifier("xExchange") DirectExchange exchangeX){
+        return BindingBuilder.bind(queueA).to(exchangeX).with("xa");
+    }
+    @Bean
+    public Binding queueBBindX(@Qualifier("queueB") Queue queueB, @Qualifier("xExchange") DirectExchange exchangeX){
+        return BindingBuilder.bind(queueB).to(exchangeX).with("xb");
+    }
+    @Bean
+    public Binding queueDBindY(@Qualifier("queueD") Queue queueD, @Qualifier("yExchange") DirectExchange exchangeY){
+        //这里的routingKey就是 qa，qb网死信交换机发消息的routingKey
+        return BindingBuilder.bind(queueD).to(exchangeY).with("da");
+    }
+}
+
+```
+
+
+
+- 配置controller为生产者
+
+```java
+@Slf4j
+@RestController
+@RequestMapping("/ttl")
+public class SendMsgController {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/send/{message}")
+    public void send(@PathVariable String message){
+        log.info("当前时间：{}，发送消息：{}", new Date(), message);
+        //发送消息
+        rabbitTemplate.convertAndSend("ex", "xa", "来自10s队列" + message);
+        rabbitTemplate.convertAndSend("ex", "xb", "来自40s队列" + message);
+    }
+}
+
+```
+
+
+
+
+
+- 配置死信队列消费者
+
+```java
+@Slf4j
+@Component
+public class DeadQueueConsumer {
+
+    @RabbitListener(queues = "qd")
+    public void receiveD(Message message, Channel channel){
+        String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.info("当前时间：{}， 收到死信队列消息：{}", new Date(), msg);
+    }
+}
+
+```
+
+
+
+
+
+开启之后访问 controller， 就会通过交换机发消息给 qa和qb， 但是经过了ttl时间没有消费， 就会到死信交换机对应的死信队列， 从而被死信消费者消费。
+
+```txt
+2022-10-04 20:44:19.179  INFO 19588 --- [nio-8080-exec-1] c.g.r.controller.SendMsgController       : 当前时间：Tue Oct 04 20:44:19 CST 2022，发送消息：嘻嘻嘻
+2022-10-04 20:44:29.362  INFO 19588 --- [ntContainer#0-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Tue Oct 04 20:44:29 CST 2022， 收到死信队列消息：来自10s队列嘻嘻嘻
+2022-10-04 20:44:59.262  INFO 19588 --- [ntContainer#0-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Tue Oct 04 20:44:59 CST 2022， 收到死信队列消息：来自40s队列嘻嘻嘻
+```
+
