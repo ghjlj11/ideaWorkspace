@@ -22,4 +22,10 @@ public class DeadQueueConsumer {
         String msg = new String(message.getBody(), StandardCharsets.UTF_8);
         log.info("当前时间：{}， 收到死信队列消息：{}", new Date(), msg);
     }
+
+    @RabbitListener(queues = "delay.queue")
+    public void receiveDelay(Message message, Channel channel){
+        String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.info("当前时间：{}， 收到延迟队列消息：{}", new Date(), msg);
+    }
 }

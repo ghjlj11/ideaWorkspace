@@ -18,6 +18,7 @@ public class TtlQueueConfig {
      */
     private static final String QUEUE_A = "qa";
     private static final String QUEUE_B = "qb";
+    private static final String QUEUE_C = "qc";
     private static final String DEAD_QUEUE_D = "qd";
     private static final String EXCHANGE_X = "ex";
     private static final String EXCHANGE_Y = "ey";
@@ -67,8 +68,26 @@ public class TtlQueueConfig {
     }
 
     /**
+     * 优化后的延迟队列 ， 不在设置ttl时间， 生产者发消息时设置
+     * @return
+     */
+    @Bean("queueC")
+    public Queue queueC(){
+        Map<String, Object> args = new HashMap<>(2);
+        //设置死信交换机
+        args.put("x-dead-letter-exchange", EXCHANGE_Y);
+        //设置死信routingKey
+        args.put("x-dead-letter-routing-key", "da");
+        return QueueBuilder.nonDurable(QUEUE_C).withArguments(args).build();
+    }
+
+    /**
      * 绑定
      */
+    @Bean
+    public Binding queueCBindX(@Qualifier("queueC") Queue queueC, @Qualifier("xExchange") DirectExchange exchangeX){
+        return BindingBuilder.bind(queueC).to(exchangeX).with("xc");
+    }
     @Bean
     public Binding queueABindX(@Qualifier("queueA") Queue queueA, @Qualifier("xExchange") DirectExchange exchangeX){
         return BindingBuilder.bind(queueA).to(exchangeX).with("xa");

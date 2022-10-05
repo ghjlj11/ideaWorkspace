@@ -1239,3 +1239,123 @@ public class DeadQueueConsumer {
 2022-10-04 20:44:59.262  INFO 19588 --- [ntContainer#0-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Tue Oct 04 20:44:59 CST 2022， 收到死信队列消息：来自40s队列嘻嘻嘻
 ```
 
+
+
+> 优化延迟队列
+
+之前的延迟队列， 是在普通队列设置了ttl时间， 如果另一个消息过期时间不一样就要再建一个队列， 就很麻烦， 因此，可以参照之前的死信队列， 在生产者发消息的时候设置ttl。
+
+
+
+首先新增一个队列， 不需要设置ttl， 然后写生产者， 发消息的时候设置ttl
+
+```java
+@GetMapping("/sendMsg/{message}/{ttl}")
+    public void sendMsg(@PathVariable String message, @PathVariable String ttl){
+        log.info("当前时间：{}，发送消息：{}， ttl时间为：{}", new Date(), message, ttl);
+
+        rabbitTemplate.convertAndSend("ex","xc","来自优化队列" + message, msg -> {
+            //设置ttl时间
+            msg.getMessageProperties().setExpiration(ttl);
+            return msg;
+        });
+    }
+```
+
+
+
+通过测试发现，可以实现自动设置ttl， 但是，如果连续发两个消息，第一个设置20秒， 第二个设置2秒， 这样第二个消息还是会等到第一个消息消费完之后才会消费第二个消息，也就是第一个信息还在队列里面， 还没有被队列删除， 需要等待删除第一个才会给消费者第二个消费。
+
+
+
+> 基于插件实现延迟队列
+
+
+
+- 下载安装插件参看：https://www.jb51.net/article/248469.htm，安装重启完成后， 在rabbitmq的web页面新建交换机的类型有一个`x-delayed-message`类型。
+
+
+
+- 基于插件的延迟队列不需要两个交换机， 在第一个交换机里面消息延迟发送给队列， 队列进而给消费者。
+
+![image-20221005173336444](img\rabbit_mq\1664962403(1).jpg)
+
+
+
+- 基于插件的配置
+
+```java
+@Configuration
+public class DelayedQueueConfig {
+
+    private static final String EXCHANGE_NAME = "delay.exchange";
+    private static final String QUEUE_NAME = "delay.queue";
+    private static final String ROUTING_KEY = "delay.routingKey";
+
+    /**
+     * 队列
+     * @return
+     */
+    @Bean
+    public Queue delayQueue(){
+        return new Queue(QUEUE_NAME);
+    }
+
+    /**
+     * 交换机设置
+     * @return
+     */
+    @Bean
+    public CustomExchange delayExchange(){
+        Map<String, Object> arguments = new HashMap<>();
+        //设置交换机类型
+        arguments.put("x-delayed-type", "direct");
+        return new CustomExchange(EXCHANGE_NAME,"x-delayed-message",  false, false, arguments);
+    }
+
+    /**
+     * 绑定
+     * @param delayQueue
+     * @param delayExchange
+     * @return
+     */
+    @Bean
+    public Binding queueBindDelayExchange(@Qualifier("delayQueue") Queue delayQueue, @Qualifier("delayExchange") CustomExchange delayExchange){
+        return BindingBuilder.bind(delayQueue).to(delayExchange).with(ROUTING_KEY).noargs();
+    }
+}
+
+```
+
+
+
+- 生产者发送延迟时间
+
+```java
+    @GetMapping("/sendDelayMsg/{message}/{delayTime}")
+    public void sendDelayMsg(@PathVariable String message, @PathVariable Integer delayTime){
+        log.info("当前时间：{}，发送消息：{}， ttl时间为：{}", new Date(), message, delayTime);
+
+        rabbitTemplate.convertAndSend("delay.exchange","delay.routingKey","来自插件优化队列" + message, msg -> {
+            //设置ttl时间
+            msg.getMessageProperties().setDelay(delayTime);
+            return msg;
+        });
+    }
+```
+
+
+
+- 消费者不需要做任何改动
+
+
+
+运行测试之后之前的优化队列存在的问题， 就可以被解决， 就算第一个消息延迟20秒，第二个延迟2秒， 第二个可以比第一个更先接收
+
+```txt
+2022-10-05 18:32:41.482  INFO 25636 --- [nio-8080-exec-4] c.g.r.controller.SendMsgController       : 当前时间：Wed Oct 05 18:32:41 CST 2022，发送消息：ghj， ttl时间为：20000
+2022-10-05 18:32:46.950  INFO 25636 --- [nio-8080-exec-8] c.g.r.controller.SendMsgController       : 当前时间：Wed Oct 05 18:32:46 CST 2022，发送消息：lj， ttl时间为：2000
+2022-10-05 18:32:49.073  INFO 25636 --- [ntContainer#1-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Wed Oct 05 18:32:49 CST 2022， 收到延迟队列消息：来自插件优化队列lj
+2022-10-05 18:33:01.518  INFO 25636 --- [ntContainer#1-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Wed Oct 05 18:33:01 CST 2022， 收到延迟队列消息：来自插件优化队列ghj
+```
+
