@@ -189,7 +189,9 @@ sudo systemctl restart docker
 
     
 
-- 将容器内的文件复制到主机里面 ： `docker cp 容器的id  容器内的路径  目的主机的路径`
+- 将容器内的文件复制到主机里面 ： **`docker cp 容器的id  容器内的路径  目的主机的路径`**
+
+- 将外部文件复制到容器内：**`docker cp 宿主机的地址  容器id或名字:容器内路径`**
 
 - 将容器导出成一个tar文件到当前目录下 ：` docker export 容器id > 打包后的文件名.tar`
 - 将打包好的tar文件导入docker为镜像， 然后run这个镜像之后， 就会得到和之前被打包一样的容器，里边的文件也都存在： ` docker import - 镜像用户/镜像名：镜像版本号 < tar文件名.tar`
