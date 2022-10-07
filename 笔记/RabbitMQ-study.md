@@ -510,7 +510,7 @@ channel.basicQos(prefetch);
 
 
 
-在之前的消息持久化的时候， 会有持久化失败的时候， 使用发布确认， 在消息发布之后， 等消息被保存之后， 会通知生产者， 只要接到了确认，那么就代表持久化一定成功了
+在之前的消息持久化的时候， 会有持久化失败的时候， 使用发布确认， 在消息发布之后， 等消息被保存， 便会通知生产者， 只要接到了确认，那么就代表持久化一定成功了
 
 > 单个确认发布，批量确认发布， 异步确认发布
 
@@ -1358,4 +1358,275 @@ public class DelayedQueueConfig {
 2022-10-05 18:32:49.073  INFO 25636 --- [ntContainer#1-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Wed Oct 05 18:32:49 CST 2022， 收到延迟队列消息：来自插件优化队列lj
 2022-10-05 18:33:01.518  INFO 25636 --- [ntContainer#1-1] c.g.r.consumers.DeadQueueConsumer        : 当前时间：Wed Oct 05 18:33:01 CST 2022， 收到延迟队列消息：来自插件优化队列ghj
 ```
+
+
+
+
+
+## 高级发布确认
+
+
+
+当生产者发送完消息后， rabbitmq宕机了， 其中的交换机或者是队列不能收到消息， 那么消息就可能会丢失， 此时， 生产者不知道消息是否被交换机，队列收到， 则需要通知生产者， 并且把丢失的消息缓存起来，待到交换机可以接收消息再发出去。
+
+
+
+- 配置交换机，队列，绑定
+
+```java
+@Configuration
+public class ConfirmConfig {
+    public static final String QUEUE = "confirm.queue";
+    public static final String EXCHANGE = "confirm.exchange";
+    public static final String ROUTING_KEY = "kkk";
+
+    @Bean("confirmQueue")
+    public Queue confirmQueue(){
+        return new Queue(QUEUE);
+    }
+
+    @Bean("confirmExchange")
+    public DirectExchange confirmExchange(){
+        return new  DirectExchange(EXCHANGE);
+    }
+
+    @Bean
+    public Binding confirmQueueBindEx(@Qualifier("confirmQueue") Queue queue, @Qualifier("confirmExchange") DirectExchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
+    }
+}
+
+```
+
+
+
+- 生产者
+
+```java
+@Slf4j
+@RestController
+@RequestMapping("/con")
+public class ConfirmController {
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/send/{message}")
+    public void confirmSend(@PathVariable String message){
+        log.info("当前时间：{}，高级确认发出消息：{}", new Date(), message);
+        //设置 correlationData， 在回调接口可以使用到
+        CorrelationData correlationData = new CorrelationData("1");
+        Message msg = new Message(message.getBytes(StandardCharsets.UTF_8));
+        ReturnedMessage returnedMessage = new ReturnedMessage(msg, 2, "xxx", ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY);
+        correlationData.setReturned(returnedMessage);
+        rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY, message, correlationData);
+        rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY + "11", message + "11", correlationData);
+    }
+}
+
+```
+
+
+
+
+
+- 消费者
+
+```java
+@Slf4j
+@Component
+public class ConfirmConsumer {
+
+    @RabbitListener(queues = ConfirmConfig.QUEUE)
+    public void receiveConfirm(Message message, Channel channel){
+        String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.info("当前时间：{}， 收到高级确认队列消息：{}", new Date(), msg);
+    }
+}
+
+```
+
+
+
+
+
+- yaml配置文件
+
+```yaml
+spring:
+  rabbitmq:
+    # 声明发布确认的类型
+    publisher-confirm-type: correlated
+    # 开启消息回退
+    publisher-returns: true
+```
+
+
+
+- 配置类
+
+```java
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.ReturnedMessage;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+
+/**
+ * @author 86187
+ * 定义自己的 交换机确认接收消息后的回调
+ */
+@Slf4j
+@Component
+public class MyCallBack implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback{
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    /**
+     * 初始化， 将rabbitTemplate类里的 confirmCallback 替换为我们自己写的
+     * 该注解 会让这个方法在bean组策完成之后执行这个方法
+     */
+    @PostConstruct
+    public void init(){
+        rabbitTemplate.setConfirmCallback(this);
+        rabbitTemplate.setReturnsCallback(this);
+    }
+    /**
+     *
+     * @param correlationData  消息的id以及内容， 并不是每个消息都有， 需要在发消息的时候配置
+     * @param ack  交换机是否成功收到消息
+     * @param cause  失败的原因
+     */
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        String id = null;
+        String msg = null;
+        if(correlationData != null){
+            id = correlationData.getId();
+            byte[] body = correlationData.getReturned().getMessage().getBody();
+            msg = new String(body, StandardCharsets.UTF_8);
+        }
+        if(ack){
+            log.info("交换机收到消息id为：{}, 消息是：{}, 当前时间为：{}", id, msg, new Date());
+        }else {
+            log.info("交换机没有收到消息id为：{}, 消息是：{}, 当前时间为：{}", id, msg, new Date());
+            log.info("失败的原因是：{}", cause);
+        }
+    }
+
+    /**
+     * 当消息没有成功发送到队列时候， 会触发这个方法
+     * @param returned 消息的一些信息，这里的ReturnedMessage与交换机未接受的ReturnedMessage不一样， 内容不是一样的
+     */
+    @Override
+    public void returnedMessage(ReturnedMessage returned) {
+        log.info("消息：{}，没有被队列接收， 交换机是：{}， 路由key是：{}， 原因是：{}， code：{}",
+                new String(returned.getMessage().getBody(), StandardCharsets.UTF_8), returned.getExchange(), returned.getRoutingKey(),
+                returned.getReplyText(), returned.getReplyCode());
+    }
+}
+
+```
+
+
+
+当发送的消息没有被交换机接收， 就会回调confirm()方法， 获取到没接收的消息， 当消息没有被队列接收那么就会回退，会调用returnedMessage()回调，获取发送的消息
+
+
+
+## 备份交换机
+
+
+
+给交换机配置备份交换机
+
+```java
+//绑定备份交换机
+return ExchangeBuilder.directExchange(EXCHANGE).alternate(BACK_EXCHANGE).build();
+
+```
+
+
+
+当交换机收到消息，但是找不到routingKey对应的队列， 就会从该交换机转发到备份交换机， 备份交换机通常是fanout类型， 然后转发到队列， 被消费。如果消息直接不被交换机收到， 那么也不会被备份交换机收到。
+
+
+
+当同时开启消息回退， 以及备份交换机， 也就是交换机收到消息， routingKey对应的队列找不到， 那么消息会进入到备份机里面， 而不会进入到消息回退的方法里面。
+
+
+
+## 优先级队列
+
+
+
+给消息设置优先级， 权重大的优先被发送， 类似redis的zset，这个需要有消息堆积的时候才会体现， 如果发出来的消息都直接被消费了， 那么就体现不出来。
+
+
+
+- 测试生产者
+
+```java
+/**
+ * @author 86187
+ * 测试优先级队列
+ */
+public class PriProducer {
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        Map<String, Object> props = new HashMap<>();
+        //设置队列优先级
+        props.put("x-max-priority", 10);
+        channel.queueDeclare("priority", false, false, false, props);
+        channel.exchangeDeclare("priority-exc", BuiltinExchangeType.DIRECT);
+
+        channel.queueBind("priority", "priority-exc", "priority");
+        for (int i = 0; i < 10; i++) {
+            String msg = "info" + i;
+            if(i == 6){
+                //设置消息的优先级
+                AMQP.BasicProperties properties = new AMQP.BasicProperties().builder().priority(10).build();
+                channel.basicPublish("priority-exc", "priority", properties, msg.getBytes(StandardCharsets.UTF_8));
+            }
+            else {
+                channel.basicPublish("priority-exc", "priority", null, msg.getBytes(StandardCharsets.UTF_8));
+            }
+        }
+    }
+}
+```
+
+
+
+
+
+- 消费者
+
+```java
+/**
+ * @author 86187
+ * 测试优先级队列  消费者
+ * info 6 会被优先接收
+ */
+public class PriConsumer {
+    public static void main(String[] args) throws Exception {
+        Channel channel = RabbitmqConnection.getChannel();
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("消息已被接收：" + new String(message.getBody(), StandardCharsets.UTF_8));
+        };
+        channel.basicConsume("priority", true, deliverCallback, consumerTag -> {});
+    }
+}
+
+```
+
+
+
+## 惰性队列
 
