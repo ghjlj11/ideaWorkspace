@@ -45,6 +45,14 @@
 
 
 
+- docker命令， 下载`rabbitmq:management`， 镜像
+
+```bash
+docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin 镜像ID
+```
+
+
+
 - 开启前要配置hosts文件 ：`vim /etc/hosts` ，加上主机ip，以及hostname，hostname可以用命令`hostname`查询例如
 
   ```bash
@@ -1630,3 +1638,10 @@ public class PriConsumer {
 
 ## 惰性队列
 
+
+
+当消费者宕机， 导致消息堆积在队列， 因为消息是存放在内存中，因此会很占用内存， 使用惰性队列， 就会把消息存放在磁盘里面， 有点类似队列的持久化， 但是持久化是在内存以及磁盘上都保持一份消息， 并且是在内存中读取， 惰性队列则是只存放在磁盘中， 在内存中仅仅是放消息的索引。
+
+
+
+设置惰性队列，只需要在参数上加上一个 参数 `x-queue-mode`为`lazy`就可以。
