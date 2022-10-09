@@ -216,8 +216,12 @@ alter table kecheng add index id(id);
 > 修改字段
 
 ```SQL
-
+# 修改字段
 alter table classes modify id int  comment '用户名';
+#添加字段
+alter table t1 add id BIGINT;
+# 删除字段
+alter table t1 drop id;
 ```
 
 
