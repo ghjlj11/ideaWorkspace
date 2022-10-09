@@ -114,6 +114,8 @@ public class Producer {
         //创建连接工厂，设置参数
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("43.142.32.254");
+        //默认端口
+        //factory.setPort(5677);
         factory.setUsername("admin");
         factory.setPassword("admin");
 
@@ -1645,3 +1647,29 @@ public class PriConsumer {
 
 
 设置惰性队列，只需要在参数上加上一个 参数 `x-queue-mode`为`lazy`就可以。
+
+
+
+## 集群
+
+
+
+
+
+三个rabbitmq主机的`hosts`文件需要配置，` /var/lib/rabbitmq/.erlang.cookie`需要一致，以及`/root/docker/rabbitmq-cluster/mq1/rabbitmq.conf`需要配置集群， 此外还需要docker开启开启一个网络， 这三个rabbitmq启动的时候都需要连接这个网络， 具体配置参看  csdn ：https://blog.csdn.net/zhuocailing3390/article/details/122510135
+
+
+
+启动完成之后， 访问任何一个节点相当于访问集群， 三个队列信息共享。
+
+
+
+> 镜像队列
+
+之前的集群只能保证消息共享，往任何一个rabbitmq插入数据都可以共享，当主机也就是mq1宕机， 如果队列没有持久化， 那么队列就会没有了，消息也就不在了， 这时候还是需要有备份， 即当mq1宕机，其余的依旧可以继续正常工作， 之前的队列也不会消失。
+
+
+
+- 只需要按照下面这样在任意一个节点配值一个策略可以实现备份，即使该队列所属的节点宕机， 其他的节点依旧可以正常使用该队列， 只要该集群有一个可用节点， 就可以继续使用。
+
+![mq3](img\rabbit_mq\mq3.png)
