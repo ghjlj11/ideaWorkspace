@@ -1673,3 +1673,24 @@ public class PriConsumer {
 - 只需要按照下面这样在任意一个节点配值一个策略可以实现备份，即使该队列所属的节点宕机， 其他的节点依旧可以正常使用该队列， 只要该集群有一个可用节点， 就可以继续使用。
 
 ![mq3](img\rabbit_mq\mq3.png)
+
+
+
+
+
+> 联邦交换机
+
+不同地区的节点获取对方的消息会有很大延迟， 如果需要同步消息到对方并且延迟小， 则需要设置联邦交换机或者联邦队列， 这样会减少延迟。
+
+
+
+- 给每个节点开启插件
+
+```bash
+rabbitmq-plugins enable rabbitmq_federation
+rabbitmq-plugins enable rabbitmq_federation_management
+```
+
+
+
+- 联邦队列， 作用跟联邦交换机相同 ，是为了降低不同地区发送消息延迟。

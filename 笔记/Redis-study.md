@@ -65,7 +65,7 @@ redis.conf 配置项说明如下：
 
 - 通过`whereis redis`可以看到redis安装在哪。
 
-本机redis.conf在`/user/local/bin/ghjconfig`下
+本机redis.conf在`/usr/local/bin/ghjconfig`下
 
 **``redis-server ghjconfig/redis.conf``启动服务， ``redis-cli -p 6379 ``开启客户端， ``shutdown``关闭客户端， ``exit``退出服务，  这里客户端输入``ping``请求， 由回应``pong``请求就是开启服务成功。** 
 
@@ -115,8 +115,13 @@ redis-server redis.conf  	#开启服务
 redis-cli -p 6379		#开启客户端
 127.0.0.1:6379> ping		#测试链接
 PONG
-127.0.0.1:6379> SHUTDOWN		#关闭服务
+127.0.0.1:6379> SHUTDOWN		#关闭redis服务
 not connected> exit
+
+
+127.0.0.1:6379> exit     #退出redis客户端
+
+127.0.0.1:6379> info    #查看redis服务的
 
 
 ```
@@ -234,6 +239,9 @@ FLUSHDB
 
 FLUSHDALL
 - 删除所有库的数据
+
+keys (匹配字符串)
+- 查看所有key可以匹配上面的字符， keys *  suo'you
 ```
 
 
@@ -752,7 +760,7 @@ hsetnx 往hash里存一个值， 如果不存在这个key就存入， 如果存�
 
 ### Zset（有序的Set）
 
-与Set不同的是， 每个值有一个优先级，然后进行排序，  zadd  set score v1
+与Set不同的是， 每个值有一个优先级，然后进行排序，优先队列  zadd  set score v1
 
 
 
