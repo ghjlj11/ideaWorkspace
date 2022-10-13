@@ -25,3 +25,93 @@ nginx的作用：反向代理， 负载均衡， 动静分离。
 > 动静分离
 
 项目中会有很多静态资源例如：html，css；也会有动态资源：jsp， servlet。如果都部署在一个服务器， 那么无论访问动态还是静态资源， 都是访问这个服务器， 使用动静分离的做法， 把静态资源放在一个服务器， 动态放在别的服务器， 因为这两种资源加载速度是不一样， 对服务器的性能需求也就不一样， 动静分离管理有利于服务器的分压。
+
+
+
+## 基本命令
+
+
+
+> 在nginx执行脚本的目录下：/usr/local/nginx/sbin
+
+- 查看nginx版本号 ： `./nginx -v`
+- 启动nginx：`./nginx`。
+- 关闭nginx：`./nginx -s stop`
+- 重新加载nginx：`./nginx -s reload`，当修改nginx.conf后， 可以不需要重启，重新加载新的配置文件。
+
+
+
+## 配置文件
+
+
+
+> 全局块
+
+
+
+例如：
+
+```bash
+# 表示nginx处理并发数量， 值越大， 处理并发量越多
+worker_processes  1;
+```
+
+
+
+> events块
+
+
+
+例如：
+
+```bash
+# 表示nginx最大可以接收多少个连接
+worker_connections  1024;
+```
+
+
+
+
+
+> http块
+
+大部分配置是在http块配置
+
+```bash
+# 表示外部访问nginx的端口号以及ip地址
+listen       80;
+server_name  localhost;
+```
+
+
+
+
+
+## 反向代理
+
+
+
+首先准备好tomcat并启动， 配置反向代理只需要在http配置块下加上一个属性：
+
+```bash
+# 在这个localtion下加上 proxy_pass http://localhost:8080;
+location / {
+root   html;
+index  index.html index.htm;
+}
+
+# 即：
+location / {
+root   html;
+proxy_pass http://localhost:8080;
+index  index.html index.htm;
+}
+```
+
+
+
+`proxy_pass`属性表示nginx反向代理的IP地址以及端口号， tomcat服务的端口就是 8080
+
+
+
+保存后重新加载 配置， 然后访问 nginx  `43.142.32.254:80`， 就访问到了tomcat的首页。
