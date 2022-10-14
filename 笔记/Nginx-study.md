@@ -115,3 +115,112 @@ index  index.html index.htm;
 
 
 保存后重新加载 配置， 然后访问 nginx  `43.142.32.254:80`， 就访问到了tomcat的首页。
+
+
+
+> 配置代理多个tomcat
+
+可以使用docker开启多个tomcat， 在每个tomcat的webapp下都建一个包， 第一个建/mypage， 第二个/mypage2， 包里都放一个jj.html， 并且测试是否可以访问下面的html。
+
+
+
+- nginx.conf的http配置快上加上一个server配置，表示监听9001端口。
+
+```bash
+    server {
+        listen       9001;
+        server_name  localhost;
+		# 表示url含有/mypage/则匹配该路径
+		# 访问 43.142.32.254:9001/mypage/jj.html
+		# 真实访问路径 ： http://43.142.32.254:9001/mypage/jj.html
+        location ~/mypage/ {
+            proxy_pass http://localhost:8080;
+        }
+        # 表示url含有/mypage2/则匹配该路径
+        location ~/mypage2/ {
+            proxy_pass http://localhost:8081;
+        }
+    }
+
+```
+
+
+
+**location后面可以接 =， ~， ~*，^~**
+
+- 后面什么都不接时， 匹配以指定模式开头的location。
+
+- `=` 表示不使用正则表达式匹配， 需要请求字符串与uri严格匹配才能继续往下搜索。
+- `~`表示使用正则表达式， 并且区分大小写。
+- `~*`表示使用正则表达式， 不区分大小写。
+- `^~` 表示不包含正则表达式的uri前，功能和不加符号的一致，唯一不同的是，如果模式匹配，那么就停止搜索其他模式了
+
+
+
+> #### uri与location匹配
+
+##### 场景一、
+
+nginx配置：
+
+```bash
+location /test/ {
+   proxy_pass http://127.0.0.1:8088/;
+}
+123
+```
+
+请求地址：**http://127.0.0.1/test/api/findAll**
+ 实际上服务请求地址为：**http://127.0.0.1:8088/api/findAll**
+ 规则：location最后有"/“,proxy_pass最后有”/" 结果为 **proxy_pass + url中location最后一个斜线以后的部分**
+
+------
+
+##### 场景二、
+
+nginx配置：
+
+```bash
+location /test {
+   proxy_pass http://127.0.0.1:8088/;
+}
+123
+```
+
+请求地址：**http://127.0.0.1/test/api/findAll**
+ 实际上服务请求地址为：**http://127.0.0.1:8088//api/findAll**
+ 规则：location最后无"/“,proxy_pass最后有”/" 结果为 **proxy_pass + / + url中location最后一个斜线以后的部分**
+
+------
+
+##### 场景三、
+
+nginx配置：
+
+```bash
+location /test/ {
+   proxy_pass http://127.0.0.1:8088;
+}
+123
+```
+
+请求地址：**http://127.0.0.1/test/api/findAll**
+ 实际上服务请求地址为：**http://127.0.0.1:8088/test/api/findAll**
+ 规则：location最后有"/“,proxy_pass最后无”/" 结果为 **proxy_pass + location + url中location后面的部分(不包含第一个/)**
+
+------
+
+##### 场景四、
+
+nginx配置：
+
+```bash
+location /test {
+   proxy_pass http://127.0.0.1:8088;
+}
+123
+```
+
+请求地址：**http://127.0.0.1/test/api/findAll**
+ 实际上服务请求地址为：**http://127.0.0.1:8088/test/api/findAll**
+ 规则：location最后无"/“,proxy_pass最后无”/" 结果为 **proxy_pass + location + “/” + url中location后面的部分(不包含第一个/)**
