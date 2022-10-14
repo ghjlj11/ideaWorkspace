@@ -16,4 +16,6 @@ public interface BlogMapper {
     void updateBlog(Map map);
 
     List<Blog> selectBlogForeach(Map map);
+
+    List<Blog> selectInId(List<String> list);
 }
