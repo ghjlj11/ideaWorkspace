@@ -1,7 +1,7 @@
 package com.ghj.bigData;
 
 import com.ghj.first.ExcelTest03;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import static com.ghj.constant.PathConstant.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,7 +28,7 @@ public class Excel07 {
                 row.createCell(j).setCellValue(j + 1);
             }
         }
-        FileOutputStream outputStream = new FileOutputStream(ExcelTest03.s + "bigData07.xlsx");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "bigData07.xlsx");
         workbook.write(outputStream);
         long end = System.currentTimeMillis();
         System.out.println( (double)(end - star) / 1000);

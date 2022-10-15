@@ -5,7 +5,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import static com.ghj.constant.PathConstant.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,7 +29,7 @@ public class Excel07S {
                 row.createCell(j).setCellValue(j + 1);
             }
         }
-        FileOutputStream outputStream = new FileOutputStream(ExcelTest03.s + "bigData07S.xlsx");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "bigData07S.xlsx");
         workbook.write(outputStream);
         boolean dispose = ((SXSSFWorkbook) workbook).dispose();
 

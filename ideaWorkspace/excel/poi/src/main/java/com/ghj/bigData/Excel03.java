@@ -1,15 +1,14 @@
 package com.ghj.bigData;
 
+import static com.ghj.constant.PathConstant.*;
 import com.ghj.first.ExcelTest03;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * @author 86187
@@ -28,7 +27,7 @@ public class Excel03 {
                 row.createCell(j).setCellValue(j + 1);
             }
         }
-        FileOutputStream outputStream = new FileOutputStream(ExcelTest03.s + "bigData03.xls");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "bigData03.xls");
         workbook.write(outputStream);
         long end = System.currentTimeMillis();
         //获取开始到结束的时间差

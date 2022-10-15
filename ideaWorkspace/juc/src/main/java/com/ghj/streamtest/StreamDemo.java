@@ -21,7 +21,8 @@ public class StreamDemo {
                 .map(n -> n.getName().toLowerCase())
                 .sorted((o1, o2) -> o2.compareTo(o1))
                 .limit(2);
-        limit.forEach(System.out::println); //相当于终止了， 接下来就不能使用这个流了
+        //相当于终止了， 接下来就不能使用这个流了
+        limit.forEach(System.out::println);
         System.out.println(limit.count());
     }
 }

@@ -1,5 +1,6 @@
 package com.ghj.read;
 
+import static com.ghj.constant.PathConstant.*;
 import com.ghj.first.ExcelTest03;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.*;
@@ -17,7 +18,7 @@ import java.util.Date;
  */
 public class ReadAll {
     public static void main(String[] args) throws IOException {
-        FileInputStream inputStream = new FileInputStream(ExcelTest03.s + "testType.xlsx");
+        FileInputStream inputStream = new FileInputStream(PATH + "testType.xlsx");
 
         Workbook workbook = new XSSFWorkbook(inputStream);
 

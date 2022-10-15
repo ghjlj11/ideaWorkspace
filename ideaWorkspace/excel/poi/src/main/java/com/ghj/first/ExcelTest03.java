@@ -1,5 +1,6 @@
 package com.ghj.first;
 
+import static com.ghj.constant.PathConstant.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,7 +18,6 @@ import java.util.Date;
  * 速度很快， 但是占用很大的内存。
  */
 public class ExcelTest03 {
-    public static String  s = "D:/my-study/ideaWorkspace/test/";
 
     public static void main(String[] args) throws IOException {
         //获取到工作簿
@@ -37,7 +37,7 @@ public class ExcelTest03 {
         row2.createCell(0).setCellValue(dateFormat.format(new Date()));
         row2.createCell(1).setCellValue("泰和");
 
-        FileOutputStream outputStream = new FileOutputStream(s + "excelTest.xls");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "excelTest.xls");
         workbook.write(outputStream);
         outputStream.close();
         System.out.println("success!");

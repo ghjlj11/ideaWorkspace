@@ -1,6 +1,6 @@
 package com.ghj.first;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import static com.ghj.constant.PathConstant.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -36,7 +36,7 @@ public class ExcelTest07 {
         row2.createCell(0).setCellValue(dateFormat.format(new Date()));
         row2.createCell(1).setCellValue("泰和");
 
-        FileOutputStream outputStream = new FileOutputStream(s + "excelTest07.xlsx");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "excelTest07.xlsx");
         workbook.write(outputStream);
         outputStream.close();
         System.out.println("success!");
