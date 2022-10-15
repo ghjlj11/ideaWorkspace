@@ -6,7 +6,7 @@ nginx的作用：反向代理， 负载均衡， 动静分离。
 
 > 反向代理
 
-首先， 先了解一下正向代理：当一个局域网内的客户端想要访问外网， 那么就需要代理服务器，因为直接访问是访问不了的， 需要先访问代理服务器， 进而访问目标网站。
+正向代理：当一个局域网内的客户端想要访问外网， 那么就需要代理服务器，因为直接访问是访问不了的， 需要先访问代理服务器， 进而访问目标网站。
 
 
 
@@ -24,7 +24,7 @@ nginx的作用：反向代理， 负载均衡， 动静分离。
 
 > 动静分离
 
-项目中会有很多静态资源例如：html，css；也会有动态资源：jsp， servlet。如果都部署在一个服务器， 那么无论访问动态还是静态资源， 都是访问这个服务器， 使用动静分离的做法， 把静态资源放在一个服务器， 动态放在别的服务器， 因为这两种资源加载速度是不一样， 对服务器的性能需求也就不一样， 动静分离管理有利于服务器的分压。
+将动态与静态的请求分开。项目中会有很多静态资源例如：html，css；也会有动态资源：jsp， servlet。如果都部署在一个服务器， 那么无论访问动态还是静态资源， 都是访问这个服务器， 使用动静分离的做法， 把静态资源放在一个服务器， 动态放在别的服务器， 因为这两种资源加载速度是不一样， 对服务器的性能需求也就不一样， 动静分离管理有利于服务器的分压。
 
 
 
@@ -155,6 +155,11 @@ index  index.html index.htm;
 - `~*`表示使用正则表达式， 不区分大小写。
 - `^~` 表示不包含正则表达式的uri前，功能和不加符号的一致，唯一不同的是，如果模式匹配，那么就停止搜索其他模式了
 
+> location里的index与root
+
+- index后面接的就是访问的首页， 如果有多个， 那么就依次寻找，找到了就展示首页。
+- root就代表， 如果root的路径加上location的`/`后的路径可以在本地文件中匹配到，那么就会去找该位置对应的文件， 而不是去服务里面找。
+
 
 
 > #### uri与location匹配
@@ -224,3 +229,138 @@ location /test {
 请求地址：**http://127.0.0.1/test/api/findAll**
  实际上服务请求地址为：**http://127.0.0.1:8088/test/api/findAll**
  规则：location最后无"/“,proxy_pass最后无”/" 结果为 **proxy_pass + location + “/” + url中location后面的部分(不包含第一个/)**
+
+
+
+
+
+## 负载均衡
+
+
+
+nginx配置：
+
+```bash
+	upstream myserver{
+       server localhost:8080;
+       server localhost:8081;
+    }
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            root   html;
+            proxy_pass http://myserver;
+            index  index.html index.htm;
+        }
+	}
+```
+
+
+
+在每个tomcat下都放一个mypage文件夹， 下面都有一个jj.html， 配置好后重新加载nginx配置， 访问jj.html就会采用轮询的负载均衡。
+
+
+
+### 负载均衡策略
+
+
+
+> 轮询（默认）
+
+每个请求按时间顺序逐一分配到不同的后端服务器， 如果后端服务器down了， 它可以自动剔除。
+
+
+
+> weight
+
+代表权重， 默认是1 ，权重越高分配的次数越多。
+
+```bash
+	upstream myserver{
+       server localhost:8080 weight 1;
+       server localhost:8081 weight 2;
+    }
+```
+
+
+
+> ip_hash
+
+根据访问的ip来判断是访问哪一个服务器， 也就是说只要用的同一台电脑访问， 就只能访问一台服务器， 这样可以解决session问题， 配置只需要加上ip_hash即可。
+
+	upstream myserver{
+	   ip_hash;
+	   server localhost:8080;
+	   server localhost:8081;
+	}
+
+
+
+> fair
+
+根据请求的响应时间来分配， 当请求发起， 会查看访问哪个服务器响应的时间最短， 那么就使用该台服务器
+
+
+
+	upstream myserver{
+	   fair;
+	   server localhost:8080;
+	   server localhost:8081;
+	}
+
+
+
+## 动静分离
+
+将静态请求交给nginx处理， 直接访问对应的文件， 动态请求就交给对应的服务器处理。
+
+
+
+配置， 将之前的server修改， root就代表， 如果root的路径加上location的`/`后的路径可以在本地文件中匹配到，那么就会去找该位置对应的文件， 而不是去服务里面找。
+
+```bash
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            proxy_pass http://myserver;
+            index  index.html index.htm;
+        }
+        location /www/ {
+            root    /mydata/;
+            index  index.html index.htm;
+        }
+        location /image/ {
+            root  /mydata/;
+            autoindex  on;
+        }
+	}
+```
+
+
+
+ 测试url， http://43.142.32.254/image/a.png 与  http://43.142.32.254/www/jj.html后， 可以直接访问`/mydata/www/jj.html`， `/mydata/image/a.png`.  此外，我们还可以访问http://43.142.32.254/image/， 看到该文件夹下的所有文件， 因为配置了  `autoindex  on;`
+
+
+
+
+
+## 高可用（集群）
+
+nginx也会有宕机的情况， 一旦宕机那么请求无法被处理， 因此也需要集群
+
+
+
+提前准备 ： 首先需要准备两个nginx， 以及两台机器都装上 keepalived ， 直接使用yum命令安装`yum install keepalived -y`
+
