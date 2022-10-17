@@ -4,7 +4,6 @@ import com.ghj.pojo.Blog;
 import com.ghj.utils.IDUtils;
 import com.ghj.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 
 import java.util.*;
@@ -133,10 +132,14 @@ public class TestBlog {
     }
     @Test
     public void test06(){
-        List<String> list = new ArrayList<>();
+        List<Map<String, Object>> l1 = new ArrayList<>();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", 1);
+        l1.add(map);
+        System.out.println(l1);
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
-        List<Blog> blogs = mapper.selectInId(list);
+        List<Blog> blogs = mapper.selectInId(l1);
         System.out.println(blogs);
 
     }

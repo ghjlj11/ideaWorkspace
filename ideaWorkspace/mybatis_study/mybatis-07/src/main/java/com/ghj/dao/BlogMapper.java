@@ -17,5 +17,5 @@ public interface BlogMapper {
 
     List<Blog> selectBlogForeach(Map map);
 
-    List<Blog> selectInId(List<String> list);
+    List<Blog> selectInId(List<Map<String, Object>> list);
 }

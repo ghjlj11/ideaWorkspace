@@ -364,3 +364,138 @@ nginx也会有宕机的情况， 一旦宕机那么请求无法被处理， 因�
 
 提前准备 ： 首先需要准备两个nginx， 以及两台机器都装上 keepalived ， 直接使用yum命令安装`yum install keepalived -y`
 
+
+
+1、使用docker运行一个nginx
+
+2、在容器内使用`apt-get`安装`keepalived` ：需要先执行以下命令：
+
+```bash
+apt-get update
+
+apt-get install libssl-dev 
+
+apt-get install openssl 
+
+apt-get install libpopt-dev 
+
+apt-get install libnl-3-dev
+
+apt-get install libnl-genl-3-dev
+
+apt-get install keepalived
+```
+
+
+
+3、检查keepalived是否安装成功
+
+```bash
+keepalived -v
+```
+
+
+
+
+
+4、修改keepalived配置文件 `/ect/keepalived`
+
+```bash
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+     acassen@firewall.loc
+     failover@firewall.loc
+     sysadmin@firewall.loc
+   }
+   notification_email_from Alexandre.Cassen@firewall.loc
+   smtp_server 10.0.12.17
+   smtp_connect_timeout 30
+   router_id LVS_DEVEL
+   vrrp_skip_check_adv_addr
+   vrrp_strict
+   vrrp_garp_interval 0
+   vrrp_gna_interval 0
+}
+# 检测脚本
+vrrp_script chk_http_port {
+
+    script  "/usr/local/src/nginx_check.sh"
+
+    interval  2    #检测脚本执行时间的间隔
+
+    weight 2
+
+}
+
+vrrp_instance VI_1 {
+    state MASTER  # 备份服务器就是BACKUP，主服务器MASTER
+    interface eth0
+    virtual_router_id 51
+    priority 100  # 优先级， 一般主机100， 从机90
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        10.0.12.16  #虚拟地址
+        #192.168.200.17
+        #192.168.200.18
+    }
+}
+
+```
+
+
+
+并且在`/usr/local/src`该路径下放置一个脚本 ：
+
+```sh
+#!/bin/bash
+A = 'ps -C nginx -no-header |wc -l'
+if [ $A -eq 0 ];then
+    /usr/local/nginx/sbin/nginx
+    sleep 2
+    if [ 'ps -C nginx --no-header |wc -l' -eq 0 ];then
+        killall keepalived
+    fi
+fi
+```
+
+
+
+5、重启nginx， 启动keepalived `systemctl start keepalived.service`
+
+
+
+6、测试， 访问虚拟路径， 也可以访问到nginx， 主机的nginx挂了也可以访问到从机。
+
+
+
+## 原理
+
+
+
+![1666017512(1)](img\nginx\1666017512(1).jpg)
+
+
+
+查看nginx的进程，会有master以及worker两个进程，我们发送的请求是通过master发送给worker然后再转发大服务器， 进行处理。并且worker之间获取master的请求是通过争抢的方式， 并不是轮询
+
+
+
+> 一个master多个worker的好处:
+
+1、 利于使用热部署， 就是执行 `./nginx -s reload`，master在reload后，会把配置同步到不在处理请求的worker， 等到worker处理完之后， 也可以更新配置， 这样就不会有空档的时间。
+
+2、每个worker都是一个独立的进程， 其中一个挂了， 其余的也可以正常工作。
+
+3、设置多少个worker最合适， 一般选择与CPU数量相同最合适。
+
+
+
+> 发送一个请求worker占用几个连接数
+
+当收到请求， 可能是访问静态资源或者动态资源， 当访问本机的静态资源就直接是占用两个连接，一个是接收请求的时候的，另一个是响应的； 当访问的是动态资源 ，就可能需要再去连接一台服务器， 以及那台服务器的响应， 就是四个连接。

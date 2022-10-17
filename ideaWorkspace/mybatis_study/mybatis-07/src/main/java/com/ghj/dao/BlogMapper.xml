@@ -77,7 +77,7 @@
             <if test="list != null and list.size() > 0">
             id in
             <foreach collection="list" index="index" open="(" separator="," close=")" item="item">
-                #{item}
+                #{item.id}
             </foreach>
         </if>
         </where>
