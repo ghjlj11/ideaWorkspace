@@ -28,7 +28,7 @@ public class Test01 {
         System.out.println(myStringBuffer.lastIndexOf("k"));
         System.out.println(myStringBuffer.subString(0,0));
         System.out.println(myStringBuffer);
-        myStringBuffer.replace(0,7,"hfgh");
+        myStringBuffer.replace(0,3,"hfgh");
         System.out.println(myStringBuffer);
         Scanner sc = new Scanner(System.in);
     }

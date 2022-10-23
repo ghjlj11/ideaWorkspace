@@ -1,13 +1,15 @@
 package lj.random.seven;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
 public class Example7_4 {
     public static void main(String[] args){
-        try {
-            Integer a=Integer.parseInt("34566");
-            Integer b=Integer.parseInt("s234f");
-        }
-        catch (Exception e){
-            System.out.println("发生异常："+e.getMessage());
-        }
+        int a = 4;
+        System.out.println(a = 5);
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(null);
+        list.add(null);
+        System.out.println(list.size());
     }
 }

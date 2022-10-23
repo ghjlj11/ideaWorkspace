@@ -7,14 +7,14 @@
 		<meta name="author" content="">
 		<title>Signin Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
-		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 		<!-- Custom styles for this template -->
-		<link th:href="@{/css/signin.css}" rel="stylesheet">
+		<link th:href="@{css/signin.css}" rel="stylesheet">
 	</head>
-
+z
 	<body class="text-center">
 		<form class="form-signin" th:action="@{/toLogin}">
-			<img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<img class="mb-4" th:src="@{img/bootstrap-solid.svg}" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
 			<p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}" style="color: red"></p>
 			<input type="text" class="form-control" name="username" th:placeholder="#{login.username}" required="" autofocus="">

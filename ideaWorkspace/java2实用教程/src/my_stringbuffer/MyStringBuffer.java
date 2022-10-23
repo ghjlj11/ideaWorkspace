@@ -81,8 +81,7 @@ public final class MyStringBuffer {
 
     public void append(String s){
         if(s == null){
-            NullPointerException e = new NullPointerException("请不要传入空");
-            throw e;
+            throw new NullPointerException("请不要传入空");
         }
         int len = s.length();
         this.length += len;
@@ -210,9 +209,7 @@ public final class MyStringBuffer {
         this.length =this.length +  len - (end - star);
         toBigger();
         char[] temp = new char[length];
-        for(int i = 0; i < star ; i++){
-            temp[i] = values[i];
-        }
+        System.arraycopy(values, 0, temp, 0, star);
         for(int i = star, j = 0; i < star + len; i++, j++){
             temp[i] = chars[j];
         }

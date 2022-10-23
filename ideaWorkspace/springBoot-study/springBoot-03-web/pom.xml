@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ghj</groupId>
     <artifactId>springBoot-03-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-RELEASE</version>
     <name>springBoot-03-web</name>
     <description>springBoot-03-web</description>
     <properties>

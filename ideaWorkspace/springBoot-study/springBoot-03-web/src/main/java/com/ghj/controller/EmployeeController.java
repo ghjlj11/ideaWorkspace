@@ -25,28 +25,28 @@ public class EmployeeController {
         Collection<Employee> employees = employeeDao.getAll();
         model.addAttribute("emps", employees);
         System.out.println(employees);
-        return "/emp/list";
+        return "emp/list";
     }
 
     @GetMapping("/add")
     public String add(Model model){
         Collection<Department> all = departmentDao.getAll();
         model.addAttribute("all",all);
-        return "/emp/addEmp";
+        return "emp/addEmp";
     }
     @PostMapping("/add")
     public String add(Employee employee){
         employeeDao.addEmployee(employee);
         return "redirect:/emps";
     }
-    @GetMapping("/update")
+    @GetMapping("update")
     public String update(Integer id, Model model){
         Collection<Department> all = departmentDao.getAll();
         model.addAttribute("all",all);
         Employee emp = employeeDao.getEmployee(id);
         System.out.println(emp);
         model.addAttribute("emp", emp);
-        return "/emp/update";
+        return "emp/update";
     }
     @PostMapping("/update")
     public String update(Employee employee){
