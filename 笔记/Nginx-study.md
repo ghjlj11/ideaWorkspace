@@ -39,6 +39,10 @@ nginx的作用：反向代理， 负载均衡， 动静分离。
 - 关闭nginx：`./nginx -s stop`
 - 重新加载nginx：`./nginx -s reload`，当修改nginx.conf后， 可以不需要重启，重新加载新的配置文件。
 
+> 如果服务器重启
+
+启动nginx可能会报错， 没有找的`nginx.pid`文件， 可以手动添加， 然后重启可能还是报错`invalid PID number`， 可以选择 杀死nginx的 master以及 worker进程， 然后执行 `./nginx -c /usr/local/nginx/conf/nginx.conf`， 指定配置文件重启， 然后`reload`。
+
 
 
 ## 配置文件
