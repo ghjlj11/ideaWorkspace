@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
  */
 public class Test01 {
     public static void main(String[] args) throws Exception {
+        // ip地址的正则表达式
         String regex = "(((1?\\d\\d?)|(2([0-4]\\d|5[0-5])))\\.){3}(2([0-4]\\d|5[0-5])|(1?\\d\\d?))";
         Random random = new Random();
         long star = System.currentTimeMillis();
