@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.Map;
 @Alias("employee")
 @Data
 @NoArgsConstructor
+@Component
 public class Employee {
     private int id;
     private String name;

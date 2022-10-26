@@ -22,6 +22,7 @@ public class MyLocaleResolver implements LocaleResolver {
             String[] s = la.split("_");
             locale = new Locale(s[0], s[1]);
         }
+        System.out.println(locale);
         return locale;
     }
 
