@@ -1,10 +1,10 @@
 package workTest;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author 86187
@@ -12,23 +12,25 @@ import java.util.Map;
 public class Test1 {
     private int s;
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>(3);
-        Map<String, String> map2 = new HashMap<>(3);
-        map.put("1", "1");
-        map.put("2", "2");
-        List<Map<String, String>> list = new ArrayList<>();
-        List<Map<String, String>> list2 = new ArrayList<>();
-        list.add(map);
-        list2.add(map);
-        list2.get(0).remove("1");
-        System.out.println(list);
-        T2 t2 = new T2();
-        t2.t2();
-        BigDecimal decimal = new BigDecimal(3);
-        BigDecimal decimal1 = new BigDecimal(3);
-        System.out.println(decimal.equals(decimal1));
-        String s = new String("123");
-        String s1 = new String("123");
-        System.out.println(s == s1);
+        int s = 2;
+        StringBuilder k = new StringBuilder("1234");
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(5);
+        list.forEach(i -> {
+            if(i == 3){
+                list1.add(i);
+                k.append(i);
+            }
+        });
+        System.out.println(list1);
+        System.out.println(k);
+        Stream<Integer> stream = list.stream();
+        Stream<String> collect = stream.filter(v -> v > 3).map(Object::toString);
+        System.out.println(collect);
+        Map<String, Object> map = new HashMap<>();
+        int e = 9;
+        String s1 = Integer.toBinaryString(e ^ 2);
+        System.out.println(s1);
     }
 }

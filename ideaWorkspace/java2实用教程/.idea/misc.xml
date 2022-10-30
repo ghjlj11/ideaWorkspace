@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/src/myJdbc/pom.xml" />
         <option value="$PROJECT_DIR$/servlet/pom.xml" />
         <option value="$PROJECT_DIR$/workTest/pom.xml" />
+        <option value="$PROJECT_DIR$/afterjava8/pom.xml" />
       </list>
     </option>
   </component>

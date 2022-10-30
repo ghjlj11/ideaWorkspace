@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/afterjava8/afterjava8.iml" filepath="$PROJECT_DIR$/afterjava8/afterjava8.iml" />
       <module fileurl="file://$PROJECT_DIR$/java2实用教程.iml" filepath="$PROJECT_DIR$/java2实用教程.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/myJdbc/myJdbc.iml" filepath="$PROJECT_DIR$/src/myJdbc/myJdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/servlet/servlet.iml" filepath="$PROJECT_DIR$/servlet/servlet.iml" />
-      <module fileurl="file://$PROJECT_DIR$/workTest/workTest.iml" filepath="$PROJECT_DIR$/workTest/workTest.iml" />
     </modules>
   </component>
 </project>
