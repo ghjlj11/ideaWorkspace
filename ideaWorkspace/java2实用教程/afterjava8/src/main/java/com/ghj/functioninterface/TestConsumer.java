@@ -30,5 +30,9 @@ public class TestConsumer {
         // 测试Bi接口
         BiPredicate<String, String> biPredicate = String::equals;
         System.out.println("测试BiPredicate: " + biPredicate.test("12", "12"));
+
+        long l = 4L;
+        int g = 4;
+        System.out.println(l == g);
     }
 }

@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @author 86187
- * stream流式计算
+ * stream流
  * filter 过滤， 参数为断言型函数接口
  * map 传入Stream泛型里的一个对象， 转化为一个任意的值
  * sorted 排序输出， 传入一个比较器
