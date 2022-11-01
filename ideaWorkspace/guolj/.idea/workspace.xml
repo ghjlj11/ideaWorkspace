@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二进制加法">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guolj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/guolj.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/guolj/lj/random/seven/Example7_4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/guolj/lj/random/seven/Example7_4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/random/seven/Example7_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/random/seven/Example7_4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StreamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StreamTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +179,7 @@
       <workItem from="1664619300280" duration="793000" />
       <workItem from="1666145187319" duration="1519000" />
       <workItem from="1666171439548" duration="1298000" />
+      <workItem from="1667295467237" duration="612000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
