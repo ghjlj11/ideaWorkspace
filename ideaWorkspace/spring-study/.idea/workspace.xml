@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig2.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/Docker-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/Docker-Study.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/Thread1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/T2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/T2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/Test1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,6 +201,7 @@
       <workItem from="1662606930062" duration="699000" />
       <workItem from="1662875786320" duration="897000" />
       <workItem from="1663031867489" duration="851000" />
+      <workItem from="1667570051091" duration="597000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
