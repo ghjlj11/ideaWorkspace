@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="jquery.js"></script>
+        <script>
+            const a = 'q';
+            console.log(Number.isNaN(a));
+            console.log(typeof NaN === 'number');
+            console.log(Number.isFinite(10/3));
+            console.log(Infinity);
+
+            // 测试数组
+            var arr = [1, 2, 3, 4, 'aa', true, NaN, null];
+            var arr2 = new Array(1,2,3,4,'aa',NaN);
+            console.log(arr);
+
+            // 测试Symbol
+            let b = Symbol('as');
+
+            // 测试对象
+            let obj = {
+                name: 'lj',
+                age: 12,
+                sex: 'w',
+                arr: arr,
+                [b]: 'lll'
+            };
+            console.log(obj);
+            console.log(obj.Symbol.for('as'));
+            console.log(obj.arr[2]);
+        </script>
+    </head>
+</html>
