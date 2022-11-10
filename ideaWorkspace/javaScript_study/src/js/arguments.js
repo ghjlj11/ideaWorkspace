@@ -7,7 +7,6 @@ function fun(a, b) {
     console.log(arguments.callee);
     //第几个实参
     console.log(arguments[3]);
-    alert(new Date);
 }
 //可以传多个参数，都会接收
 fun(1, 2, 3, 45, 5);
