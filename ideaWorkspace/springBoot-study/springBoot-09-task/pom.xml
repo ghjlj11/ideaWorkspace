@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ghj</groupId>
-    <artifactId>springBoot-09-test</artifactId>
+    <artifactId>springBoot-09-task</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springBoot-09-test</name>
-    <description>springBoot-09-test</description>
+    <name>springBoot-09-task</name>
+    <description>springBoot-09-task</description>
     <properties>
         <java.version>17</java.version>
     </properties>
