@@ -1,6 +1,9 @@
 package workTest;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,5 +36,12 @@ public class TestThread {
 //        new Thread(testThread::he, "qqq").start();
 //        new Thread(testThread::he, "www").start();
 //        new Thread(testThread::he, "eee").start();
+        String s = "12345678";
+        System.out.println(s.substring(2));
+        ii(1,2,3,4,5,6);
+    }
+    public static void ii(int...a){
+        Arrays.fill(a, 5);
+        System.out.println(Arrays.toString(a));
     }
 }
