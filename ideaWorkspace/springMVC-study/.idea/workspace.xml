@@ -9,14 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC">
-      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" afterDir="false" />
-    </list>
+    <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
