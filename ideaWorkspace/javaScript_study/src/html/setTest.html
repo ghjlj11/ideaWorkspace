@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>setTest</title>
+        <script>
+            let set = new Set(['2', 'a', 'a']);
+            set.add(2);
+            set.add(1);
+            set.add(2);
+            console.log(set.size);
+            let ks = set.keys();
+            // for (let k of ks) {
+            //     console.log(k);
+            // }
+            let vs = set.values();
+            // for (let v of vs) {
+            //     console.log(v);
+            // }
+            let entries = set.entries();
+            // for (let entry of entries) {
+            //     console.log(entry);
+            // }
+            // for (let item of set) {
+            //     console.log(item);
+            // }
+            // for (let k of set) {
+            //     console.log(k);
+            // }
+            set.forEach(item => console.log(item));
+        </script>
+    </head>
+</html>

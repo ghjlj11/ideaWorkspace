@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>mapTest</title>
+        <meta charset="UTF-8">
+        <script>
+            let map = new Map([['a', 1], ['b', 2]]);
+            map.set('ff', 22);
+            let ks = map.keys();
+            // for (let key of ks) {
+            //     console.log(key);
+            //     console.log(map.get(key));
+            // }
+            let vs = map.values();
+            // for(let v of vs){
+            //     console.log(v);
+            // }
+            let entries = map.entries();
+            // for (let entry of entries) {
+            //     console.log(entry[0]);
+            //     console.log(entry[1]);
+            //     console.log(entry);
+            // }
+            // for (const [k, v] of entries) {
+            //     console.log(k);
+            //     console.log(v);
+            // }
+            // for (const [k, v] of map) {
+            //     console.log(k);
+            //     console.log(v);
+            // }
+            // for(let ent of map){
+            //     console.log(ent);
+            //     console.log(ent[0]);
+            //     console.log(ent[1]);
+            // }
+            let obj = {
+
+            };
+            for (let [k, v] of map) {
+                obj[k] = v;
+            }
+            let map1 = new Map();
+            for (let a in obj) {
+                console.log(a);
+                console.log(obj[a]);
+                map1.set(a, obj[a]);
+            }
+            obj.arr = [1,2,3];
+            obj.map = map1;
+            let s = JSON.stringify(obj);
+            let obj2 = {
+                a: 2,
+                b: 'a'
+            };
+            obj.ob = obj2;
+            let ss = JSON.stringify(obj);
+            let oo = JSON.parse(ss);
+            map.forEach(item => {
+                console.log('item:' + item);
+            })
+        </script>
+    </head>
+</html>

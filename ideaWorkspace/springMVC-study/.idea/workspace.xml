@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +246,7 @@
       <workItem from="1654755414034" duration="59000" />
       <workItem from="1663918898422" duration="220000" />
       <workItem from="1666278385949" duration="2242000" />
-      <workItem from="1668169560737" duration="451000" />
+      <workItem from="1668169560737" duration="1266000" />
     </task>
     <task id="LOCAL-00001" summary="newSpringMVC">
       <created>1654094482345</created>

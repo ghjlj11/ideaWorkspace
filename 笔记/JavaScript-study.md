@@ -137,6 +137,20 @@ es10新增了bigInt：是指安全存储、操作大整数
 
 
 
+判断变量的类型
+
+```javascript
+// 返回对象的类型
+typeof(o);
+
+// 判断变量是否是这个类型， 与java一样， 返回值为bool
+o instanceof String
+```
+
+
+
+
+
 > Number
 
 Number类型表示数字类型， 不管是小数、整数、正数、 负数都属于Number类型，  `NaN`也是属于Number类型
@@ -338,5 +352,341 @@ delete obj.a
 obj.hasOwnProperty('b') // 为
 obj.hasOwnProperty('toString') // 为flase
 'toString' in obj // 为true
+```
+
+
+
+## 流程控制
+
+
+
+if ，else， for， while， 和java基本一样。
+
+```javascript
+// 类似java的增强的for (可以用于迭代object的属性名称), key是arr的下标
+            for (let key in arr) {
+                console.log(key);
+            }
+
+
+            for (const key in obj) {
+                console.log(key);
+                // 通过object[key]方式获取对象的属性值， 这种方法用在获取变量的值 let obj = {[aa] : 'ss'}
+                console.log(obj[key]);
+            }
+
+//只用于可以迭代的类型， object不行 ，map和set都可以  s是arr的值
+
+            for (const s of arr) {
+                console.log(s);
+            }
+// forEach 迭代  item是数组的值
+
+            arr.forEach(item => {
+                if(item === 2){
+                    b = item;
+                }
+            });
+```
+
+
+
+## Map
+
+类似java中的map， 也有些不一样
+
+
+
+构造Map时参数可以为空， 也可以是一个二维或者多维数组。
+
+```javascript
+let map = new Map;
+let map = new Map();
+let map = new Map([['k1', 'v1'], ['k1', 'v1']]);
+```
+
+
+
+基本使用方法：
+
+```javascript
+// 插入键值对
+map.set(k, v);
+
+// 根据键获取值
+map.get(k);
+
+// 根据键删除键值对
+map.delete(k);
+
+// 判断是否含有该键
+map.has(k);
+
+// 清空map
+map.clear();
+
+// 获取map的大小， size是属性， 不是方法
+map.size;
+```
+
+
+
+遍历方法：
+
+```javascript
+// forEach 遍历map的值
+map.forEach(item => {
+    console.log('item:' + item);
+})
+
+// 获取map的key的遍历器
+let ks = map.keys();
+for (let key of ks) {
+    console.log(key);
+    console.log(map.get(key));
+}
+
+// 获取map的value的遍历器
+let vs = map.values();
+for(let v of vs){
+    console.log(v);
+}
+
+// 获取 map的entry 的遍历器， entries里的每个元素就是一个二维数组
+let entries = map.entries();
+for (let entry of entries) {
+    console.log(entry[0]);
+    console.log(entry[1]);
+    console.log(entry);
+}
+
+// 因为entries遍历的值其实是一个二维数组， 也可以
+for (const [k, v] of entries) {
+    console.log(k);
+    console.log(v);
+}
+
+// 也可以直接遍历map， 和获取entries类似
+for (const [k, v] of map) {
+    console.log(k);
+    console.log(v);
+}
+for(let ent of map){
+    console.log(ent);
+    console.log(ent[0]);
+    console.log(ent[1]);
+}
+```
+
+
+
+Map与Object类型互相转换
+
+```javascript
+
+let obj = {
+
+};
+
+//map转化为obj对应的键值对
+for (let [k, v] of map) {
+    obj[k] = v;
+}
+
+let map1 = new Map();
+
+// Object的键值对转化为map的键值对
+for (let a in obj) {
+    console.log(a);
+    console.log(obj[a]);
+    map1.set(a, obj[a]);
+}
+```
+
+
+
+## Set
+
+
+
+set与map基本差不多，拥有去重效果，  其实Set里面的数据结构和Map基本一样， 里面也是有一个entries的数组， 只不过该数组的对应的元素的key和value是一样的。
+
+
+
+新建Set：
+
+```javascript
+let set = new Set();
+let set = new Set;
+// 可以放入一个数组
+let set = new Set(['2', 'a']);
+```
+
+
+
+基本方法：
+
+```javascript
+set.add(2);
+// size是属性，不是方法
+set.size;
+set.delete(k);
+set.has(k);
+set.clear();
+```
+
+
+
+遍历set：
+
+```javascript
+// forEach遍历set的值
+set.forEach(item => console.log(item));
+
+// 通过keys遍历
+let ks = set.keys();
+for (let k of ks) {
+    console.log(k);
+}
+
+// 通过values遍历
+let vs = set.values();
+for (let v of vs) {
+    console.log(v);
+}
+
+// 通过entries遍历， 获取的键值对数组的key与value是一样的
+let entries = set.entries();
+for (let entry of entries) {
+    console.log(entry);
+}
+
+for (const [k, v] of entries) {
+    console.log(k);
+    console.log(v);
+}
+
+// 直接通过set遍历
+// 此时遍历的只是entry的值， 与遍历keys和values一样。
+for (let item of set) {
+    console.log(item);
+}
+
+```
+
+
+
+## function
+
+函数在对象里面就叫做方法， 在外部就是函数。
+
+
+
+声明函数：
+
+```javascript
+// 方式一和二效果完全相等
+// 方式一
+let fun1 = function(){
+    return '999';
+}
+
+// 方式二
+function fun2(v){
+    return v + 'wer';
+}
+```
+
+
+
+函数的参数：
+
+```javascript
+// 控制台输出
+
+// 少传参数也可以调用， 但是如果后面用到参数就会返回undefined
+fun2();
+'undefinedwer'
+
+// 多传参数也可以， 也会接收， 后面用到哪个参数就是哪个， 参数列表按顺序对应着
+fun2(2,3,4,45);
+'2wer'
+
+
+// 传进来的参数可以使用arguments 接收， 是一个数组， 即使参数参长度超过了显式声明的参数列表也可以在arguments里面获取到
+//形参可以任意，为了后续方便使用.
+function fun(a, b) {
+    console.log(a);
+    console.log(b);
+    console.log(arguments.length);
+    //当前函数
+    console.log(arguments.callee);
+    //第几个实参
+    console.log(arguments[3]);
+}
+//可以传多个参数，都会接收
+fun(1, 2, 3, 45, 5);
+
+
+// rest方式  当参数列表后面加上 ...v(必须在最后面)， 多余的参数就会放在v里面， 如果入参比参数列表少或者一样， 那么v就是一个空的数组。
+
+function fun3(a,b, ...kkk){
+    console.log(kkk);
+}
+```
+
+
+
+在方法内定义异常
+
+```javascript
+function(x){
+    if(typeof(x) !== "number"){
+        throw 'not a number!';
+    }
+    return x > 0 ? x : -x;
+}
+```
+
+
+
+
+
+## JSON
+
+
+
+>JSON分类
+
+1.对象 {}
+ 2.数组 []
+
+
+
+> JSON中允许的值
+
+1.字符串
+ 2.数值
+ 3.布尔值
+ 4.null
+ 5.对象
+ 6.数组
+
+如果对象中含有以外类型的属性， 需要先转化为可以接收的类型，例如： Map转化为Object类型， Set转化为数组类型
+
+
+
+对象转化为JSON字符串
+
+```javascript
+let ss = JSON.stringify(obj);
+```
+
+
+
+JSON字符转化为对象
+
+```javascript
+let oo = JSON.parse(ss);
 ```
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>arrayTest</title>
+        <script>
+            let arr = [1, 2, 3, null, 'qwe', undefined];
+            let b = 0;
+            arr.forEach(item => {
+                console.log(item);
+            });
+            console.log(b);
+            let aa = arr.push(1,2);
+            let bb = arr.pop();
+            let obj = {
+                name: 'asd',
+                age: 9,
+                kk: 8
+            };
+            const x = '2';
+            for (let key in arr) {
+                console.log(key);
+            }
+            for (const key in obj) {
+                console.log(key);
+                console.log(obj[key]);
+            }
+            for (const s of arr) {
+                console.log(s);
+            }
+        </script>
+    </head>
+</html>
