@@ -10,34 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC">
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/guolj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/guolj.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/random/seven/Example7_4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/out/production/guolj/lj/random/seven/Example7_4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/src/lj/random/seven/Example7_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/src/lj/random/seven/Example7_4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/addEmp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/addEmp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/emp/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/error/500.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/addEmp.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/addEmp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/emp/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/error/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/error/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/error/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/error/500.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/WEB-INF/classes/com/ghj/controller/AjaxController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/WEB-INF/classes/com/ghj/controller/AjaxController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/WEB-INF/classes/com/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/springmvc_07_ajax_war_exploded/WEB-INF/classes/com/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springmvc-07-ajax/target/classes/com/ghj/controller/AjaxController.class" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-07-ajax/target/classes/com/ghj/controller/AjaxController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springmvc-07-ajax/target/classes/com/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/springmvc-07-ajax/target/classes/com/pojo/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/myDecimalTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/numberTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/symbolTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/var.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/JavaScript-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,6 +247,7 @@
       <workItem from="1654755414034" duration="59000" />
       <workItem from="1663918898422" duration="220000" />
       <workItem from="1666278385949" duration="2242000" />
+      <workItem from="1668169560737" duration="451000" />
     </task>
     <task id="LOCAL-00001" summary="newSpringMVC">
       <created>1654094482345</created>
