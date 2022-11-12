@@ -75,11 +75,32 @@ js的三种方式以及基础的 弹窗， 输入弹窗， 控制台打印
 
 
 
-- `var`在方法内部声明则是局部变量， 在方法外部声明则是全局变量。
+> `var` 与 `let` 与`const`
+
+- `var`在方法内部声明则是局部变量， 在方法外部声明则是全局变量， `var`是函数作用域。
+
+```javascript
+// 下面输出为 xundefined, 相当于 此时 y = undefined
+// （作用提升） 因此， 使用var 声明变量， 会首先在所属的块级代码里的 前面先声明变量为 undefined， 真正走到下面声明的代码才会开始赋值。
+// 而使用 let 声明下面的代码则会直接报错。
+function fun5(){
+    var x = 'x' + y;
+    console.log(x);
+    var y = 'y';
+}
+
+// var在for中定义的变量在外部依旧可以访问到， let则不行
+for(var i = 0; i < 100; i ++){
+    console.log(i);
+}
+console.log(++ i);
+```
+
+
 
 - 直接使用 `i= 12` 类似这种声明的变量也是全局变量，避免使用。
 
--  `let`声明的是局部变量，是属于块级变量， 即只在对应的代码块中生效， 在外部声明的同样可以在内部中生效， 例如：
+- `let`在方法内部声明则是局部变量， 在方法外部声明也不会是全局变量， 是属于块级变量。 例如：
 
   ```javascript
   let p = 0;
@@ -88,9 +109,67 @@ js的三种方式以及基础的 弹窗， 输入弹窗， 控制台打印
   }
   ```
 
-  尽量使用`let`声明块级变量， 以上定义的是全局变量。
+  尽量使用`let`声明块级变量， 以上声明的是属于块级变量。
 
--  `const`用来声明常量， 一旦声明就必须赋值， 否则会抛出异常， 声明的也是属于块级常量。
+- `const`用来声明常量， 一旦声明就必须赋值， 否则会抛出异常， 声明的也是属于块级常量， `const`可以允许重复声明相同的变量，后者会覆盖前者。
+
+
+
+> `let`与`var`的区别
+
+1、如果在全局作用域中用var声明变量，此变量会默认成为window的一个属性，let声明的变量则不会添加到window对象中。
+
+2、在es6之前，是没有块级作用域，所谓块级作用域，就是用{}包含的区域，我们常用的有for，while，if等。但是在块级作用域中用let声明变量，那么此变量就有了块级作用域，就必须只有在此块级作用域才能访问此变量。
+
+3、var可以允许重复声明相同的变量，后者会覆盖前者，let则不能重复声明相同的变量。
+
+4、当使用var声明一个var变量时，该变量会被提升到作用域的顶端，但是赋值的部分不会提升。
+
+
+
+
+
+所有的全局变量都默认绑定在window下，window就是代表浏览器， 即：
+
+```javascript
+var a = 'aaa';
+// 等价于 console.log(window.a);  但是let声明的不行
+console.log(a); 
+
+// 函数可以视为变量（变量名称是函数的名称， 不包含括号）， 全局函数也是在window下
+var x = 'xxx';
+let al = window.alert;
+al(window.x);
+```
+
+
+
+**JavaScript 只有一个全局作用域， 任何变量（函数也可以看作变量）， 假设没有在函数的作用范围内找到， 那么就会向外查找， 如果一直到全局作用域也没找到， 那么就会报错。**
+
+
+
+> 规范
+
+我们定义的全局变量都会绑定在`window`上， 如果引入不同的js文件，  那么可能就会产生全局变量冲突， 那么如何减少冲突：
+
+```javascript
+// 创建全局唯一对象
+
+var ghj = {};
+
+// 把我们自己的全局变量都写在这个全局对象里面
+
+ghj.name = 'ghj';
+ghj.add = function (a, b){
+    return a + b;
+}
+```
+
+
+
+
+
+
 
 
 
@@ -115,6 +194,8 @@ js的三种方式以及基础的 弹窗， 输入弹窗， 控制台打印
 ```
 
 
+
+**访问不存在的变量会直接报错**
 
 
 
@@ -142,6 +223,8 @@ es10新增了bigInt：是指安全存储、操作大整数
 ```javascript
 // 返回对象的类型
 typeof(o);
+// 或者
+typeof  o;
 
 // 判断变量是否是这个类型， 与java一样， 返回值为bool
 o instanceof String
@@ -582,6 +665,10 @@ for (let item of set) {
 
 
 
+> ### 函数
+
+
+
 声明函数：
 
 ```javascript
@@ -646,6 +733,101 @@ function(x){
     }
     return x > 0 ? x : -x;
 }
+```
+
+
+
+函数访问变量， 使用就近原则， 与java里的一样， 假设内部存在该变量， 那么就用内部， 不存在就用外部。
+
+```javascript
+function fun4(){
+    let a = 2;
+    function inn(){
+        let a = '33';
+        // 这里访问的a 是 '33'
+        console.log(a);
+    }
+    inn();
+    // 访问的是 2
+    console.log(a);
+}
+```
+
+
+
+> ### 方法
+
+在对象里的函数称之为方法。
+
+例如：
+
+```javascript
+// 调用vv.age()获取年龄， vv.aeg则是返回方法本体。
+let vv = {
+    name: 'ghj',
+    birth: 2001,
+    age: function() {
+        return new Date().getFullYear() - this.birth;
+    }
+}
+```
+
+
+
+以上写法也可以写为：
+
+```javascript
+function getAge(){
+    return new Date().getFullYear() - this.birth;
+}
+let vv = {
+    name: 'ghj',
+    birth: 2001,
+    age: getAge
+}
+```
+
+调用 `vv.age()`， 也是一样的效果， 但是直接访问`getAge()`方法是会报错的， 因为当前的`this`指向的是`window`， 并没有`brith`这个属性。 
+
+
+
+在js中可以修改`this`的指向， 即可直接访问`getAge()`方法， 这样就可以抽取出一些对象的公共方法：
+
+```javascript
+// 方法都会有一个apply()的方法， 第一个参数代表调用者，即this， 第二个代表getAge参数列表
+let aa = getAge.apply(vv, null);
+```
+
+
+
+## Date
+
+
+
+与java的Date类似， 基本用法：
+
+```javascript
+let now = new Date();
+
+// 获取当前年
+now.getFullYear()
+// 获取当前月份
+now.getMonth()
+// 获取当前日期
+now.getDate()
+// 星期
+now.getDay()
+// 分钟
+now.getMinutes()
+// 获取当前秒数
+now.getSeconds()
+// 获取当前时间戳 1907/1/1 0:00:00 到现在的毫秒数
+now.getTime()
+// 通过 时间戳 new 一个Date
+new Date(now.getTime());
+
+// 展示时间
+now.toLocaleString()
 ```
 
 
