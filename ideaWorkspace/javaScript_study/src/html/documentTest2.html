@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>documentTest2</title>
+    </head>
+    <body>
+        <p id="p1">pp1</p>
+        <div id="div" style="padding: 20px;">
+            <p id="pp2">pp2</p>
+            <p id="pp3">pp3</p>
+            <p id="pp4">pp4</p>
+        </div>
+        <script>
+            let p1 = document.getElementById('p1');
+            let div = document.getElementById('div');
+            let p5 = document.createElement('p');
+            p5.setAttribute('id', 'pp5');
+            p5.kk = '22';
+            p5.innerText = 'ppp5';
+            p5.style.color = 'red';
+        </script>
+    </body>
+</html>

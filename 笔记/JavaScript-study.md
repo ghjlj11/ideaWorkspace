@@ -75,7 +75,7 @@ js的三种方式以及基础的 弹窗， 输入弹窗， 控制台打印
 
 
 
-> `var` 与 `let` 与`const`
+### `var` 、 `let` 、`const`
 
 - `var`在方法内部声明则是局部变量， 在方法外部声明则是全局变量， `var`是函数作用域。
 
@@ -115,7 +115,7 @@ console.log(++ i);
 
 
 
-> `let`与`var`的区别
+### `let`与`var`的区别
 
 1、如果在全局作用域中用var声明变量，此变量会默认成为window的一个属性，let声明的变量则不会添加到window对象中。
 
@@ -148,7 +148,7 @@ al(window.x);
 
 
 
-> 规范
+### 规范
 
 我们定义的全局变量都会绑定在`window`上， 如果引入不同的js文件，  那么可能就会产生全局变量冲突， 那么如何减少冲突：
 
@@ -173,7 +173,7 @@ ghj.add = function (a, b){
 
 
 
-> 严格检查模式 strict
+### 严格检查模式 strict
 
 由于js的语法比较随意， 有时候虽然可以这么写， 但是很不符合规范， 就可以使用严格模式`'use strict';`， 这样下面的 `i = 9`这种写法就会报错， 不符合规范。
 
@@ -234,7 +234,7 @@ o instanceof String
 
 
 
-> Number
+### Number
 
 Number类型表示数字类型， 不管是小数、整数、正数、 负数都属于Number类型，  `NaN`也是属于Number类型
 
@@ -250,7 +250,7 @@ Number类型表示数字类型， 不管是小数、整数、正数、 负数都
 
 
 
-> 字符串
+### String
 
 'abc'， "abc"
 
@@ -283,7 +283,7 @@ Number类型表示数字类型， 不管是小数、整数、正数、 负数都
 
 
 
-> 布尔值
+### Boolean
 
 true， false
 
@@ -300,15 +300,91 @@ NaN === NaN 结果为false， NaN与任何数字比较都是false， 包括自�
 
 
 
-> Undefined
+### Undefined
 
 不存在的变量
 
 
 
-> 数组
+### null
 
-与java不同的是， 因为js声明变量没有带类型， 所以一个数组里面可以存放多种类型的元素
+空
+
+
+
+### Symbol
+
+```javascript
+let a = Symbol('as');
+let b = Symbol('as');
+console.log(a);
+// false
+console.log(a == b);
+// false
+console.log(a === b);
+```
+
+
+
+
+
+### Object
+
+对象类型赋值时， 使用大括号括起来， 每个属性之间使用逗号分隔， 属性的名字只能是`String`或者`Symbol`类型，属性的值可以任意
+
+```javascript
+// 测试数组
+var arr = [1, 2, 3, 4, 'aa', true, NaN, null];
+var arr2 = new Array(1,2,3,4,'aa',NaN);
+console.log(arr);
+
+// 测试Symbol
+let b = Symbol('as');
+
+// 测试对象
+let obj = {
+    name: 'lj',
+    age: 12,
+    sex: 'w',
+    arr: arr,
+    [b]: 'lll'
+};
+console.log(obj);
+console.log(obj.arr[2]);
+```
+
+
+
+对象属性相关：
+
+```java
+let obj = {a: 12, b: 'ww', c: [1,2]};
+
+// 获取对象不存在的属性值就是返回 undefined
+obj.o;
+    
+// 动态增加对象的属性， 对象就会加一个属性， 返回值为加的属性值
+obj.k = 'l';
+
+// 动态删除对象的属性， 对象也会少了这个属性， 返回值为true, 即使不存在该属性删除失败也是true， 但是也会存在返回flase情况。
+delete obj.a
+    
+// 判断属性是否在该对象中, 返回值为boolean值
+'b' in obj
+    
+// obj.hasOwnProperty('toString')， 判断对象的自身属性是否含有该属性， 不包含继承父类的
+obj.hasOwnProperty('b') // 为
+obj.hasOwnProperty('toString') // 为flase
+'toString' in obj // 为true
+```
+
+
+
+
+
+### 数组
+
+数组也是属于Object类型， 与java不同的是， 因为js声明变量没有带类型， 所以一个数组里面可以存放多种类型的元素
 
 ```javascript
 // 声明数组
@@ -371,74 +447,6 @@ arr[[1, 2], [3, 4], [5, 6]];
 
 
 
-> Symbol
-
-```javascript
-let a = Symbol('as');
-let b = Symbol('as');
-console.log(a);
-// false
-console.log(a == b);
-// false
-console.log(a === b);
-```
-
-
-
-
-
-> Object
-
-对象类型赋值时， 使用大括号括起来， 每个属性之间使用逗号分隔， 属性的名字只能是`String`或者`Symbol`类型，属性的值可以任意
-
-```javascript
-// 测试数组
-var arr = [1, 2, 3, 4, 'aa', true, NaN, null];
-var arr2 = new Array(1,2,3,4,'aa',NaN);
-console.log(arr);
-
-// 测试Symbol
-let b = Symbol('as');
-
-// 测试对象
-let obj = {
-    name: 'lj',
-    age: 12,
-    sex: 'w',
-    arr: arr,
-    [b]: 'lll'
-};
-console.log(obj);
-console.log(obj.arr[2]);
-```
-
-
-
-对象属性相关：
-
-```java
-let obj = {a: 12, b: 'ww', c: [1,2]};
-
-// 获取对象不存在的属性值就是返回 undefined
-obj.o;
-    
-// 动态增加对象的属性， 对象就会加一个属性， 返回值为加的属性值
-obj.k = 'l';
-
-// 动态删除对象的属性， 对象也会少了这个属性， 返回值为true, 即使不存在该属性删除失败也是true， 但是也会存在返回flase情况。
-delete obj.a
-    
-// 判断属性是否在该对象中, 返回值为boolean值
-'b' in obj
-    
-// obj.hasOwnProperty('toString')， 判断对象的自身属性是否含有该属性， 不包含继承父类的
-obj.hasOwnProperty('b') // 为
-obj.hasOwnProperty('toString') // 为flase
-'toString' in obj // 为true
-```
-
-
-
 ## 流程控制
 
 
@@ -480,6 +488,8 @@ if ，else， for， while， 和java基本一样。
 
 
 
+### 新建Map
+
 构造Map时参数可以为空， 也可以是一个二维或者多维数组。
 
 ```javascript
@@ -490,7 +500,7 @@ let map = new Map([['k1', 'v1'], ['k1', 'v1']]);
 
 
 
-基本使用方法：
+### 基本使用方法
 
 ```javascript
 // 插入键值对
@@ -514,7 +524,7 @@ map.size;
 
 
 
-遍历方法：
+### 遍历方法
 
 ```javascript
 // forEach 遍历map的值
@@ -596,7 +606,7 @@ set与map基本差不多，拥有去重效果，  其实Set里面的数据结构
 
 
 
-新建Set：
+### 新建Set
 
 ```javascript
 let set = new Set();
@@ -607,7 +617,7 @@ let set = new Set(['2', 'a']);
 
 
 
-基本方法：
+### 基本方法
 
 ```javascript
 set.add(2);
@@ -620,7 +630,7 @@ set.clear();
 
 
 
-遍历set：
+### 遍历set
 
 ```javascript
 // forEach遍历set的值
@@ -665,7 +675,7 @@ for (let item of set) {
 
 
 
-> ### 函数
+### 函数
 
 
 
@@ -755,7 +765,7 @@ function fun4(){
 
 
 
-> ### 方法
+### 方法
 
 在对象里的函数称之为方法。
 
@@ -838,14 +848,14 @@ now.toLocaleString()
 
 
 
->JSON分类
+### JSON分类
 
 1.对象 {}
  2.数组 []
 
 
 
-> JSON中允许的值
+### JSON中允许的值
 
 1.字符串
  2.数值
@@ -872,3 +882,367 @@ JSON字符转化为对象
 let oo = JSON.parse(ss);
 ```
 
+
+
+## 面向对象编程
+
+
+
+### 指向父类
+
+```javascript
+let name = 'test';
+let a = {
+    name: 'lj',
+    age: 12,
+    run: function(){
+        console.log(this.name + "  running");
+    }
+};
+let b = {
+    name: 'ghj'
+}; 
+// 可以让b的父类是a， 就会继承a里的属性以及方法。
+b.__proto__  = a;
+b.run();
+```
+
+每个对象都有一个`__proto__`属性，并且指向它的`prototype`原型对象
+
+
+
+### class类继承
+
+```javascript
+// 声明一个类模板
+class Student{
+    x;
+    y;
+    // 构造器
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    sum(){
+        return this.x + this.y;
+    }
+};
+// 继承Student， 继承完之后， 后面new的实例对象的Prototype属性就是Student， 也就是父类
+class SmallStudent extends Student{
+    constructor(x, y, z){
+        // super()必须要有， 并且必须在构造器的第一行
+        super(x, y);
+        // 模板里的属性值可以不声明， 直接添加
+        this.z = z;
+    }
+    hello(){
+        console.log(this.z);
+    }
+}
+// 使用构造器 new实例对象
+let t = new Student(2, 3);
+let sm = new SmallStudent(1, 2, 'sss');
+```
+
+
+
+## 操作BOM对象
+
+
+
+### window对象
+
+window代表浏览器窗口
+
+```javascript
+window.alert(111)
+undefined
+// 内部高度
+window.innerHeight  
+212
+// 内部宽度
+window.innerWidth
+1330
+// 外部高度
+window.outerHeight
+701
+// 外部宽度
+window.outerWidth
+1345
+window.innerHeight
+```
+
+
+
+### nvigator
+
+navigator封装了浏览器的信息
+
+```javascript
+navigator.appName
+'Netscape'
+navigator.appCodeName
+'Mozilla'
+navigator.appVersion
+'5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42'
+navigator.userAgent
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42'
+navigator.platform
+'Win32'
+```
+
+
+
+一般用的比较少， 因为`navigator`对象里的属性是可以被认为修改的。
+
+
+
+### screen
+
+代表屏幕
+
+```java
+screen.height
+864
+screen.width
+1536
+```
+
+
+
+### location
+
+代表当前页面的URL信息
+
+
+
+location对象部分信息
+
+```javascript
+assign: ƒ assign()
+// 域名
+host: "www.baidu.com"
+href: "https://www.baidu.com/"
+// 协议
+protocol: "https:"
+// 刷新网页
+reload: ƒ reload()
+
+// 设置新的地址
+location.assign('https://gitee.com/guo-huanjun')
+```
+
+
+
+### document
+
+document代表当前页面， HTML、DOM文档树
+
+```javascript
+		<dl id="app">
+            <dt>java</dt>
+            <dd>javaSE</dd>
+            <dd>javaEE</dd>
+        </dl>
+        <script>
+            let app = document.getElementById('app');
+        </script>
+```
+
+
+
+获取`cookie`
+
+```javascript
+document.cookie
+'BIDUPSID=D4EF6AF6D2DA557B9164151F13BFFD11; PSTM=1615192830; BAIDUID=FF4E252E134269961C909326BB815C67:FG=1; BD_UPN=12314753; H_PS_645EC=0dc59WxilPUO1o%2FsiUTR9ntEqJowNAilLTq5ZX2v7WIuv2a0mE%2BYlHlad0AtUQi%2FaDLTT1Aeb%2FpM; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; BAIDUID_BFESS=FF4E252E134269961C909326BB815C67:FG=1; channel=chdb.s.3jdh.com; baikeVisitId=68553364-1476-4b66-957e-84db03390ef2; B64_BOT=1; BD_HOME=1; H_PS_PSSID=36546_37559_37767_37628_34813_37721_37538_37497_37713_37743_26350; BA_HECTOR=2h2h250k84a10hal040h2spl1hn1ag41e; ZFY=KDmqOzlfD:AkHsmsuLsu6:BupFIhNBPKEtOnXFkXOzvIY:C'
+```
+
+
+
+### history
+
+代表浏览器的历史记录
+
+```javascript
+// 回退
+history.back() 
+// 前进
+history.forward()
+```
+
+
+
+## 操作DOM对象
+
+
+
+通过获取到对应的DOM节点，从而对这个节点进行系列操作
+
+
+
+### 获取DOM节点
+
+```html
+<body>
+        <div id="father">
+            <h1>haha</h1>
+            <p id="p1">ppppp1</p>
+            <p class="p2">pppp2</p>
+        </div>
+        <dl id="app">
+            <dt>java</dt>
+            <dd>javaSE</dd>
+            <dd>javaEE</dd>
+        </dl>
+        <script>
+            // 标签选择器 获取的是一个数组
+            let h1 = document.getElementsByTagName('h1');
+            // id选择器 获取的是单个元素
+            let p1 = document.getElementById('p1');
+            // 类名选择器 获取的是一个数组	
+            let p2 = document.getElementsByClassName('p2');
+           
+            let father = document.getElementById('father');
+            // 获取所有的子节点 是一个子节点数组
+            let children = father.children;
+            // 获取第一个子节点
+            let first = father.firstChild;
+            // 获取最后一个子节点
+            let last = father.lastChild;
+        </script>
+</body>
+```
+
+
+
+### 更新节点
+
+首先获取dom
+
+```html
+    <body>
+        <div id="aa">
+
+        </div>
+        <script>
+            let aa = document.getElementById('aa');
+        </script>
+    </body>
+```
+
+
+
+更新操作：
+
+```javascript
+// 设置文本
+aa.innerText = 'qwe';
+'qwe'
+// 设置html
+aa.innerHTML = '<h1>qqq<h1>';
+'<h1>qqq<h1>'
+// 获取样式
+let st = aa.style
+CSSStyleDeclaration {accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: '', …}
+// 设置样式
+st.color = 'red'
+'red'
+st.fontSize = '100px';
+'100px'
+st.padding = '100px';
+'100px'
+```
+
+
+
+### 删除节点
+
+ 
+
+删除节点需要先获取父节点， 再删除对应的节点
+
+
+
+```javascript
+// 获取p1节点
+let p1 = document.getElementById('p1');
+// 获取当前元素p1的父节点
+let father = p1.parentElement
+// 删除p1节点
+father.removeChild(p1);
+// 直接获取children数组的第几个元素删除
+father.removeChild(father.children[0]);
+```
+
+
+
+### 插入节点
+
+
+
+插入节点可以选择在当前节点插入已有的节点， 直接移动到当前节点里面， 也可以自己新建节点插入
+
+
+
+#### 插入已有节点
+
+```html
+    <body>
+        <p id="p1">pp1</p>
+        <div id="div" style="padding: 20px;">
+            <p id="pp2">pp2</p>
+            <p id="pp3">pp3</p>
+            <p id="pp3">pp4</p>
+        </div>
+        <script>
+            let p1 = document.getElementById('p1');
+            let div = document.getElementById('div');
+            // 将p1移入到div里面， 该方法可以传入多个参数
+            div.append(p1);
+            // 也是移入到div， 但是只可以传入一个参数
+            div.appendChild(p1)
+        </script>
+    </body>
+```
+
+
+
+#### 插入新建节点
+
+
+
+```javascript
+// 新建节点
+let p5 = document.createElement('p');
+// 设置一些属性 可以通过setAttribute设置属性， 也可以直接通过 . 设置属性
+p5.setAttribute('id', 'pp5');
+p5.kk = '22';
+p5.innerText = 'ppp5';
+p5.style.color = 'red';
+// 插入节点
+div.append(p5);
+
+// 插入到指定的子节点之前
+div.insertBefore(p5, div.children[1]);
+// 替换一个子节点
+div.replaceChild(p5, div.children[0]);
+```
+
+
+
+
+
+一、获取body元素
+
+        <script>
+            var bodyEle = document.body;
+            console.log(bodyEle);// 结果:获取body中的所有元素
+        </script>
+
+二、获取html元素
+
+        <script>
+            var htmlEle = document.documentElement;
+            console.log(htmlEle);// 结果:获取html中的所有元素
+        </script>

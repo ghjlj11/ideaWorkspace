@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>document</title>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <div id="father">
+            <h1>haha</h1>
+            <p id="p1">ppppp1</p>
+            <p class="p2">pppp2</p>
+        </div>
+        <dl id="app">
+            <dt>java</dt>
+            <dd>javaSE</dd>
+            <dd>javaEE</dd>
+        </dl>
+        <script>
+            let h1 = document.getElementsByTagName('h1');
+            let p1 = document.getElementById('p1');
+            let p2 = document.getElementsByClassName('p2');
+            let father = document.getElementById('father');
+            let children = father.children;
+            let first = father.firstChild;
+            let last = father.lastChild;
+        </script>
+    </body>
+</html>

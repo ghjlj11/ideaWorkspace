@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+        <script>
+            let name = 'test';
+            let a = {
+                name: 'lj',
+                age: 12,
+                run: function(){
+                    console.log(this.name + "  running");
+                }
+            };
+            let b = {
+                name: 'ghj'
+            }; 
+            b.__proto__  = a;
+            class Student{
+                x;
+                y;
+                constructor(x, y){
+                    this.x = x;
+                    this.y = y;
+                }
+                sum(){
+                    return this.x + this.y;
+                }
+            };
+            class SmallStudent extends Student{
+                constructor(x, y, z){
+                    super(x, y);
+                    this.z = z;
+                }
+                hello(){
+                    console.log(this.z);
+                }
+            }
+            let t = new Student(2, 3);
+            let sm = new SmallStudent(1, 2, 'sss');
+        </script>
+    </head>
+</html>
