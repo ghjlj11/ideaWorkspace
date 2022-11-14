@@ -1246,3 +1246,101 @@ div.replaceChild(p5, div.children[0]);
             var htmlEle = document.documentElement;
             console.log(htmlEle);// 结果:获取html中的所有元素
         </script>
+
+
+
+
+
+## 操作表单
+
+
+
+> 获取表单的dom元素
+
+```html
+<body>
+        <p>
+            <span>username:</span>
+        </p>
+            <input type="text" id="username" title="中文或者英文名" placeholder="用户名">
+
+        <br>
+            
+        <input type="radio" name="sex" value="man" id="boy" checked="checked">男
+        <input type="radio" name="sex" value="woman" id="girl">女
+        
+    <script>
+        let input = document.getElementById('username'); 
+        // 获取表单的值
+        input.value;
+        // 设置表单的值
+        input.value = '1234';
+        
+        let boy = document.getElementById('boy');
+        
+        let girl = document.getElementById('girl');
+        let sex = document.getElementsByName('sex');
+        // 判断单选框选中了哪一个
+        sex.forEach(item => {
+            if(item.checked === true){
+                alert(item.value);
+            }
+        })
+    </script>
+</body>
+```
+
+
+
+> md5加密验证
+
+
+
+```html
+    <head>
+        <meta charset="UTF-8">
+        <title>formTest2</title>
+    </head>
+	<!-- 通过引入md5.js文件 -->
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <body>
+        <!-- onsubmit 属性是代表提交需要执行的方法， 如果方法返回false则不会走action， true才会 -->
+        <form action="https://www.baidu.com/" method="post" onsubmit="return sub()">
+            <span>username:</span>
+            <input type="text" id="username" name="username" title="中文或者英文名" placeholder="用户名">
+            <br>
+            <span>password:</span>
+            <input type="password" id="input-password" name="input-password" title="在此输入密码" placeholder="输入密码" >
+            <!-- 加入隐藏的密码框， 不至于后面修改md5加密后的密码写在 用户输入的密码框， 很不雅观 -->
+            <input type="hidden" id="password" name="password">
+            <br>
+            <input type="radio" name="sex" value="man" id="boy" checked="checked">男
+            <input type="radio" name="sex" value="woman" id="girl">女
+            <button type="submit">提交</button>
+        </form>
+        
+    <script>
+        let input = document.getElementById('username'); 
+        let boy = document.getElementById('boy');
+        
+        let girl = document.getElementById('girl');
+        let sex = document.getElementsByName('sex');
+        function sub(){
+            alert(1234);
+            let username = document.getElementById('username');   
+            let password = document.getElementById('input-password');
+            let truepass = document.getElementById('password');
+            // 启用md5加密
+            let pass = md5(password.value);
+            truepass.value = pass;
+            console.log(pass);
+            return false;
+        }
+    </script>
+    </body>
+```
+
+
+
+## jQuery
+
