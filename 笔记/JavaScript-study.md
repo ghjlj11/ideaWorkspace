@@ -1344,3 +1344,47 @@ div.replaceChild(p5, div.children[0]);
 
 ## jQuery
 
+
+
+jQuery是js的一个库， 里面含有大量js函数。
+
+
+
+> jQuery的使用
+
+首先引入`jQuery.js`文件， 可以在线引用， 也可以下载下来， 使用公式：`$(selector).action()` 其中的`$`也可以替换为`jQuery`
+
+
+
+> 基本选择器
+
+```
+$("#test")       　　　　   选择id值为test的元素，id值是唯一的所以返回单个元素。
+$("div")        　　　　  	选择所有的div标签元素，返回div元素数组 
+$(".myclass")     　　　　  选择使用myclass类的css的所有元素 
+$("*")         　　　　  	选取所有元素。
+$("#test,div,.myclass") 　 选取多个元素。
+```
+
+
+
+> 示例
+
+```html
+    <head>
+        <meta charset="UTF-8">
+        <title>jQueryTest</title>
+        <script src="../js/jquery.js">
+            
+        </script>
+    </head>
+    <body>
+        <a href="" id="kk" class="lll">点我</a>
+        <script>
+            $('.lll').click(function(){
+                alert('hello, jQuery');
+            });
+        </script>
+    </body>
+```
+
