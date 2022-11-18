@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQueryTest2</title>
+        <script src="../js/jquery.js">
+            
+        </script>
+        <style>
+            #moveMouse{
+                width: 600px;
+                height: 600px;
+                border: 2px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <span id="show"></span>
+        <div id="moveMouse">
+            移动鼠标
+        </div>
+        <script>
+            // 鼠标在该元素上移动事件， 参数e
+            $('div[id = "moveMouse"]').mousemove(function(e){
+                $('#show').text('x: ' + e.pageX + 'y: ' + e.pageY);
+                console.log(e);
+            });
+        </script>
+    </body>
+</html>
