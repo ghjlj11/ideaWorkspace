@@ -15,7 +15,7 @@
     <bytecodeTargetLevel>
       <module name="afterjava8" target="8" />
       <module name="myJdbc" target="17" />
-      <module name="servlet" target="17" />
+      <module name="servlet" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

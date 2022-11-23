@@ -20,6 +20,6 @@ public interface BookMapper {
 
     public List<Books> selectAll();
 
-    public Books search(String bookName);
+    public List<Books> search(String bookName);
 
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQueryTest</title>
+        <script src="../js/jquery.js">
+            
+        </script>
+    </head>
+    <body>
+        <a href="" id="kk" class="lll">点我</a>
+        <button type="button" id="btn">跳转</button>
+        <script>
+            $('.lll').click(function(){
+                alert('hello, jQuery');
+            });
+            let kk = $('#kk');
+            kk.mouseleave(function (){
+                kk.text('别走开，快来！');
+            });
+            kk.mouseover(function (){
+                kk.text('点我')
+            });
+            // document.addEventListener('Visibilitychange', function (){
+            //     let state = document.visibilityState;
+            //     let title = $('window-title');
+            //     if(state === 'hidden'){
+            //         title.text('快回来！');
+            //         console.log('hidden');
+            //     }
+            //     else if(state === 'visible'){
+            //         title.text(title.text());
+            //         console.log('visible');
+            //     }
+            // })
+            window.onblur = function (){
+                document.title = 'come on';
+            };
+            window.onfocus = function (){
+                document.title = 'look look';
+            };
+            $('#btn').click(function (){
+                let book = {
+                    bookID: 222,
+                    bookName: '222',
+                    bookCounts: 23,
+                    detail: '1234'
+                };
+                let s = JSON.stringify(book);
+                $.post({
+                    url:'http://localhost:8080/books/toAddBook',
+                    data: {
+                        books: s
+                    },
+                    success: function (data){
+                        console.log('success');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

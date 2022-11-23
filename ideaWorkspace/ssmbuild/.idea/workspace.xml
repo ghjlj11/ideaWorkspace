@@ -9,7 +9,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="表单验证" />
+    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="表单验证">
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/jQueryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/jQueryTest2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/dao/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/dao/BookMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/dao/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/dao/BookMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/service/BooksService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/service/BooksService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/service/BooksServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/service/BooksServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ghj/dao/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ghj/dao/BookMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ghj/dao/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ghj/dao/BookMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ghj/service/BooksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ghj/service/BooksService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ghj/service/BooksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ghj/service/BooksServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/dao/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/dao/BookMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/dao/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/dao/BookMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/service/BooksService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/service/BooksService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/service/BooksServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/service/BooksServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/Test01.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/Test01.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -244,6 +276,7 @@
       <workItem from="1654779582873" duration="23000" />
       <workItem from="1662615455193" duration="12000" />
       <workItem from="1668429120579" duration="1383000" />
+      <workItem from="1668956132144" duration="5249000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>
@@ -288,6 +321,31 @@
           <url>file://$PROJECT_DIR$/web/WEB-INF/jsp/add.jsp</url>
           <line>7</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ghj/controller/BookController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Test01.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -46,8 +46,8 @@ public class BooksServiceImpl implements BooksService {
     }
 
     @Override
-    public Books search(String bookName) {
-        return bookMapper.search(bookName);
+    public List<Books> search(String bookName) {
+        return bookMapper.search("%"+ bookName+ "%");
     }
 
 }

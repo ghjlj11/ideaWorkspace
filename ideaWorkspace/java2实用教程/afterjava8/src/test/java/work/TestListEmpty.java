@@ -2,6 +2,7 @@ package work;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -21,5 +22,13 @@ public class TestListEmpty {
         };
         Arrays.sort(l, comparator);
         System.out.println(Arrays.toString(l));
+        Map<String, Object> map = new HashMap<>();
+        map.put("size1", null);
+        map.put("size2", null);
+        map.put("size3", new BigDecimal("22.000"));
+        map.remove("222");
+        map.forEach((k, v) -> {
+            System.out.println(k + v);
+        });
     }
 }

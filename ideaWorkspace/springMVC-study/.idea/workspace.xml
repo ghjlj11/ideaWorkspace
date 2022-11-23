@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC" />
+    <list default="true" id="2354d137-7f5f-47a2-8f58-98caabc9b7ac" name="变更" comment="newSpringMVC">
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../javaScript_study/src/html/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/jQueryTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaScript_study/src/html/jQueryTest2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringMVC-Study.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,6 +251,7 @@
       <workItem from="1663918898422" duration="220000" />
       <workItem from="1666278385949" duration="2242000" />
       <workItem from="1668169560737" duration="1266000" />
+      <workItem from="1668956067300" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="newSpringMVC">
       <created>1654094482345</created>

@@ -1,5 +1,6 @@
 package com.ghj.controller;
 
+import com.alibaba.fastjson2.JSON;
 import com.ghj.dao.BookMapper;
 import com.ghj.pojo.Books;
 import com.ghj.service.BooksService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,6 @@ public class BookController {
 
     @RequestMapping("/toAddBook")
     public String toAddBook(Books books){
-
         booksService.addBooks(books);
         return "redirect:/books/selectAll";
     }
@@ -69,14 +70,17 @@ public class BookController {
 
     @RequestMapping("/search")
     public String search(String bookName, Model model){
-        Books books = booksService.search(bookName);
-        List<Books> list = new ArrayList<>();
-        list.add(books);
-        if(books == null){
+        List<Books> books = booksService.search(bookName);
+        if(books == null || books.isEmpty()){
             model.addAttribute("msg","未找到");
-            list = booksService.selectAll();
         }
-        model.addAttribute("list",list);
+        model.addAttribute("list",books);
         return "select";
+    }
+
+    @RequestMapping("/testAdd")
+    public String testAdd(String books){
+        Books books1 = JSON.parseObject(books, Books.class);
+        return "redirect:/books/selectAll";
     }
 }
