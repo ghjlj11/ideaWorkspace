@@ -1128,6 +1128,73 @@ public class StreamDemo {
 
 
 
+## ForkJoin
+
+将大任务拆分成多个小任务，由多个线程执行， 加快执行的速度
+
+```java
+import java.util.concurrent.RecursiveTask;
+
+/**
+ * @author 86187
+ */
+public class MyTask extends RecursiveTask<Integer> {
+    private final Integer ADJUST = 10 ;
+    private Integer begin;
+    private Integer end;
+    private Integer result = 0;
+
+    public MyTask(Integer begin, Integer end){
+        this.begin = begin;
+        this.end = end;
+    }
+    @Override
+    protected Integer compute() {
+        if(end - begin < ADJUST){
+            for (int i = begin; i <= end; i++) {
+                result += i;
+            }
+        }
+        else {
+            int mid = (end - begin) / 2 + begin;
+            MyTask myTask1 = new MyTask(begin, mid);
+            MyTask myTask2 = new MyTask(mid + 1, end);
+            // 调用fork()方法也会执行compute()
+            myTask1.fork();
+            myTask2.fork();
+            result = myTask1.join() + myTask2.join();
+        }
+        return result;
+    }
+}
+
+```
+
+
+
+> 测试
+
+```java
+public class ForkJoinTaskTest {
+    public static void main(String[] args) throws Exception {
+        MyTask myTask = new MyTask(0, 100);
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        // ForkJoinPool提交任务
+        ForkJoinTask<Integer> submit = forkJoinPool.submit(myTask);
+        System.out.println(submit.get());
+        forkJoinPool.shutdown();
+    }
+}
+```
+
+
+
+> ForkJoin特点
+
+工作窃取， 当一个线程执行完任务之后， 其他线程的任务还没有执行完， 那么该线程就会去执行别的线程未执行的任务（任务是放在一个双端队列里面， 窃取的是从底部开始执行任务， 正常线程是从顶部开始），以提高工作效率。
+
+
+
 ## JMM
 
 
