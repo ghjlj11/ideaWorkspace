@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+        <script>
+            let obj = {
+                arr: [1,2,3,4,5,0,0,0,0,6],
+                kk: "12"
+            };
+            let arr = obj.arr;
+            for(let i = 0 ; i < arr.length; i ++){
+                if(arr[i] == '0'){
+                    obj.arr.splice(i, i + 1);
+                    console.log(i);
+                }
+            }
+        </script>
+        <style>
+            div{
+                width: 300px;
+                height: 300px;
+                border: 2px solid #0761bb;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="text" >
+        </div>
+    </body>
+</html>

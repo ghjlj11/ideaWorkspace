@@ -27,8 +27,18 @@ public class TestListEmpty {
         map.put("size2", null);
         map.put("size3", new BigDecimal("22.000"));
         map.remove("222");
+        int[] res = new int[]{0,0};
+        Map<String, Object> map1 = new HashMap<>(map);
         map.forEach((k, v) -> {
-            System.out.println(k + v);
+            if(v != null){
+                res[0]++;
+            }
         });
+        map1.forEach((k, v) -> {
+            if(v != null){
+                res[1]++;
+            }
+        });
+        System.out.println(Arrays.toString(res));
     }
 }
