@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二进制加法">
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StreamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StreamTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/myJdbc/myJdbc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/day31/day1/CQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ssmbuild/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +33,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://C:/Program Files/Java/jdk-17.0.2/lib/src.zip!/java.base/java/util/LinkedHashMap.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/lj/leetcode/code81/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://C:/Program Files/Java/jdk-17.0.2/lib/src.zip!/java.base/java/util/HashMap.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://C:/Program Files/Java/jdk-17.0.2/lib/src.zip!/java.base/java/util/LinkedHashMap.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,7 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java2实用教程" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -180,6 +179,7 @@
       <workItem from="1666145187319" duration="1519000" />
       <workItem from="1666171439548" duration="1298000" />
       <workItem from="1667295467237" duration="612000" />
+      <workItem from="1670747663793" duration="2398000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>

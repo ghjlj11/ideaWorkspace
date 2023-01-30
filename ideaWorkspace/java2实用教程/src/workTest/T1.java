@@ -6,7 +6,25 @@ package workTest;
 public class T1 {
     String s;
     int a;
-    public void t1(){
-        T2 t2 = new T2();
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
+    public T1(){
+        this.a = 222;
+        this.s = "123";
     }
 }

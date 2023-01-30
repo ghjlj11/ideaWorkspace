@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>tt2</title>
+        <script src="../js/jquery.js">
+            
+        </script>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div id="moveMouse">
+            <input type="text" id="t1">
+        </div>
+        <script>
+            $("#t1").change(function(){
+                let x = $("#t1").val();
+                let s = JSON.stringify(x);
+                console.log(s);
+                console.log(s.length - 2);
+            })
+        </script>
+    </body>
+</html>

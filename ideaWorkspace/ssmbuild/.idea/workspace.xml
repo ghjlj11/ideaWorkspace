@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="测试Ajax">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="测试Ajax" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -248,6 +246,7 @@
       <workItem from="1668429120579" duration="1383000" />
       <workItem from="1668956132144" duration="5249000" />
       <workItem from="1669205452769" duration="1992000" />
+      <workItem from="1670484200886" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>
