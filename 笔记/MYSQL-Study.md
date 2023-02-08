@@ -179,40 +179,21 @@ INSERT INTO emp (`name`, email, sex, department, brith) VALUES ('小明', 123456
 
 
 
-> desc、asc
-
-与`order by`同时使用。
-
-```SQl
-order by *** desc
-
-order by *** asc		# 默认
-```
-
-
-
-> 分页查询（limit）
-
-```text
-select * from   表名  limit  starIndex， pageSize；
-
-如果有6个用户 select  * from User limit 2，3；
-
-则输出下标为2，3，4，的用户
-
-
-将数据库分页显示，页大小为pageSize，从starIndex开始输出
-
-select * from User limit 6;
-
-表示页大小pageSize=6，starIndex = 0；
-```
-
-
-
-
-
 ## DDL语句
+
+
+
+> 修改表
+
+```sql
+# 修改表名 将empkkk表名字修改为emp
+alter TABLE empkkk RENAME  TO emp;
+
+# 修改表的注释
+ALTER TABLE emp COMMENT '员工表';
+```
+
+
 
 
 
@@ -358,7 +339,62 @@ SELECT FORMAT(id, 3) FROM emp;
 
 
 
-## 分组查询
+
+
+## 特殊语句
+
+
+
+> 条件查询（where）
+
+
+
+> 分组查询（group by）
+
+
+
+> 联合查询（nuion）
+
+
+
+> 模糊查询（like）
+
+
+
+> 连接查询（join）
+
+
+
+> 排序（desc、asc）
+
+与`order by`同时使用。
+
+```SQl
+order by *** desc
+
+order by *** asc		# 默认
+```
+
+
+
+> 分页查询（limit）
+
+```text
+select * from   表名  limit  starIndex， pageSize；
+
+如果有6个用户 select  * from User limit 2，3；
+
+则输出下标为2，3，4，的用户
+
+
+将数据库分页显示，页大小为pageSize，从starIndex开始输出
+
+select * from User limit 6;
+
+表示页大小pageSize=6，starIndex = 0；
+```
+
+
 
 
 
