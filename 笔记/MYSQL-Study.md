@@ -2,6 +2,43 @@
 
 
 
+## 常用数据类型
+
+
+
+| 类型         | 大小                                     | 范围（有符号）                                               | 范围（无符号）                                               | 用途                     |
+| ------------ | ---------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------ |
+| INT或INTEGER | 4  Bytes                                 | (-2 147 483 648，2 147 483 647)                              | (0，4 294 967 295)                                           | 大整数值                 |
+| BIGINT       | 8  Bytes                                 | (-9,223,372,036,854,775,808，9 223 372 036 854 775 807)      | (0，18 446 744 073 709 551 615)                              | 极大整数值               |
+| FLOAT        | 4  Bytes                                 | (-3.402 823 466 E+38，-1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38) | 0，(1.175 494 351 E-38，3.402 823 466 E+38)                  | 单精度 浮点数值          |
+| DOUBLE       | 8  Bytes                                 | (-1.797 693 134 862 315 7 E+308，-2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 双精度 浮点数值          |
+| DECIMAL      | 对DECIMAL(M,D) ，如果M>D，为M+2否则为D+2 | 依赖于M和D的值                                               | 依赖于M和D的值，M表示所有数字的位数，缺省值为 10，最大值为 65；D表示小数点后的数字位数，缺省值为 0 | 小数值                   |
+| DATE         | 3                                        | 1000-01-01/9999-12-31                                        | YYYY-MM-DD                                                   | 日期值                   |
+| TIME         | 3                                        | '-838:59:59'/'838:59:59'                                     | HH:MM:SS                                                     | 时间值或持续时间         |
+| DATETIME     | 8                                        | '1000-01-01 00:00:00' 到 '9999-12-31 23:59:59'               | YYYY-MM-DD hh:mm:ss                                          | 混合日期和时间值         |
+| TIMESTAMP    | 4                                        | '1970-01-01 00:00:01' UTC 到 '2038-01-19 03:14:07' UTC  结束时间是第 **2147483647** 秒，北京时间 **2038-1-19 11:14:07**，格林尼治时间 2038年1月19日 凌晨 03:14:07 | YYYY-MM-DD hh:mm:ss                                          | 混合日期和时间值，时间戳 |
+| CHAR         |                                          | 0-255 bytes                                                  |                                                              | 定长字符串               |
+| VARCHAR      |                                          | 0-65535 bytes                                                |                                                              | 变长字符串               |
+| TEXT         |                                          | 0-65 535 bytes                                               |                                                              | 长文本数据               |
+
+
+
+**char，nchar，nvarchar，varchar的区别：**
+
+
+
+char：    固定长度，存储ANSI字符，存储定长数据，索引效率极高，存入数据不够长度会自动补上空格
+
+nchar：   固定长度，存储Unicode字符，所有的字符使用两个字节表示，存入数据不够长度会自动补上空格
+
+varchar：  可变长度，存储ANSI字符，根据数据长度自动变化
+
+nvarchar： 可变长度，存储Unicode字符，根据数据长度自动变化，所有的字符使用两个字节表示
+
+
+
+
+
 ## 系统库
 
 
@@ -34,25 +71,127 @@
 
 
 
-## char，nchar，nvarchar，varchar的区别
+
+
+## SQL语句分类
+
+- DQL：数据库查询语句（凡是带有select的语句都是）。
+- DML：数据库操作语言， 凡是对表数据进行修改或者查询的 ，select， insert， delete， update。
+- DDL：数据定义语言， 带有create， drop，alter都是DDL， 对表的结构进行修改。
+- TCL： 事务控制语言， 事务提交， 事务回滚。
+- DCL：数据控制语言， 授权， 撤销权限。
 
 
 
-char：    固定长度，存储ANSI字符，存储定长数据，索引效率极高，存入数据不够长度会自动补上空格
 
-nchar：   固定长度，存储Unicode字符，所有的字符使用两个字节表示，存入数据不够长度会自动补上空格
 
-varchar：  可变长度，存储ANSI字符，根据数据长度自动变化
-
-nvarchar： 可变长度，存储Unicode字符，根据数据长度自动变化，所有的字符使用两个字节表示
+## 基本语句
 
 
 
-## Innodb
+### 启动与停止服务
+
+```bash
+### windows系统启动与关闭服务
+## cmd选择mysql的安装目录下的bin目录
+
+# 启动
+mysqld --console
+
+# 关闭
+mysqladmin -uroot shutdown
+
+## 直接使用net命令启动关闭服务
+
+# 启动
+net start MySQL80
+
+# 关闭
+net stop MySQL80
+
+# 使用source执行sql存储文件。 
+
+source D:\my-study\ideaWorkspace\table\table1.txt 
+```
 
 
 
-## 数据库分页显示
+### 基本使用语句
+
+```mysql
+# 当mysql服务已经运行时，可以通过以下命令登录到数据库
+# -h 表示主机号，为本机时可以省略，-u后加用户名， -p表示后面输入密码
+mysql -h 主机名 -u 用户名 -p
+
+# 查看所有数据库
+show databases;
+
+# 新建数据库
+# 设置字符集为utf8mb4， 排序规则为utf8mb4_general_ci
+CREATE DATABASE tttsss DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+# 删除数据库
+DROP DATABASE tttsss;
+
+# 选择数据库
+use malajava;
+
+# 查看当前数据库
+select DATABASE();
+
+# 查看所有的表的语句
+show tables;
+show TABLE status;
+
+# 建表语句
+create table consumer(
+    consumer_id int(11)  primary key not null,
+    consumer_name nvarchar(30) not null,
+    consumer_data date
+) ;
+
+# 删除表操作
+DROP TABLE ttttsss;
+
+# 截断表的所有数据，不改变表的结构，会重置自增值，无法回滚。
+truncate table kecheng;
+```
+
+
+
+## DML语句
+
+
+
+```sql
+# 查询
+select * from emp;
+
+# 更新
+UPDATE emp SET email = 1111 WHERE sex = '1';
+
+# 删除
+delete FROM emp WHERE `name` = '小明';
+
+# 新增
+INSERT INTO emp (`name`, email, sex, department, brith) VALUES ('小明', 123456, 1, 101,CURRENT_DATE );
+```
+
+
+
+> desc、asc
+
+与`order by`同时使用。
+
+```SQl
+order by *** desc
+
+order by *** asc		# 默认
+```
+
+
+
+> 分页查询（limit）
 
 ```text
 select * from   表名  limit  starIndex， pageSize；
@@ -73,183 +212,25 @@ select * from User limit 6;
 
 
 
-## 一些操作
-
-
-
-```mysql
-use malajava;
-select * from kecheng where name like '%体%';
-select distinct id from kecheng;
-
-select FLOOR(4.33) as id from kecheng;
-
-select ASCII(3);
-
-select * from kecheng where id = (select max(id) from kecheng);
-
-select * from kecheng where name is null ;
-
-select * from kecheng where name IS NULL;
-
-/*分组查询限执行where， 在group by*/
-
-select id,name,keshi from kecheng group by (name);
-
-
-delete from kecheng where id = 4;
-
-insert into malajava.kecheng (id, name, keshi) VALUES (4, 'java', 48);
-
-
-select max(id) from kecheng;
-
-select * from kecheng group by id;
-
-/*通过查询来创建表*/
-
-create table classes as select * from kecheng;
-
-create table name as select name from classes;
-
-drop table name;
-
-desc classes;
-
-show table status ;
-
-show databases ;
-
-/*修改表的列的属性*/
-alter table classes modify name nvarchar(40);
-desc classes;
-
-/*修改表的列的名字*/
-alter table classes rename column keshi to time;
-desc classes;
-
-/*删除列*/
-alter table classes drop column name;
-desc classes;
-
-/*添加注释*/
-alter table classes comment '课程表';
-
-alter table classes modify id int  comment '用户名';
-
-show create table classes;
-
-/*删除表*/
-drop table classes;
-show tables ;
-
-/*截断表，快速删除表，比delete快*/
-truncate table kecheng;
-
-/*约束*/
-
-create table consumer(
-    consumer_id int(11)  primary key not null,
-    consumer_name nvarchar(30) not null,
-    consumer_data date
-) ;
-
-create table supermarket(
-    id int(11) primary key ,
-    name nvarchar(50) not null ,
-    consumers int(11) ,
-    foreign key (consumers) references consumer(consumer_id)
-);
-
-/*修改时间为系统事件*/
-alter table consumer modify consumer_data date default(current_date);
-
-insert into consumer(consumer_id, consumer_name) VALUES (001,'郭欢军');
-insert into consumer(consumer_id, consumer_name) VALUES (002,'罗静');
-insert into consumer(consumer_id, consumer_name) VALUES (003,'罗芊');
-
-insert into supermarket(id, name, consumers) VALUES (001,'优乐购',001);
-insert into supermarket(id, name, consumers) VALUES (002,'优乐购',002);
-
-/*修改时间为系统事件*/
-alter table consumer modify consumer_data datetime default (current_time);
-insert into consumer(consumer_id, consumer_name) values (004, '邹龙');
-/*当插入的数据有'和"的时候*/
-insert into consumer(consumer_id, consumer_name) values(006, 'a''""b');
-
-update consumer set consumer_name = 'a''"b' where consumer_id = 006;
-/*一次插入多个数据*/
-insert into consumer(consumer_id, consumer_name) values (7, 'a'), (8, 'b'),(9, 'c');
-
-select * from consumer ;
-
-update supermarket set name = '优乐购2', consumers = '1' where id = 2;
-
-insert into supermarket(id, name, consumers) values (3, '喜洋洋', 2);
-insert into supermarket(id, name, consumers) values (4, '喜洋洋', 2);
-
-/*内连接查询*/
-select * from supermarket s, consumer c where s.consumers = c.consumer_id;
-select * from supermarket s inner join consumer c on s.consumers = c.consumer_id;
-
-/*外连接查询*/
-/*左外连接*/
-select * from supermarket s left join consumer c on c.consumer_id = s.consumers;
-/*右外连接*/
-select * from supermarket s right join consumer c on c.consumer_id = s.consumers;
-
-select * from supermarket s  join consumer c on c.consumer_id = s.consumers;
-
-insert into supermarket(id, name, consumers) values (6, '太平洋', null);
-
-/*笛卡尔积*/
-select * from student cross join teacher;
-
-/*相当于是join查询*/
-select * from student cross join teacher t on t.id = student.tid;
-
-/*自链接查询*/
-create table staff (
-    id int(10) primary key ,
-    name nvarchar(30) ,
-    manage_id int(10)
-)engine innodb;
-
-insert into staff(id, name, manage_id) VALUES (1, '郭欢军', 3);
-insert into staff(id, name, manage_id) VALUES (2, '罗静', 3);
-insert into staff(id, name, manage_id) VALUES (3, '罗芊', 3);
-
-insert into staff(id, name, manage_id) VALUES (4, 'fg', 5);
-insert into staff(id, name, manage_id) VALUES (5, 'hf', 5);
-insert into staff(id, name, manage_id) VALUES (6, 'bvn', 5);
-
-insert into staff(id, name, manage_id) VALUES (7, '嘻嘻', 7);
-insert into staff(id, name, manage_id) VALUES (8, '嘿嘿', 7);
-insert into staff(id, name, manage_id) VALUES (9, '哈哈', 7);
-
-select id || '-' || name  from staff;
-select concat(s1.id,s1.name,s1.manage_id) as sta, concat(s2.id,s2.name,s2.manage_id) as man from staff s1, staff s2 where s1.manage_id = s2.id;
-
-/*子查询*/
-
-/*增加索引， add index index_name(column)*/
-alter table kecheng add index id(id);
-
-```
-
-
-
-## 更新表的结构
+## DDL语句
 
 
 
 > 修改字段
 
 ```SQL
+# 修改表的列的名字
+alter table classes rename column keshi to time;
+
 # 修改字段
 alter table classes modify id int  comment '用户名';
-#添加字段
+
+# 修改列名和列属性
+alter table emp change sex sex11 VARCHAR(32) DEFAULT NULL COMMENT 'sex';
+
+# 添加字段
 alter table t1 add id BIGINT;
+
 # 删除字段
 alter table t1 drop id;
 ```
@@ -258,7 +239,130 @@ alter table t1 drop id;
 
 
 
-> ### 索引
+
+
+## 函数
+
+
+
+
+
+### 聚合函数
+
+
+
+**聚合函数不会计算null值， 就是括号内返回的只要是null， 则不会参与计算。**
+
+> count
+
+查看某一列在表里出现多少次，或者查看表里有多少行数据，例如：
+
+```sql
+SELECT count(age) FROM user;
+select count(*) FROM user;
+```
+
+
+
+加条件查询：
+
+```sql
+SELECT COUNT(age > 21 OR NULL) FROM user;
+```
+
+**这里的条件随便加，但是后面要加上or null，否则就是查出来全部**
+
+**因为当不加 or null 时， 语句为 count（age > 21）， 当age大于21，返回true， 否则返回false， 而count() 函数只是不计算null值，这样count函数都会统计进去，加上or null， 那么当age 大于21时，则条件为真， 不执行后面的or null， 返回true； 当age小于或等于21时， age > 21为false， 则继续执行 or null语句， 结果返回null； **
+
+
+
+
+
+ **count(*) 和 count(1)和count(列名)区别**
+
+执行效果上：
+
+count(*)包括了所有的列，相当于行数，在统计结果的时候，不会忽略为NULL的值。
+
+count(1)包括了忽略所有列，用1代表代码行，在统计结果的时候，不会忽略为NULL的值。
+
+count(列名)只包括列名那一列，在统计结果的时候，会忽略列值为空（这里的空不是指空字符串或者0，而是表示null）的计数，即某个字段值为NULL时，不统计。
+
+
+
+> max、min、avg、sum
+
+
+
+求最值以、平均值、总值：
+
+```sql
+## 求age的总和
+SELECT SUM(age) FROM user;
+```
+
+
+
+加上条件查询：
+
+```sql
+## age大于21的age总和
+SELECT SUM(IF(age > 21,age,0)) FROM user;
+
+## age中小于23的最大值
+SELECT MAX(IF(age > 23,1,age)) FROM user;
+```
+
+
+
+`IF`条件表达式： `IF(expr1,expr2,expr3)`， 表示当`expr1`返回为`true`时， 则表达式返回`expr2`， 否则返回`expr3`
+
+
+
+
+
+### 其他函数
+
+
+
+> concat
+
+多列连接成一列输出
+
+```sql
+SELECT concat(s1.id,s1.name,s1.manage_id) as sta from s;
+```
+
+
+
+> concat_ws
+
+连接输出，并且加上连接符`,`
+
+```sql
+SELECT CONCAT_WS(',',id,name,email) as people FROM emp WHERE sex = 1;
+## 输出：1001,小明,123456
+```
+
+
+
+> format
+
+将数字格式化，保留指定位数的位小数，四舍五入
+
+```sql
+SELECT FORMAT(id, 3) FROM emp;
+```
+
+
+
+
+
+## 分组查询
+
+
+
+## 索引
 
 
 
@@ -272,110 +376,19 @@ create table t_dept(
   )
 ```
 
-1、添加PRIMARY KEY(主键索引)mysql>ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )
+1、添加**`PRIMARY KEY`**(主键索引)mysql> `ALTER TABLE table_name ADD PRIMARY KEY ( column )`
 
-2、添加UNIQUE(唯一索引)mysql>ALTER TABLE `table_name` ADD UNIQUE (
+2、添加**`UNIQUE`**(唯一索引)mysql> `ALTER TABLE  table_name ADD UNIQUE (column)`
 
-`column`
+3、添加**`INDEX`**(普通索引)mysql>`ALTER TABLE table_name ADD INDEX index_name ( column )`
 
-)
+4、添加**`FULLTEXT`**(全文索引)mysql>`ALTER TABLE table_name ADD FULLTEXT ( column)`
 
-3、添加INDEX(普通索引)mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
-
-4、添加FULLTEXT(全文索引)mysql>ALTER TABLE `table_name` ADD FULLTEXT ( `column`)
-
-5、添加多列索引mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
+5、添加**`多列索引`**mysql>`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
 
 
 
-
-
-### 多列链接成一列输出。
-
-```
-concat(s1.id,s1.name,s1.manage_id) as sta
-```
-
-
-
-### 降序升序
-
-
-
-```SQl
-order by *** desc
-
-order by *** asc		默认
-```
-
-
-
-## 给表的字段添加索引
-
-
-
-PRIMARY KEY主键索引：mysql>ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` ) 
- NIQUE：mysql>ALTER TABLE `table_name` ADD UNIQUE ( `column` ) 
- INDEX普通索引 ：mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column` ) 
- FULLTEXT全文索引 ：mysql>ALTER TABLE `table_name` ADD FULLTEXT ( `column`) 
- INDEX多列索引：mysql>ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )
-
-
-
-外键约束： 
-
-```SQL
-ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFERENCES <外键表名> (<列名>);
-```
-
-
-
-## 给表的字段修改属性
-
-
-
-```SQL
-ALTER TABLE 表名 CHANGE 旧字段名 新字段名 字段类型(长度) comment (评论);
-```
-
- 
-
-
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-### SQL语句分类
-
-- DQL：数据库查询语句（凡是带有select的语句都是）
-- DML：数据库操作语言， 凡是对表进行修改的 ， insert， delete， update， 是对表的数据进行修改；
-- DDL：数据定义语言， 带有create， drop，alter都是DDL， 对表的结构进行修改。
-- TCL： 事务控制语言， 事务提交， 事务回滚。
-- DCL：数据控制语言， 授权， 撤销权限。
-
-
-
-
-
-```SQL
-
--- 使用source执行sql存储文件。 
-
-source D:\my-study\ideaWorkspace\table\table1.txt   
-```
-
-
-
-## 主键与唯一索引的区别
+> 主键与唯一索引的区别
 
 区别：
 
@@ -388,4 +401,14 @@ source D:\my-study\ideaWorkspace\table\table1.txt
 4、主键可被其他表引为外键，唯一索引不能；
 
 5、一个表只能创建一个主键，但可创建多个唯一索引
+
+
+
+> 外键约束： 
+
+```SQL
+ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFERENCES <外键表名> (<列名>);
+```
+
+
 
