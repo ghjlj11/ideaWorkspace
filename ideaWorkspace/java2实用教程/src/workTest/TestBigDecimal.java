@@ -1,7 +1,9 @@
 package workTest;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -22,5 +24,9 @@ public class TestBigDecimal {
         BigDecimal bigDecimal1 = new BigDecimal("12.44");
         BigDecimal bigDecimal2 = new BigDecimal("3.12");
         System.out.println(bigDecimal1.divide(bigDecimal2, 0, RoundingMode.UP));
+
+        String s2 = "qweqe";
+        String[] split = s2.split(":");
+        System.out.println(Arrays.toString(split));
     }
 }
