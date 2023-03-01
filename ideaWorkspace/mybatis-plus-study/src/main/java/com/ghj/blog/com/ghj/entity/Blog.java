@@ -1,4 +1,4 @@
-package com.ghj.entity;
+package com.ghj.blog.com.ghj.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

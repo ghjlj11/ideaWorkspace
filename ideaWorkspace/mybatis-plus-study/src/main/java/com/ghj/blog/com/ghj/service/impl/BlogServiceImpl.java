@@ -1,4 +1,4 @@
-package com.ghj.service.impl;
+package com.ghj.blog.com.ghj.service.impl;
 
 import com.ghj.entity.Blog;
 import com.ghj.mapper.BlogMapper;

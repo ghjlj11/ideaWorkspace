@@ -1,4 +1,4 @@
-package com.ghj.controller;
+package com.ghj.blog.com.ghj.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.ghj.mapper;
+package com.ghj.blog.com.ghj.mapper;
 
 import com.ghj.entity.Blog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
