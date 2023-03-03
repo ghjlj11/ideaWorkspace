@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * @author 86187
@@ -20,7 +22,7 @@ public class TestTimer {
         };
 
         System.out.println(new Date());
-        Date date = new Timestamp(2022, 5, 8, 17, 29, 30, 0);
+        Date date = new Timestamp(2023, 3, 3, 14, 32, 30, 0);
 
         timer.scheduleAtFixedRate(timerTask, date, 1000);
 
