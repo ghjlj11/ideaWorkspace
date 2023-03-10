@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.Date;
 import java.util.concurrent.Executor;
 
 @SpringBootTest
@@ -31,6 +32,7 @@ class SpringBoot09TestApplicationTests {
         simpleMessage.setText("来我办公室喝茶！");
         simpleMessage.setTo("2367792309@qq.com");
         simpleMessage.setFrom("2367792309@qq.com");
+        simpleMessage.setSentDate(new Date());
         mailSender.send(simpleMessage);
 
     }
