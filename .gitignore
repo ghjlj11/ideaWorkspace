@@ -12,6 +12,8 @@ buildNumber.properties
 
 .idea/
 
+workspace.xml
+
 ## File-based project format:
 *.iws
 *.iml
