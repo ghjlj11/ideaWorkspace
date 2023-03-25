@@ -10,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 
+import java.time.Duration;
 import java.util.Set;
 
 @SpringBootTest
@@ -21,10 +23,12 @@ class Redis02SpringbootApplicationTests {
     @Test
     void contextLoads() {
         MyUser myUser = new MyUser("郭欢军", 2);
-        redisTemplate.opsForValue().set("me", myUser);
-        JedisConnectionFactory connectionFactory = (JedisConnectionFactory)redisTemplate.getConnectionFactory();
-        connectionFactory.setDatabase(0);
-        System.out.println(redisTemplate.opsForValue().get("me"));
+        //redisTemplate.opsForValue().set("me", myUser);
+        ValueOperations opsForValue = redisTemplate.opsForValue();
+        if(opsForValue.setIfAbsent("me", myUser, Duration.ofSeconds(10))){
+            System.out.println(redisTemplate.opsForValue().get("me"));
+        }
+
     }
 
     @Test

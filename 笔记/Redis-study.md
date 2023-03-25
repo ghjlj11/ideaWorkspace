@@ -12,11 +12,49 @@
 
 
 
-- 下载解压到Linux系统里面。
+
+
+## 安装配置
 
 
 
-- 然后可以复制一份redis.conf到另一个地方 ，后面我们就通过这个conf来启动Redis， 这里面默认不是以守护进程的方式运行， 可以使用vim编辑文件的``daemonize no``改为yes。
+> 下载 解压
+
+```bash
+wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+
+tar -zxvf redis-5.0.5.tar.gz
+```
+
+
+
+> 编译
+
+进入到解压后的目录执行命令编译
+
+```bash
+make
+
+make install
+```
+
+
+
+> 启动
+
+编译之后会多一个src目录， 在src里面会有启动redis服务的脚本，以及启动redis客户端的脚本，启动之前可以复制一个配置文件， 在复制的配置文件配置启动项
+
+```bash
+# 启动redis服务端
+./redis-server ../ghjredis.conf
+
+# 客户端 -a密码， 或者不带密码连接之后 执行 auth命令输入密码
+./redis-cli -p 6379 -a 123456
+```
+
+
+
+
 
 redis.conf 配置项说明如下：
 
@@ -63,9 +101,9 @@ redis.conf 配置项说明如下：
 
 
 
-- 通过`whereis redis`可以看到redis安装在哪。
+- 重启redis：`systemctl restart redis-server`.
 
-本机redis.conf在`/usr/local/bin/ghjconfig`下
+- 通过`whereis redis`可以看到redis安装在哪。
 
 **``redis-server ghjconfig/redis.conf``启动服务， ``redis-cli -p 6379 ``开启客户端， ``shutdown``关闭客户端， ``exit``退出服务，  这里客户端输入``ping``请求， 由回应``pong``请求就是开启服务成功。** 
 

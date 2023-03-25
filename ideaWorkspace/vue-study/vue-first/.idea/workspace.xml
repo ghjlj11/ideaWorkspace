@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9bc4b88-bfe5-4296-adc7-4e11ddc41224" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/../../javaScript_study/src/test/testChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../javaScript_study/src/test/testChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myvue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../myvue/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webpack-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../webpack-study/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../webpack-study" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -67,6 +70,7 @@
       <workItem from="1651139902087" duration="8516000" />
       <workItem from="1652842586169" duration="1874000" />
       <workItem from="1667734054346" duration="1572000" />
+      <workItem from="1678714044249" duration="1430000" />
     </task>
     <servers />
   </component>

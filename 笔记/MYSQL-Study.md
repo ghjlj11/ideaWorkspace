@@ -448,3 +448,7 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 
 
 
+
+
+## SQL调优
+

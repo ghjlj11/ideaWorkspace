@@ -21,5 +21,8 @@ public class Test02 {
 //            }
 //            System.out.println("匹配成功:" + s);
 //        }
+
+        String pat = "\\d{1,34}";
+        System.out.println(Pattern.matches(pat, "a"));
     }
 }

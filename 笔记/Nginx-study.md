@@ -28,6 +28,61 @@ nginx的作用：反向代理， 负载均衡， 动静分离。
 
 
 
+## 下载安装
+
+
+
+> 下载
+
+下载官网：[nginx下载](http://nginx.org/en/download.html)
+
+
+
+> 安装
+
+首先解压安装包
+
+```bash
+tar -zxvf nginx-1.22.1.tar.gz
+```
+
+解压之后在解压后的目录下执行configure脚本文件
+
+```bash
+./configure
+```
+
+在目录下执行编译命令
+
+```bash
+make
+```
+
+
+
+检测是否安装好
+
+```bash
+make install
+
+# 查找nginx文件
+whereis nginx
+```
+
+
+
+> 启动
+
+在安装目录sbin下执行
+
+```bash
+./nginx
+```
+
+
+
+
+
 ## 基本命令
 
 
