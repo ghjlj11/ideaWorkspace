@@ -13,7 +13,7 @@ public class Consumer {
     public static void main(String[] args) throws Exception {
         //创建连接工厂，设置参数
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("43.142.32.254");
+        factory.setHost("47.102.117.225");
         factory.setUsername("admin");
         factory.setPassword("admin");
 
