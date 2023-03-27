@@ -400,7 +400,9 @@ select * from User limit 6;
 
 ## 索引
 
+为了加快查询效率
 
+> 添加索引
 
 ```sql
 create table t_dept(
@@ -421,6 +423,20 @@ create table t_dept(
 4、添加**`FULLTEXT`**(全文索引)mysql>`ALTER TABLE table_name ADD FULLTEXT ( column)`
 
 5、添加**`多列索引`**mysql>`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
+
+
+
+> 修改索引
+
+
+
+> 删除索引
+
+```mysql
+ALTER TABLE table_name ADD DROP `id_k1`;
+
+DROP INDEX <索引名> ON <表名>;
+```
 
 
 
@@ -447,6 +463,20 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 ```
 
 
+
+## MySQL体系结构
+
+
+
+![1679924779219](img\mysql\1679924779219.jpg)
+
+
+
+> 逻辑存储结构
+
+
+
+![1f2456b10be7435f98841033256e0268](img\mysql\1f2456b10be7435f98841033256e0268.png)
 
 
 
