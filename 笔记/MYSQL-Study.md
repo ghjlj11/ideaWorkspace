@@ -402,7 +402,21 @@ select * from User limit 6;
 
 为了加快查询效率
 
+> 查看索引
+
+
+
+`SHOW INDEX FROM testexplain;`
+
+
+
 > 添加索引
+
+
+
+`CREATE [UNIQUE|FULLTEXT]index index_name on table_name (column1, column2);`
+
+
 
 ```sql
 create table t_dept(
@@ -423,10 +437,6 @@ create table t_dept(
 4、添加**`FULLTEXT`**(全文索引)mysql>`ALTER TABLE table_name ADD FULLTEXT ( column)`
 
 5、添加**`多列索引`**mysql>`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
-
-
-
-> 修改索引
 
 
 
@@ -481,4 +491,71 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 
 
 ## SQL调优
+
+
+
+### 慢查询日志
+
+首先查看 是否开启慢查询日志， 执行`SHOW variables like 'slow_query_log';`	, 如果没有开启，可以去mysql配置文件开启，配置文件：/etc/my.cnf，并且可以查看慢查询日志的存放位置， 以及慢查询设定的时间，当查询时间超过设定时间，就会写入慢查询日志。
+
+
+
+### show profiles
+
+
+
+> 开启profiling
+
+
+
+- 首先查看是否支持`profiling`， 执行sql 查看`select @@have_profiling;` ；
+- 如果支持那么还需要查看是否开启`profiling` ， 执行`select @@profiling;`，  没开启的话就需要开启`set profiling = 1;`
+
+
+
+>  show profires
+
+
+
+执行`show profires`查看最近 sql的执行情况
+
+
+
+```bash
+mysql> show profiles;
++----------+------------+--------------------+
+| Query_ID | Duration   | Query              |
++----------+------------+--------------------+
+|        1 | 0.00026000 | select @@profiling |
+|        2 | 0.00042300 | select * from role |
++----------+------------+--------------------+
+
+```
+
+
+
+执行`show profire for query  Query_ID`查看 某一个sql各个阶段的查询效率，  也可 以查询别的一些参数`show profile cpu,block io for query Query_ID;`
+
+```bash
+mysql> show profile for query 5;
++--------------------------------+----------+
+| Status                         | Duration |
++--------------------------------+----------+
+| starting                       | 0.000119 |
+| Executing hook on transaction  | 0.000007 |
+| starting                       | 0.000015 |
+| checking permissions           | 0.000009 |
+| Opening tables                 | 0.000305 |
+| init                           | 0.000010 |
+| System lock                    | 0.000016 |
+| update                         | 0.000078 |
+| end                            | 0.000005 |
+| query end                      | 0.000005 |
+| waiting for handler commit     | 0.008767 |
+| closing tables                 | 0.000042 |
+| freeing items                  | 0.000029 |
+| cleaning up                    | 0.000030 |
++--------------------------------+----------+
+
+```
 
