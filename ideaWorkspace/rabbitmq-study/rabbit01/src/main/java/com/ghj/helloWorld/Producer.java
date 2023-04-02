@@ -16,7 +16,7 @@ public class Producer {
     public static void main(String[] args) throws Exception{
         //创建连接工厂，设置参数
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("47.102.117.225");
+        factory.setHost("ghjlj.cn");
         factory.setUsername("admin");
         factory.setPassword("admin");
 

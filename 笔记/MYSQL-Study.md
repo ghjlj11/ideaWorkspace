@@ -398,82 +398,6 @@ select * from User limit 6;
 
 
 
-## 索引
-
-为了加快查询效率
-
-> 查看索引
-
-
-
-`SHOW INDEX FROM testexplain;`
-
-
-
-> 添加索引
-
-
-
-`CREATE [UNIQUE|FULLTEXT]index index_name on table_name (column1, column2);`
-
-
-
-```sql
-create table t_dept(
-    no int not null primary key,
-    name varchar(20) null,
-    sex varchar(2) null,
-    info varchar(20) null,
-    index index_no(no)
-  )
-```
-
-1、添加**`PRIMARY KEY`**(主键索引)mysql> `ALTER TABLE table_name ADD PRIMARY KEY ( column )`
-
-2、添加**`UNIQUE`**(唯一索引)mysql> `ALTER TABLE  table_name ADD UNIQUE (column)`
-
-3、添加**`INDEX`**(普通索引)mysql>`ALTER TABLE table_name ADD INDEX index_name ( column )`
-
-4、添加**`FULLTEXT`**(全文索引)mysql>`ALTER TABLE table_name ADD FULLTEXT ( column)`
-
-5、添加**`多列索引`**mysql>`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
-
-
-
-> 删除索引
-
-```mysql
-ALTER TABLE table_name ADD DROP `id_k1`;
-
-DROP INDEX <索引名> ON <表名>;
-```
-
-
-
-> 主键与唯一索引的区别
-
-区别：
-
-1、主键是一种约束，唯一索引是一种索引；
-
-2、主键创建后一定包含一个唯一性索引，唯一性索引不一定是主键；
-
-3、唯一性索引列允许空值， 主键不允许；
-
-4、主键可被其他表引为外键，唯一索引不能；
-
-5、一个表只能创建一个主键，但可创建多个唯一索引
-
-
-
-> 外键约束： 
-
-```SQL
-ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFERENCES <外键表名> (<列名>);
-```
-
-
-
 ## MySQL体系结构
 
 
@@ -559,3 +483,234 @@ mysql> show profile for query 5;
 
 ```
 
+
+
+### explain
+
+解释sql语句，重要的调优功能
+
+
+
+>  简单示例：
+
+```bash
+mysql> explain select * from ttt;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | ttt   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    1 |   100.00 | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+
+```
+
+
+
+> 结果解释：
+
+- `id`表示执行顺序，id越大，则这个表最先执行， 如果相等则从上到下的顺序执行。
+- `select_type`表示查询类型，simple，primary，union，subquery等。
+- `type`表示连接类型，性能由好到差的连接类型为`NULL`、`system`、`const`、`eq_ref`、`ref`、`range`、`index`、`all`，一般不可能到`null`，除非不访问任何表， `system`表示访问一些系统表， 使用主键或者唯一索引一般到`const`，使用一般索引条件为`=`一般是`ref`， 条件是范围则是`range`， 如果使用索引全表扫描那么就是`index`，`all`就是不使用索引全表扫描 。
+- `possible_keys`表示可能用到的索引。
+- `key`表示实际用到的索引。
+- `key_len`表示索引的长度，每个字段的索引都有各自长度。
+- `rows`表示要查询的行数，在innodb中可能不准确。
+- `filtered`表示返回结果行数占读取行数的百分比，越高越好。
+- `Extra`表示额外信息
+
+
+
+## 索引
+
+为了加快查询效率
+
+> 查看索引
+
+
+
+`SHOW INDEX FROM testexplain;`
+
+
+
+> 添加索引
+
+
+
+`CREATE [UNIQUE|FULLTEXT]index index_name on table_name (column1, column2);`
+
+
+
+```sql
+create table t_dept(
+    no int not null primary key,
+    name varchar(20) null,
+    sex varchar(2) null,
+    info varchar(20) null,
+    index index_no(no)
+  )
+```
+
+1、添加**`PRIMARY KEY`**(主键索引)mysql> `ALTER TABLE table_name ADD PRIMARY KEY ( column )`
+
+2、添加**`UNIQUE`**(唯一索引)mysql> `ALTER TABLE  table_name ADD UNIQUE (column)`
+
+3、添加**`INDEX`**(普通索引)mysql>`ALTER TABLE table_name ADD INDEX index_name ( column )`
+
+4、添加**`FULLTEXT`**(全文索引)mysql>`ALTER TABLE table_name ADD FULLTEXT ( column)`
+
+5、添加**`多列索引`**mysql>`ALTER TABLE table_name ADD INDEX index_name ( column1, column2, column3 )`
+
+
+
+> 删除索引
+
+```mysql
+ALTER TABLE table_name ADD DROP `id_k1`;
+
+DROP INDEX <索引名> ON <表名>;
+```
+
+
+
+> 主键与唯一索引的区别
+
+区别：
+
+1、主键是一种约束，唯一索引是一种索引；
+
+2、主键创建后一定包含一个唯一性索引，唯一性索引不一定是主键；
+
+3、唯一性索引列允许空值， 主键不允许；
+
+4、主键可被其他表引为外键，唯一索引不能；
+
+5、一个表只能创建一个主键，但可创建多个唯一索引
+
+
+
+> 外键约束： 
+
+```SQL
+ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFERENCES <外键表名> (<列名>);
+```
+
+
+
+### 索引使用规则
+
+
+
+> 最左匹配法则
+
+当查询时使用联合索引
+
+- 必须使用索引最左边的字段作为条件，索引才会生效
+-  如果中间没有跳过索引字段，那么索引全部生效， 如果中间跳过部分字段，那么跳过部分之后的字段索引失效
+- 使用索引字段作为条件的顺序不重要，因为mysql底层会有sql优化器。
+
+
+
+假设有索引是由（a，b，c）构成：
+
+使用a作为条件索引才会生效； a和b索引全部生效； a和c部分生效，a字段生效；c和a 和b全部生效
+
+
+
+> 范围查询
+
+
+
+当使用范围查询时（>,<），范围查询右侧的列索引会失效，如果查询`a=xx and b>12 and c=vv`，那么c字段的索引将会失效。
+
+但是如果使用（>=,<=），来代替（>,<），那么范围查询右侧列索引不会失效。
+
+
+
+> 索引列运算
+
+
+
+当在索引列进行运算操作，或者使用函数，那么索引失效。
+
+
+
+> 字符串类型加引号
+
+
+
+当查询字符串型字段时，不加引号索引会失效。
+
+
+
+> 模糊查询
+
+
+
+使用索引列模糊查询时，如果是头部模糊查询，那么索引失效，如果只是尾部模糊，那么索引生效。
+
+即`where a like '%xx'`和`where a like '%xx%'`索引失效， `where a like 'xx%'` 索引生效。
+
+
+
+> or查询
+
+
+
+当使用`or`连接条件时，必须`or`前后条件要走索引，那么这个语句才会走索引。
+
+即：
+
+假设现在还有 d字段索引和 e字段索引， 条件为`b = '12' or d = 'ss'`不会走索引， `e = 'ggg' or d = 'sss'`会走索引。
+
+
+
+> 数据分布影响
+
+
+
+当mysql评估认为走索引比走ALL还慢，那么就会进行全表扫描。
+
+
+
+> SQL提示
+
+
+
+在执行SQL时，当可以有多个索引选择时，我们可以指定使用哪个索引。
+
+
+
+`select * from table_name use index(index_name) where ...`，建议使用哪个索引。
+
+`select * from table_name ignore index(index_name) where ...`，忽略哪个索引。
+
+`select * from table_name force index(index_name) where ...`，强制使用哪个索引。
+
+
+
+> 覆盖索引&回表查询
+
+
+
+前面的索引使用都是针对条件而言，现在要对查询字段优化。
+
+尽量使要查询的字段在索引中出现，如果直接在索引中出现，或者再加上id，那么走完索引查询就可以直接返回数据。
+
+如果还有别的字段，那么还需要通过主键id去回表查询，从而使SQL变慢。
+
+
+
+> 前缀索引
+
+适用varchar，text，根据字段前缀来匹配
+
+创建语法： `create index index_name on table_name (column(n)) `，其中n代表前缀长度。
+
+
+
+长度的选择，应该根据这个长度的字段在表里的唯一性， 就比如a字段为1234567，表里面有很多字段是123开头，那么就应该是长度大于三好一点，同时也应该考虑索引的长度占用空间是否很大。
+
+使用SQL查询长度应该多少：
+
+`select count(distinct substring(cloumn, 1, n))/ count(*) from table_name`
+
+其中n代表前缀长度，返回结果越大越不重复。

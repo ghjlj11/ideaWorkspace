@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="二进制加法">
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/T3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/random/Kk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/random/Test01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-09-task/src/test/java/com/ghj/springboot09test/SpringBoot09TestApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-09-task/src/test/java/com/ghj/springboot09test/SpringBoot09TestApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/helloWorld/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../rabbitmq-study/rabbit01/src/main/java/com/ghj/helloWorld/Producer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/MYSQL-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +182,7 @@
       <workItem from="1667295467237" duration="612000" />
       <workItem from="1670747663793" duration="2398000" />
       <workItem from="1678276906480" duration="2162000" />
+      <workItem from="1680325490415" duration="750000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
