@@ -156,7 +156,7 @@ server_name  localhost;
 # 在这个localtion下加上 proxy_pass http://localhost:8080;
 location / {
 root   html;
-index  index.html index.htm;
+index  index.html index.html;
 }
 
 # 即：
