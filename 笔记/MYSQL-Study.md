@@ -414,7 +414,7 @@ select * from User limit 6;
 
 
 
-## SQL调优
+## SQL性能分析
 
 
 
@@ -714,3 +714,68 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 `select count(distinct substring(cloumn, 1, n))/ count(*) from table_name`
 
 其中n代表前缀长度，返回结果越大越不重复。
+
+
+
+### 索引设计原则
+
+索引要设计在经常出现在`where`条件之后的字段，以及`group by`和`order by`字段上面，这样才可以提高查询效率。
+
+
+
+
+
+## SQL优化
+
+
+
+> insert优化
+
+- 批量插入， 如果插入多条数据， 应该使用一个insert语句批量插入。
+- 手动提交事务， 我们可以开启一个事务， 然后中间写要执行的SQL，最后自己手动提交事务。
+- 主键顺序插入， 即主键按照顺序插入。
+
+
+
+> 主键优化
+
+- 主键的长度尽量小
+- 主键尽量自增
+
+
+
+> order by
+
+
+
+Using filesort 不通过索引直接返回排序结果； Using index 通过有序索引扫描直接返回有序数据。
+
+
+
+使用order by后面排序的字段尽量要走索引， 并且要尽量使用覆盖索引。
+
+
+
+> group by
+
+Using temporary 分组效率低， 使用了临时表来分组； Using index分组效率高。
+
+
+
+使用group by后面分组的字段尽量要走索引， 并且要尽量使用覆盖索引。
+
+
+
+> limit
+
+当数据量很大时， 例如`limit 10000000, 10`，我们只取十条记录， 但是得查找前一千万条记录， 如果直接使用limit也会很慢。
+
+
+
+因此我们应该尽量使用覆盖索引，如果还需要查询别的非索引字段数据，那么可以加上子查询， 例如：
+
+```mysql
+select t.* from test t , (select id from test limit 10000000, 10) s where t.id = s.id;
+```
+
+这样就走了主键，加上子查询也可以查出所有字段的数据了。
