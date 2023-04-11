@@ -23,16 +23,20 @@ public class EsIndexTest {
                 RestClient.builder(new HttpHost(HttpHostConstant.HOST, HttpHostConstant.PORT, HttpHostConstant.METHOD))
         );
 
-        EsIndexTest indexTest = new EsIndexTest();
+        try{
+            EsIndexTest indexTest = new EsIndexTest();
+            // 查询索引
+            indexTest.getIndex(esClient, "user2");
 
-        // 查询索引
-        indexTest.getIndex(esClient, "user2");
+            // 删除
+            indexTest.deleteIndex(esClient, "user2");
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            // 关闭es客户端
+            esClient.close();
+        }
 
-        // 删除
-        indexTest.deleteIndex(esClient, "user2");
-
-        // 关闭es客户端
-        esClient.close();
     }
 
     /**
