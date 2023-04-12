@@ -19,17 +19,17 @@ import org.elasticsearch.client.indices.GetIndexResponse;
 public class EsIndexTest {
     public static void main(String[] args) throws Exception {
         // 创建es客户端
-        RestHighLevelClient esClient = new RestHighLevelClient(
-                RestClient.builder(new HttpHost(HttpHostConstant.HOST, HttpHostConstant.PORT, HttpHostConstant.METHOD))
-        );
+        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
 
         try{
             EsIndexTest indexTest = new EsIndexTest();
+
+            indexTest.createIndex(esClient, "user2");
             // 查询索引
-            indexTest.getIndex(esClient, "user2");
+            //indexTest.getIndex(esClient, "user2");
 
             // 删除
-            indexTest.deleteIndex(esClient, "user2");
+            //indexTest.deleteIndex(esClient, "user2");
         } catch (Exception e){
             e.printStackTrace();
         } finally {

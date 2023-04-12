@@ -1,5 +1,7 @@
 package workTest;
 
+import java.util.List;
+
 /**
  * @author 86187
  */
@@ -13,5 +15,9 @@ public class T3 {
         else {
             System.out.println("rrrrrrr");
         }
+
+        List s = null;
+        String k = String.valueOf(s);
+        System.out.println(k);
     }
 }

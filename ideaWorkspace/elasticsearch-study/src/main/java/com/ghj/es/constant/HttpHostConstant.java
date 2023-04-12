@@ -1,20 +1,21 @@
 package com.ghj.es.constant;
 
+import org.apache.http.HttpHost;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+
 /**
  * 常量类
  * @author 86187
  */
 public class HttpHostConstant {
     /**
-     * 主机
+     * 获取es客户端连接
+     * @return
      */
-    public static final String HOST = "www.ghjlj.cn";
-    /**
-     * 端口
-     */
-    public static final int PORT = 9200;
-    /**
-     * 连接方式
-     */
-    public static final String METHOD = "Http";
+    public static RestHighLevelClient getEsClient(){
+         return new RestHighLevelClient(
+                RestClient.builder(new HttpHost("www.ghjlj.cn", 9200, "Http"))
+        );
+    }
 }

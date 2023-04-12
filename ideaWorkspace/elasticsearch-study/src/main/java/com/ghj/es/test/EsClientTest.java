@@ -14,9 +14,7 @@ import java.io.IOException;
 public class EsClientTest {
     public static void main(String[] args) throws IOException {
         // 创建es客户端
-        RestHighLevelClient esClient = new RestHighLevelClient(
-                RestClient.builder(new HttpHost(HttpHostConstant.HOST, HttpHostConstant.PORT, HttpHostConstant.METHOD))
-        );
+        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
 
         // 关闭es客户端
         esClient.close();
