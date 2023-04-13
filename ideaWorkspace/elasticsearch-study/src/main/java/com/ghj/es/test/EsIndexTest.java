@@ -1,11 +1,9 @@
 package com.ghj.es.test;
 
-import com.ghj.es.constant.HttpHostConstant;
-import org.apache.http.HttpHost;
+import com.ghj.es.constant.EsClientUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
@@ -18,10 +16,9 @@ import org.elasticsearch.client.indices.GetIndexResponse;
  */
 public class EsIndexTest {
     public static void main(String[] args) throws Exception {
-        // 创建es客户端
-        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
+        // 连接es客户端
+        EsClientUtil.connect( esClient -> {
 
-        try{
             EsIndexTest indexTest = new EsIndexTest();
 
             indexTest.createIndex(esClient, "user2");
@@ -30,13 +27,7 @@ public class EsIndexTest {
 
             // 删除
             //indexTest.deleteIndex(esClient, "user2");
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            // 关闭es客户端
-            esClient.close();
-        }
-
+        });
     }
 
     /**

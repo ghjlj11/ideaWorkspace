@@ -1,6 +1,6 @@
 package com.ghj.es.test;
 
-import com.ghj.es.constant.HttpHostConstant;
+import com.ghj.es.constant.EsClientUtil;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -14,7 +14,9 @@ import java.io.IOException;
 public class EsClientTest {
     public static void main(String[] args) throws IOException {
         // 创建es客户端
-        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
+        RestHighLevelClient esClient = new RestHighLevelClient(
+                RestClient.builder(new HttpHost("www.ghjlj.cn", 9200, "Http"))
+        );
 
         // 关闭es客户端
         esClient.close();

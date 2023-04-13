@@ -2,9 +2,8 @@ package com.ghj.es.test;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ghj.es.constant.HttpHostConstant;
+import com.ghj.es.constant.EsClientUtil;
 import com.ghj.es.pojo.User;
-import org.apache.http.HttpHost;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -14,7 +13,6 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 
@@ -25,10 +23,8 @@ import org.elasticsearch.common.xcontent.XContentType;
  */
 public class EsDocumentTest {
     public static void main(String[] args) throws Exception {
-        // 创建es客户端
-        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
-
-        try{
+        // 连接es客户端
+        EsClientUtil.connect( esClient -> {
             User user = new User("ghj", "man", 123);
             EsDocumentTest documentTest = new EsDocumentTest();
             // 创建文档
@@ -36,17 +32,10 @@ public class EsDocumentTest {
             // 更新文档
             //documentTest.updateDocument(esClient, "1001");
             // 查询文档
-            documentTest.queryDocument(esClient, "1001");
+            documentTest.queryDocument(esClient, "1003");
             // 删除文档
             //documentTest.deleteDocument(esClient, "1001");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        finally {
-            // 关闭es客户端
-            esClient.close();
-        }
+        });
     }
 
     /**

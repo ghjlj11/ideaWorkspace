@@ -457,7 +457,7 @@ es中也有类似与mysql的表
 ```java
 package com.ghj.es.test;
 
-import com.ghj.es.constant.HttpHostConstant;
+import com.ghj.es.constant.EsClientUtil;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -472,13 +472,14 @@ public class EsClientTest {
     public static void main(String[] args) throws IOException {
         // 创建es客户端
         RestHighLevelClient esClient = new RestHighLevelClient(
-                RestClient.builder(new HttpHost(HttpHostConstant.HOST, HttpHostConstant.PORT, HttpHostConstant.METHOD))
+                RestClient.builder(new HttpHost("www.ghjlj.cn", 9200, "Http"))
         );
 
         // 关闭es客户端
         esClient.close();
     }
 }
+
 ```
 
 
@@ -489,7 +490,36 @@ public class EsClientTest {
 
 
 
-建一个连接工具类
+>  建连接工具类
+
+
+
+任务接口：
+
+```java
+package com.ghj.es.constant;
+
+
+import org.elasticsearch.client.RestHighLevelClient;
+
+/**
+ * 使用lambda实现该接口，方便操作es客户端连接
+ * @author 86187
+ */
+public interface EsTask {
+    /**
+     * 使用es客户端
+     * @param esClient
+     * @throws Exception
+     */
+    void doSomeThing(RestHighLevelClient esClient) throws Exception;
+}
+
+```
+
+
+
+连接工具：
 
 ```java
 package com.ghj.es.constant;
@@ -499,35 +529,45 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 
 /**
- * 常量类
+ * 工具类
  * @author 86187
  */
-public class HttpHostConstant {
+public class EsClientUtil {
     /**
      * 获取es客户端连接
      * @return
      */
-    public static RestHighLevelClient getEsClient(){
-         return new RestHighLevelClient(
+    public static void connect(EsTask task) throws Exception{
+        RestHighLevelClient esClient = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("www.ghjlj.cn", 9200, "Http"))
         );
+        try{
+            task.doSomeThing(esClient);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            esClient.close();
+        }
     }
 }
+
 ```
 
 
 
-索引增删查相关操作
+
+
+>  索引增删查相关操作
 
 ```java
 package com.ghj.es.test;
 
-import com.ghj.es.constant.HttpHostConstant;
-import org.apache.http.HttpHost;
+import com.ghj.es.constant.EsClientUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
@@ -540,10 +580,9 @@ import org.elasticsearch.client.indices.GetIndexResponse;
  */
 public class EsIndexTest {
     public static void main(String[] args) throws Exception {
-        // 创建es客户端
-        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
+        // 连接es客户端
+        EsClientUtil.connect( esClient -> {
 
-        try{
             EsIndexTest indexTest = new EsIndexTest();
 
             indexTest.createIndex(esClient, "user2");
@@ -552,13 +591,7 @@ public class EsIndexTest {
 
             // 删除
             //indexTest.deleteIndex(esClient, "user2");
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            // 关闭es客户端
-            esClient.close();
-        }
-
+        });
     }
 
     /**
@@ -624,9 +657,8 @@ package com.ghj.es.test;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ghj.es.constant.HttpHostConstant;
+import com.ghj.es.constant.EsClientUtil;
 import com.ghj.es.pojo.User;
-import org.apache.http.HttpHost;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -636,7 +668,6 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 
@@ -647,10 +678,8 @@ import org.elasticsearch.common.xcontent.XContentType;
  */
 public class EsDocumentTest {
     public static void main(String[] args) throws Exception {
-        // 创建es客户端
-        RestHighLevelClient esClient = HttpHostConstant.getEsClient();
-
-        try{
+        // 连接es客户端
+        EsClientUtil.connect( esClient -> {
             User user = new User("ghj", "man", 123);
             EsDocumentTest documentTest = new EsDocumentTest();
             // 创建文档
@@ -658,17 +687,10 @@ public class EsDocumentTest {
             // 更新文档
             //documentTest.updateDocument(esClient, "1001");
             // 查询文档
-            documentTest.queryDocument(esClient, "1001");
+            documentTest.queryDocument(esClient, "1003");
             // 删除文档
             //documentTest.deleteDocument(esClient, "1001");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        finally {
-            // 关闭es客户端
-            esClient.close();
-        }
+        });
     }
 
     /**
@@ -734,6 +756,184 @@ public class EsDocumentTest {
         request.index("user2").id(id);
         DeleteResponse response = esClient.delete(request, RequestOptions.DEFAULT);
         System.out.println(response.getResult());
+    }
+}
+
+```
+
+
+
+### 批量操作
+
+
+
+> 批量增删改
+
+
+
+```java
+package com.ghj.es.test;
+
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ghj.es.constant.EsClientUtil;
+import com.ghj.es.pojo.User;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
+
+import java.util.Arrays;
+
+
+/**
+ * 批量新增删除修改文档，不能批量查看
+ * @author 86187
+ */
+public class EsBatchOptionTest {
+    public static void main(String[] args) throws Exception {
+        // 连接es客户端
+        EsClientUtil.connect( esClient -> {
+
+            EsBatchOptionTest batchOptionTest = new EsBatchOptionTest();
+            // 批量新增
+            batchOptionTest.batchInsert(esClient);
+            // 批量删除
+            //batchOptionTest.batchDelete(esClient);
+            // 批量杂
+            //batchOptionTest.batchMix(esClient);
+        });
+    }
+
+    /**
+     * 批量新增
+     * @param esClient
+     * @throws Exception
+     */
+    public void batchInsert(RestHighLevelClient esClient) throws Exception{
+        User user1 = new User("ll", "man", 22);
+        User user2 = new User("jj", "woman", 33);
+        User user3 = new User("hh", "man", 44);
+        ObjectMapper mapper = new ObjectMapper();
+        // 批量操作请求
+        BulkRequest bulkRequest = new BulkRequest();
+        IndexRequest request1 = new IndexRequest().index("user2").id("1003").source(mapper.writeValueAsString(user1), XContentType.JSON);
+        IndexRequest request2 = new IndexRequest().index("user2").id("1004").source(mapper.writeValueAsString(user2), XContentType.JSON);
+        IndexRequest request3 = new IndexRequest().index("user2").id("1005").source(mapper.writeValueAsString(user3), XContentType.JSON);
+
+        // 添加请求
+        bulkRequest.add(request1).add(request2).add(request3);
+
+        BulkResponse response = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+        System.out.println("items: " + Arrays.toString(response.getItems()));
+        System.out.println("took: " + response.getTook());
+    }
+
+    /**
+     * 批量删除
+     * @param esClient
+     * @throws Exception
+     */
+    public void batchDelete(RestHighLevelClient esClient) throws Exception{
+        // 批量操作请求
+        BulkRequest bulkRequest = new BulkRequest();
+        DeleteRequest request1 = new DeleteRequest().index("user2").id("1003");
+        DeleteRequest request2 = new DeleteRequest().index("user2").id("1004");
+        DeleteRequest request3 = new DeleteRequest().index("user2").id("1005");
+
+        // 添加请求
+        bulkRequest.add(request1).add(request2).add(request3);
+
+        BulkResponse response = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+        System.out.println("items: " + response.getItems());
+        System.out.println("took: " + response.getTook());
+    }
+
+
+    /**
+     * 批量混合
+     * @param esClient
+     * @throws Exception
+     */
+    public void batchMix(RestHighLevelClient esClient) throws Exception{
+        User user1 = new User("ll", "man", 22);
+        User user2 = new User("jj", "woman", 33);
+        ObjectMapper mapper = new ObjectMapper();
+        // 批量操作请求
+        BulkRequest bulkRequest = new BulkRequest();
+        IndexRequest request1 = new IndexRequest().index("user2").id("1003").source(mapper.writeValueAsString(user1), XContentType.JSON);
+        IndexRequest request2 = new IndexRequest().index("user2").id("1004").source(mapper.writeValueAsString(user2), XContentType.JSON);
+        DeleteRequest request3 = new DeleteRequest().index("user2").id("1004");
+        UpdateRequest request4 = new UpdateRequest().index("user2").id("1003").doc(XContentType.JSON, "name", "haha");
+
+        // 添加请求
+        bulkRequest.add(request1).add(request2).add(request3).add(request4);
+
+        BulkResponse response = esClient.bulk(bulkRequest, RequestOptions.DEFAULT);
+        System.out.println("items: " + Arrays.toString(response.getItems()));
+        System.out.println("took: " + response.getTook());
+    }
+}
+
+```
+
+
+
+
+
+### 全部查询
+
+
+
+> 查询多个索引全部文档
+
+```java
+package com.ghj.es.test;
+
+
+import com.ghj.es.constant.EsClientUtil;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+/**
+ * 查询索引下全部数据
+ * @author 86187
+ */
+public class EsAllSearchTest {
+    public static void main(String[] args) throws Exception {
+        EsClientUtil.connect(esClient -> {
+            // 搜索请求对象
+            SearchRequest request = new SearchRequest();
+            // 可以查询多个索引下
+            request.indices("user2", "user");
+            // 搜索请求体构建
+            SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+            // 全部查询
+            sourceBuilder.query(QueryBuilders.matchAllQuery());
+            request.source(sourceBuilder);
+            // 响应
+            SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+
+            // 搜索返回的数据
+            SearchHits hits = response.getHits();
+            System.out.println(hits.getTotalHits());
+            for (SearchHit hit : hits) {
+                System.out.println("source: " + hit.getSourceAsString());
+            }
+
+            System.out.println(response);
+        });
     }
 }
 
