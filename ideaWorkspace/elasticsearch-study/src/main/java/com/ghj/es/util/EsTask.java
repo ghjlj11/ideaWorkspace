@@ -1,4 +1,4 @@
-package com.ghj.es.constant;
+package com.ghj.es.util;
 
 
 import org.elasticsearch.client.RestHighLevelClient;

@@ -1,6 +1,5 @@
 package com.ghj.es.test;
 
-import com.ghj.es.constant.EsClientUtil;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;

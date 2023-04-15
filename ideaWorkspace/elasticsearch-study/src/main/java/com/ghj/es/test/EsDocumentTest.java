@@ -2,7 +2,7 @@ package com.ghj.es.test;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ghj.es.constant.EsClientUtil;
+import com.ghj.es.util.EsClientUtil;
 import com.ghj.es.pojo.User;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;

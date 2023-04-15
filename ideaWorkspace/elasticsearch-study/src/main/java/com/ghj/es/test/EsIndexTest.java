@@ -1,6 +1,6 @@
 package com.ghj.es.test;
 
-import com.ghj.es.constant.EsClientUtil;
+import com.ghj.es.util.EsClientUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
