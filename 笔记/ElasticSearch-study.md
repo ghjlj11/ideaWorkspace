@@ -763,7 +763,7 @@ public class EsDocumentTest {
 
 
 
-### 批量操作
+#### 批量操作
 
 
 
@@ -885,11 +885,109 @@ public class EsBatchOptionTest {
 
 
 
-### 全部查询
+#### 查询
 
 
 
-> 查询多个索引全部文档
+> 建立工具类，避免重复代码
+
+
+
+配置builder接口：
+
+```java
+package com.ghj.es.util;
+
+
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+/**
+ * 使用lambda接口设置请求体builder
+ * @author 86187
+ */
+public interface EsSearchSourceBuilderTask {
+
+    /**
+     * 设置builder
+     * @param builder
+     */
+    void setBuilder(SearchSourceBuilder builder);
+}
+
+```
+
+
+
+搜索工具类
+
+```java
+package com.ghj.es.util;
+
+
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+
+
+/**
+ * 为了减少查询时重复代码
+ * @author 86187
+ */
+public class EsSearchUtil {
+
+    /**
+     * 打印响应数据
+     * @param response
+     */
+    public static void printResponse(SearchResponse response){
+        System.out.println("================================================");
+        System.out.println(
+                "调用方："
+                        + Thread.currentThread().getStackTrace()[2].getClassName()
+                        + "#"
+                        + Thread.currentThread().getStackTrace()[2].getMethodName() + "(line:"
+                        + Thread.currentThread().getStackTrace()[2].getLineNumber() + ")");
+        // 匹配数据
+        SearchHits hits = response.getHits();
+        System.out.println("took: " + response.getTook());
+        System.out.println("isTimedOut: " + response.isTimedOut());
+        System.out.println("total: " + hits.getTotalHits());
+        System.out.println("MaxScore: " + hits.getMaxScore());
+        System.out.println("========> hits:");
+        for (SearchHit hit : hits) {
+            System.out.println("id: " + hit.getId() + " ==>" + hit.getSourceAsString());
+        }
+    }
+
+    /**
+     * 获取 搜索请求
+     * @param task
+     * @return
+     */
+    public static SearchRequest getSearchRequest(EsSearchSourceBuilderTask task){
+        // 请求
+        SearchRequest request = new SearchRequest();
+        // 可以设置多个index
+        request.indices("user2");
+        // 请求体构造器
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        // 配置构造器
+        task.setBuilder(builder);
+        request.source(builder);
+        return request;
+    }
+}
+
+```
+
+
+
+
+
+> 文档相关操作
 
 ```java
 package com.ghj.es.test;
