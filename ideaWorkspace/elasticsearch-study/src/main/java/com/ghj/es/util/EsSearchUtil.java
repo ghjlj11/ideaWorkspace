@@ -5,8 +5,12 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 
+import java.io.IOException;
+import java.util.Map;
 
 
 /**
@@ -35,6 +39,11 @@ public class EsSearchUtil {
         System.out.println("MaxScore: " + hits.getMaxScore());
         System.out.println("========> hits:");
         for (SearchHit hit : hits) {
+            // 高亮字段
+            Map<String, HighlightField> highlightFields = hit.getHighlightFields();
+            if(!highlightFields.isEmpty()){
+                System.out.println("highlightFields: " + highlightFields);
+            }
             System.out.println("id: " + hit.getId() + " ==>" + hit.getSourceAsString());
         }
     }
@@ -44,7 +53,7 @@ public class EsSearchUtil {
      * @param task
      * @return
      */
-    public static SearchRequest getSearchRequest(EsSearchSourceBuilderTask task){
+    public static SearchRequest getSearchRequest(EsSearchSourceBuilderTask task) throws Exception {
         // 请求
         SearchRequest request = new SearchRequest();
         // 可以设置多个index

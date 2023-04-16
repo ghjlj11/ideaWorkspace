@@ -3,15 +3,18 @@ package com.ghj.es.util;
 
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
+
 /**
  * 使用lambda接口设置请求体builder
  * @author 86187
  */
 public interface EsSearchSourceBuilderTask {
 
+
     /**
      * 设置builder
      * @param builder
+     * @throws Exception
      */
-    void setBuilder(SearchSourceBuilder builder);
+    void setBuilder(SearchSourceBuilder builder) throws Exception;
 }

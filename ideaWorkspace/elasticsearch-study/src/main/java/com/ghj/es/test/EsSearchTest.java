@@ -7,10 +7,22 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.FuzzyQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.metrics.Avg;
+import org.elasticsearch.search.aggregations.metrics.Max;
+import org.elasticsearch.search.aggregations.metrics.Min;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,6 +44,14 @@ public class EsSearchTest {
             queryUnit(esClient);
             // 范围查询
             queryRange(esClient);
+            // 模糊查询
+            queryLike(esClient);
+            // 高亮查询
+            queryHighlight(esClient);
+            // 聚合查询 最值，平均值
+            queryMax(esClient);
+            // 分组查询
+            queryGroup(esClient);
         });
     }
 
@@ -158,6 +178,117 @@ public class EsSearchTest {
         SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
         // 打印匹配数据
         EsSearchUtil.printResponse(response);
+    }
+
+
+    /**
+     * 模糊查询，与MySQL不一样的是 模糊查询 mun 也可以查出 man
+     * @param esClient
+     * @throws Exception
+     */
+    public static void queryLike(RestHighLevelClient esClient) throws Exception{
+        // 查询请求
+        SearchRequest request = EsSearchUtil.getSearchRequest(builder -> {
+            // 构建模糊查询请求体
+            FuzzyQueryBuilder fuzzyQueryBuilder = new FuzzyQueryBuilder("sex", "mun");
+            // 设置允许有几个字符有差别
+            fuzzyQueryBuilder.fuzziness(Fuzziness.TWO);
+            builder.query(fuzzyQueryBuilder);
+            // 设置查询指定字段，排除字段
+            String[] includes = {"name"};
+            String[] excludes = {};
+            builder.fetchSource(includes, excludes);
+        });
+
+        // 响应
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+        // 打印匹配数据
+        EsSearchUtil.printResponse(response);
+    }
+
+    /**
+     * 高亮查询
+     * @param esClient
+     * @throws Exception
+     */
+    public static void queryHighlight(RestHighLevelClient esClient) throws Exception{
+        // 查询请求
+        SearchRequest request = EsSearchUtil.getSearchRequest(builder -> {
+            // 设置多条件查询
+            BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
+            boolQueryBuilder.must(QueryBuilders.termQuery("sex", "man"));
+            boolQueryBuilder.must(QueryBuilders.termQuery("name", "ll"));
+            builder.query(boolQueryBuilder);
+            // 设置高亮字段
+            HighlightBuilder highlightBuilder = new HighlightBuilder();
+            // 设置前缀标签
+            highlightBuilder.preTags("<font color='red'>");
+            // 设置后缀标签
+            highlightBuilder.postTags("</font>");
+            // 高亮字段， 高亮字段必须在查询条件中才可以高亮
+            List<HighlightBuilder.Field> fields = highlightBuilder.fields();
+            fields.add(new HighlightBuilder.Field("name"));
+            fields.add(new HighlightBuilder.Field("sex"));
+            // 构建高亮请求体
+            builder.highlighter(highlightBuilder);
+        });
+
+        // 响应
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+        // 打印匹配数据
+        EsSearchUtil.printResponse(response);
+    }
+
+
+    /**
+     * 聚合查询， 最值
+     * @param esClient
+     * @throws Exception
+     */
+    public static void queryMax(RestHighLevelClient esClient) throws Exception{
+        // 查询请求
+        SearchRequest request = EsSearchUtil.getSearchRequest(builder -> {
+            // 构建聚合查询请求体 maxAge为最大值输出的名称
+            AggregationBuilder maxAggregationBuilder = AggregationBuilders.max("maxAge").field("age");
+            // 最小值
+            AggregationBuilder minAggregationBuilder = AggregationBuilders.min("minAge").field("age");
+            // 平均值
+            AggregationBuilder avgAggregationBuilder = AggregationBuilders.avg("avgAge").field("age");
+            builder.aggregation(maxAggregationBuilder);
+            builder.aggregation(minAggregationBuilder);
+            builder.aggregation(avgAggregationBuilder);
+        });
+
+        // 响应
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+        // 打印匹配数据
+        EsSearchUtil.printResponse(response);
+        System.out.println("response: " + response);
+        // 获取响应中的值
+        System.out.println("maxAge: " + ((Max)response.getAggregations().get("maxAge")).getValue());
+        System.out.println("minAge: " + ((Min)response.getAggregations().get("minAge")).getValue());
+        System.out.println("avgAge: " + ((Avg)response.getAggregations().get("avgAge")).getValue());
+    }
+
+
+    /**
+     * 聚合查询， 分组查询
+     * @param esClient
+     * @throws Exception
+     */
+    public static void queryGroup(RestHighLevelClient esClient) throws Exception{
+        // 查询请求
+        SearchRequest request = EsSearchUtil.getSearchRequest(builder -> {
+            // 构建分组请求体
+            AggregationBuilder aggregationBuilder = AggregationBuilders.terms("ageGroup").field("age");
+            builder.aggregation(aggregationBuilder);
+        });
+
+        // 响应
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+        // 打印匹配数据
+        EsSearchUtil.printResponse(response);
+        System.out.println(response);
     }
 
 
