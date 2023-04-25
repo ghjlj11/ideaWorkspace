@@ -1,0 +1,2 @@
+package com.ghj.dependency;public class PoJo1 {
+}
