@@ -28,5 +28,15 @@ public class TestBigDecimal {
         String s2 = "qweqe";
         String[] split = s2.split(":");
         System.out.println(Arrays.toString(split));
+        String k = "";
+        String k1 = null;
+        String k2 = null;
+
+        Boolean o = null;
+        k  = k1 + k2;
+        if(o){
+            System.out.println("12345");
+        }
+        System.out.println(k);
     }
 }

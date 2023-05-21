@@ -2,6 +2,8 @@ package com.ghj.springcloud.controllrt;
 
 import com.ghj.springcloud.pojo.Dept;
 import com.ghj.springcloud.service.FeignService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +15,10 @@ import java.util.List;
 /**
  * @author 86187
  */
-
 @RestController
 public class MyController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyController.class);
     @Autowired
     FeignService feignService;
 

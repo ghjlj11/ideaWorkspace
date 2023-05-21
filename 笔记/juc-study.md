@@ -1360,7 +1360,7 @@ public class LazyMan {
 
 ​		2、另外当一个线程启动之后，不能重复调用start()，否则会报IllegalStateException异常。但是可以重复调		用run()方法。
 
-​		总结起来就是run()就是一个普通的方法，而start()会创建一个新线程去执行run()的代码。
+​		总结起来就是run()	就是一个普通的方法，而start()会创建一个新线程去执行run()的代码。
 
 
 

@@ -88,6 +88,11 @@
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.arakhne.afc.slf4j</groupId>
+                <artifactId>slf4j-log4j</artifactId>
+                <version>17.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -98,4 +103,17 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <finalName>springCloud-study</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

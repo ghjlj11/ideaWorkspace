@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="599c7221-2eb1-449e-af6a-7f3b8f6064da" name="变更" comment="change">
-      <change afterPath="$PROJECT_DIR$/../newSpringMVC/ssm/log_2022-06-09.txt.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/util/MD5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_en_US.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/i18n/login_zh_CN.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../newSpringMVC/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-03-web/src/main/java/com/ghj/config/MyWebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/config/UserRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/controller/MyShiroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/java/com/ghj/pojo/People.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/springBoot-07-shiro/springBoot-shiro/src/test/java/com/ghj/SpringBootShiroApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springMVC-study/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer05/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer05/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer58/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer58/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ghj/theVolatile/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ghj/theVolatile/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringBoot - Study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/juc-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/juc-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,6 +169,8 @@
       <workItem from="1654393520498" duration="8543000" />
       <workItem from="1654473961675" duration="1469000" />
       <workItem from="1654771505811" duration="730000" />
+      <workItem from="1682477144711" duration="1971000" />
+      <workItem from="1683341548879" duration="618000" />
     </task>
     <task id="LOCAL-00001" summary="lock and volatile">
       <created>1651286424878</created>

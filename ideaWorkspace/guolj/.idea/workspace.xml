@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="排序">
+      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer05/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer05/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer58/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer58/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/random/xiefu/MaoPao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/singoton/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/juc-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/juc-study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,20 +81,7 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.InsertSort">
-    <configuration name="Example7_4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.random.seven.Example7_4" />
-      <module name="guolj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lj.random.seven.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="应用程序.MaoPao">
     <configuration name="InsertSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lj.random.InsertSort" />
       <module name="guolj" />
@@ -94,12 +95,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.offer.offer02.Main" />
+    <configuration name="MaoPao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.random.xiefu.MaoPao" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.offer.offer02.*" />
+          <option name="PATTERN" value="lj.random.xiefu.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,12 +108,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.leetcode.code5299.Solution" />
+    <configuration name="Test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.offer.offer58.Test" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.leetcode.code5299.*" />
+          <option name="PATTERN" value="lj.offer.offer58.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.offer.offer05.Test" />
+      <module name="guolj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lj.offer.offer05.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -135,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.MaoPao" />
+        <item itemvalue="应用程序.Test (1)" />
+        <item itemvalue="应用程序.Test" />
         <item itemvalue="应用程序.InsertSort" />
         <item itemvalue="应用程序.Test01" />
-        <item itemvalue="应用程序.Example7_4" />
-        <item itemvalue="应用程序.Main" />
-        <item itemvalue="应用程序.Solution" />
       </list>
     </recent_temporary>
   </component>
@@ -181,6 +195,8 @@
       <workItem from="1678276906480" duration="2162000" />
       <workItem from="1680325490415" duration="750000" />
       <workItem from="1681441178439" duration="2690000" />
+      <workItem from="1682497425637" duration="2604000" />
+      <workItem from="1684389422797" duration="1488000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
