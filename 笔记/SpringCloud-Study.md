@@ -493,6 +493,35 @@ eureka:
 
 
 
+### eureka自我保护
+
+eureka默认开启自我保护功能，也就是当某一个服务由于网络不通，eureka不能访问，那么eureka不会直接将该服务从注册表中剔除，而是会先等待一段时间，如果超过等待时间则会剔除服务。
+
+eureka关闭自我保护机制：
+
+​		服务注册中心配置：
+
+```yaml
+eureka:
+  server:
+    enable-self-preservation: false     # 表示关闭自我保护机制
+    eviction-interval-timer-in-ms: 9000     # 表示设置服务最大的失联时间
+```
+
+​		对应服务配置：
+
+```yaml
+eureka:
+    lease-renewal-interval-in-seconds: 1   # 发送心跳时间间隔
+    lease-expiration-duration-in-seconds: 2    # 服务端接收心跳最大间隔时间
+```
+
+
+
+
+
+
+
 ### CAP原则
 
 - C 强一致性
@@ -744,7 +773,7 @@ private Response<ServiceInstance> getInstanceResponse(List<ServiceInstance> inst
 
 
 
-​		我们之前从消费者访问服务者的service是通过RestTemplate来根据服务名称跳转请求的，而这种看起来会很不舒服，链接都是拼接来的，  java万物皆对象， 就把 这个服务名称放在一个对象里面， 这些消费者的请求也放在里面， 然后消费者如果要调用服务， 就只需要拿到这个对象， 然后去用里面的方法调用服务， Feign就是这样实现的。 
+​		我们之前从消费者访问服务者的service是通过RestTemplate来根据服务名称跳转请求的，而这种看起来会很不舒服，链接都是拼接来的，  java万物皆对象， 就把 这个服务名称放在一个接口对象里面， 这些生产者的请求也放在里面，把接口写在一个单独的模块， 然后消费者如果要调用服务，就引入对应的模块， 只需要拿到这个对象， 然后去用里面的方法调用服务， OpenFeign就是这样实现的。OpenFeign就是在Ribbon+ RestTemplate的基础上在封装了一层。
 
 
 
