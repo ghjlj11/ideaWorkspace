@@ -9,7 +9,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="测试Ajax" />
+    <list default="true" id="84da61f7-261b-4da5-a04a-df2f716d2a54" name="变更" comment="测试Ajax">
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/common-api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/common-api/src/main/java/com/ghj/api/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/common-api/src/main/java/com/ghj/api/service/UserProviderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/src/main/java/com/ghj/consumer/controller/ConsumerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/src/main/resources/dubbo-link-consumer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/src/main/resources/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-consumer/src/main/webapp/hello.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-provider/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-provider/src/main/java/com/ghj/provider/service/impl/UserProviderServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-provider/src/main/resources/dubbo-link-provider.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-provider/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dubbo-study/web-001-link-provider/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springBoot-study/helloworld/src/main/java/com/ghj/helloworld/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springBoot-study/helloworld/src/main/java/com/ghj/helloworld/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ssmbuild_war_exploded/WEB-INF/classes/com/ghj/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ghj/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ghj/controller/BookController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +102,7 @@
       <recent name="D:\ideaWorkspace\ssmbuild\web\WEB-INF\jsp" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Test01.test1">
+  <component name="RunManager" selected="Tomcat 服务器.Tomcat 9.0.52">
     <configuration name="BooksServiceImpl.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ssmbuild" />
       <extension name="coverage">
@@ -108,7 +130,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.52" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.52" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="17" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ssmbuild:war exploded">
           <settings>
@@ -127,6 +149,9 @@
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="54806" />
       </RunnerSettings>
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="jreHome" value="C:\Program Files\Java\jdk-17.0.2" />
+      </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -143,6 +168,21 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JProfiler">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -247,6 +287,9 @@
       <workItem from="1668956132144" duration="5249000" />
       <workItem from="1669205452769" duration="1992000" />
       <workItem from="1670484200886" duration="33000" />
+      <workItem from="1685707432609" duration="1739000" />
+      <workItem from="1685712717915" duration="3042000" />
+      <workItem from="1685759262081" duration="1673000" />
     </task>
     <task id="LOCAL-00001" summary="ssmbuild">
       <created>1651676376224</created>

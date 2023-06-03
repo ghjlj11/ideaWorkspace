@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <groupId>com.example</groupId>
+    <artifactId>dubbo-study</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>dubbo-study</name>
+    <description>dubbo-study</description>
+
+    <modules>
+        <module>common-api</module>
+        <module>web-001-link-provider</module>
+        <module>web-001-link-consumer</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <dubbo-version>3.1.8</dubbo-version>
+        <eureka-version>3.1.2</eureka-version>
+        <actuator-version>2.6.7</actuator-version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
