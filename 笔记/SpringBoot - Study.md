@@ -2894,13 +2894,3 @@ public class SchedulingService {
 
 
 
-- 首先安装zookeeper， 官网下载 https://zookeeper.apache.org/releases.html ；
-- 安装注意事项：
-  - 直接解压后在bin下双击zkServer.cmd， 如果可以打开 ， 那没事了， 如果不能 ，那么就在config下复制一份zoo_sample.cfg文件名叫zoo.cfg， 然后去双击他， 要是还不行， 报错：ZooKeeper audit is disabled， 那就编辑zkServer.cmd文件， 加上下面这个， 要是还不行， 那就去百度吧。
-  - <img src="img\boot21.png">
-  - 需要先打开服务端显示成功， 然后再打开客户端的cmd， 就会连接起来， 然后可以执行一些命令， 
-  - <img src="img\boot22.png">
-
-
-
-无了。。。。
