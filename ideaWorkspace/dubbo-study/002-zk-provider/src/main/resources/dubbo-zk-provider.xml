@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--服务名称-->
+    <dubbo:application name="002-zk-provider"/>
+
+    <!--dubbo协议-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--注册中心-->
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+
+    <!--暴露服务 version:指定当前接口实现类的版本号, 有多个实现类时候可以设置版本-->
+    <dubbo:service interface="com.ghj.api.service.UserProviderService" ref="userServiceImpl" version="1.0.0"/>
+
+    <bean id="userServiceImpl" class="com.ghj.provider.service.impl.UserProviderServiceImpl"/>
+
+
+    <!--暴露服务 version:指定当前接口实现类的版本号, timeout:设置访问超时时间，ms单位-->
+    <dubbo:service interface="com.ghj.api.service.UserProviderService" ref="newUserProviderServiceImpl" version="2.0.0" timeout="8000"/>
+
+    <bean id="newUserProviderServiceImpl" class="com.ghj.provider.service.impl.NewUserProviderServiceImpl"/>
+
+
+</beans>

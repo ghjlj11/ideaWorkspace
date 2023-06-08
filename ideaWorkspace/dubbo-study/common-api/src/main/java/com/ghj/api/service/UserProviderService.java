@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @author ghj
- * 提供user服务
+ * RPC接口， 提供user服务
  */
 public interface UserProviderService {
     /**

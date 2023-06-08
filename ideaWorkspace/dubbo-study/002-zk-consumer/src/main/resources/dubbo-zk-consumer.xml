@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--服务名称-->
+    <dubbo:application name="002-zk-consumer"/>
+
+    <!--注册中心-->
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+
+    <!--引用远程接口服务,版本1-->
+    <dubbo:reference id="userProviderService" interface="com.ghj.api.service.UserProviderService" version="1.0.0"/>
+
+    <!--引用远程接口服务， 版本2-->
+    <dubbo:reference id="newUserProviderService" interface="com.ghj.api.service.UserProviderService" version="2.0.0"/>
+
+</beans>

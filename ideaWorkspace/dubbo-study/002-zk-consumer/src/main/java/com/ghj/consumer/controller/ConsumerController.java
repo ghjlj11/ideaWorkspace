@@ -1,17 +1,13 @@
 package com.ghj.consumer.controller;
 
 
-import com.ghj.api.entity.User;
 import com.ghj.api.service.UserProviderService;
-//import com.ghj.provider.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import java.util.List;
-
 
 /**
  * @author 86187
@@ -21,16 +17,27 @@ import java.util.List;
 public class ConsumerController {
 
     @Resource
-    @Autowired
-    private UserProviderService userProviderService;
+    UserProviderService userProviderService;
 
+    @Resource
+    UserProviderService newUserProviderService;
 
     @RequestMapping("/getUser")
     public String getUser(Model model){
 
-        List<User> hello =  userProviderService.getUsers();
+        model.addAttribute("hello", userProviderService.getUsers().toString());
+        return "hello";
+    }
 
-        model.addAttribute("hello", hello.toString());
+    /**
+     * 测试不同版本对应的接口实现类
+     * @param model
+     * @return
+     */
+    @RequestMapping("/getNewUser")
+    public String getNewUser(Model model){
+
+        model.addAttribute("hello", newUserProviderService.getUsers().toString());
         return "hello";
     }
 }
