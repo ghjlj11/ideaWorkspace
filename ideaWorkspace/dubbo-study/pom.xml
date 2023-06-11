@@ -16,6 +16,8 @@
         <module>web-001-link-consumer</module>
         <module>002-zk-consumer</module>
         <module>002-zk-provider</module>
+        <module>003-boot-provider</module>
+        <module>003-boot-consumer</module>
     </modules>
 
     <properties>
