@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -52,5 +53,10 @@ public class User {
      */
     @TableLogic
     private Integer deleted;
+
+    /**
+     * 测试localDateTime
+     */
+    private LocalDateTime localDateTime;
 
 }

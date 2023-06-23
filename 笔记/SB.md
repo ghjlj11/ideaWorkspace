@@ -415,7 +415,7 @@ git branch 分支名称
 
 
 
-
+> 邮箱相关
 
 
 
@@ -477,6 +477,30 @@ ssh-keygen -t rsa -C "your_email@youremail.com"
 
 
 
+> 代理相关
+
+
+
+1.设置代理
+
+```bash
+git config --global http.proxy  'http://127.0.0.1:9083' 
+git config --global https.proxy 'http://127.0.0.1:9083'
+```
+
+2.取消代理
+
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+3.查看代理
+
+```bash
+git config --global --get http.proxy
+git config --global --get https.proxy
+```
 
 
 #### 废弃修改

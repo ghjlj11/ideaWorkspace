@@ -16,4 +16,11 @@ public class UserMapperImpl2 extends SqlSessionDaoSupport implements UserMapper 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         return mapper.select();
     }
+
+    @Override
+    public int insert(User user) {
+        SqlSession sqlSession = this.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        return mapper.insert(user);
+    }
 }

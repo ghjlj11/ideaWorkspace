@@ -5,6 +5,7 @@ import com.ghj.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserMapperTest {
@@ -19,5 +20,21 @@ public class UserMapperTest {
             System.out.println(user);
         }
         sqlSession.close();
+    }
+
+    @Test
+    public void testLocalDateTime(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setId(10086);
+        user.setName("haha");
+        user.setKeshi(32);
+        user.setLocalDateTime(LocalDateTime.now());
+
+        userMapper.addUser(user);
+        sqlSession.close();
+
     }
 }

@@ -13,7 +13,7 @@
     </select>
     
     <insert id="addUser" parameterType="com.ghj.pojo.User">
-        insert into malajava.kecheng (id, name, keshi) values (#{id}, #{name}, #{keshi})
+        insert into malajava.kecheng (id, name, keshi, local_date_time) values (#{id}, #{name}, #{keshi}, #{localDateTime})
     </insert>
     
     <delete id="deleteUser" parameterType="int">

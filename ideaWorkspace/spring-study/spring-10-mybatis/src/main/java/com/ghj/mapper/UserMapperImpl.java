@@ -21,6 +21,12 @@ public class UserMapperImpl implements UserMapper{
         return mapper.select();
     }
 
+    @Override
+    public int insert(User user) {
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        return mapper.insert(user);
+    }
+
 
     public void setSqlSession(SqlSessionTemplate sqlSession) {
         this.sqlSession = sqlSession;

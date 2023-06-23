@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/NewTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/test/T1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/test/T2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StudentsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/stream/StudentsUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/localdatetime/TestLocalDateTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis-plus-study/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/src/test/java/com/ghj/MybatisPlusStudyApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis-plus-study/src/test/java/com/ghj/MybatisPlusStudyApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/test/java/com/ghj/dao/UserMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-04/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-04/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl2.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +97,7 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.test01 (1)">
+  <component name="RunManager" selected="JUnit.MyTest.test01 (2)">
     <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-test" />
       <option name="PACKAGE_NAME" value="" />
@@ -105,18 +117,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.t2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-11-transcation" />
+    <configuration name="MyTest.test01 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-06-appconfig" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="t2" />
+      <option name="METHOD_NAME" value="test01" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test01 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-06-appconfig" />
+    <configuration name="MyTest.test01 (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-10-mybatis" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
       <option name="METHOD_NAME" value="test01" />
@@ -137,18 +149,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.MyTest.test01" />
-      <item itemvalue="JUnit.MyTest.t2" />
       <item itemvalue="JUnit.MyTest.t2 (1)" />
       <item itemvalue="JUnit.MyTest" />
       <item itemvalue="JUnit.MyTest.test01 (1)" />
+      <item itemvalue="JUnit.MyTest.test01 (2)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.test01 (2)" />
         <item itemvalue="JUnit.MyTest.test01 (1)" />
         <item itemvalue="JUnit.MyTest.t2 (1)" />
         <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest.test01" />
-        <item itemvalue="JUnit.MyTest.t2" />
       </list>
     </recent_temporary>
   </component>
@@ -202,6 +214,7 @@
       <workItem from="1667570051091" duration="597000" />
       <workItem from="1668073716531" duration="27000" />
       <workItem from="1676009448240" duration="1914000" />
+      <workItem from="1687509554685" duration="1306000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

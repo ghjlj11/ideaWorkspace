@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @SpringBootTest
 class MybatisPlusStudyApplicationTests {
 
-    //增删改查类
+    /**
+     * 增删改查类
+     */
     @Autowired
     UserMapper userMapper;
 
@@ -255,4 +258,15 @@ class MybatisPlusStudyApplicationTests {
         }
     }
 
+    @Test
+    public void testLocalDateTime(){
+        User user = new User();
+        user.setLocalDateTime(LocalDateTime.now());
+        user.setEmail("aaa@qq.com");
+        user.setName("haha");
+        user.setAge(22);
+        int insert = userMapper.insert(user);
+        System.out.println(insert);
+
+    }
 }
