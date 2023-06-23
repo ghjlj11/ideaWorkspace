@@ -4,25 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试cglib">
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/localdatetime/TestLocalDateTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis-plus-study/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis-plus-study/src/test/java/com/ghj/MybatisPlusStudyApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis-plus-study/src/test/java/com/ghj/MybatisPlusStudyApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/dao/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/test/java/com/ghj/dao/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-02/src/test/java/com/ghj/dao/UserMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mybatis_study/mybatis-04/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis_study/mybatis-04/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
+    <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试LocalDateTime">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl2.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/mapper/UserMapperImpl2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/main/java/com/ghj/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl2.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/test-classes/MyTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +204,7 @@
       <workItem from="1667570051091" duration="597000" />
       <workItem from="1668073716531" duration="27000" />
       <workItem from="1676009448240" duration="1914000" />
-      <workItem from="1687509554685" duration="1306000" />
+      <workItem from="1687509554685" duration="2127000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
@@ -272,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653729564551</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="测试LocalDateTime">
+      <created>1687519616035</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1687519616035</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +294,8 @@
     <MESSAGE value="Bean的生命周期" />
     <MESSAGE value="proxy" />
     <MESSAGE value="测试cglib" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试cglib" />
+    <MESSAGE value="测试LocalDateTime" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试LocalDateTime" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
