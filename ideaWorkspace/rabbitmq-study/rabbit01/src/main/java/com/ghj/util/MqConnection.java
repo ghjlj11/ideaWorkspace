@@ -20,7 +20,7 @@ public class MqConnection {
             try {
                 if(connection == null){
                     ConnectionFactory factory = new ConnectionFactory();
-                    factory.setHost("43.142.32.254");
+                    factory.setHost("ghjlj.cn");
                     factory.setUsername("admin");
                     factory.setPassword("admin");
                     connection = factory.newConnection();

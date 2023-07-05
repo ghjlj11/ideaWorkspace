@@ -37,7 +37,7 @@ public class ConfirmController {
         ReturnedMessage returnedMessage = new ReturnedMessage(msg, 2, "xxx", ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY);
         correlationData.setReturned(returnedMessage);
         rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY, message, correlationData);
-        rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY + "11", message + "交换机正确，key不正确", correlationData);
-        rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE + "11", ConfirmConfig.ROUTING_KEY + "11", message + "交换机不正确，key不正确", correlationData);
+        //rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE, ConfirmConfig.ROUTING_KEY + "11", message + "交换机正确，key不正确", correlationData);
+       //rabbitTemplate.convertAndSend(ConfirmConfig.EXCHANGE + "11", ConfirmConfig.ROUTING_KEY + "11", message + "交换机不正确，key不正确", correlationData);
     }
 }

@@ -12,7 +12,7 @@ public class MirrorConsumer {
 
     public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("43.142.32.254");
+        factory.setHost("ghjlj.cn");
         factory.setHost("5677");
         factory.setUsername("admin");
         factory.setPassword("admin");

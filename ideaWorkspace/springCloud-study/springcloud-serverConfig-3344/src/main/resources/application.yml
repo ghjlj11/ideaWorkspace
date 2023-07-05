@@ -11,4 +11,20 @@ spring:
           uri: https://gitee.com/guo-huanjun/cloud.git
           search-paths:
             - cloud
-      label: main
+          default-label: master
+      label: master
+  application:
+    name: config-server
+
+# rabbitmq相关配置
+  rabbitmq:
+    host: ghjlj.cn
+    port: 5672
+    username: admin
+    password: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

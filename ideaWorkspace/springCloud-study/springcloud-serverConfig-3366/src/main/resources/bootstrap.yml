@@ -4,10 +4,18 @@ server:
 spring:
   cloud:
     config:
-      label: main # 分支名
+      label: master # 分支名
       name: application # 文件名
       profile: dev # 版本名
       uri: http://localhost:3344 # 访问的uri， 都拼接起来就是 http://localhost:3344/appliction-dev.yml
+  application:
+    name: config-client
+# rabbitmq相关配置
+  rabbitmq:
+    host: ghjlj.cn
+    port: 5672
+    username: admin
+    password: admin
 
 # 暴露监控端点
 management:

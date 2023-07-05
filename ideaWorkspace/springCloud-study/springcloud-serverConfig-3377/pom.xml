@@ -9,20 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springcloud-serverConfig-3366</artifactId>
+    <artifactId>springcloud-serverConfig-3377</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
-
     <dependencies>
 
-<!--        图形化监控-->
+        <!--        图形化监控-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>2.6.7</version>
         </dependency>
 
         <dependency>
@@ -49,4 +47,5 @@
 
 
     </dependencies>
+
 </project>
