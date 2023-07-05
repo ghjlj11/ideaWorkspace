@@ -1408,7 +1408,7 @@ public class Config3344 {
 
 
 - 然后启动直接访问 http://localhost:3344/application-dev.yml ， 就可以看到我们的配置文件里的内容；
-- 这里需要注意的是访问后面的路径要以以下形式访问， 我们一般用第三种， 就是/分支/文件名-版本.yml。
+- 这里需要注意的是访问后面的路径要以以下形式访问， 我们一般用第三种， 就是/分支/文件名-版本.yml，使用第三中方式也可以访问其他分支的配置文件。
 
 ```txt
 /{application}/{profile}[/{label}]
@@ -1525,5 +1525,68 @@ management:
 
 
 
-之前的config我们更改了配置， 需要所有的客户端都要提交一个POST请求才可以刷新数据， 这样显得很麻烦， 我们可以利用消息中间件， Rabbitmq， 配置中心刷新数据， 然后我们的3344是连着git的可以直接刷新， 数据跟新后，由我们的3344广播到所有关注了3344的客户端， 这样就可以实现只刷新一次就全部跟新数据， 也可以通过跟新某个客户端来传染给其他的全部客户端， 这里我们使用前者方式。
+之前的config我们更改了配置， 需要所有的客户端都要提交一个POST请求才可以刷新数据， 这样显得很麻烦， 我们可以利用消息中间件， Rabbitmq， 配置中心刷新数据， 然后我们的3344是连着git的可以直接刷新， 数据跟新后，由我们的3344广播到所有关注了3344的客户端， 这样就可以实现只刷新一次就全部更新数据， 也可以通过跟新某个客户端来传染给其他的全部客户端， 这里我们使用前者方式。
+
+
+
+### 配置
+
+需要安装rabbitmq，需要添加依赖，以及配置文件修改
+
+#### pom
+
+```xml
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+        <!--        图形化监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+```
+
+3344服务端以及各个客户端都需要添加这两个依赖
+
+
+
+#### 配置文件
+
+```yml
+
+# rabbitmq相关配置
+  rabbitmq:
+    host: 47.102.117.225
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+也是服务端和客户端都需要添加此配置。
+
+
+
+### 测试
+
+
+
+#### 全部通知
+
+接下来，启动服务端和客户端，修改git中的配置文件，然后只需要发送一个post请求：`localhost:3344/actuator/busrefresh`，全部的客户端获取到的配置都会更新，当然服务端不需要刷新也会。
+
+#### 指定通知
+
+与全部通知不同的是，post请求改为：`localhost:3344/actuator/busrefresh/服务名称:服务端口`，请求之后该客户端就会刷新配置，而别的客户端不会刷新。
+
+
+
+
 
