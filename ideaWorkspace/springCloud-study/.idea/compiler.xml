@@ -11,7 +11,9 @@
         <module name="springcloud-provider-dept-8002" />
         <module name="springcloud-gateway-9527" />
         <module name="springcloud-consumer-dept-80" />
+        <module name="springcloud-stream-rabbitmq-consumer8802" />
         <module name="springcloud-provider-dept-8003" />
+        <module name="springcloud-stream-rabbitmq-provider8801" />
         <module name="springcloud-eureka-7003" />
         <module name="springcloud-eureka-7002" />
         <module name="springcloud-eureka-7001" />
@@ -22,6 +24,7 @@
         <module name="springcloud-serverConfig-3344" />
         <module name="springcloud-serverConfig-3366" />
         <module name="springcloud-serverConfig-3377" />
+        <module name="springcloud-stream-rabbitmq-consumer8803" />
       </profile>
     </annotationProcessing>
   </component>

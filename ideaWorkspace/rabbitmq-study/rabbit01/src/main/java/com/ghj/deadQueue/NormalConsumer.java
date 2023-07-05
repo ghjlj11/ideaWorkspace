@@ -37,7 +37,7 @@ public class NormalConsumer {
         arguments.put("x-dead-letter-routing-key","dead");
 
         //设置队列最大长度
-        //arguments.put("x-max-length", 6);
+        arguments.put("x-max-length", 6);
 
         //声明普通队列
         channel.queueDeclare(NORMAL_QUEUE, false, false, false, arguments);
