@@ -1588,5 +1588,230 @@ management:
 
 
 
+## Stream
 
+
+
+对于消息队列而言，每个项目可能会有多个不一样的消息队列，使用rabbitmq、kafka等，stream的引入则是为了降低开发者学习代价，使开发者使用一套统一的api而对不同的消息队列进行操作，不过目前stream仅仅支持rabbitmq、kafka这两个消息中间件。接下来将测试，stream对rabbitmq的api操作。
+
+
+
+生产者与消费者都添加对应的pom依赖
+
+```yml
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+        </dependency>
+```
+
+
+
+### 生产者
+
+配置文件
+
+```yml
+server:
+  port: 8801
+spring:
+  application:
+    name: cloud-stream-provider
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ghjlj.cn
+                port: 5672
+                username: admin
+                password: admin
+      bindings:
+        output:
+          destination: SpringCloud-Stream
+          content-type: application/json
+          binder: {defaultRabbit
+#eureka的配置， 服务注册到什么地方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost7001:7001/eureka/
+  instance:
+    instance-id: springcloud-stream-provider-8801 #修改eureka上的默认信息描述
+    prefer-ip-address: true # 显示ip
+    lease-renewal-interval-in-seconds: 1   # 发送心跳时间间隔
+    lease-expiration-duration-in-seconds: 2    # 服务端接收心跳最大间隔时间
+```
+
+
+
+发送消息对应service接口
+
+```java
+/**
+ * @author guohuanjun1
+ * @date 2023/7/5
+ */
+public interface MessageProvider {
+    /**
+     * 发送消息
+     * @return
+     */
+    String send();
+}
+
+```
+
+
+
+接口实现类：
+
+```java
+import com.ghj.springcloud.service.MessageProvider;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
+
+import javax.annotation.Resource;
+import java.util.UUID;
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/5
+ */
+@EnableBinding(Source.class)
+public class MessageProviderImpl implements MessageProvider {
+
+    @Resource
+    MessageChannel output;
+
+    @Override
+    public String send() {
+        String s = UUID.randomUUID().toString();
+        output.send(MessageBuilder.withPayload(s).build());
+        System.out.println("发出消息:" + s );
+        return s;
+    }
+}
+```
+
+
+
+controller暴露rest接口，请求接口发送消息
+
+```java
+import com.ghj.springcloud.service.MessageProvider;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/5
+ */
+@RestController
+@RequestMapping("/message")
+public class MessageProviderController {
+
+    @Resource
+    MessageProvider messageProvider;
+
+    @RequestMapping("/send")
+    public String sendMessage(){
+        return messageProvider.send();
+    }
+}
+```
+
+
+
+### 消费者
+
+
+
+配置文件
+
+```yml
+server:
+  port: 8802
+spring:
+  application:
+    name: cloud-stream-provider
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ghjlj.cn
+                port: 5672
+                username: admin
+                password: admin
+      bindings:
+        input:
+          destination: SpringCloud-Stream
+          content-type: application/json
+          binder: {defaultRabbit}
+          group: ghjlj # 分组，避免消息被重复消费；此操作声明的队列不是临时队列，即使消费者宕机，重新连接后还是可以消费队列里的消息
+#eureka的配置， 服务注册到什么地方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost7001:7001/eureka/
+  instance:
+    instance-id: springcloud-stream-consumer-8802 #修改eureka上的默认信息描述
+    prefer-ip-address: true # 显示ip
+    lease-renewal-interval-in-seconds: 1   # 发送心跳时间间隔
+    lease-expiration-duration-in-seconds: 2    # 服务端接收心跳最大间隔时间
+```
+
+
+
+
+
+消费者对应接收消息service
+
+```java
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.messaging.Message;
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/5
+ */
+@EnableBinding(Sink.class)
+public class MessageConsumerService {
+
+    @Value("${server.port}")
+    private Integer port;
+
+    @StreamListener(Sink.INPUT)
+    public void input(Message<String> message){
+        System.out.println("端口:" + port + ",消费者收到消息" + message.getPayload() + "\t");
+    }
+}
+```
+
+
+
+
+
+### 测试结论
+
+
+
+- 当消费者与生产者服务启动后，请求生产者接口发送消息，消费者服务便会收到消息。
+
+- 当多个消费者存在时，会有消息重复消费情况，如需避免该现象需要配置group属性，使得消费者在同一个分组，对消息存在竞争关系。
+- 当生产者发送消息时，消费者宕机，也可以通过group配置，因为配置group属性后将不是声明一个临时队列，生产者发送的消息会到交换机，然后再到队列，只要消费者服务恢复，队列里的消息依旧会被消费。
 
