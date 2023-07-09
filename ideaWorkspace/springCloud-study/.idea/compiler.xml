@@ -18,6 +18,8 @@
         <module name="springcloud-eureka-7002" />
         <module name="springcloud-eureka-7001" />
         <module name="springcloud-provider-dept-hystrix-8001" />
+        <module name="springcloud-alibaba-provider-parment-9002" />
+        <module name="springcloud-alibaba-provider-parment-9001" />
         <module name="springcloud-api" />
         <module name="springcloud-feign" />
         <module name="springcloud-consumer-hystrix-dashboard" />
@@ -25,6 +27,7 @@
         <module name="springcloud-serverConfig-3366" />
         <module name="springcloud-serverConfig-3377" />
         <module name="springcloud-stream-rabbitmq-consumer8803" />
+        <module name="springcloud-alibaba-cosumer-83" />
       </profile>
     </annotationProcessing>
   </component>

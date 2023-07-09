@@ -26,6 +26,9 @@
         <module>springcloud-stream-rabbitmq-provider8801</module>
         <module>springcloud-stream-rabbitmq-consumer8802</module>
         <module>springcloud-stream-rabbitmq-consumer8803</module>
+        <module>springcloud-alibaba-provider-parment-9001</module>
+        <module>springcloud-alibaba-provider-parment-9002</module>
+        <module>springcloud-alibaba-cosumer-83</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -39,6 +42,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2021.0.4.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

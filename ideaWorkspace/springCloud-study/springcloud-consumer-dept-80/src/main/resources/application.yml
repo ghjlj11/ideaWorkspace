@@ -5,7 +5,8 @@ eureka:
     service-url:
       #访问端口
       defaultZone: http://localhost7001:7001/eureka/,http://localhost7002:7002/eureka/,http://localhost7003:7003/eureka/
-    register-with-eureka: true #向Eureka注册自己
+    register-with-eureka: false #不向Eureka注册自己
+    fetch-registry: true
   instance:
     instance-id: springcloud-consumer-dept-80 #修改eureka上的默认信息描述
     prefer-ip-address: true # 显示ip

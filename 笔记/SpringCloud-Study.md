@@ -1815,3 +1815,216 @@ public class MessageConsumerService {
 - 当多个消费者存在时，会有消息重复消费情况，如需避免该现象需要配置group属性，使得消费者在同一个分组，对消息存在竞争关系。
 - 当生产者发送消息时，消费者宕机，也可以通过group配置，因为配置group属性后将不是声明一个临时队列，生产者发送的消息会到交换机，然后再到队列，只要消费者服务恢复，队列里的消息依旧会被消费。
 
+
+
+## Sleuth
+
+sleuth+zipkin是用来监控请求的链路，也就是查看请求走了哪些服务：
+
+- 首先需要下载zipkin的jar包并运行，下载地址https://repo1.maven.org/maven2/io/zipkin/zipkin-server/，运行后通过端口9411访问。
+
+- 生产者和消费者都加上依赖：
+
+  ```xml
+          <dependency>
+              <groupId>org.springframework.cloud</groupId>
+              <artifactId>spring-cloud-starter-zipkin</artifactId>
+              <version>2.2.8.RELEASE</version>
+          </dependency>
+  ```
+
+  配置：
+
+  ```yml
+  spring:
+    zipkin:
+      base-url: http://localhost:9411
+    sleuth:
+      sampler:
+        # 采样率，介于0-1，1表示全部采集
+        probability: 1
+  ```
+
+- 之后只要消费者请求生产者就可以直接通过http://localhost:9411查看访问链路。
+
+
+
+
+
+# SpringCloud Alibaba
+
+
+
+springCloud Alibaba由阿里巴巴开发的框架。
+
+
+
+## nacos
+
+
+
+springcloud alibaba中的服务注册中心，不需要任何配置，直接下载运行就能启动，不需要配置服务注册中心。
+
+
+
+### 下载与安装
+
+下载nacos-server：https://github.com/alibaba/nacos/releases/tag/2.0.4，安装后，找到bin目录用cmd打开，执行命令：`startup.cmd -m standalone`，之后通过http://localhost:8848/nacos访问首页，账号密码都是nacos。
+
+
+
+### 服务注册
+
+父依赖中需要添加依赖：
+
+```xml
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2021.0.4.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+```
+
+当前服务添加依赖：
+
+```xml
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+```
+
+
+
+配置文件配置：
+
+```yml
+server:
+  port: 9001
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+
+
+启动类需要加上`@EnableDiscoveryClient`注解，启动之后可以在nacos界面查看到注册进去的服务。
+
+
+
+### 负载均衡
+
+复制一个服务提供者9002与9001配置一样，并且添加服务消费者83。
+
+
+
+消费者需要添加负载均衡相关依赖：
+
+```xml
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+```
+
+
+
+消费者配置基本与服务提供者一样：
+
+```yml
+server:
+  port: 83
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+server-url:
+  nacos-payment-server: http://nacos-payment-provider #可以不用，为了后面注入类的属性
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+
+
+与之前的RestTemplate一样，需要自己配置
+
+```java
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+/**
+ * @author guohuanjun1
+ * @description: 配置类
+ * @date 2023/7/9 18:21
+ */
+@Configuration
+public class MyConfig {
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
+}
+```
+
+
+
+配置完成之后加上controller
+
+```java
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+
+/**
+ * @author guohuanjun1
+ * @description:
+ * @date 2023/7/9 15:40
+ */
+@RestController
+@RequestMapping("/consumer")
+public class ConsumerController {
+
+    @Value("${server-url.nacos-payment-server}")
+    private String serverURL;
+
+    @Resource
+    RestTemplate restTemplate;
+
+    @RequestMapping("/getPort")
+    public String getPort(){
+        return restTemplate.getForObject(serverURL + "/payment/getPort", String.class);
+    }
+}
+
+```
+
+
+
+**最后，当我们多次调用消费者接口，消费者就会轮询访问服务提供者的接口。**

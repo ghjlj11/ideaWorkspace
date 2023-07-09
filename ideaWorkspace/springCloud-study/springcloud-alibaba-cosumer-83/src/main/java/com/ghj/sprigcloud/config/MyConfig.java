@@ -1,4 +1,4 @@
-package com.ghj.springcloud.config;
+package com.ghj.sprigcloud.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -6,21 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author 86187
+ * @author guohuanjun1
+ * @description: 配置类
+ * @date 2023/7/9 18:21
  */
-
 @Configuration
-public class ConfigBean {
+public class MyConfig {
 
-    /**
-     * 实现负载均衡Ribbon
-     */
-
-    @LoadBalanced
     @Bean
+    @LoadBalanced
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
-
-
 }
