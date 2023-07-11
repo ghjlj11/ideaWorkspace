@@ -14,8 +14,11 @@ public class TestLocalDateTime {
         LocalDate localDate = LocalDate.now();
         LocalDateTime localDateTime = LocalDateTime.now();
         Date date = new Date();
-        System.out.println(localDate);
+        System.out.println(localDate.plusDays(5).toString());
         System.out.println(localDateTime);
         System.out.println(date);
+        String a = null;
+        Long b = Long.valueOf(a);
+        System.out.println(b);
     }
 }

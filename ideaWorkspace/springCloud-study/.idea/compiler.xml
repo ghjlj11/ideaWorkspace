@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springcloud-provider-dept-8001" />
+        <module name="springcloud-alibaba-config-nacos-3377" />
         <module name="springcloud-provider-dept-8002" />
         <module name="springcloud-gateway-9527" />
         <module name="springcloud-consumer-dept-80" />

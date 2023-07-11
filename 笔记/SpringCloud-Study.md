@@ -1863,7 +1863,7 @@ springCloud Alibaba由阿里巴巴开发的框架。
 
 
 
-springcloud alibaba中的服务注册中心，不需要任何配置，直接下载运行就能启动，不需要配置服务注册中心。
+springcloud alibaba中的服务注册中心，不需要任何配置，直接下载运行就能启动，不需要配置服务注册中心，并且nacos还拥有配置中心的功能。
 
 
 
@@ -2028,3 +2028,92 @@ public class ConsumerController {
 
 
 **最后，当我们多次调用消费者接口，消费者就会轮询访问服务提供者的接口。**
+
+
+
+### 配置中心
+
+新建配置中心客户端模块，通过配置可以读取到nacos配置中心指定的配置文件，并且当配置中心修改配置发布后，客户端不用做任何操作，获取的配置文件内容也会改变。
+
+
+
+pom内容：
+
+```xml
+        <!--nacos 服务发现注册-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--nacos 配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+```
+
+
+
+bootstrap.yml
+
+```yaml
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 指定nacos服务中心注册地址
+      config:
+        server-addr: localhost:8848 # 指定nacos作为配置中心地址
+        file-extension: yaml # 指定yaml文件格式的配置
+
+# 获取配置中心配置文件名默认就是 ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.file-extension}
+# 这里就是  nacos-config-client-dev.yaml
+```
+
+
+
+application.yaml
+
+```yaml
+spring:
+  profiles:
+    active: dev
+```
+
+
+
+controller
+
+```java
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author 86187
+ */
+@RestController
+@RefreshScope
+public class ConfigController {
+
+    @Value("${server.port}")
+    private Integer port;
+    @Value("${config.info}")
+    String info;
+    @RequestMapping("/info")
+    public String info(){
+        return port + ":" + info;
+    }
+}
+```
+
+
+
+启动前需要在配置中心添加配置文件nacos-config-client-dev.yaml，并且配置`config.info`属性，启动后请求接口就可以获取到配置中心的配置，修改配置后发布，再次请求获取的配置也会修改。
