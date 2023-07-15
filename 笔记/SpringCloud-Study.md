@@ -2072,7 +2072,7 @@ spring:
         server-addr: localhost:8848 # 指定nacos作为配置中心地址
         file-extension: yaml # 指定yaml文件格式的配置
 
-# 获取配置中心配置文件名默认就是 ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.file-extension}
+# 获取配置中心配置文件名默认就是 ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.file-extension}，
 # 这里就是  nacos-config-client-dev.yaml
 ```
 
@@ -2117,3 +2117,57 @@ public class ConfigController {
 
 
 启动前需要在配置中心添加配置文件nacos-config-client-dev.yaml，并且配置`config.info`属性，启动后请求接口就可以获取到配置中心的配置，修改配置后发布，再次请求获取的配置也会修改。
+
+
+
+### 配置文件的读取
+
+之前的步骤仅仅是配置Data Id，也就是配置文件的名称。nacos不仅有Eureka配置中心功能，还具有分组功能，也就是说nacos可以配置多套配置文件，**服务查找配置文件是通过Namespace + Group + Data Id来获取**。也就是说可以通过配置Namespace和Group来个某个服务配置多套配置文件，**其中Namespace默认是public，Group默认为DEFAULT_GROUP**。
+
+
+
+- 在nacos添加Namespace：dev、test；在对应的Namespace下添加配置文件，配置Group：DEV_GROUP、TEST_GROUP。
+
+- 修改bootstrap.yml对应的配置，获取nacos不同的配置：
+
+  ```yaml
+  spring:
+    application:
+      name: nacos-config-client
+    cloud:
+      nacos:
+        discovery:
+          server-addr: localhost:8848 # 指定nacos服务中心注册地址
+        config:
+          server-addr: localhost:8848 # 指定nacos作为配置中心地址
+          file-extension: yaml # 指定yaml文件格式的配置
+          group: DEV_GROUP # 指定group
+          namespace: 62b0abc5-8dac-49ed-b7b9-a9aa98dda4e2 # 指定namespace的id
+  ```
+
+
+
+之后便可以通过不同的配置获取不同的配置文件。
+
+
+
+### 持久化配置
+
+nacos自带一个小型数据库，默认情况下，我们的配置文件中的信息就是保存在这个数据库中。nacos支持配置mysql数据库，实现持久化配置。
+
+
+
+根据官网描述，新建数据库nacos_config，在该数据库执行nacos安装目录下的conf文件夹下的nacos-mysql.sql脚本，然后编辑application.properties配置文件，添加如下参数：
+
+```properties
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=UTC
+db.user=root
+db.password=123456
+```
+
+
+
+启动后就会发现之前的配置都没有了，添加配置也会保存进入mysql表中。

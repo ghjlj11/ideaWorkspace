@@ -717,16 +717,6 @@ SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE
 
 
 
-## 性能分析器
-
-
-
-插件已经移除了。。。
-
-
-
-
-
 ## 条件构造器
 
 
