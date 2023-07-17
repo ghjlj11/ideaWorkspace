@@ -252,7 +252,7 @@ eureka:
 
 - 然后建一个启动类， 直接启动访问localhost:7001
 
-![cloud01](img\cloud01.png)
+![cloud01](img\cloud\cloud01.png)
 
 
 
@@ -660,7 +660,7 @@ public class ConfigBean {
 
 
 
-![cloud02](img\cloud02.png)
+![cloud02](img\cloud\cloud02.png)
 
 
 
@@ -1090,7 +1090,7 @@ public class DashboardApp {
 
 - 然后就可以启动， 请求路径http://localhost:9001/hystrix， 然后就可以看到下面的页面：
 
-![cloud03](img\cloud03.png)
+![cloud03](img\cloud\cloud03.png)
 
 
 
@@ -1128,7 +1128,7 @@ hystrix:
 
 - 然后启动一个注册中心， 启动hystrix的服务， 启动dashboard的消费者， 然后访问hystrix的http://localhost:8001/actuator/hystrix.stream， 如果一直在ping， 那么就先发一个get请求， 再请求这个， 然后在各个的dashboard的豪猪页面上输入请求路径， 毫秒数， 还有标题， 点击下面的监视就可以看到页面了
 
-![cloud04](img\cloud04.png)
+![cloud04](img\cloud\cloud04.png)
 
 
 
@@ -1255,7 +1255,7 @@ spring:
 
 通过运行程序可以看到， 右侧有一堆After， Before， Header等一些配置， 这都是predicates里的配置， 就相当于是很多个判断语句， 需要都满足才可以进入访问， 如果不满足就会被拦截
 
-![cloud05](img\cloud05.png)
+![cloud05](img\cloud\cloud05.png)
 
 
 
@@ -1273,7 +1273,7 @@ predicates:
 
 - 可以看到设置了Cookie就需要Cookie带有username=ghj才可以访问
 
-![cloud06](img\cloud06.png)
+![cloud06](img\cloud\cloud06.png)
 
 
 
@@ -1343,7 +1343,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
 
 
-![cloud07](img\cloud07.png)
+![cloud07](img\cloud\cloud07.png)
 
 
 
@@ -2171,3 +2171,31 @@ db.password=123456
 
 
 启动后就会发现之前的配置都没有了，添加配置也会保存进入mysql表中。
+
+
+
+### nacos集群
+
+本次学习在Linux上配置集群，并且使用nginx反向代理nacos集群，实现负载均衡。后期直接通过访问nginx，间接访问nacos集群。
+
+- 需要配置cluster.conf集群配置文件，将集群中的所有nacos主机+端口号都配上。
+- 配置nacos的持久化配置。
+- 配置nginx负载均衡，代理nacos集群。
+- 通访问nginx进而访问nacos集群。
+
+
+
+## sentinel
+
+作用类似于Hystrix。
+
+
+
+![sentinel](img\cloud\sentinel.jpg)
+
+### 下载与安装
+
+- 下载地址：https://github.com/alibaba/Sentinel/releases
+
+- 下载完成之后直接`java -jar`启动。
+- 通过8080端口访问，账号密码都是sentinel。
