@@ -252,7 +252,7 @@ eureka:
 
 - 然后建一个启动类， 直接启动访问localhost:7001
 
-![cloud01](img\cloud\cloud01.png)
+![cloud01](img/cloud/cloud01.png)
 
 
 
@@ -355,6 +355,8 @@ info:
 
 
 ```
+
+我们还可以给yml配置一下eureka.client.prefer-ip-address: true， 这样我们开启服务的时候， 鼠标悬浮在服务的连接上的时候， 就不是显示localhost:xxxx， 而是127.0.0.1:xxxx这种格式。
 
 
 
@@ -660,7 +662,7 @@ public class ConfigBean {
 
 
 
-![cloud02](img\cloud\cloud02.png)
+![cloud02](img/cloud/cloud02.png)
 
 
 
@@ -948,11 +950,7 @@ public class DeptProviderHystrix8001 {
 
 
 
-​		**@EnableHystrix就代表该程序支持Hystrix。**、
-
-
-
-- 我们还可以给yml配置一下eureka.client.prefer-ip-address: true， 这样我们开启服务的时候， 鼠标悬浮在服务的连接上的时候， 就不是显示localhost:xxxx， 而是127.0.0.1:xxxx这种格式。
+​		**@EnableHystrix就代表该程序支持Hystrix。**
 
 
 
@@ -1090,7 +1088,7 @@ public class DashboardApp {
 
 - 然后就可以启动， 请求路径http://localhost:9001/hystrix， 然后就可以看到下面的页面：
 
-![cloud03](img\cloud\cloud03.png)
+![cloud03](img/cloud/cloud03.png)
 
 
 
@@ -1128,7 +1126,7 @@ hystrix:
 
 - 然后启动一个注册中心， 启动hystrix的服务， 启动dashboard的消费者， 然后访问hystrix的http://localhost:8001/actuator/hystrix.stream， 如果一直在ping， 那么就先发一个get请求， 再请求这个， 然后在各个的dashboard的豪猪页面上输入请求路径， 毫秒数， 还有标题， 点击下面的监视就可以看到页面了
 
-![cloud04](img\cloud\cloud04.png)
+![cloud04](img/cloud/cloud04.png)
 
 
 
@@ -1255,7 +1253,7 @@ spring:
 
 通过运行程序可以看到， 右侧有一堆After， Before， Header等一些配置， 这都是predicates里的配置， 就相当于是很多个判断语句， 需要都满足才可以进入访问， 如果不满足就会被拦截
 
-![cloud05](img\cloud\cloud05.png)
+![cloud05](img/cloud/cloud05.png)
 
 
 
@@ -1273,7 +1271,7 @@ predicates:
 
 - 可以看到设置了Cookie就需要Cookie带有username=ghj才可以访问
 
-![cloud06](img\cloud\cloud06.png)
+![cloud06](img/cloud/cloud06.png)
 
 
 
@@ -1343,7 +1341,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
 
 
-![cloud07](img\cloud\cloud07.png)
+![cloud07](img/cloud/cloud07.png)
 
 
 
@@ -2163,7 +2161,7 @@ nacos自带一个小型数据库，默认情况下，我们的配置文件中的
 spring.datasource.platform=mysql
 
 db.num=1
-db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&serverTimezone=UTC
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
 db.user=root
 db.password=123456
 ```
@@ -2191,7 +2189,7 @@ db.password=123456
 
 
 
-![sentinel](img\cloud\sentinel.jpg)
+![sentinel](img/cloud/sentinel.jpg)
 
 ### 下载与安装
 
@@ -2199,3 +2197,115 @@ db.password=123456
 
 - 下载完成之后直接`java -jar`启动。
 - 通过8080端口访问，账号密码都是sentinel。
+
+
+
+
+
+### 服务监控
+
+新建工程8401，与之前nacos-server的pom不一样的是：
+
+```xml
+ <!--sentinel相关-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+```
+
+
+
+配置文件：
+
+```yaml
+server:
+  port: 8401
+spring:
+  application:
+    name: cloudalibaba-sentinel-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 配置sentinel地址
+        dashboard: localhost:8080
+        # sentinel与当前服务交互的端口，  如果该端口被占用，会默认+1寻找新的端口。
+        port: 8719
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+```
+
+
+
+新建一个测试的controller：
+
+```java
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author guohuanjun1
+ * @description: 测试接口
+ * @date 2023/7/18 16:18
+ */
+@RestController
+@RequestMapping("/test")
+public class SentinelController {
+
+    @RequestMapping("/a")
+    public String testA(){
+        return "=====test A";
+    }
+
+    @RequestMapping("/b")
+    public String testB(){
+        return "=====test B";
+    }
+}
+```
+
+
+
+首先启动nacos、sentinel，然后启动服务，因为sentinel使用的是懒加载，所以sentinel界面并不会直接显示8401服务，通过请求几次测试接口，然后刷新sentinel界面就可以看到8401服务。
+
+
+
+### 流控
+
+为了限制用户访问，从而保护服务。流控分为QPS流控与并发线程数流控。
+
+#### 阈值类型
+
+- QPS流控：限制单位时间内服务被允许的访问次数，如果超过该次数，那么会采取别的措施，可以返回错误等操作。
+- 并发线程数流控： 限制某一个资源只能被指定线程数处理，如果请求太多，则会返回错误等操作。
+
+![sentinel02](img/cloud/sentinel02.jpg)
+
+
+
+#### 流控模式
+
+- 直接模式：以上的模式是直接模式，也就是说资源阈值达到后会直接执行流控效果。
+- 关联模式：设置关联资源`/test/b`，当关联资源打到阈值，则会限制当前资源的访问。参考以上截图。也就是说当B接口访问QPS达到1，那么访问A接口则会被限制，直接访问失败。
+
+#### 流控效果
+
+- 快速失败：之前的配置都是快速失败，也就是打到阈值直接报错。
+- Warm up（预热）：系统默认会有一个clodFactor（预热因子）默认等于3，系统在预热时长之前阈值都是单机阈值/clodFactor也就是3，系统经过预热时长5秒后，阈值变为10。当达到阈值时，系统也会报错。
+
+![sentinel03](img/cloud/sentinel03.jpg)
+
+- 排队等待：设置单机阈值后，如果请求数超过阈值，那么剩下的请求将会进行排队等待，只有等待前面的处理完才会被处理。当等待时间超过超时时间时，则会直接报错。

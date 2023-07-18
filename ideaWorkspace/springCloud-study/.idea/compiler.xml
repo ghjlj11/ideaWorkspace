@@ -18,6 +18,7 @@
         <module name="springcloud-eureka-7003" />
         <module name="springcloud-eureka-7002" />
         <module name="springcloud-eureka-7001" />
+        <module name="springcloud-alibaba-sentinel-server-8401" />
         <module name="springcloud-provider-dept-hystrix-8001" />
         <module name="springcloud-alibaba-provider-parment-9002" />
         <module name="springcloud-alibaba-provider-parment-9001" />
