@@ -1,14 +1,10 @@
 package com.ghj.springcloud.controller;
 
-import com.alibaba.csp.sentinel.Entry;
-import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.ghj.springcloud.exception.CommonSentinelExceptionHandler;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
@@ -46,5 +42,15 @@ public class SentinelController {
     public String testE( @PathVariable Integer i){
         int h = 10 / i;
         return "=====test E..." + h;
+    }
+    @GetMapping("/f")
+    @SentinelResource(value = "testF",  blockHandler = "dealHotKey")
+    public String testF(@RequestParam(value = "a", required = false) Integer a,
+                        @RequestParam(value = "b", required = false) Integer b){
+        return "TestF......." + a + ":" + b;
+    }
+
+    public String dealHotKey(Integer a, Integer b, BlockException exception){
+        return "dealHotKey......";
     }
 }

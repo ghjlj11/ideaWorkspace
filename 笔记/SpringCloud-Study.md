@@ -2331,3 +2331,217 @@ Sentinel 提供以下几种熔断策略：
 - 异常数 (`ERROR_COUNT`)：当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。
 
   ![sentinel06](img/cloud/sentinel06.jpg)
+
+
+
+
+
+### 热点key
+
+一般作用于get请求，查询功能。当请求某一个资源过多，请求中携带某一个参数是当前的热点参数时，需要对携带该参数的请求做限流，从而保护资源被访问过多。之前都是针对某一个资源来限流，现在可以通过携带参数来过滤，更加细致的限流。
+
+
+
+#### 代码
+
+新增一个controller接口;
+
+```java
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalTime;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @Description:
+ * @author guohuanjun
+ * @date 2023/7/19  11:50
+ */
+@RestController
+@RequestMapping("/test")
+public class SentinelController {
+
+    @RequestMapping("/a")
+    public String testA(){
+        return "=====test A";
+    }
+
+    @RequestMapping("/b")
+    public String testB(){
+        System.out.println("当前线程:" + Thread.currentThread().getName() + "当前时间:" + LocalTime.now().getSecond() + "-----testB");
+        return "=====test B";
+    }
+
+    @RequestMapping("/d")
+    public String testD(){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "=====test D";
+    }
+
+    @RequestMapping("/e/{i}")
+    public String testE( @PathVariable Integer i){
+        int h = 10 / i;
+        return "=====test E..." + h;
+    }
+    @GetMapping("/f")
+    @SentinelResource(value = "testF", blockHandler = "dealHotKey")
+    public String testF(@RequestParam(value = "a", required = false) Integer a,
+                        @RequestParam(value = "b", required = false) Integer b){
+        return "TestF......." + a + ":" + b;
+    }
+
+    public String dealHotKey(Integer a, Integer b, BlockException exception){
+        return "dealHotKey......";
+    }
+}
+```
+
+主要是**`@SentinelResource`**注解，与hystrix中的**`@HystrixCommand`**基本类似。这个注解可以指定当前资源的名称，并且设置blockHandler属性，这个属性指定一个方法名，当该资源由于设置了限流而抛出BlockException，则会被指定的方法处理，而不是直接抛出异常界面。
+
+
+
+#### 配置热点Key
+
+在图形化界面中可以直接配置热点key的相关配置：
+
+![sentinel07](img/cloud/sentinel07.jpg)
+
+表示，如果资源`testF`请求时包含第0个参数的阈值达到了一秒一次，则会抛出BlockException异常。
+
+
+
+#### 参数例外项
+
+在图形化界面的热点key配置中，有一个高级选项，可以配置参数例外项。也就是说如果携带热点参数，但是参数的值是指定的某个值，那么可以对这种请求重新调整阈值。
+
+![sentinel08](img/cloud/sentinel08.png)
+
+
+
+
+
+### 系统规则
+
+sentinel还支持对整个系统的限流控制，对整个系统的所有资源进行控制，当系统资源访问量达到阈值，则会抛出异常。
+
+![sentinel09](img/cloud/sentinel09.jpg)
+
+
+
+### 统一异常处理
+
+在之前如果出现sentinel限流异常，那么将会走设置的blockHandler方法，如果每个方法都需要blockHandler方法，那么代码量将会剧增。于是乎，我们可以定义一个统一的异常处理，只需要注解配置指定为该方法就行。
+
+
+
+公共返回：
+
+```java
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/22 16:10
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CommonResult<T> implements Serializable {
+    /**
+     * 返回编码
+     */
+    private Integer code;
+    /**
+     * 返回信息
+     */
+    private String message;
+    /**
+     * 返回数据
+     */
+    private T data;
+    /**
+     * 返回数组数据
+     */
+    private List<T> dataList;
+}
+```
+
+
+
+sentinel全局异常处理：
+
+```java
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.alibaba.csp.sentinel.slots.block.authority.AuthorityException;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
+import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowException;
+import com.ghj.springcloud.dto.CommonResult;
+
+/**
+ * sentinel 公共异常处理
+ * @author guohuanjun1
+ * @date 2023/7/22 16:08
+ */
+public class CommonSentinelExceptionHandler {
+    public static CommonResult sentinelExceptionHandler( BlockException blockException){
+        CommonResult result = new CommonResult<>();
+        String msg = "";
+        result.setCode(4444);
+        // 依据不同的异常，判断是因为什么规则而限流的
+        if (blockException instanceof FlowException) {
+            msg = "请求被限流了";
+        } else if (blockException instanceof ParamFlowException) {
+            msg = "请求被热点参数限流";
+        } else if (blockException instanceof DegradeException) {
+            msg = "请求被降级了";
+        } else if (blockException instanceof AuthorityException) {
+            msg = "没有权限访问";
+        }
+        result.setMessage(msg);
+        return result;
+    }
+}
+```
+
+
+
+测试controller：
+
+```java
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.ghj.springcloud.dto.CommonResult;
+import com.ghj.springcloud.exception.CommonSentinelExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/22 16:30
+ */
+@RestController
+@RequestMapping("/exception")
+public class TestGlobalExceptionController {
+
+    @RequestMapping("/a")
+    @SentinelResource(value = "global", blockHandlerClass = CommonSentinelExceptionHandler.class, blockHandler = "sentinelExceptionHandler")
+    public CommonResult<String> test01(){
+        return new CommonResult<>(200, "success", null, null);
+    }
+}
+```
+
+
+
+当资源被限流时，就会走全局异常处理的方法。但是需要注意的是，异常处理的方法参数必须和资源的参数一致，还需要加上BlockException参数，并且返回值也需要和资源的返回值一致，这样才会被全局异常处理。
