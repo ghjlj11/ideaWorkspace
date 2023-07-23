@@ -31,6 +31,8 @@
         <module>springcloud-alibaba-cosumer-83</module>
         <module>springcloud-alibaba-config-nacos-3377</module>
         <module>springcloud-alibaba-sentinel-server-8401</module>
+        <module>springcloud-alibaba-provider-parment-9003</module>
+        <module>springcloud-alibaba-cosumer-84</module>
     </modules>
 
     <packaging>pom</packaging>

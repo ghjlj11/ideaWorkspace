@@ -1,4 +1,4 @@
-package com.ghj.sprigcloud.config;
+package com.ghj.springcloud.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

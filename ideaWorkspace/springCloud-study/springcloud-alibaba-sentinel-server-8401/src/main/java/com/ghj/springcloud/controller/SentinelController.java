@@ -53,4 +53,14 @@ public class SentinelController {
     public String dealHotKey(Integer a, Integer b, BlockException exception){
         return "dealHotKey......";
     }
+
+    /**
+     * 规则持久化
+     * @return
+     */
+    @RequestMapping("/dataSource")
+    @SentinelResource("dataSource")
+    public String testDataSource(){
+        return "sentinel 持久化规则";
+    }
 }

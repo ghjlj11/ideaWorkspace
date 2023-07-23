@@ -1,4 +1,4 @@
-package com.ghj.sprigcloud;
+package com.ghj.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +10,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class AlibabaPaymentProviderApplication9001 {
+public class AlibabaPaymentProviderApplication9003 {
     public static void main(String[] args) {
-        SpringApplication.run(AlibabaPaymentProviderApplication9001.class, args);
+        SpringApplication.run(AlibabaPaymentProviderApplication9003.class, args);
     }
 }

@@ -2436,7 +2436,7 @@ sentinel还支持对整个系统的限流控制，对整个系统的所有资源
 
 ### 统一异常处理
 
-在之前如果出现sentinel限流异常，那么将会走设置的blockHandler方法，如果每个方法都需要blockHandler方法，那么代码量将会剧增。于是乎，我们可以定义一个统一的异常处理，只需要注解配置指定为该方法就行。
+在之前如果出现sentinel限流异常，那么将会走设置的`blockHandler`方法，如果每个方法都需要`blockHandler`方法，那么代码量将会剧增。于是乎，我们可以定义一个统一的异常处理，只需要注解配置指定为该方法就行。
 
 
 
@@ -2545,3 +2545,408 @@ public class TestGlobalExceptionController {
 
 
 当资源被限流时，就会走全局异常处理的方法。但是需要注意的是，异常处理的方法参数必须和资源的参数一致，还需要加上BlockException参数，并且返回值也需要和资源的返回值一致，这样才会被全局异常处理。
+
+
+
+### @SentinelResource
+
+​		前面讲过这个注解与hystrix中的**`@HystrixCommand`**基本类似。在`@sentinelResource`注解中，还有`fallback`和`fallbackClass`属性，用来配置资源抛出异常时的兜底方法。`exceptionsToIgnore`属性用来忽略异常，忽略的异常将不会被`blockHandler`和`fallback`抓取，不会被异常处理。
+
+
+
+​		当资源抛出sentinel中的异常，也就是限流相关的异常时，如果有配置`blockHandler`属性，那么将会走`blockHandler`的异常处理方法，如果，没有配置，那么则会走`fallback`方法；如果资源抛出的异常不是`BlockException`类型，也就是说不是sentinel中的异常，那么会直接走`fallback`中的方法。
+
+
+
+​		**简单来说，就是`blockHandler`仅仅只管sentinel中的异常，`fallback`处理所有的异常，但是`blockHandler`优先级高于`fallback`。**
+
+
+
+
+
+
+
+### 结合Feign
+
+
+
+#### 服务提供者
+
+
+
+pom:
+
+```xml
+<dependencies>
+
+        <!--        图形化监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--sentinel相关-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>springcloud-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+    </dependencies>
+```
+
+
+
+配置文件：
+
+```yaml
+server:
+  port: 9003
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 配置sentinel地址
+        dashboard: localhost:8080
+        # sentinel与当前服务交互的端口，  如果该端口被占用，会默认+1寻找新的端口。
+        port: 8719
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+```
+
+
+
+controller:
+
+```java
+/**
+ * @author guohuanjun1
+ * @description:
+ * @date 2023/7/9 15:40
+ */
+@RestController
+@RequestMapping("/payment")
+public class PaymentController {
+
+    @Resource
+    private PaymentService paymentService;
+
+    @RequestMapping("/getDept")
+    public CommonResult<MyDept> getDept(@RequestParam(value = "id", required = false) Long id){
+        CommonResult<MyDept> commonResult = new CommonResult<>();
+        MyDept myDept = paymentService.getById(id);
+        return commonResult.setCode(200).setMessage("success").setData(myDept);
+    }
+}
+
+```
+
+
+
+#### 公共模块
+
+
+
+接口：
+
+```java
+
+/**
+ * @author guohuanjun1
+ * @date 2023/7/23 16:55
+ */
+@FeignClient(name = "nacos-payment-provider", fallback = SentinelServiceDe.class)
+public interface SentinelService {
+    /**
+     * id查询
+     * @param id
+     * @return
+     */
+    @PostMapping("/payment/getDept")
+    CommonResult<MyDept> getDept(@RequestParam(value = "id", required = false) Long id);
+}
+```
+
+
+
+降级类：
+
+```java
+@Service
+public class SentinelServiceDe implements SentinelService{
+    @Override
+    public CommonResult<MyDept> getDept(Long id) {
+        return new CommonResult<MyDept>().setCode(999).setMessage("failed").setData(new MyDept(999L, "服务降级", "服务降级"));
+    }
+}
+```
+
+
+
+
+
+#### 服务消费者
+
+pom:
+
+```xml
+<dependencies>
+
+        <!--        图形化监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--sentinel相关-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>springcloud-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+```
+
+
+
+配置文件：
+
+```yaml
+server:
+  port: 84
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 配置sentinel地址
+        dashboard: localhost:8080
+        # sentinel与当前服务交互的端口，  如果该端口被占用，会默认+1寻找新的端口。
+        port: 8719
+
+server-url:
+  nacos-payment-server: http://nacos-payment-provider
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+feign:
+  sentinel:
+    enabled: true
+
+```
+
+
+
+controller:
+
+```java
+@RestController
+@RequestMapping("/consumer")
+public class ConsumerController {
+
+
+    @Resource
+    SentinelService sentinelService;
+
+    @RequestMapping("/getDept")
+    public CommonResult<MyDept> getPort(@RequestParam(value = "id", required = false) Long id){
+        return sentinelService.getDept(id);
+    }
+}
+
+```
+
+
+
+#### 启动测试
+
+
+
+启动之后访问消费者的接口，发现可以访问到提供者的接口；停止提供者服务，再次访问消费者，则会直接进入到公共模块的服务降级类。
+
+
+
+### 持久化规则
+
+之前配置的限流规则会在服务重启后消失，也就是说没有实现持久化配置。接下来可以使用nacos的配置文件进行sentinel的持久化配置。
+
+pom:
+
+```xml
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+```
+
+
+
+配置文件：
+
+```yaml
+server:
+  port: 8401
+spring:
+  application:
+    name: cloudalibaba-sentinel-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        # 配置sentinel地址
+        dashboard: localhost:8080
+        # sentinel与当前服务交互的端口，  如果该端口被占用，会默认+1寻找新的端口。
+        port: 8719
+      datasource:
+        # 持久化相关配置
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+```
+
+
+
+加上一个接口：
+
+```java
+    /**
+     * 规则持久化
+     * @return
+     */
+    @RequestMapping("/dataSource")
+    @SentinelResource("dataSource")
+    public String testDataSource(){
+        return "sentinel 持久化规则";
+    }
+```
+
+
+
+然后在nacos配置中心新建一个配置文件，Data Id为服务配置文件中指定的Data Id，文件类型为Json：
+
+```json
+[
+    {
+        "resource": "/test/dataSource",
+        "limitApp": "default",
+        "grade": 1,
+        "count": 1,
+        "strategy": 0,
+        "controlBehavior": 0,
+        "clusterMode": false
+    }
+]
+```
+
+
+
+配置解释：
+
+```tex
+resource: 资源名称;
+limitApp:来源应用
+grade: 闻值类型，0表示线程数，1表示QPS;
+count: 单机闻值:
+strategy: 流控模式，0表示直接，1表示关联，2表示链路:
+controlBehavior: 流控效果，0表示快速失败，1表示Warm Up，2表示排队等待
+clusterMode: 是否集群
+```
+
+
+
+配置完成之后，不管服务重启多少次，限流规则依旧在sentinel上，实现了规则持久化。

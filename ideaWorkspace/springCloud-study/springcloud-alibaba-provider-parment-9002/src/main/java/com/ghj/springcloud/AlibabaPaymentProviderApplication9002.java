@@ -1,4 +1,4 @@
-package com.ghj.sprigcloud;
+package com.ghj.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

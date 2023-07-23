@@ -1,8 +1,8 @@
 server:
-  port: 8401
+  port: 84
 spring:
   application:
-    name: cloudalibaba-sentinel-server
+    name: nacos-order-consumer
   cloud:
     nacos:
       discovery:
@@ -13,15 +13,9 @@ spring:
         dashboard: localhost:8080
         # sentinel与当前服务交互的端口，  如果该端口被占用，会默认+1寻找新的端口。
         port: 8719
-      datasource:
-        # 持久化相关配置
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: ${spring.application.name}
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow
+
+server-url:
+  nacos-payment-server: http://nacos-payment-provider
 
 
 management:
@@ -29,3 +23,6 @@ management:
     web:
       exposure:
         include: '*'
+feign:
+  sentinel:
+    enabled: true
