@@ -25,7 +25,7 @@ class Redis02SpringbootApplicationTests {
         MyUser myUser = new MyUser("郭欢军", 2);
         //redisTemplate.opsForValue().set("me", myUser);
         ValueOperations opsForValue = redisTemplate.opsForValue();
-        if(opsForValue.setIfAbsent("me", myUser, Duration.ofSeconds(10))){
+        if(opsForValue.setIfAbsent("me", myUser, Duration.ofDays(30))){
             System.out.println(redisTemplate.opsForValue().get("me"));
         }
 
