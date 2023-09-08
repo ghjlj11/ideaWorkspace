@@ -4,7 +4,9 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import static com.itextpdf.text.html.HtmlTags.FONT;
@@ -65,7 +67,7 @@ public class TestPdf {
 //        document.add(image);
 
         // 3列的表.
-        PdfPTable table = new PdfPTable(15);
+        PdfPTable table = new PdfPTable(10);
         // 宽度100%填充
         table.setWidthPercentage(100);
         // 前间距
@@ -79,7 +81,7 @@ public class TestPdf {
         //table.setWidths(columnWidths);
 
         //行1
-        PdfPCell[] cells1 = new PdfPCell[15];
+        PdfPCell[] cells1 = new PdfPCell[10];
         PdfPRow row1 = new PdfPRow(cells1);
 
         //单元格
@@ -89,25 +91,25 @@ public class TestPdf {
         //cells1[0].setBorderColor(BaseColor.BLUE);
         //左填充20
         //cells1[0].setPaddingLeft(20);
-        setCell(cells1[0], 3, 50, 1.5f, true);
+        setCell(cells1[0], 2, 50, 1.5f, true);
         
 
 
-        cells1[3] = new PdfPCell(new Paragraph("日期: \n\n" + LocalDate.now(), fontNormal12));
-        setCell(cells1[3], 3, 40, 1.5f, true);
+        cells1[2] = new PdfPCell(new Paragraph("日期: \n\n" + LocalDate.now(), fontNormal12));
+        setCell(cells1[2], 2, 40, 1.5f, true);
 
-        cells1[6] = new PdfPCell(new Paragraph("单位: \n\n" + "烟台华新", fontNormal12));
-        setCell(cells1[6], 3, 40, 1.5f, true);
+        cells1[4] = new PdfPCell(new Paragraph("单位: \n\n" + "烟台华新", fontNormal12));
+        setCell(cells1[4], 2, 40, 1.5f, true);
 
-        cells1[9] = new PdfPCell(new Paragraph("答辯人: \n\n" + "jack", fontNormal12));
-        setCell(cells1[9], 3, 40, 1.5f, true);
+        cells1[6] = new PdfPCell(new Paragraph("答辯人: \n\n" + "jack", fontNormal12));
+        setCell(cells1[6], 2, 40, 1.5f, true);
 
-        cells1[12] = new PdfPCell(new Paragraph("分機: \n\n", fontNormal12));
-        setCell(cells1[12], 3, 40, 1.5f, true);
+        cells1[8] = new PdfPCell(new Paragraph("分機: \n\n", fontNormal12));
+        setCell(cells1[8], 2, 40, 1.5f, true);
 
 
         //行2
-        PdfPCell[] cells2 = new PdfPCell[15];
+        PdfPCell[] cells2 = new PdfPCell[10];
         PdfPRow row2 = new PdfPRow(cells2);
         cells2[0] = new PdfPCell();
         Chunk chunk1 = new Chunk("主旨: ", fontBold12);
@@ -117,31 +119,37 @@ public class TestPdf {
         elements.add(chunk2);
         cells2[0].addElement(elements);
         cells2[0].addElement(new Paragraph("说明: ", fontBold12));
-        setCell(cells2[0], 15, 400, 1.5f, false);
+        setCell(cells2[0], 10, 400, 1.5f, false);
 
 
         // 行3
-        PdfPCell[] cells3 = new PdfPCell[15];
+        PdfPCell[] cells3 = new PdfPCell[10];
         PdfPRow row3 = new PdfPRow(cells3);
 
         cells3[0] = new PdfPCell(new Paragraph("發起人", fontNormal12));
         setCell(cells3[0], 5, 30, 1.5f, true);
         cells3[5] = new PdfPCell(new Paragraph("審批人", fontNormal12));
         setCell(cells3[5], 5, 30, 1.5f, true);
-        cells3[10] = new PdfPCell(new Paragraph("抄送人", fontNormal12));
-        setCell(cells3[10], 5, 30, 1.5f, true);
 
         // 行4
 
-        PdfPCell[] cells4 = new PdfPCell[15];
+        PdfPCell[] cells4 = new PdfPCell[10];
         PdfPRow row4 = new PdfPRow(cells4);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-        cells4[0] = new PdfPCell(new Paragraph("同意", fontNormal12));
-        setCell(cells4[0], 5, 130, 1.5f, true);
-        cells4[5] = new PdfPCell(new Paragraph());
-        setCell(cells4[5], 5, 130, 1.5f, true);
-        cells4[10] = new PdfPCell(new Paragraph("會簽完成", fontNormal12));
-        setCell(cells4[10], 5, 130, 1.5f, true);
+        cells4[0] = new PdfPCell(new Paragraph( dateFormat.format(new Date())
+                + "     " + "小转风" + "    " + "發起", fontNormal12));
+        setCell(cells4[0], 5, 210, 1.5f, true);
+        Paragraph elements1 = new Paragraph(dateFormat.format(new Date())
+                + "     " + "大转风" + "     " + "撤销退回"
+                + "     " + "不同意不同意不同意不同意", fontNormal12);
+        cells4[5] = new PdfPCell();
+        cells4[5].addElement(elements1);
+        cells4[5].addElement(elements1);
+        cells4[5].addElement(elements1);
+        cells4[5].addElement(elements1);
+        cells4[5].addElement(elements1);
+        setCell(cells4[5], 5, 210, 1.5f, true);
 
 
         //把第行添加到集合

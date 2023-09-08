@@ -1,6 +1,8 @@
 package com.ghj.functioninterface;
 
 import java.io.PrintStream;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -38,5 +40,10 @@ public class TestConsumer {
         long l = 4L;
         int g = 4;
         System.out.println(l == g);
+        System.out.println(LocalDate.now());
+        BigDecimal bigDecimal = new BigDecimal(1);
+        BigDecimal bigDecimal1 = new BigDecimal(2);
+        bigDecimal.add(bigDecimal1);
+        System.out.println(bigDecimal);
     }
 }

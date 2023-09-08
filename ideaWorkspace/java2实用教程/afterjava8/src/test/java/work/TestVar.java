@@ -2,9 +2,7 @@ package work;
 
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 测试 代码块中声明的变量
@@ -29,5 +27,14 @@ public class TestVar {
         System.out.println(i);
         System.out.println(instance.get(Calendar.MONTH));
         System.out.println(instance.get(Calendar.DAY_OF_WEEK));
+        System.out.println( i = 3);
+        System.out.println(i);
+        Map<String, String> map = new HashMap<>(6);
+        map.put("1", "111");
+        System.out.println(map.remove("2"));
+        System.out.println(map);
+
+        String sd = "02";
+        System.out.println(1-3);
     }
 }

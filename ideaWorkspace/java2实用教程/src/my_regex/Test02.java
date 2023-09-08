@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
  */
 public class Test02 {
     public static void main(String[] args) throws Exception {
-        String pattern = "\\d{1,30}(\\.\\d{0,30})?";
+        String pattern = "^\\d{1,30}(\\.\\d{1,30})?$";
         Random random = new Random();
-        System.out.println(Pattern.matches(pattern, "0.0002345678456234"));
+        System.out.println(Pattern.matches(pattern, null));
 //        for (int i = 0; i < 10086; i++) {
 //            float v = random.nextFloat();
 //            String s = v + "";
