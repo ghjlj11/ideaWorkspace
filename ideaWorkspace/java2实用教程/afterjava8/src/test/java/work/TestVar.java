@@ -2,6 +2,8 @@ package work;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -36,5 +38,12 @@ public class TestVar {
 
         String sd = "02";
         System.out.println(1-3);
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(simpleDateFormat.format(date));
+
+        String s = "12.00";
+        BigDecimal bigDecimal = new BigDecimal(s);
+        System.out.println(new Date().toString());
     }
 }

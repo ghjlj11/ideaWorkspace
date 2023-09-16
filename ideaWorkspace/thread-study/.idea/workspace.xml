@@ -5,19 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="599c7221-2eb1-449e-af6a-7f3b8f6064da" name="变更" comment="change">
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer05/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer05/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer58/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/offer/offer58/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/huawei/Test01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/huawei/Test2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/MyAnnotateProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/ParamNotNull.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/TestAnno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/httprequest/TestHttpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testswitch/TestSwitch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/my_regex/Test02.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/my_regex/Test02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/pdf/example1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../test/pdf/example1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/juc-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/juc-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +177,7 @@
       <workItem from="1654771505811" duration="730000" />
       <workItem from="1682477144711" duration="1971000" />
       <workItem from="1683341548879" duration="618000" />
+      <workItem from="1694053470849" duration="1262000" />
     </task>
     <task id="LOCAL-00001" summary="lock and volatile">
       <created>1651286424878</created>

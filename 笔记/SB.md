@@ -534,6 +534,18 @@ ssh-keygen -t rsa -C "邮箱"
 
 
 
+#### 版本回退
+
+
+
+`git log`查找历史，查看到commitId。
+
+`git reset --hard commitId`将版本回退至指定的提交处。
+
+`resert`之后又想不回退了，此时使用`git log`发现回退该版本之后的提交都不见了，使用`git reflog` 查看所有`commit` 日志记录（包括reset --hard 之后的）
+
+
+
 
 
 ## windows下杀死指定端口的进程

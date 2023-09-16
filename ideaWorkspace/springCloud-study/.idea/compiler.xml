@@ -11,6 +11,7 @@
         <module name="springcloud-gateway-9527" />
         <module name="springcloud-stream-rabbitmq-provider8801" />
         <module name="springcloud-consumer-hystrix-dashboard" />
+        <module name="springcloud-alibaba-seate-order-9091" />
         <module name="springcloud-serverConfig-3377" />
         <module name="springcloud-stream-rabbitmq-consumer8803" />
         <module name="springcloud-provider-dept-8001" />
@@ -23,6 +24,7 @@
         <module name="springcloud-eureka-7001" />
         <module name="springcloud-alibaba-sentinel-server-8401" />
         <module name="springcloud-provider-dept-hystrix-8001" />
+        <module name="springcloud-alibaba-seate-stock-9092" />
         <module name="springcloud-alibaba-provider-parment-9002" />
         <module name="springcloud-alibaba-provider-parment-9001" />
         <module name="springcloud-api" />

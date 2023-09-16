@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="排序">
-      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer05/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer05/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer58/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/offer/offer58/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/random/xiefu/MaoPao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/src/singoton/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/huawei/Test01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/huawei/Test2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/MyAnnotateProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/ParamNotNull.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/TestAnno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/PoJo2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/dependency/Test01.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/MyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testjson/TestJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/workTest/TestBigDecimal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../thread-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/juc-study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/juc-study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +39,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/lj/leetcode/code81/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://C:/Program Files/Java/jdk-17.0.2/lib/src.zip!/java.base/java/util/LinkedHashMap.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/lj/leetcode/code81/Main.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://C:/Program Files/Java/jdk-17.0.2/lib/src.zip!/java.base/java/util/HashMap.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -81,20 +75,7 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.MaoPao">
-    <configuration name="InsertSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.random.InsertSort" />
-      <module name="guolj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lj.random.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="应用程序.Test2">
     <configuration name="MaoPao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lj.random.xiefu.MaoPao" />
       <module name="guolj" />
@@ -134,12 +115,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.random.Test01" />
+    <configuration name="Test01 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.huawei.Test01" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.random.*" />
+          <option name="PATTERN" value="lj.huawei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.huawei.Test2" />
+      <module name="guolj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lj.huawei.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -149,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Test2" />
+        <item itemvalue="应用程序.Test01 (1)" />
         <item itemvalue="应用程序.MaoPao" />
         <item itemvalue="应用程序.Test (1)" />
         <item itemvalue="应用程序.Test" />
-        <item itemvalue="应用程序.InsertSort" />
-        <item itemvalue="应用程序.Test01" />
       </list>
     </recent_temporary>
   </component>
@@ -197,6 +191,8 @@
       <workItem from="1681441178439" duration="2690000" />
       <workItem from="1682497425637" duration="2604000" />
       <workItem from="1684389422797" duration="1488000" />
+      <workItem from="1691331221095" duration="6365000" />
+      <workItem from="1691371584683" duration="880000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -374,5 +370,36 @@
     <MESSAGE value="二进制加法" />
     <MESSAGE value="排序" />
     <option name="LAST_COMMIT_MESSAGE" value="排序" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lj/huawei/Test01.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lj/huawei/Test2.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lj/huawei/Test2.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lj/huawei/Test2.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lj/huawei/Test2.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

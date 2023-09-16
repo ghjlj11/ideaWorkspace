@@ -2959,3 +2959,299 @@ clusterMode: 是否集群
 
 ## seata
 
+
+
+使用1+3模式，其中1代表XID，3代表TC（事务协调者）、TM（事务管理者）、RM（资源管理者）。
+
+
+
+### 下载安装配置
+
+下载安装：https://seata.io/zh-cn/index.html官网，官网简单示例：https://github.com/seata/seata-samples/tree/master/springcloud-nacos-seata。
+
+
+
+本次学习下载版本是1.4.2，下载解压后修改配置，首先修改`file.conf`文件修改其中的`mode = "db"`，然后下面db模块的配置信息，mysql连接信息修改。其次修改`registry.conf`， 本次使用nacos作为服务注册中心，因此修改`type=nacos`，修改文件中nacos下的配置，一加conf下的nacos的配置，在nacos中新建一个配置文件，dataId和group要与配置文件中的config.nacos中的一致：
+
+```properties
+transport.type=TCP
+transport.server=NIO
+transport.heartbeat=true
+transport.enableClientBatchSendRequest=false
+transport.threadFactory.bossThreadPrefix=NettyBoss
+transport.threadFactory.workerThreadPrefix=NettyServerNIOWorker
+transport.threadFactory.serverExecutorThreadPrefix=NettyServerBizHandler
+transport.threadFactory.shareBossWorker=false
+transport.threadFactory.clientSelectorThreadPrefix=NettyClientSelector
+transport.threadFactory.clientSelectorThreadSize=1
+transport.threadFactory.clientWorkerThreadPrefix=NettyClientWorkerThread
+transport.threadFactory.bossThreadSize=1
+transport.threadFactory.workerThreadSize=default
+transport.shutdown.wait=3
+service.vgroupMapping.my_test_tx_group=default
+service.default.grouplist=127.0.0.1:8091
+service.enableDegrade=false
+service.disableGlobalTransaction=false
+client.rm.asyncCommitBufferLimit=10000
+client.rm.lock.retryInterval=10
+client.rm.lock.retryTimes=30
+client.rm.lock.retryPolicyBranchRollbackOnConflict=true
+client.rm.reportRetryCount=5
+client.rm.tableMetaCheckEnable=false
+client.rm.tableMetaCheckerInterval=60000
+client.rm.sqlParserType=druid
+client.rm.reportSuccessEnable=false
+client.rm.sagaBranchRegisterEnable=false
+client.tm.commitRetryCount=5
+client.tm.rollbackRetryCount=5
+client.tm.defaultGlobalTransactionTimeout=60000
+client.tm.degradeCheck=false
+client.tm.degradeCheckAllowTimes=10
+client.tm.degradeCheckPeriod=2000
+store.mode=db
+store.publicKey=
+store.file.dir=file_store/data
+store.file.maxBranchSessionSize=16384
+store.file.maxGlobalSessionSize=512
+store.file.fileWriteBufferCacheSize=16384
+store.file.flushDiskMode=async
+store.file.sessionReloadReadSize=100
+store.db.datasource=druid
+store.db.dbType=mysql
+store.db.driverClassName=com.mysql.cj.jdbc.Driver
+store.db.url=jdbc:mysql://127.0.0.1:3306/seata?useUnicode=true&rewriteBatchedStatements=true&serverTimezone=GMT
+store.db.user=root
+store.db.password=123456
+store.db.minConn=5
+store.db.maxConn=30
+store.db.globalTable=global_table
+store.db.branchTable=branch_table
+store.db.queryLimit=100
+store.db.lockTable=lock_table
+store.db.maxWait=5000
+store.redis.mode=single
+store.redis.single.host=127.0.0.1
+store.redis.single.port=6379
+store.redis.sentinel.masterName=
+store.redis.sentinel.sentinelHosts=
+store.redis.maxConn=10
+store.redis.minConn=1
+store.redis.maxTotal=100
+store.redis.database=0
+store.redis.password=
+store.redis.queryLimit=100
+server.recovery.committingRetryPeriod=1000
+server.recovery.asynCommittingRetryPeriod=1000
+server.recovery.rollbackingRetryPeriod=1000
+server.recovery.timeoutRetryPeriod=1000
+server.maxCommitRetryTimeout=-1
+server.maxRollbackRetryTimeout=-1
+server.rollbackRetryTimeoutUnlockEnable=false
+client.undo.dataValidation=true
+client.undo.logSerialization=jackson
+client.undo.onlyCareUpdateColumns=true
+server.undo.logSaveDays=7
+server.undo.logDeletePeriod=86400000
+client.undo.logTable=undo_log
+client.undo.compress.enable=true
+client.undo.compress.type=zip
+client.undo.compress.threshold=64k
+log.exceptionRate=100
+transport.serialization=seata
+transport.compressor=none
+metrics.enabled=false
+metrics.registryType=compact
+metrics.exporterList=prometheus
+metrics.exporterPrometheusPort=9898
+```
+
+
+
+新增seate数据库，以及seate需要的表：
+
+```sql
+-- -------------------------------- The script used when storeMode is 'db' --------------------------------
+-- the table to store GlobalSession data
+CREATE TABLE IF NOT EXISTS `global_table`
+(
+    `xid`                       VARCHAR(128) NOT NULL,
+    `transaction_id`            BIGINT,
+    `status`                    TINYINT      NOT NULL,
+    `application_id`            VARCHAR(32),
+    `transaction_service_group` VARCHAR(32),
+    `transaction_name`          VARCHAR(128),
+    `timeout`                   INT,
+    `begin_time`                BIGINT,
+    `application_data`          VARCHAR(2000),
+    `gmt_create`                DATETIME,
+    `gmt_modified`              DATETIME,
+    PRIMARY KEY (`xid`),
+    KEY `idx_gmt_modified_status` (`gmt_modified`, `status`),
+    KEY `idx_transaction_id` (`transaction_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- the table to store BranchSession data
+CREATE TABLE IF NOT EXISTS `branch_table`
+(
+    `branch_id`         BIGINT       NOT NULL,
+    `xid`               VARCHAR(128) NOT NULL,
+    `transaction_id`    BIGINT,
+    `resource_group_id` VARCHAR(32),
+    `resource_id`       VARCHAR(256),
+    `branch_type`       VARCHAR(8),
+    `status`            TINYINT,
+    `client_id`         VARCHAR(64),
+    `application_data`  VARCHAR(2000),
+    `gmt_create`        DATETIME(6),
+    `gmt_modified`      DATETIME(6),
+    PRIMARY KEY (`branch_id`),
+    KEY `idx_xid` (`xid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- the table to store lock data
+CREATE TABLE IF NOT EXISTS `lock_table`
+(
+    `row_key`        VARCHAR(128) NOT NULL,
+    `xid`            VARCHAR(128),
+    `transaction_id` BIGINT,
+    `branch_id`      BIGINT       NOT NULL,
+    `resource_id`    VARCHAR(256),
+    `table_name`     VARCHAR(32),
+    `pk`             VARCHAR(36),
+    `gmt_create`     DATETIME,
+    `gmt_modified`   DATETIME,
+    PRIMARY KEY (`row_key`),
+    KEY `idx_branch_id` (`branch_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+  
+  -- for AT mode you must to init this sql for you business database. the seata server not need it.
+CREATE TABLE IF NOT EXISTS `undo_log`
+(
+    `branch_id`     BIGINT       NOT NULL COMMENT 'branch transaction id',
+    `xid`           VARCHAR(128) NOT NULL COMMENT 'global transaction id',
+    `context`       VARCHAR(128) NOT NULL COMMENT 'undo_log context,such as serialization',
+    `rollback_info` LONGBLOB     NOT NULL COMMENT 'rollback info',
+    `log_status`    INT(11)      NOT NULL COMMENT '0:normal status,1:defense status',
+    `log_created`   DATETIME(6)  NOT NULL COMMENT 'create datetime',
+    `log_modified`  DATETIME(6)  NOT NULL COMMENT 'modify datetime',
+    UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8 COMMENT ='AT transaction mode undo table';
+```
+
+
+
+### 新建微服务测试
+
+
+
+#### 依赖
+
+新建seate-order服务和seate-stock服务，依赖需要seate依赖：
+
+```xml
+        <!-- Seata -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <version>2.2.7.RELEASE</version>
+        </dependency>
+```
+
+
+
+#### 配置
+
+配置文件：
+
+```properties
+spring.application.name=order-service
+server.port=9091
+# Nacos 注册中心地址
+spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+# seata 服务分组，要与服务端nacos-config.txt中service.vgroup_mapping的后缀对应
+spring.cloud.alibaba.seata.tx-service-group=my_test_tx_group
+logging.level.io.seata=debug
+# 数据源配置
+spring.datasource.url=jdbc:mysql://localhost:3306/seata_order?allowMultiQueries=true&serverTimezone=GMT
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=123456
+```
+
+在application.properties文件同级下将seate配置文件的registry.conf，复制到项目中。
+
+
+
+#### 业务代码
+
+下面只展示order服务的service代码：
+
+```java
+import com.work.order.feign.StockFeignClient;
+import com.work.order.model.Order;
+import com.work.order.repository.OrderDAO;
+import io.seata.spring.annotation.GlobalTransactional;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+
+import java.math.BigDecimal;
+
+/**
+ * Program Name: springcloud-nacos-seata
+ * <p>
+ * Description:
+ * <p>
+ *
+ * @author zhangjianwei
+ * @version 1.0
+ * @date 2019/8/28 4:05 PM
+ */
+@Service
+public class OrderService {
+
+    @Resource
+    private StockFeignClient stockFeignClient;
+    @Resource
+    private OrderDAO orderDAO;
+
+    /**
+     * 下单：创建订单、减库存，涉及到两个服务
+     *
+     * @param userId
+     * @param commodityCode
+     * @param count
+     */
+    @GlobalTransactional
+    @Transactional(rollbackFor = Exception.class)
+    public void placeOrder(String userId, String commodityCode, Integer count) {
+        BigDecimal orderMoney = new BigDecimal(count).multiply(new BigDecimal(5));
+        Order order = new Order().setUserId(userId).setCommodityCode(commodityCode).setCount(count).setMoney(
+            orderMoney);
+        orderDAO.insert(order);
+        // 调用其他微服务
+        stockFeignClient.deduct(commodityCode, count);
+        // 模拟报错，远程服务事务回滚
+        if (commodityCode.equals("product-1")) {
+            throw new RuntimeException("异常:模拟业务异常:stock branch exception");
+        }
+
+    }
+
+}
+```
+
+
+
+启动命令: `seata-server.bat  -p 8091 -h 127.0.0.1 -m file`
+
+最终结果：通过controller调用该service，该service执行业务，调用其他服务，待所有业务都完成抛出异常，会发现远程服务执行的业务被回滚， 实现分布式事务。在抛异常处打上断点，查看数据库，会发现此时库存服务的事务其实已经提交，并未生成全局行锁。当然订单服务的还未提交，在继续执行代码后，异常抛出，库存服务的事务将会回滚为之前的状态。**如果在库存服务提交事务之后，有其他的操作修改了该条库存，那么seate会发现事务执行前镜像与后镜像不一致，那么就不会回滚，会记录在undo_log表中**。
+
+
+
