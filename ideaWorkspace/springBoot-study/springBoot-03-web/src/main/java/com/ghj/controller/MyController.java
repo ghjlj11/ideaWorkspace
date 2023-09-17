@@ -1,11 +1,19 @@
 package com.ghj.controller;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * @author 86187
@@ -36,7 +44,19 @@ public class MyController {
     }
     @ResponseBody
     @RequestMapping("/test")
-    public String test04(){
-        return "hello 罗静";
+    public void test04(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=" + "excelTest07.xlsx" );
+        String path = "D:\\my-study\\ideaWorkspace\\test\\excelTest07.xlsx";
+        InputStream inputStream = new FileInputStream(path);
+        ServletOutputStream outputStream = response.getOutputStream();
+        byte[] bytes = new byte[1024];
+        int len = 0;
+        while ((len = inputStream.read(bytes)) > 0){
+            outputStream.write(bytes, 0 , len);
+        }
+        inputStream.close();
+        outputStream.flush();
+        outputStream.close();
     }
 }
