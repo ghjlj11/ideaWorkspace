@@ -44,6 +44,10 @@ public class TestVar {
 
         String s = "12.00";
         BigDecimal bigDecimal = new BigDecimal(s);
-        System.out.println(new Date().toString());
+        System.out.println(bigDecimal.add(null));
+
+        List<String> list = new ArrayList<>(8);
+        list.add(2, "haha");
+        System.out.println(list);
     }
 }
