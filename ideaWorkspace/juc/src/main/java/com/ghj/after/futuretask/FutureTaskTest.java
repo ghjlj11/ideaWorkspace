@@ -2,14 +2,14 @@ package com.ghj.after.futuretask;
 
 import com.ghj.after.utils.ThreadPollExecutorUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 /**
  * <p>
  * Description: FutureTask，继承了Runnable, Future接口，同时构造函数入参可以传入Callable接口，集成一体
  * </p>
+ * FutureTask的缺点就是调用get方法时，主线程处于阻塞状态，耗费时间；或者通过轮询调用isDone方法判断线程是否执行完毕，执行完成之后再调用get
+ * 方法，也是一个不好的方式
  * @author guohuanjun1
  * @date 2023/9/19 22:41
  */
