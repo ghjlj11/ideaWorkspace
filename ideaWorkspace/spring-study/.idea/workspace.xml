@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试LocalDateTime">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-05-anno/src/main/java/com/ghj/service/Test01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-05-anno/src/main/java/com/ghj/service/Test02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/completablefuture/CompletableFutureDemo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/completablefuture/CompletableFutureDemo2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/futuretask/FutureTaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/futuretask/FutureTaskTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/futuretask/MyCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/futuretask/MyCallable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/utils/ThreadPollExecutorUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/utils/ThreadPollExecutorUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl2.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-10-mybatis/target/test-classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/src/test/java/myTest/Test01.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/src/test/java/myTest/Test01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/test-classes/myTest/Test01.class" beforeDir="false" afterPath="$PROJECT_DIR$/spring-05-anno/target/test-classes/myTest/Test01.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,16 +94,7 @@
       <recent name="com.ghj.pojo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.test01 (2)">
-    <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Test01">
     <configuration name="MyTest.t2 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-test" />
       <option name="PACKAGE_NAME" value="" />
@@ -127,30 +125,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-11-transcation" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test01" />
+    <configuration name="Test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-05-anno" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="myTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="myTest" />
+      <option name="MAIN_CLASS_NAME" value="myTest.Test01" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test01.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-05-anno" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="myTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="myTest" />
+      <option name="MAIN_CLASS_NAME" value="myTest.Test01" />
+      <option name="METHOD_NAME" value="test02" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.MyTest.test01" />
       <item itemvalue="JUnit.MyTest.t2 (1)" />
-      <item itemvalue="JUnit.MyTest" />
       <item itemvalue="JUnit.MyTest.test01 (1)" />
       <item itemvalue="JUnit.MyTest.test01 (2)" />
+      <item itemvalue="JUnit.Test01.test02" />
+      <item itemvalue="JUnit.Test01" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Test01" />
+        <item itemvalue="JUnit.Test01.test02" />
         <item itemvalue="JUnit.MyTest.test01 (2)" />
         <item itemvalue="JUnit.MyTest.test01 (1)" />
         <item itemvalue="JUnit.MyTest.t2 (1)" />
-        <item itemvalue="JUnit.MyTest" />
-        <item itemvalue="JUnit.MyTest.test01" />
       </list>
     </recent_temporary>
   </component>
@@ -205,6 +224,7 @@
       <workItem from="1668073716531" duration="27000" />
       <workItem from="1676009448240" duration="1914000" />
       <workItem from="1687509554685" duration="2127000" />
+      <workItem from="1695610668031" duration="2844000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

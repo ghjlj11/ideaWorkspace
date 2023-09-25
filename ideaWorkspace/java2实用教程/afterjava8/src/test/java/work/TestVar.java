@@ -44,10 +44,16 @@ public class TestVar {
 
         String s = "12.00";
         BigDecimal bigDecimal = new BigDecimal(s);
-        System.out.println(bigDecimal.add(null));
+        //System.out.println(bigDecimal.add(null));
 
         List<String> list = new ArrayList<>(8);
-        list.add(2, "haha");
+        //list.add(2, "haha");
         System.out.println(list);
+        BigDecimal[] bigDecimals = new BigDecimal[10];
+        bigDecimals[2] = new BigDecimal(3);
+        for (BigDecimal decimal : bigDecimals) {
+
+            System.out.println(decimal);
+        }
     }
 }

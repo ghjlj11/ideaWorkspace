@@ -13,11 +13,11 @@ import java.util.concurrent.*;
 public class ThreadPollExecutorUtil {
 
     public static ExecutorService getThreadPoll() {
-        return new ThreadPoolExecutor(3,
-                5,
+        return new ThreadPoolExecutor(100,
+                115,
                 5,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(3),
+                new ArrayBlockingQueue<>(10),
                 Executors.defaultThreadFactory(),
                 new ThreadPoolExecutor.AbortPolicy());
     }

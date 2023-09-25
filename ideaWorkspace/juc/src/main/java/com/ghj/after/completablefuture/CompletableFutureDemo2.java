@@ -29,21 +29,31 @@ public class CompletableFutureDemo2 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            int a = 10 /0;
             return "over";
         }, threadPoll);
-        // whenComplete当任务执行完成之后的回调方法，v为任务执行的返回值，e为异常； exceptionally为任务抛出异常之后的回调
+        // whenComplete当任务执行完成之后的回调方法，v为任务执行的返回值，e为异常， 即使出现异常也会执行whenComplete；
+        // exceptionally为任务抛出异常之后的回调
         completableFuture.whenComplete((v, e) -> {
-            list.add(v);
-            System.out.println("执行 ===> whenComplete");
+            if(e == null){
+                list.add(v);
+                System.out.println("执行 ===> whenComplete");
+            }
         }).exceptionally(e -> {
             System.out.println("出异常拉!");
             System.out.println("执行 ===> exceptionally");
             return "exception";
         });
         threadPoll.shutdown();
+        test(list);
         TimeUnit.SECONDS.sleep(5);
         System.out.println(list);
         long end = System.currentTimeMillis();
         System.out.println("cost time ==> " + (end - start) + " ms");
+    }
+    public static void test(List<String> list) throws InterruptedException {
+        System.out.println("test==start===> " + list);
+        TimeUnit.SECONDS.sleep(4);
+        System.out.println("test==end===> " + list);
     }
 }

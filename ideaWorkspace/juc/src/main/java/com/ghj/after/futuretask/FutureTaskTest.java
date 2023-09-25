@@ -2,6 +2,8 @@ package com.ghj.after.futuretask;
 
 import com.ghj.after.utils.ThreadPollExecutorUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -14,7 +16,7 @@ import java.util.concurrent.*;
  * @date 2023/9/19 22:41
  */
 public class FutureTaskTest {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void test(String[] args) throws ExecutionException, InterruptedException {
         long start = System.currentTimeMillis();
         ExecutorService threadPoll = ThreadPollExecutorUtil.getThreadPoll();
         FutureTask<String> futureTask1 = new FutureTask<>(new MyCallable(2));
@@ -32,5 +34,24 @@ public class FutureTaskTest {
         threadPoll.shutdown();
         long end = System.currentTimeMillis();
         System.out.println("cost time: " + (end - start) + " ms");
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService threadPoll = ThreadPollExecutorUtil.getThreadPoll();
+        List<MyCallable> taskList = new ArrayList<>();
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 125; i++) {
+            MyCallable myCallable = new MyCallable(1);
+            taskList.add(myCallable);
+        }
+        List<Future<String>> futures = threadPoll.invokeAll(taskList);
+        for (Future<String> future : futures) {
+            String s = future.get();
+            System.out.println(s);
+        }
+        TimeUnit.SECONDS.sleep(5);
+        long end = System.currentTimeMillis();
+        System.out.println("spend time ===> " + (end - start) + " ms");
+        threadPoll.shutdown();
     }
 }
