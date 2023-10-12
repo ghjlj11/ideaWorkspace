@@ -1,10 +1,8 @@
+import com.ghj.test.TestSelfInject;
 import com.ghj.pojo.Computer;
 import com.ghj.pojo.Test01;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Properties;
 
 public class MyTest {
     @Test
@@ -15,6 +13,8 @@ public class MyTest {
         Computer computer = context.getBean("computer", Computer.class);
         System.out.println("-------------------");
         System.out.println(computer);
+        TestSelfInject bean = context.getBean(TestSelfInject.class);
+        bean.test();
         context.close();
     }
     @Test

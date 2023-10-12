@@ -7,6 +7,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
 ">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.ghj.test"/>
     <bean name="cpu" class="com.ghj.pojo.CPU"></bean>
     <bean name="computer" class="com.ghj.pojo.Computer" init-method="init" destroy-method="destroy">
         <property name="name" value="ghj"/>

@@ -524,6 +524,18 @@ git pull origin master
 
 
 
+#### 删除某一次提交
+
+```bash
+git revert commitId
+
+撤回指定commitId的提交, 弹出的文本框不用修改，直接退出。
+
+git push
+```
+
+
+
 
 
 #### 生成ssh密钥
@@ -543,6 +555,8 @@ ssh-keygen -t rsa -C "邮箱"
 `git reset --hard commitId`将版本回退至指定的提交处。
 
 `resert`之后又想不回退了，此时使用`git log`发现回退该版本之后的提交都不见了，使用`git reflog` 查看所有`commit` 日志记录（包括reset --hard 之后的）
+
+版本回退之后推送需要强制推送`git push -f -u origin branch`
 
 
 

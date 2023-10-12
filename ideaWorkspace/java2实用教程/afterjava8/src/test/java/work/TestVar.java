@@ -55,5 +55,12 @@ public class TestVar {
 
             System.out.println(decimal);
         }
+        System.out.println(Integer.MAX_VALUE);
+        List<String> list1 = new ArrayList<>();
+        list1.add(null);
+        list1.add(null);
+        list1.add(null);
+        list1.add("ddd");
+        System.out.println(list1);
     }
 }
