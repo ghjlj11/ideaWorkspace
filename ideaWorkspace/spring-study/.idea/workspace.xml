@@ -5,81 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试LocalDateTime">
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/test/TestSelfInject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-test/src/main/java/com/ghj/test/TestSelfInjectImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/com/ghj/dao/MainUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/com/ghj/dao/SqlUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/com/ghj/dao/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/com/ghj/service/ServiceUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/classes/com/ghj/service/ServiceUserImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-01-ioc1/target/test-classes/com/ghj/dao/TestUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/beans2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/com/ghj/pojo/Hello.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/classes/com/ghj/pojo/HelloT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-02-hello/target/test-classes/com/ghj/myTest/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/classes/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/classes/com/ghj/pojo/Address.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/classes/com/ghj/pojo/Student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/classes/com/ghj/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/classes/userbeans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-03-di/target/test-classes/com/ghj/pojo/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Cat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/Dog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/classes/com/ghj/pojo/People.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-04-Autowired/target/test-classes/mytest/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/dao/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/classes/com/ghj/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-05-anno/target/test-classes/myTest/Test01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/config/GhjConfig2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/classes/com/ghj/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-06-appconfig/target/test-classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-07-proxy/target/classes/com/ghj/demo01/ProxyInvocationHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-07-proxy/target/classes/com/ghj/demo01/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-07-proxy/target/classes/com/ghj/demo01/UserServiceImp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-07-proxy/target/test-classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/AnnotationPointCut.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/diy/DiyPointCut.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/AfterLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/log/Log.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/com/ghj/service/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/classes/factoryBean.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-08-aop/target/test-classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/mapper/UserMapperImpl2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/com/ghj/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/classes/spring-dao.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-10-mybatis/target/test-classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/com/ghj/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/com/ghj/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/com/ghj/mapper/UserMapperImpl2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/com/ghj/pojo/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/classes/spring-dao.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-11-transcation/target/test-classes/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-JDBC/target/classes/db.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-JDBC/target/classes/spring-JDBC.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/main/resources/application.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-test/target/classes/application.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-test/target/classes/application.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,6 +213,7 @@
       <workItem from="1687509554685" duration="2127000" />
       <workItem from="1695610668031" duration="2844000" />
       <workItem from="1697079904364" duration="1960000" />
+      <workItem from="1697114705020" duration="645000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>
