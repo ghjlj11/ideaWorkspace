@@ -2,6 +2,7 @@ package work;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * <p>
@@ -22,5 +23,24 @@ public class TestDate {
 
         System.out.println(System.identityHashCode(s1));
         System.out.println(System.identityHashCode(s2));
+
+        String s3 = "333";
+        String s4 = "444";
+        String s = "333444";
+        String s5 = "333" + "444";
+        String s6 = s3 + s4;
+        System.out.println(s == s5);
+        System.out.println(s == s6);
+        // System.out.println(s == s7);
+        String tt = new StringBuilder("ja").append("va").toString();
+        System.out.println("k,k1==========>");
+        System.out.println(tt.intern() == tt);
+        System.out.println(s == s6.intern());
+        int i = 0;
+        Set<String> stringSet = new HashSet<>();
+        while (true) {
+            stringSet.add(String.valueOf(i ++).intern());
+            System.out.println(i);
+        }
     }
 }
