@@ -5,25 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="599c7221-2eb1-449e-af6a-7f3b8f6064da" name="变更" comment="change">
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/huawei/Test01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/huawei/Test2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/MyAnnotateProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/ParamNotNull.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/annotate/TestAnno.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/httprequest/TestHttpRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testswitch/TestSwitch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/functioninterface/TestConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/itextpdf/TestPdf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/java2实用教程.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/servlet/servlet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java2实用教程/src/my_regex/Test02.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/src/my_regex/Test02.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/pdf/example1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../test/pdf/example1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../excel/poi/src/test/java/ModifyWordDocument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/main/java/com/ghj/testdesktop/HelloWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../excel/poi/src/test/java/Test07.java" beforeDir="false" afterPath="$PROJECT_DIR$/../excel/poi/src/test/java/Test07.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/TestDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/bigData07.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../test/bigData07.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SpringCloud-Study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +69,7 @@
       <recent name="D:\ideaWorkspace\thread-study\src\com\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Test">
+  <component name="RunManager" selected="应用程序.TestJoin">
     <configuration name="BuyStick" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ghj.demo01.BuyStick" />
       <module name="thread-study" />
@@ -150,8 +137,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Test" />
         <item itemvalue="应用程序.TestJoin" />
+        <item itemvalue="应用程序.Test" />
         <item itemvalue="应用程序.Main" />
         <item itemvalue="应用程序.TestIs" />
         <item itemvalue="应用程序.BuyStick" />
@@ -178,6 +165,7 @@
       <workItem from="1682477144711" duration="1971000" />
       <workItem from="1683341548879" duration="618000" />
       <workItem from="1694053470849" duration="1262000" />
+      <workItem from="1701447824682" duration="710000" />
     </task>
     <task id="LOCAL-00001" summary="lock and volatile">
       <created>1651286424878</created>

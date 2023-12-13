@@ -1,19 +1,21 @@
 package com.example;
 
+import com.alibaba.fastjson2.util.IOUtils;
+import com.alibaba.fastjson2.util.TypeUtils;
 import com.example.pojo.MyUser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.time.Duration;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class Redis02SpringbootApplicationTests {
@@ -26,13 +28,19 @@ class Redis02SpringbootApplicationTests {
         //redisTemplate.opsForValue().set("me", myUser);
         ValueOperations opsForValue = redisTemplate.opsForValue();
         if(opsForValue.setIfAbsent("me", myUser, Duration.ofDays(30))){
-            System.out.println(redisTemplate.opsForValue().get("me"));
+            String[] strings = {"1", "2"};
+            MyUser me = (MyUser)redisTemplate.opsForValue().get("me");
+            System.out.println(me);
         }
 
     }
 
     @Test
     void testYonYou(){
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        //threadPoolTaskExecutor.submit();
+        ThreadPoolExecutor threadPoolExecutor = threadPoolTaskExecutor.getThreadPoolExecutor();
+
         String key = "guo*";
         Set keys = redisTemplate.keys(key);
         System.out.println("=======查找到：" + keys.size() + "个key");
@@ -45,4 +53,18 @@ class Redis02SpringbootApplicationTests {
 //        redisTemplate.opsForValue().set("guoguo", new MyUser("ghj", 21));
     }
 
+    @Test
+    void testThreadPoolTaskExecutor() throws ExecutionException, InterruptedException {
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        threadPoolTaskExecutor.initialize();
+        Future<?> haha = threadPoolTaskExecutor.submit(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("haha");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        haha.get();
+    }
 }

@@ -1,5 +1,7 @@
 package com.ghj.after.completablefuture;
 
+import com.ghj.after.utils.ThreadPollExecutorUtil;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -22,10 +24,11 @@ public class CompletableFutureDemo1 {
         CompletableFuture<Void> runAsync = CompletableFuture.runAsync(() -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
+                System.out.println("kak");
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        });
+        }, ThreadPollExecutorUtil.getThreadPoll());
 
         CompletableFuture<String> supplyAsync = CompletableFuture.supplyAsync(() -> {
             try {
@@ -34,7 +37,7 @@ public class CompletableFutureDemo1 {
                 e.printStackTrace();
             }
             return "eee";
-        });
+        }, ThreadPollExecutorUtil.getThreadPoll());
         System.out.println(runAsync.get());
         System.out.println(supplyAsync.get());
     }

@@ -12,7 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
-      <module name="redis-01-study" target="17" />
+      <module name="redis-01-study" target="1.5" />
       <module name="redis-02-springboot" target="17" />
     </bytecodeTargetLevel>
   </component>
