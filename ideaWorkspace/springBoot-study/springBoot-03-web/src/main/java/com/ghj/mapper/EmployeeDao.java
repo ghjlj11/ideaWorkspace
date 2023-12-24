@@ -24,6 +24,7 @@ public class EmployeeDao {
         employees.put(employee.getId(), employee);
     }
     public void deleteEmployee(int id){
+        System.out.println("delete ==>" + employees.get(id));
         employees.remove(id);
     }
     public Employee getEmployee(int id){

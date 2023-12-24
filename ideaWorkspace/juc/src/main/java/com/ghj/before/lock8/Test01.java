@@ -1,6 +1,7 @@
 package com.ghj.before.lock8;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author 86187
@@ -22,21 +23,39 @@ public class Test01 {
         new Thread(() -> {
             phone.call();
         }, "B").start();
+        new Thread(() -> {
+            Phone.sayHello();
+        }).start();
     }
 }
 class Phone{
-    public synchronized void sendSm(){
+    private static final ReentrantLock lock = new ReentrantLock();
+    private  ReentrantLock sLock = new ReentrantLock();
+    public void sendSm(){
+        sLock.lock();
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            sLock.unlock();
         }
         System.out.println("发短信");
     }
-    public synchronized void call(){
-        System.out.println("打电话");
+    public void call(){
+        sLock.lock();
+        try {
+            System.out.println("打电话");
+        } finally {
+            sLock.unlock();
+        }
     }
-    public void sayHello(){
-        System.out.println("hello");
+    public static void sayHello(){
+        lock.lock();
+        try {
+            System.out.println("hello");
+        } finally {
+            lock.unlock();
+        }
     }
 }

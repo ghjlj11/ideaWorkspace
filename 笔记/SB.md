@@ -582,3 +582,18 @@ taskkill -PID 要杀死进程的PID -F
 
 
 
+## java命令
+
+
+
+```bash
+# 查看java进程信息
+jps
+
+# dump进程信息
+jstack [pid]
+
+# 查看进程占用cpu资源信息
+jconsole [pid]
+```
+
