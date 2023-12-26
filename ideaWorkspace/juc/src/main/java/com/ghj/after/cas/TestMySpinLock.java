@@ -1,4 +1,4 @@
-package com.ghj.after.atomic;
+package com.ghj.after.cas;
 
 import java.util.concurrent.TimeUnit;
 

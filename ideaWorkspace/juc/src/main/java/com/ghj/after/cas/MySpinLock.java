@@ -1,8 +1,6 @@
-package com.ghj.after.atomic;
+package com.ghj.after.cas;
 
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicStampedReference;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
  * <p>
