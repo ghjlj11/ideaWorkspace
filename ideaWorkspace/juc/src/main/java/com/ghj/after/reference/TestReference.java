@@ -43,7 +43,7 @@ public class TestReference {
     }
 
     /**
-     * 测试虚引用，虚引用的对象将在下一次gc回收时候被回收
+     * 测试弱引用，弱引用的对象将在下一次gc回收时候被回收
      */
     public static void weakReference () {
         WeakReference<MyObject> weakReference = new WeakReference<>(new MyObject());

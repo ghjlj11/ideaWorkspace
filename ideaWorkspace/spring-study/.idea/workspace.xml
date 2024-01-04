@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试LocalDateTime">
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code002/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code003/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/AtomicIntegerFieldUpdateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/AtomicReferenceFieldUpdaterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code001/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code001/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/cas/MySpinLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/cas/MySpinLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/reference/TestReference.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/reference/TestReference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +68,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springBoot-study/springBoot-05-mybatis" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -214,6 +223,7 @@
       <workItem from="1695610668031" duration="2844000" />
       <workItem from="1697079904364" duration="1960000" />
       <workItem from="1697114705020" duration="645000" />
+      <workItem from="1704375546677" duration="1771000" />
     </task>
     <task id="LOCAL-00001" summary="java方式注解">
       <created>1651302058834</created>

@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="排序">
-      <change afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code002/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code003/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../笔记/SB.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../笔记/SB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
       <recent name="lj.leetcode.code145" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Solution">
+  <component name="RunManager" selected="应用程序.Solution (1)">
     <configuration name="MaoPao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lj.random.xiefu.MaoPao" />
       <module name="guolj" />
@@ -84,12 +85,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.releetcode.classicinterview.code001.Solution" />
+    <configuration name="Solution (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.releetcode.classicinterview.code002.Solution" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.releetcode.classicinterview.code001.*" />
+          <option name="PATTERN" value="lj.releetcode.classicinterview.code002.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,12 +98,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lj.offer.offer58.Test" />
+    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lj.releetcode.classicinterview.code001.Solution" />
       <module name="guolj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lj.offer.offer58.*" />
+          <option name="PATTERN" value="lj.releetcode.classicinterview.code001.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -138,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Solution (1)" />
         <item itemvalue="应用程序.Solution" />
         <item itemvalue="应用程序.Test2" />
         <item itemvalue="应用程序.Test01 (1)" />
         <item itemvalue="应用程序.MaoPao" />
-        <item itemvalue="应用程序.Test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -192,6 +193,11 @@
       <workItem from="1702733036680" duration="634000" />
       <workItem from="1703041697191" duration="5016000" />
       <workItem from="1703054065874" duration="1184000" />
+      <workItem from="1703753417122" duration="3007000" />
+      <workItem from="1703832417815" duration="6944000" />
+      <workItem from="1704180673383" duration="3101000" />
+      <workItem from="1704243725780" duration="7991000" />
+      <workItem from="1704272657683" duration="590000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>
@@ -400,7 +406,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java</url>
-          <line>26</line>
+          <line>34</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
