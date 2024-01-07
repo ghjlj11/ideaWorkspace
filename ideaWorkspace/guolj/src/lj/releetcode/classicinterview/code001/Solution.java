@@ -6,6 +6,7 @@ import java.util.Arrays;
  * <p>
  * Description: 经典
  * <p>
+ * 合并两个有序数组88
  *
  * @author guohuanjun1
  * @date 2023/12/20 11:14
@@ -13,27 +14,24 @@ import java.util.Arrays;
 class Solution {
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
         int[] temp = new int[m];
-        int length = nums1.length;
-        if (m == 0) {
-            System.arraycopy(nums2, 0, nums1, 0, n);
-            return;
-        }
-        else if (n == 0) {
-            return;
-        }
         System.arraycopy(nums1, 0, temp, 0, m);
-        int indexT = 0, index2 = 0, index1 = 0, k1 = temp[0], k2 = nums2[0];
-        while (index1 < length) {
-            while (k1 < k2 && index1 < length) {
-                nums1[index1++] = k1;
-                k1 = ++ indexT < m ? temp[indexT] : k1;
+        int i = 0, j = 0, k = 0;
+        while (i < nums1.length) {
+            if (j < m && k < n) {
+                if ( temp[j] < nums2[k] ) {
+                    nums1[i ++] = temp[j ++];
+                }
+                else {
+                    nums1[i ++] = nums2[k ++];
+                }
             }
-            while (k1 >= k2 && index1 < length) {
-                nums1[index1++] = k2;
-                k2 = ++ index2 < n ? nums2[index2] : k2;
+            else if (j < m) {
+                nums1[i ++] = temp[j ++];
+            }
+            else {
+                nums1[i ++] = nums2[k ++];
             }
         }
-        nums1[length - 1] = Math.max(k1, k2);
     }
 
     public static void main(String[] args) {

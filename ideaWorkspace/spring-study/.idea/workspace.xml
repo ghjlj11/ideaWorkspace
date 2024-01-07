@@ -7,15 +7,8 @@
     <list default="true" id="4be6378e-9251-4659-bdfc-8bfa88fd92c9" name="变更" comment="测试LocalDateTime">
       <change afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code002/Solution.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code003/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/AtomicIntegerFieldUpdateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/AtomicReferenceFieldUpdaterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/atomic/BankAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code001/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../guolj/src/lj/releetcode/classicinterview/code001/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/cas/MySpinLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/cas/MySpinLock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/reference/TestReference.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/reference/TestReference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
