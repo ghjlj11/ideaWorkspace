@@ -729,7 +729,7 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 
 
 
-> insert优化
+### insert优化
 
 - 批量插入， 如果插入多条数据， 应该使用一个insert语句批量插入。
 - 手动提交事务， 我们可以开启一个事务， 然后中间写要执行的SQL，最后自己手动提交事务。
@@ -737,14 +737,14 @@ ALTER TABLE <数据表名> ADD CONSTRAINT <外键名> FOREIGN KEY(<列名>) REFE
 
 
 
-> 主键优化
+### 主键优化
 
 - 主键的长度尽量小
 - 主键尽量自增
 
 
 
-> order by
+### order by
 
 
 
@@ -754,9 +754,7 @@ Using filesort 不通过索引直接返回排序结果； Using index 通过有�
 
 使用order by后面排序的字段尽量要走索引， 并且要尽量使用覆盖索引。
 
-
-
-> group by
+### group by
 
 Using temporary 分组效率低， 使用了临时表来分组； Using index分组效率高。
 
@@ -766,7 +764,7 @@ Using temporary 分组效率低， 使用了临时表来分组； Using index分
 
 
 
-> limit
+### limit
 
 当数据量很大时， 例如`limit 10000000, 10`，我们只取十条记录， 但是得查找前一千万条记录， 如果直接使用limit也会很慢。
 
@@ -780,9 +778,7 @@ select t.* from test t , (select id from test limit 10000000, 10) s where t.id =
 
 这样就走了主键，加上子查询也可以查出所有字段的数据了。
 
-
-
-> count优化
+### count优化
 
 
 
@@ -797,8 +793,6 @@ select t.* from test t , (select id from test limit 10000000, 10) s where t.id =
 
 **cuont(字段)<count(主键)<count(1)≈count(*)**
 
-
-
-> update优化
+### update优化
 
 在执行update时，需要让条件走索引， 否则在mysql执行事务时，会进行表锁，当别的事务要更新这个表的数据时，就会阻塞；当条件走索引， 那么就只是行锁， 不会影响这个表别的行数据更新
