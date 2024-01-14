@@ -35,5 +35,19 @@ public class Test1217 {
         System.out.println(Arrays.toString(s.split(",")));
         System.out.println(codeNum.get());
         System.out.println(new Date().toString());
+        double a = 3102.66;
+        double b = 28.99;
+        double c = a + b;
+        String s1 = getS(c);
+        System.out.println(s1);
+        String ss1 = new String("123456");
+        String ss2 = new String("123456");
+        System.out.println(ss1.hashCode());
+        System.out.println(ss2.hashCode());
+        System.out.println(ss1 == ss2);
+    }
+
+    public static String getS (Object o) {
+        return o == null ? "" : o.toString();
     }
 }

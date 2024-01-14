@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014eb705-c822-45fa-aa73-78f54fe72c2c" name="变更" comment="排序">
-      <change afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code002/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code003/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lj/releetcode/classicinterview/code001/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java2实用教程/afterjava8/src/test/java/work/Test1217.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/longadder/LongAdderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../juc/src/main/java/com/ghj/after/longadder/LongAdderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,6 +196,7 @@
       <workItem from="1704180673383" duration="3101000" />
       <workItem from="1704243725780" duration="7991000" />
       <workItem from="1704272657683" duration="590000" />
+      <workItem from="1704806802885" duration="1900000" />
     </task>
     <task id="LOCAL-00001" summary="137">
       <created>1651977590416</created>

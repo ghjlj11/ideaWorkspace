@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.LongAdder;
  * <p>
  * Description: 在高并发环境下LongAdder与LongAccumulator比AtomicLong速度快，更推荐使用
  * 50个线程每个加一千万，LongAdder与LongAccumulator比AtomicLong速度快10倍
+ * LongAdder在底层将真实的value分散在一个cell数组中，当多个线程操作时，会命中不同数组中的值，以减少线程之间的等待，
+ * 当需要获取value值时，只需要遍历cell数组中的所有value，然后求和即可。
  * <p>
  *
  * @author guohuanjun1

@@ -8,8 +8,12 @@ package com.ghj.after.threadlocal;
  * 下一个业务开始时ThreadLocal还是上一个业务结束时候的值
  *
  * ThreadLocalMap： 每个Thread里面都会有ThreadLocalMap对象，里面就是用来存储ThreadLocal的set方法里的值，
- * 存储方式也是k，v键值对，k为ThreadLocal对象，v为ThreadLocal的set方法的参数，get的时候，会以当前ThreadLocal为key去寻找value。
+ * 存储方式也是k，v键值对，k为ThreadLocal对象，v为ThreadLocal的set方法的参数，get的时候，会拿到当前线程里的ThreadLocalMap，再以当前ThreadLocal为key去寻找value。
+ *
  * <p>
+ *
+ * 1、ThreadLocal建议使用withInitial初始化值（否则容易空指针） 2、建议把ThreadLocal设置为static 3、用完记得手动remove
+ *
  * @author guohuanjun1
  * @date 2023/10/22 20:41
  */
