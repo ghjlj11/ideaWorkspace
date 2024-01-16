@@ -10,20 +10,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * <p>
  *
  * @author guohuanjun1
- * @date 2024/1/15 21:32
+ * @date 2024/1/16 22:32
  */
-public interface TestService {
-    /**
-     * cs
-     * @throws Exception
-     */
-    void testThread () throws Exception;
-
-    /**
-     * cs
-     * @throws Exception
-     */
-    void aa () throws Exception;
+public interface TestServiceWrapper {
 
     /**
      * insertWrapper
