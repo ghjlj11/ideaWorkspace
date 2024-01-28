@@ -14,10 +14,10 @@ public class ThreadPollExecutorUtil {
 
     public static ExecutorService getThreadPoll() {
         return new ThreadPoolExecutor(3,
-                3,
+                5,
                 5,
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(2),
+                new ArrayBlockingQueue<>(5),
                 Executors.defaultThreadFactory(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }

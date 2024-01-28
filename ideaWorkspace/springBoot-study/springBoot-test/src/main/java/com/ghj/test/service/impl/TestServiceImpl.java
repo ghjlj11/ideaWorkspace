@@ -13,11 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import sun.awt.AppContext;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -51,9 +50,9 @@ public class TestServiceImpl implements TestService {
     public void testThread() throws Exception {
         CountDownLatch countDownLatch = new CountDownLatch(4);
         AtomicBoolean isThrow = new AtomicBoolean(false);
-        TestService testServiceImpl = applicationContext.getBean(TestService.class);
-
-
+        // 通过spring容器拿到自身实例，从而避免调用自身一些方法时，spring注解失效
+        // TestService testServiceImpl = applicationContext.getBean(TestService.class);
+        long startTime = System.currentTimeMillis();
         CompletableFuture.runAsync(() -> {
             Map<String, Object> insertData = new HashMap<>();
             insertData.put("id", "123");
@@ -63,7 +62,7 @@ public class TestServiceImpl implements TestService {
             insertData.put("age", 123);
             insertData.put("brith", new Date());
             try {
-                testServiceImpl.insertWrapper(insertData, countDownLatch, isThrow);
+                testServiceWrapper.insertWrapper(insertData, countDownLatch, isThrow);
             } catch (Exception e) {
                 throw new RuntimeException("异常1");
             }
@@ -77,7 +76,7 @@ public class TestServiceImpl implements TestService {
             updateData.put("code", "hh");
             updateData.put("address", "hh");
             try {
-                testServiceImpl.updateWrapper(updateData, countDownLatch, isThrow);
+                testServiceWrapper.updateWrapper(updateData, countDownLatch, isThrow);
             } catch (Exception e) {
                 throw new RuntimeException("异常2");
             }
@@ -86,13 +85,11 @@ public class TestServiceImpl implements TestService {
 
         CompletableFuture.runAsync(() -> {
             try {
-                testServiceImpl.deleteWrapper("2", countDownLatch, isThrow);
+                testServiceWrapper.deleteWrapper("2", countDownLatch, isThrow);
             } catch (Exception e) {
                 throw new RuntimeException("异常3");
             }
         }, ThreadPollExecutorUtil.getThreadPoll());
-
-
         Map<String, Object> insertData = new HashMap<>();
         insertData.put("id", "999");
         insertData.put("name", "999");
@@ -103,6 +100,8 @@ public class TestServiceImpl implements TestService {
         testMapper.insert(insertData);
         countDownLatch.countDown();
         countDownLatch.await();
+        long endTime = System.currentTimeMillis();
+        System.out.println("main 耗时: " + (endTime - startTime) + " ms");
         if (isThrow.get()) {
             throw new Exception("haha main");
         }
@@ -136,59 +135,7 @@ public class TestServiceImpl implements TestService {
         testMapper.delete("222");
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public void insertWrapper(Map<String, Object> params, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception {
-        try {
-            testMapper.insert(params);
-        } catch (Exception e) {
-            isThrow.set(true);
-        } finally {
-            countDownLatch.countDown();
-        }
-        countDownLatch.await();
-        if (isThrow.get()) {
-            System.out.println("\n insertWrapper 异常 \n");
-            throw new Exception("th ins");
-        }
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public void updateWrapper(Map<String, Object> params, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception {
-        try {
-            testMapper.update(params);
-        } catch (Exception e) {
-            isThrow.set(true);
-        } finally {
-            countDownLatch.countDown();
-        }
-        countDownLatch.await();
-        if (isThrow.get()) {
-            System.out.println("\n updateWrapper 异常 \n");
-            throw new Exception("th upd");
-        }
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-    public void deleteWrapper(String id, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception {
-        try {
-            testMapper.delete(id);
-            // throw new Exception("hei");
-        } catch (Exception e) {
-            isThrow.set(true);
-        } finally {
-            countDownLatch.countDown();
-        }
-        countDownLatch.await();
-        if (isThrow.get()) {
-            System.out.println("\n deleteWrapper 异常 \n");
-            throw new Exception("th del");
-        }
-    }
-
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    @Transactional(rollbackFor = Exception.class)
     public void insertData() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "666");

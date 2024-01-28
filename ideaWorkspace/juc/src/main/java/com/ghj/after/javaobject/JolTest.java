@@ -4,7 +4,6 @@ import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
 
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * <p>

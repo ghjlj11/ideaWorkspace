@@ -24,31 +24,4 @@ public interface TestService {
      * @throws Exception
      */
     void aa () throws Exception;
-
-    /**
-     * insertWrapper
-     * @param params
-     * @param countDownLatch
-     * @param isThrow
-     * @throws Exception
-     */
-    void insertWrapper(Map<String, Object> params, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception;
-
-    /**
-     * updateWrapper
-     * @param params
-     * @param countDownLatch
-     * @param isThrow
-     * @throws Exception
-     */
-    void updateWrapper(Map<String, Object> params, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception;
-
-    /**
-     * deleteWrapper
-     * @param id
-     * @param countDownLatch
-     * @param isThrow
-     * @throws Exception
-     */
-    void deleteWrapper(String id, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception;
 }

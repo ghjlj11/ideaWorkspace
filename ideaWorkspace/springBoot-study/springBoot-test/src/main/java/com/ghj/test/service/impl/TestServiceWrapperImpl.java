@@ -3,7 +3,6 @@ package com.ghj.test.service.impl;
 import com.ghj.test.mapper.TestMapper;
 import com.ghj.test.service.TestServiceWrapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -65,7 +64,7 @@ public class TestServiceWrapperImpl implements TestServiceWrapper {
     public void deleteWrapper(String id, CountDownLatch countDownLatch, AtomicBoolean isThrow) throws Exception {
         try {
             testMapper.delete(id);
-            // throw new Exception("hei");
+            throw new Exception("hei");
         } catch (Exception e) {
             isThrow.set(true);
         } finally {
