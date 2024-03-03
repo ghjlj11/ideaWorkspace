@@ -45,6 +45,11 @@ public class Test1217 {
         System.out.println(ss1.hashCode());
         System.out.println(ss2.hashCode());
         System.out.println(ss1 == ss2);
+        String ss3 = "123";
+        String[] split = ss3.split("\\|");
+        System.out.println(Arrays.toString(split));
+        int d = 7 << 16;
+        System.out.println("d = " + d);
     }
 
     public static String getS (Object o) {
