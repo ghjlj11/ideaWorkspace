@@ -536,6 +536,16 @@ git push
 
 
 
+#### 合并提交
+
+```bash
+查看历史提交记录信息: git log
+
+合并提交到当前分支: git cherry-pick commitId
+
+撤销合并提交: git cherry-pick --abort
+```
+
 
 
 #### 生成ssh密钥
