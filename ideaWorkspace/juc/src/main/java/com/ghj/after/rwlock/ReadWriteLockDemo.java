@@ -1,4 +1,4 @@
-package com.ghj.before.rwlock;
+package com.ghj.after.rwlock;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * @author 86187
  * 读写锁
- * 当写锁被线程获取没有释放时，其他线程进行读或者写操作都会被阻塞
- * 当读锁被线程获取没有释放时，其他线程写会被阻塞，读则可以继续
+ * 读共享：当写锁被线程获取没有释放时，其他线程进行读或者写操作都会被阻塞
+ * 读写排他：当读锁被线程获取没有释放时，其他线程写会被阻塞，读则可以继续
+ * 写降级：当获取到写锁时，再进行读操作，此时写锁会降级为读锁，可以直接获取读锁。
+ *       当获取到读锁时，在没有释放读锁之前，是获取不到写锁的，不存在锁升级的操作。
+ *
+ * 缺点：如果有大量线程进行读操作，少量线程进行写操作，那么由于读锁一直被获取，写锁可能会长时间获取不到
  */
 public class ReadWriteLockDemo {
     public static void main(String[] args) throws InterruptedException {
@@ -19,6 +23,9 @@ public class ReadWriteLockDemo {
             aCatch.get("0");
         }, "read fst").start();
         TimeUnit.SECONDS.sleep(1);
+        new Thread( () -> {
+            aCatch.putAndGet("0", "222", "0");
+        }, "write and read").start();
         //写入操作
         for (int i = 0; i < 1; i++) {
             final int t = i;
@@ -68,8 +75,21 @@ class Catch{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        map.get(k);
+        System.out.println(Thread.currentThread().getName() + "==>读取：key: " + k + ",value:" + map.get(k));
         System.out.println(Thread.currentThread().getName() + "==>读操作  ok");
         readWriteLock.readLock().unlock();
+    }
+    public void putAndGet (String putKey, String putValue, String getKey) {
+        readWriteLock.writeLock().lock();
+        System.out.println(Thread.currentThread().getName() + "==>进入到写操作");
+        map.put(putKey, putValue);
+        readWriteLock.readLock().lock();
+        System.out.println(Thread.currentThread().getName() + "==>进入到读操作");
+        System.out.println(Thread.currentThread().getName() + "==>读取：key: " + getKey + ",value:" + map.get(getKey));
+        // 先释放写锁，再释放读锁
+        readWriteLock.writeLock().unlock();
+        System.out.println(Thread.currentThread().getName() + "==>写操作  ok");
+        readWriteLock.readLock().unlock();
+        System.out.println(Thread.currentThread().getName() + "==>读操作  ok");
     }
 }
