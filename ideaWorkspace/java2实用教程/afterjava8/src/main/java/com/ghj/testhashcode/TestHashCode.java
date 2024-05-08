@@ -2,7 +2,9 @@ package com.ghj.testhashcode;
 
 import com.ghj.pojo.TestHashCodePojo;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,5 +40,7 @@ public class TestHashCode {
         System.out.println(map1.hashCode());
         System.out.println(map2.hashCode());
         System.out.println(map1.equals(map2));
+        List<String> list;
+        System.out.println(list == null);
     }
 }

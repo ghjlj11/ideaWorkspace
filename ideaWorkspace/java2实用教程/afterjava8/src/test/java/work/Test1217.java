@@ -1,11 +1,11 @@
 package work;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -50,9 +50,26 @@ public class Test1217 {
         System.out.println(Arrays.toString(split));
         int d = 7 << 16;
         System.out.println("d = " + d);
+        String ghj = "012.34.56.789";
+        System.out.println(ghj.replaceAll("\\.", "_"));
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(8);
+        list.add(2);
+        System.out.println(list.stream().sorted().collect(Collectors.toList()));
+        BigDecimal decimal = BigDecimal.ZERO;
+        System.out.println("decimal:" + decimal);
+        System.out.println("pattern:" + Pattern.matches("^\\d{1,30}(\\.\\d{1,30})?$", decimal.toString()));
+        System.out.println("compare:" + decimal.compareTo(decimal));
+        Map<String, Object> map = new HashMap<>();
+        map.forEach( (k, v) -> {});
     }
 
     public static String getS (Object o) {
         return o == null ? "" : o.toString();
+    }
+
+    public static void test (Boolean b) {
+        b = true;
     }
 }

@@ -943,13 +943,13 @@ MDL元数据锁，锁的是表的结构，当对表进行增删改查操作时�
 
 事务具有 4 个特性，即原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）和持久性（Durability），这 4 个特性通常简称为 ACID
 
-**原子性**：事务是一个完整的操作。事务的各元素是不可分的（原子的）。事务中的所有元素必须作为一个整体提交或回滚。如果事务中的任何元素失败，则整个事务将失败。
+**原子性**：事务是一个完整的操作。事务的各元素是不可分的（原子的）。事务中的所有元素必须作为一个整体提交或回滚。如果事务中的任何元素失败，则整个事务将失败。**（undolog实现）**
 
-**一致性**：当事务完成时，数据必须处于一致状态。也就是说，在事务开始之前，数据库中存储的数据处于一致状态。在正在进行的事务中. 数据可能处于不一致的状态，如数据可能有部分被修改。然而，当事务成功完成时，数据必须再次回到已知的一致状态。
+**一致性**：当事务完成时，数据必须处于一致状态。也就是说，在事务开始之前，数据库中存储的数据处于一致状态。在正在进行的事务中. 数据可能处于不一致的状态，如数据可能有部分被修改。然而，当事务成功完成时，数据必须再次回到已知的一致状态。**（undolog+redolog实现）**
 
-**隔离性**：对数据进行修改的所有并发事务是彼此隔离的，这表明事务必须是独立的，它不应以任何方式依赖于或影响其他事务。修改数据的事务可以在另一个使用相同数据的事务开始之前访问这些数据，或者在另一个使用相同数据的事务结束之后访问这些数据。
+**隔离性**：对数据进行修改的所有并发事务是彼此隔离的，这表明事务必须是独立的，它不应以任何方式依赖于或影响其他事务。修改数据的事务可以在另一个使用相同数据的事务开始之前访问这些数据，或者在另一个使用相同数据的事务结束之后访问这些数据。**（锁+MVCC实现）**
 
-**持久性**：事务的持久性指不管系统是否发生了故障，事务处理的结果都是永久的。
+**持久性**：事务的持久性指不管系统是否发生了故障，事务处理的结果都是永久的。**（redolog实现）**
 
 
 
@@ -1058,4 +1058,143 @@ bin log 以事件形式记录，不是事务日志。对于非事务表的操作
 生成快照读，以Repeatable Read为例，当事务开启后的第一个select时，会选择当MySQL服务最新的可见版本的数据，在之后进行正常的select语句时，查询的都是这个版本的数据，无论中间有无其他事务更改数据。
 
 
+
+### 隐藏字段
+
+
+
+|  隐藏字段   |                             含义                             |
+| :---------: | :----------------------------------------------------------: |
+|  DB_TRX_ID  | 最近修改事务ID，记录插入这条记录或最后一次修改该记录的事务ID。 |
+| DB_ROLL_PTR | 回滚指针，指向这条记录的上一个版本，用于配合undolog，指向上一个版本。 |
+|  DB_ROW_ID  |    隐藏主键，如果表结构没有指定主键，将会生成该隐藏字段。    |
+
+
+
+### undolog
+
+回滚日志，在insert、update、delete的时候产生的便于数据回滚的日志。
+
+当insert的时候，产生的undolog日志只在回滚时需要，在事务提交后，可被立即删除。
+
+而update、delete的时候，产生的undolog日志不仅在回滚时需要，在快照读时也需要，不会立即被删除。
+
+
+
+> undolog版本链
+
+当不同事务对同一个记录修改时，因为表中的隐藏字段DB_ROLL_PTR，undolog会生成一个版本链表，链表头部既是最新的历史版本，链表尾部则是最早的历史版本。
+
+![1713369723343](img\mysql\1713369723343.jpg)
+
+### readview
+
+ReadView(读视图) 是 快照读 SOL执行时MVCC提取数据的依据，记录并维护系统当前活跃的事务(未提交的)id。ReadView中包含了四个核心字段:
+
+|      字段      |                        含义                        |
+| :------------: | :------------------------------------------------: |
+|     m_ids      |                当前活跃的事务ID集合                |
+|   min_trx_id   |                   最小活跃事务ID                   |
+|   max_trx_id   | 预分配事务ID，当前最大事务ID+1(因为事务ID是自增的) |
+| creator_trx_id |               ReadView创建者的事务ID               |
+
+
+
+> 版本链数据访问规则
+
+trx id:代表是当前事务ID。
+
+- trx_id == creator_trx_id?可以访问该版本。     ====>成立，说明数据是当前这个事务更改的。
+- trx_id<min_trx_id?可以访问该版本       ======>成立，说明数据已经提交了。
+- trx_id>max_trx_id?不可以访问该版本      =======> 成立，说明该事务是在ReadView生成后才开启。
+- min_trx_id <=trx_id<= max_trx_id?如果trx_id不在m_ids中是可以访问该版本的   =====>成立，说明数据已经提交。
+- min_trx_id <=trx_id<= max_trx_id?如果trx_id在m_ids则不可以访问该版本，因为说明当前事务在活动事务集合中，数据未提交。
+
+
+
+**不同的隔离级别，生成ReadView的时机不同：**
+
+**READ COMMITTED：在事务中每一次执行快照读时生成ReadView。**
+**REPEATABLE READ：仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView。**
+
+
+
+结合下图，**在RC隔离级别时**，查看事务5中第一个生成readview读取版本链中的版本，只能读取到事务id为2的版本。将版本链中的事务id带入到4个条件中，即可发现只能读取事务id为2的事务。在第二个readview中，则可以查看到事务id为3的版本数据。	
+
+![1713455138220](img\mysql\1713455138220.jpg)
+
+
+
+**在RR隔离级别时**，上图中的事务5则只会产生一个readview，只能读取事务id为2的数据，第二次查询时，会复用第一次查询生产的readview，因此查询到数据的版本时同一个，也就保证了可重复读，每次读取的都是一样的数据。
+
+
+
+## 慢查询日志
+
+开启mysql慢查询日志，用于查看耗时较长的sql语句。
+
+
+
+- 开启慢查询日志，找的mysql的配置文件my.cnf，并且开启配置，如果日志文件没有先创建一个。
+
+```bash
+# 开启慢查询日志
+slow_query_log=1
+# 执行时间参数
+long_query_time=2
+# 设置慢查询日志保存路径，确保mysql对该文件有权限
+slow_query_log_file=/var/log/mysql/mysql-slow.log
+# 记录未使用索引的查询
+log_queries_not_using_indexes=1
+# 记录执行较慢的管理语句
+log_slow_admin_statements=1
+```
+
+
+
+- 重启mysql服务，并且执行慢sql查询。
+- 查看配置中的日志文件，查看慢sql详细信息。
+
+```bash
+/usr/sbin/mysqld, Version: 8.0.36 (MySQL Community Server - GPL). started with:
+Tcp port: 3306  Unix socket: /var/lib/mysql/mysql.sock
+Time                 Id Command    Argument
+# Time: 2024-04-28T14:21:55.671919Z
+# User@Host: root[root] @ localhost []  Id:     8
+# Query_time: 2.691150  Lock_time: 0.000004 Rows_sent: 10  Rows_examined: 6000010
+use test;
+SET timestamp=1714314112;
+select * from people limit 6000000, 10;
+```
+
+
+
+
+
+```yaml
+systemLog:
+#MongoDB发送所有日志输出的目标指定为文件
+# #The path of the log file to which mongod or mongos should send all diagnostic logging information
+destination: file
+#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径
+path: "/mongodb/single/log/mongod.log"
+#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。
+logAppend: true
+storage:
+#mongod实例存储其数据的目录。storage.dbPath设置仅适用于mongod。
+##The directory where the mongod instance stores its data.Default Value is "/data/db".
+dbPath: "/mongodb/single/data/db"
+journal:
+#启用或禁用持久性日志以确保数据文件保持有效和可恢复。
+enabled: true
+processManagement:
+#启用在后台运行mongos或mongod进程的守护进程模式。
+fork: true
+net:
+#服务实例绑定的IP，默认是localhost
+bindIp: localhost,192.168.0.2
+#bindIp
+#绑定的端口，默认是27017
+port: 27017
+```
 

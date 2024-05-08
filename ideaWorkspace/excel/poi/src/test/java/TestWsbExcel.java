@@ -36,7 +36,7 @@ public class TestWsbExcel {
         Set<String> fieldNameSet = new HashSet<>();
         Sheet sheet = workbook.getSheet("配置内容");
         for (Row row : sheet) {
-            row.getCell();
+            //row.getCell();
         }
     }
 
