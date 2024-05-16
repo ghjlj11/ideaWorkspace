@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      host: 8.141.89.94
+      database: articledb
+      port: 27017
+      username: root
+      password: Ghj523155
+      authentication-database: admin
+
+server:
+  port: 8080
